@@ -17,20 +17,16 @@ tajima_dir_ic <- "/Users/nirwantandukar/Documents/Research/results/Indian_Jarvis
 tajima_dir_j <- "/Users/nirwantandukar/Documents/Research/results/Indian_Jarvis/ANGSD_TajimaD/Jarvis/sliding_window"
 
 main_dir <- "Figs/main"
-supp_dir <- "Figs/Supplementary"
-tables_dir <- "tables/supplementary"
 
 main_file <- file.path(main_dir, "Fig4.png")
-supp_ic_file <- file.path(supp_dir, "SuppFig_Fig4_Fst_TajimaPi_IndianChief.png")
-supp_j_file <- file.path(supp_dir, "SuppFig_Fig4_Fst_TajimaPi_Jarvis.png")
-supp_scatter_file <- file.path(supp_dir, "SuppFig_Fig4_Fst_TajimaPi_scatter.png")
 
 dir.create(main_dir, showWarnings = FALSE, recursive = TRUE)
-dir.create(supp_dir, showWarnings = FALSE, recursive = TRUE)
-dir.create(tables_dir, showWarnings = FALSE, recursive = TRUE)
 
 window_size_bp <- 250000
 candidate_gap_bp <- 500000
+min_display_window_bp <- 12000000
+fst_percentile <- 0.95
+tail_percentile <- 0.05
 
 chr_map <- tibble(
   nc_id = c(
@@ -49,12 +45,12 @@ plot_theme <- theme_minimal(base_size = 24) +
       hjust = 0.5,
       margin = margin(b = 10)
     ),
-    plot.tag = element_text(size = 18, face = "bold"),
+    plot.tag = element_text(size = 24, face = "bold"),
     plot.tag.position = c(0.01, 0.99),
-    axis.title.x = element_text(size = 16, face = "bold"),
-    axis.title.y = element_text(size = 16, face = "bold"),
-    axis.text.x = element_text(size = 14, color = "black"),
-    axis.text.y = element_text(size = 14, color = "black"),
+    axis.title.x = element_text(size = 18, face = "bold"),
+    axis.title.y = element_text(size = 18, face = "bold"),
+    axis.text.x = element_text(size = 16, color = "black"),
+    axis.text.y = element_text(size = 16, face = "bold", color = "black"),
     axis.line = element_line(color = "black"),
     panel.grid = element_blank(),
     legend.background = element_rect(fill = "white", color = "grey70", linewidth = 0.4),
@@ -226,9 +222,9 @@ prepare_population_data <- function(fst_dir, tajima_dir, gen0_pattern, gen14_pat
     ) %>%
     arrange(chr_num, WinCenter)
 
-  fst_threshold <- quantile(merged_df$Fst, 0.99, na.rm = TRUE)
-  deltaD_threshold <- quantile(merged_df$deltaD, 0.01, na.rm = TRUE)
-  log_pi_threshold <- quantile(merged_df$log_pi_ratio, 0.01, na.rm = TRUE)
+  fst_threshold <- quantile(merged_df$Fst, fst_percentile, na.rm = TRUE)
+  deltaD_threshold <- quantile(merged_df$deltaD, tail_percentile, na.rm = TRUE)
+  log_pi_threshold <- quantile(merged_df$log_pi_ratio, tail_percentile, na.rm = TRUE)
 
   flagged_df <- merged_df %>%
     mutate(
@@ -278,7 +274,10 @@ add_region_positions <- function(regions_df, chr_info) {
     mutate(
       region_start_cum = region_start + offset,
       region_end_cum = region_end + offset,
-      region_center_cum = region_center + offset
+      region_center_cum = region_center + offset,
+      display_width_bp = pmax(region_end - region_start, min_display_window_bp),
+      display_start_cum = region_center_cum - display_width_bp / 2,
+      display_end_cum = region_center_cum + display_width_bp / 2
     )
 }
 
@@ -286,11 +285,12 @@ plot_population_panel <- function(pop_obj, pop_label, chr_info) {
   df <- add_cumulative_positions(pop_obj$data, chr_info)
   regions_df <- add_region_positions(pop_obj$regions, chr_info)
 
-  shade_fill <- "#6AA84F"
-  outlier_color <- "#E64B35"
-  fst_color <- "#3C5488"
-  delta_color <- "#00A087"
-  pi_color <- "#7E6148"
+  shade_fill <- "#F4B942"
+  shade_edge <- "#9A3412"
+  outlier_color <- "#B22222"
+  fst_color <- "#163A5F"
+  delta_color <- "#8E3B8A"
+  pi_color <- "#127475"
 
   base_scale <- scale_x_continuous(
     breaks = chr_info$center,
@@ -303,30 +303,32 @@ plot_population_panel <- function(pop_obj, pop_label, chr_info) {
       geom_rect(
         data = regions_df,
         aes(
-          xmin = region_start_cum,
-          xmax = region_end_cum,
+          xmin = display_start_cum,
+          xmax = display_end_cum,
           ymin = -Inf,
           ymax = Inf
         ),
         fill = shade_fill,
-        alpha = 0.12,
+        color = shade_edge,
+        linewidth = 0.8,
+        alpha = 0.42,
         inherit.aes = FALSE
       )
     } +
-    geom_point(aes(y = Fst), color = "grey75", size = 0.25, alpha = 0.45) +
-    geom_line(aes(y = Fst_smooth, group = chr_num), color = fst_color, linewidth = 0.9) +
+    geom_point(aes(y = Fst), color = "grey82", size = 0.22, alpha = 0.3) +
+    geom_line(aes(y = Fst_smooth, group = chr_num), color = fst_color, linewidth = 1.05) +
     geom_point(
       data = df %>% filter(fst_outlier),
       aes(y = Fst),
       color = outlier_color,
-      size = 1.0,
-      alpha = 0.9
+      size = 1.15,
+      alpha = 0.95
     ) +
     geom_hline(
       yintercept = pop_obj$thresholds$fst,
       linetype = "dashed",
       color = outlier_color,
-      linewidth = 0.5
+      linewidth = 0.55
     ) +
     labs(title = pop_label, x = NULL, y = expression(F[ST])) +
     base_scale +
@@ -342,31 +344,33 @@ plot_population_panel <- function(pop_obj, pop_label, chr_info) {
       geom_rect(
         data = regions_df,
         aes(
-          xmin = region_start_cum,
-          xmax = region_end_cum,
+          xmin = display_start_cum,
+          xmax = display_end_cum,
           ymin = -Inf,
           ymax = Inf
         ),
         fill = shade_fill,
-        alpha = 0.12,
+        color = shade_edge,
+        linewidth = 0.8,
+        alpha = 0.42,
         inherit.aes = FALSE
       )
     } +
-    geom_point(aes(y = deltaD), color = "grey75", size = 0.25, alpha = 0.45) +
-    geom_line(aes(y = deltaD_smooth, group = chr_num), color = delta_color, linewidth = 0.9) +
+    geom_point(aes(y = deltaD), color = "grey82", size = 0.22, alpha = 0.3) +
+    geom_line(aes(y = deltaD_smooth, group = chr_num), color = delta_color, linewidth = 1.05) +
     geom_point(
       data = df %>% filter(deltaD_outlier),
       aes(y = deltaD),
       color = outlier_color,
-      size = 1.0,
-      alpha = 0.9
+      size = 1.15,
+      alpha = 0.95
     ) +
     geom_hline(yintercept = 0, color = "black", linewidth = 0.4) +
     geom_hline(
       yintercept = pop_obj$thresholds$deltaD,
       linetype = "dashed",
       color = outlier_color,
-      linewidth = 0.5
+      linewidth = 0.55
     ) +
     labs(x = NULL, y = expression(Delta * "D")) +
     base_scale +
@@ -382,31 +386,33 @@ plot_population_panel <- function(pop_obj, pop_label, chr_info) {
       geom_rect(
         data = regions_df,
         aes(
-          xmin = region_start_cum,
-          xmax = region_end_cum,
+          xmin = display_start_cum,
+          xmax = display_end_cum,
           ymin = -Inf,
           ymax = Inf
         ),
         fill = shade_fill,
-        alpha = 0.12,
+        color = shade_edge,
+        linewidth = 0.8,
+        alpha = 0.42,
         inherit.aes = FALSE
       )
     } +
-    geom_point(aes(y = log_pi_ratio), color = "grey75", size = 0.25, alpha = 0.45) +
-    geom_line(aes(y = log_pi_smooth, group = chr_num), color = pi_color, linewidth = 0.9) +
+    geom_point(aes(y = log_pi_ratio), color = "grey82", size = 0.22, alpha = 0.3) +
+    geom_line(aes(y = log_pi_smooth, group = chr_num), color = pi_color, linewidth = 1.05) +
     geom_point(
       data = df %>% filter(pi_outlier),
       aes(y = log_pi_ratio),
       color = outlier_color,
-      size = 1.0,
-      alpha = 0.9
+      size = 1.15,
+      alpha = 0.95
     ) +
     geom_hline(yintercept = 0, color = "black", linewidth = 0.4) +
     geom_hline(
       yintercept = pop_obj$thresholds$log_pi,
       linetype = "dashed",
       color = outlier_color,
-      linewidth = 0.5
+      linewidth = 0.55
     ) +
     labs(
       x = "Chromosome",
@@ -418,17 +424,6 @@ plot_population_panel <- function(pop_obj, pop_label, chr_info) {
 
   p_fst / p_delta / p_pi +
     plot_layout(heights = c(1, 1, 1))
-}
-
-save_population_tables <- function(pop_obj, pop_slug) {
-  readr::write_csv(
-    pop_obj$data,
-    file.path(tables_dir, paste0("Fig4_windows_", pop_slug, ".csv"))
-  )
-  readr::write_csv(
-    pop_obj$regions,
-    file.path(tables_dir, paste0("Fig4_candidate_regions_", pop_slug, ".csv"))
-  )
 }
 
 ################################################################################
@@ -473,42 +468,15 @@ cat("\n=== Building figure panels ===\n")
 panel_ic <- plot_population_panel(ic_obj, "Indian Chief", chr_info)
 panel_j <- plot_population_panel(j_obj, "Jarvis", chr_info)
 
-fig4 <- (panel_ic / panel_j) +
+fig4 <- (wrap_elements(panel = panel_ic) / wrap_elements(panel = panel_j)) +
   plot_layout(heights = c(1, 1)) +
   plot_annotation(tag_levels = "A")
-
-scatter_df <- bind_rows(
-  ic_obj$data %>% mutate(Population = "Indian Chief"),
-  j_obj$data %>% mutate(Population = "Jarvis")
-)
-
-supp_scatter <- ggplot(scatter_df, aes(x = Fst, y = deltaD, color = Population)) +
-  geom_point(alpha = 0.35, size = 1.0) +
-  geom_hline(yintercept = 0, color = "black", linewidth = 0.4) +
-  scale_color_manual(values = c("Indian Chief" = "#E64B35", "Jarvis" = "#3C5488")) +
-  facet_wrap(~Population, scales = "free") +
-  labs(
-    x = expression(F[ST]),
-    y = expression(Delta * "D"),
-    title = "FST vs Delta Tajima's D"
-  ) +
-  plot_theme +
-  theme(
-    legend.position = "none",
-    strip.text = element_text(size = 14, face = "bold")
-  )
 
 ################################################################################
 ### SAVE OUTPUTS
 ################################################################################
 
 ggsave(main_file, fig4, width = 15, height = 16, dpi = 300, bg = "white")
-ggsave(supp_ic_file, panel_ic, width = 15, height = 8, dpi = 300, bg = "white")
-ggsave(supp_j_file, panel_j, width = 15, height = 8, dpi = 300, bg = "white")
-ggsave(supp_scatter_file, supp_scatter, width = 12, height = 6, dpi = 300, bg = "white")
-
-save_population_tables(ic_obj, "IndianChief")
-save_population_tables(j_obj, "Jarvis")
 
 ################################################################################
 ### REPORT
@@ -516,15 +484,6 @@ save_population_tables(j_obj, "Jarvis")
 
 cat("\nSaved main figure to:\n")
 cat("  ", main_file, "\n", sep = "")
-cat("Saved supplementary figures to:\n")
-cat("  ", supp_ic_file, "\n", sep = "")
-cat("  ", supp_j_file, "\n", sep = "")
-cat("  ", supp_scatter_file, "\n", sep = "")
-cat("Saved tables to:\n")
-cat("  ", file.path(tables_dir, "Fig4_windows_IndianChief.csv"), "\n", sep = "")
-cat("  ", file.path(tables_dir, "Fig4_candidate_regions_IndianChief.csv"), "\n", sep = "")
-cat("  ", file.path(tables_dir, "Fig4_windows_Jarvis.csv"), "\n", sep = "")
-cat("  ", file.path(tables_dir, "Fig4_candidate_regions_Jarvis.csv"), "\n", sep = "")
 
 cat("\nSummary:\n")
 cat(
