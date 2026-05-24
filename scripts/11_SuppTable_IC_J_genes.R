@@ -22,6 +22,7 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 window_size_bp <- 250000
 fst_percentile <- 0.95
 tail_percentile <- 0.05
+population_code <- toupper(Sys.getenv("POPULATION_CODE", unset = "BOTH"))
 
 chr_map <- tibble(
   nc_id = c(
@@ -246,25 +247,32 @@ cat("Genes in reference:", length(genes_only), "\n")
 ### BUILD TABLES
 ################################################################################
 
-cat("\n=== Processing Indian Chief windows ===\n")
-ic_windows <- prepare_population_windows(
-  fst_dir = fst_dir_ic,
-  tajima_dir = tajima_dir_ic,
-  gen0_pattern = "IC01",
-  gen14_pattern = "IC14",
-  population_name = "Indian Chief"
-)
-ic_annotated <- annotate_windows_with_genes(ic_windows, genes_only)
+ic_annotated <- NULL
+j_annotated <- NULL
 
-cat("\n=== Processing Jarvis windows ===\n")
-j_windows <- prepare_population_windows(
-  fst_dir = fst_dir_j,
-  tajima_dir = tajima_dir_j,
-  gen0_pattern = "J01",
-  gen14_pattern = "J14",
-  population_name = "Jarvis"
-)
-j_annotated <- annotate_windows_with_genes(j_windows, genes_only)
+if (population_code %in% c("IC", "BOTH")) {
+  cat("\n=== Processing Indian Chief windows ===\n")
+  ic_windows <- prepare_population_windows(
+    fst_dir = fst_dir_ic,
+    tajima_dir = tajima_dir_ic,
+    gen0_pattern = "IC01",
+    gen14_pattern = "IC14",
+    population_name = "Indian Chief"
+  )
+  ic_annotated <- annotate_windows_with_genes(ic_windows, genes_only)
+}
+
+if (population_code %in% c("J", "BOTH")) {
+  cat("\n=== Processing Jarvis windows ===\n")
+  j_windows <- prepare_population_windows(
+    fst_dir = fst_dir_j,
+    tajima_dir = tajima_dir_j,
+    gen0_pattern = "J01",
+    gen14_pattern = "J14",
+    population_name = "Jarvis"
+  )
+  j_annotated <- annotate_windows_with_genes(j_windows, genes_only)
+}
 
 ################################################################################
 ### SAVE OUTPUTS
@@ -273,21 +281,34 @@ j_annotated <- annotate_windows_with_genes(j_windows, genes_only)
 ic_file <- file.path(output_dir, "SuppTable_Fig4_windows_IndianChief_genes_5pct.csv")
 j_file <- file.path(output_dir, "SuppTable_Fig4_windows_Jarvis_genes_5pct.csv")
 
-readr::write_csv(ic_annotated, ic_file)
-readr::write_csv(j_annotated, j_file)
+if (!is.null(ic_annotated)) {
+  readr::write_csv(ic_annotated, ic_file)
+}
+
+if (!is.null(j_annotated)) {
+  readr::write_csv(j_annotated, j_file)
+}
 
 cat("\nSaved supplementary tables to:\n")
-cat("  ", ic_file, "\n", sep = "")
-cat("  ", j_file, "\n", sep = "")
+if (!is.null(ic_annotated)) {
+  cat("  ", ic_file, "\n", sep = "")
+}
+if (!is.null(j_annotated)) {
+  cat("  ", j_file, "\n", sep = "")
+}
 
 cat("\nSummary:\n")
-cat(
-  "  Indian Chief rows:", nrow(ic_annotated),
-  "| rows with genes:", sum(ic_annotated$gene_count > 0),
-  "| all three signals:", sum(ic_annotated$all_three_signals == "Yes"), "\n"
-)
-cat(
-  "  Jarvis rows:", nrow(j_annotated),
-  "| rows with genes:", sum(j_annotated$gene_count > 0),
-  "| all three signals:", sum(j_annotated$all_three_signals == "Yes"), "\n"
-)
+if (!is.null(ic_annotated)) {
+  cat(
+    "  Indian Chief rows:", nrow(ic_annotated),
+    "| rows with genes:", sum(ic_annotated$gene_count > 0),
+    "| all three signals:", sum(ic_annotated$all_three_signals == "Yes"), "\n"
+  )
+}
+if (!is.null(j_annotated)) {
+  cat(
+    "  Jarvis rows:", nrow(j_annotated),
+    "| rows with genes:", sum(j_annotated$gene_count > 0),
+    "| all three signals:", sum(j_annotated$all_three_signals == "Yes"), "\n"
+  )
+}
