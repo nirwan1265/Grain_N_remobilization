@@ -1,11 +1,10 @@
 ################################################################################
-### AMINO-ACID GWAS MANHATTAN PLOTS BY MODEL
+### AMINO-ACID GWAS MANHATTAN + QQ PLOTS BY MODEL
 ################################################################################
 
 library(dplyr)
 library(data.table)
 library(ggplot2)
-library(ggnewscale)
 library(vroom)
 
 ################################################################################
@@ -13,17 +12,15 @@ library(vroom)
 ################################################################################
 
 INPUT_DIR <- "/Users/nirwantandukar/Documents/Research/results/GWAS/Sarah_amino_acid/N_grain/Phenotypes_GWAS_Grain"
-OUTPUT_DIR <- "Figs/Supplementary/amino_manhattan_by_model"
+OUTPUT_DIR <- "Figs/Supplementary/amino_gwas_by_trait"
 
 TARGET_TRAITS <- sort(sub("\\.csv$", "", list.files(INPUT_DIR, pattern = "\\.csv$")))
 MODEL_ORDER <- c("MLM", "MLMM", "BLINK", "FarmCPU")
-OVERLAY_SETS <- list(
-  All = MODEL_ORDER
-)
 
 THR_SUGGESTIVE <- 5
 THR_SIGNIFICANT <- 7
 MAX_BG_POINTS <- 150000
+MAX_QQ_POINTS <- 120000
 
 MODEL_COLORS <- c(
   MLM = "#0072B2",
@@ -32,34 +29,9 @@ MODEL_COLORS <- c(
   FarmCPU = "#D55E00"
 )
 
-TRAIT_LABELS <- c(
-  D = "Aspartate",
-  `D.IMNTDK` = "Aspartate relative to aspartate family",
-  `D.Total` = "Aspartate relative to all free amino acids",
-  E = "Glutamate",
-  `E.EHPRQ` = "Glutamate relative to glutamate family",
-  `E.Total` = "Glutamate relative to all free amino acids",
-  EHPRQ = "Glutamate family",
-  IMNTDK = "Aspartate family",
-  N = "Asparagine",
-  `N.E` = "Asparagine relative to glutamate",
-  `N.IMNTDK` = "Asparagine relative to aspartate family",
-  `N.Q` = "Asparagine relative to glutamine",
-  `N.Total` = "Asparagine relative to all free amino acids",
-  P = "Proline",
-  `P.EHPRQ` = "Proline relative to glutamate family",
-  `P.EHPRQ_NYC_` = "Proline relative to glutamate family (NYC)",
-  `P.Total` = "Proline relative to all free amino acids",
-  Q = "Glutamine",
-  `Q.E` = "Glutamine relative to glutamate",
-  `Q.Total` = "Glutamine relative to all amino acids",
-  Total_N = "Total nitrogen",
-  Total_PBAA = "Total protein-bound amino acids"
-)
-
 dir.create(OUTPUT_DIR, showWarnings = FALSE, recursive = TRUE)
-dir.create(file.path(OUTPUT_DIR, "single_model"), showWarnings = FALSE, recursive = TRUE)
-dir.create(file.path(OUTPUT_DIR, "overlay"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(OUTPUT_DIR, "manhattan"), showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path(OUTPUT_DIR, "qq"), showWarnings = FALSE, recursive = TRUE)
 
 ################################################################################
 ### THEME
@@ -88,14 +60,6 @@ plot_theme <- theme_minimal(base_size = 12) +
 ### HELPERS
 ################################################################################
 
-pretty_trait_name <- function(trait_name) {
-  if (trait_name %in% names(TRAIT_LABELS)) {
-    paste0(trait_name, " \u2014 ", TRAIT_LABELS[[trait_name]])
-  } else {
-    trait_name
-  }
-}
-
 thin_rows <- function(df, max_n) {
   if (is.null(df) || nrow(df) <= max_n) {
     return(df)
@@ -108,61 +72,59 @@ thin_rows <- function(df, max_n) {
 load_trait_data <- function(trait_name) {
   file_path <- file.path(INPUT_DIR, paste0(trait_name, ".csv"))
 
-  data.table::fread(
+  dt <- data.table::fread(
     file_path,
     select = c("SNP", "Chr", "Pos", "P.value", "model"),
     showProgress = FALSE
-  ) %>%
-    as_tibble() %>%
-    mutate(
-      Chr = as.integer(Chr),
-      Pos = as.numeric(Pos),
-      P.value = as.numeric(P.value),
-      model = as.character(model),
-      log10_P = -log10(P.value)
-    ) %>%
-    filter(
-      !is.na(Chr),
-      !is.na(Pos),
-      !is.na(P.value),
-      is.finite(P.value),
-      P.value > 0,
+  )
+
+  data.table::setDT(dt)
+  dt[, Chr := as.integer(Chr)]
+  dt[, Pos := as.numeric(Pos)]
+  dt[, P.value := as.numeric(P.value)]
+  dt[, model := trimws(as.character(model))]
+  dt[toupper(model) == "MLM", model := "MLM"]
+  dt[toupper(model) == "MLMM", model := "MLMM"]
+  dt[toupper(model) == "BLINK", model := "BLINK"]
+  dt[toupper(model) == "FARMCPU", model := "FarmCPU"]
+  dt[, log10_P := -log10(P.value)]
+
+  dt <- dt[
+    !is.na(Chr) &
+      !is.na(Pos) &
+      !is.na(P.value) &
+      is.finite(P.value) &
+      P.value > 0 &
       is.finite(log10_P)
-    )
+  ]
+
+  dt[]
 }
 
 prepare_manhattan_data <- function(trait_df, selected_models) {
-  df <- trait_df %>%
-    filter(model %in% selected_models)
+  df <- data.table::as.data.table(data.table::copy(trait_df))
+  df <- df[model %chin% selected_models]
 
   if (nrow(df) == 0) {
     return(NULL)
   }
 
-  best_df <- df %>%
-    group_by(SNP, Chr, Pos) %>%
-    slice_min(P.value, n = 1, with_ties = FALSE) %>%
-    ungroup() %>%
-    rename(best_model = model)
+  data.table::setorder(df, SNP, Chr, Pos, P.value)
+  best_df <- df[, .SD[1L], by = .(SNP, Chr, Pos)]
+  data.table::setnames(best_df, "model", "best_model")
 
-  chr_tbl <- best_df %>%
-    group_by(Chr) %>%
-    summarise(chr_len = max(Pos, na.rm = TRUE), .groups = "drop") %>%
-    arrange(Chr) %>%
-    mutate(
-      offset = lag(cumsum(chr_len), default = 0),
-      center = offset + chr_len / 2
-    )
+  chr_tbl <- best_df[, .(chr_len = max(Pos, na.rm = TRUE)), by = Chr]
+  data.table::setorder(chr_tbl, Chr)
+  chr_tbl[, offset := data.table::shift(cumsum(chr_len), fill = 0)]
+  chr_tbl[, center := offset + chr_len / 2]
 
-  bg_df <- best_df %>%
-    left_join(chr_tbl %>% select(Chr, offset), by = "Chr") %>%
-    mutate(pos_cum = Pos + offset) %>%
-    filter(log10_P < THR_SUGGESTIVE)
+  bg_df <- merge(best_df, chr_tbl[, .(Chr, offset)], by = "Chr", sort = FALSE)
+  bg_df[, pos_cum := Pos + offset]
+  bg_df <- bg_df[log10_P < THR_SUGGESTIVE]
 
-  sig_df <- df %>%
-    left_join(chr_tbl %>% select(Chr, offset), by = "Chr") %>%
-    mutate(pos_cum = Pos + offset) %>%
-    filter(log10_P >= THR_SUGGESTIVE)
+  sig_df <- merge(df, chr_tbl[, .(Chr, offset)], by = "Chr", sort = FALSE)
+  sig_df[, pos_cum := Pos + offset]
+  sig_df <- sig_df[log10_P >= THR_SUGGESTIVE]
 
   list(
     bg_df = thin_rows(bg_df, MAX_BG_POINTS),
@@ -172,39 +134,121 @@ prepare_manhattan_data <- function(trait_df, selected_models) {
   )
 }
 
-make_manhattan_plot <- function(plot_dat, trait_name, selected_models, overlay_label) {
+prepare_qq_data <- function(trait_df, selected_models) {
+  df <- data.table::as.data.table(data.table::copy(trait_df))
+  df <- df[model %chin% selected_models]
+
+  if (nrow(df) == 0) {
+    return(NULL)
+  }
+
+  qq_df <- bind_rows(lapply(selected_models, function(model_name) {
+    model_df <- data.table::copy(df[model == model_name])
+    data.table::setorder(model_df, P.value)
+
+    if (nrow(model_df) == 0) {
+      return(NULL)
+    }
+
+    keep_n <- min(MAX_QQ_POINTS, nrow(model_df))
+    keep_idx <- unique(round(seq(1, nrow(model_df), length.out = keep_n)))
+
+    tibble(
+      expected = -log10(ppoints(nrow(model_df)))[keep_idx],
+      observed = model_df$log10_P[keep_idx],
+      model = model_name
+    )
+  }))
+
+  if (nrow(qq_df) == 0) {
+    return(NULL)
+  }
+
+  conf_int <- NULL
+  lambda_df <- bind_rows(lapply(selected_models, function(model_name) {
+    model_df <- df[model == model_name]
+
+    if (nrow(model_df) == 0) {
+      return(NULL)
+    }
+
+    lambda <- median(
+      qchisq(1 - model_df$P.value, df = 1),
+      na.rm = TRUE
+    ) / qchisq(0.5, df = 1)
+
+    tibble(
+      model = model_name,
+      lambda = lambda
+    )
+  }))
+
+  if (length(selected_models) == 1) {
+    model_n <- nrow(df[model == selected_models[[1]]])
+
+    ci_n <- min(1000, model_n)
+    ci_idx <- sort(unique(round(seq(1, model_n, length.out = ci_n))))
+
+    conf_int <- tibble(
+      expected = -log10(ppoints(model_n))[ci_idx],
+      lower = -log10(qbeta(0.975, ci_idx, model_n - ci_idx + 1)),
+      upper = -log10(qbeta(0.025, ci_idx, model_n - ci_idx + 1))
+    )
+  }
+
+  list(
+    qq_df = qq_df,
+    conf_int = conf_int,
+    lambda_df = lambda_df
+  )
+}
+
+make_manhattan_plot <- function(plot_dat, trait_name, selected_models) {
   if (is.null(plot_dat)) {
     return(NULL)
   }
 
-  title_text <- pretty_trait_name(trait_name)
-  subtitle_text <- if (length(selected_models) == 1) {
-    paste0("Model: ", selected_models[[1]])
-  } else {
-    paste0("Overlay: ", overlay_label)
-  }
+  title_text <- trait_name
+  subtitle_text <- paste0("Models: ", paste(selected_models, collapse = ", "))
 
-  ggplot() +
+  bg_even <- plot_dat$bg_df[plot_dat$bg_df$Chr %% 2 == 0, , drop = FALSE]
+  bg_odd <- plot_dat$bg_df[plot_dat$bg_df$Chr %% 2 == 1, , drop = FALSE]
+
+  p <- ggplot() +
     geom_point(
-      data = plot_dat$bg_df,
-      aes(x = pos_cum, y = log10_P, color = factor(Chr %% 2)),
+      data = bg_even,
+      aes_string(x = "pos_cum", y = "log10_P"),
+      color = "grey65",
       alpha = 0.4,
       size = 0.45,
-      show.legend = FALSE
+      inherit.aes = FALSE
     ) +
-    scale_color_manual(values = c("0" = "grey65", "1" = "grey40")) +
-    ggnewscale::new_scale_color() +
     geom_point(
-      data = plot_dat$sig_df,
-      aes(x = pos_cum, y = log10_P, color = model),
-      alpha = 0.85,
-      size = 1.1
-    ) +
-    scale_color_manual(
-      values = MODEL_COLORS[names(MODEL_COLORS) %in% selected_models],
-      breaks = selected_models,
-      drop = FALSE
-    ) +
+      data = bg_odd,
+      aes_string(x = "pos_cum", y = "log10_P"),
+      color = "grey40",
+      alpha = 0.4,
+      size = 0.45,
+      inherit.aes = FALSE
+    )
+
+  if (nrow(plot_dat$sig_df) > 0) {
+    p <- p +
+      geom_point(
+        data = plot_dat$sig_df,
+        aes_string(x = "pos_cum", y = "log10_P", color = "model"),
+        alpha = 0.85,
+        size = 1.1,
+        inherit.aes = FALSE
+      ) +
+      scale_color_manual(
+        values = MODEL_COLORS[selected_models],
+        breaks = selected_models,
+        drop = FALSE
+      )
+  }
+
+  p +
     geom_hline(yintercept = THR_SUGGESTIVE, linetype = "dashed", color = "black", linewidth = 0.45) +
     geom_hline(yintercept = THR_SIGNIFICANT, linetype = "solid", color = "black", linewidth = 0.55) +
     annotate(
@@ -237,74 +281,129 @@ make_manhattan_plot <- function(plot_dat, trait_name, selected_models, overlay_l
     plot_theme
 }
 
+make_qq_plot <- function(qq_dat, trait_name, selected_models) {
+  if (is.null(qq_dat)) {
+    return(NULL)
+  }
+
+  title_text <- trait_name
+  subtitle_text <- paste0("Models: ", paste(selected_models, collapse = ", "))
+
+  lambda_text <- paste(
+    paste0(qq_dat$lambda_df$model, "=", sprintf("%.2f", qq_dat$lambda_df$lambda)),
+    collapse = "  "
+  )
+
+  p <- ggplot(qq_dat$qq_df, aes_string(x = "expected", y = "observed")) +
+    geom_abline(
+      intercept = 0,
+      slope = 1,
+      color = "black",
+      linetype = "dashed",
+      linewidth = 0.45
+    )
+
+  if (!is.null(qq_dat$conf_int)) {
+    p <- p +
+      geom_ribbon(
+        data = qq_dat$conf_int,
+        aes_string(x = "expected", ymin = "lower", ymax = "upper"),
+        fill = "grey85",
+        alpha = 0.5,
+        inherit.aes = FALSE
+      )
+  }
+
+  p +
+    geom_point(
+      aes_string(color = "model"),
+      alpha = 0.6,
+      size = 0.75
+    ) +
+    scale_color_manual(
+      values = MODEL_COLORS[selected_models],
+      breaks = selected_models,
+      drop = FALSE
+    ) +
+    annotate(
+      "text",
+      x = 0.3,
+      y = max(qq_dat$qq_df$observed, na.rm = TRUE) * 0.92,
+      label = paste0("lambda: ", lambda_text),
+      hjust = 0,
+      size = 3.3,
+      fontface = "bold"
+    ) +
+    labs(
+      title = title_text,
+      subtitle = subtitle_text,
+      x = expression(Expected~~-log[10](italic(p))),
+      y = expression(Observed~~-log[10](italic(p))),
+      color = NULL
+    ) +
+    plot_theme
+}
+
 ################################################################################
 ### MAIN LOOP
 ################################################################################
 
-run_all_manhattan <- function(traits = TARGET_TRAITS, output_dir = OUTPUT_DIR) {
+run_all_gwas_plots <- function(traits = TARGET_TRAITS, output_dir = OUTPUT_DIR) {
   dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
-  dir.create(file.path(output_dir, "single_model"), showWarnings = FALSE, recursive = TRUE)
-  dir.create(file.path(output_dir, "overlay"), showWarnings = FALSE, recursive = TRUE)
+  dir.create(file.path(output_dir, "manhattan"), showWarnings = FALSE, recursive = TRUE)
+  dir.create(file.path(output_dir, "qq"), showWarnings = FALSE, recursive = TRUE)
 
   cat("Traits found:", length(traits), "\n")
 
   for (trait_name in traits) {
     cat("\n=== Trait:", trait_name, "===\n")
     trait_df <- load_trait_data(trait_name)
-    present_models <- MODEL_ORDER[MODEL_ORDER %in% unique(trait_df$model)]
+    present_models <- MODEL_ORDER[MODEL_ORDER %in% unique(trait_df[["model"]])]
 
     cat("Rows:", nrow(trait_df), "\n")
     cat("Models:", paste(present_models, collapse = ", "), "\n")
 
-    for (model_name in present_models) {
-      plot_dat <- prepare_manhattan_data(trait_df, selected_models = model_name)
-      p <- make_manhattan_plot(
-        plot_dat = plot_dat,
-        trait_name = trait_name,
-        selected_models = model_name,
-        overlay_label = model_name
-      )
-
-      out_file <- file.path(
-        output_dir,
-        "single_model",
-        paste0(trait_name, "_", model_name, "_manhattan.png")
-      )
-
-      ggsave(out_file, p, width = 13, height = 5.5, dpi = 300, bg = "white")
-      cat("  saved:", out_file, "\n")
+    if (length(present_models) == 0) {
+      cat("  skipped: no recognized models present\n")
+      next
     }
 
-    for (overlay_name in names(OVERLAY_SETS)) {
-      selected_models <- OVERLAY_SETS[[overlay_name]]
-      selected_models <- selected_models[selected_models %in% present_models]
+    plot_dat <- prepare_manhattan_data(trait_df, selected_models = present_models)
+    qq_dat <- prepare_qq_data(trait_df, selected_models = present_models)
 
-      if (length(selected_models) == 0) {
-        next
-      }
+    p_manhattan <- make_manhattan_plot(
+      plot_dat = plot_dat,
+      trait_name = trait_name,
+      selected_models = present_models
+    )
+    p_qq <- make_qq_plot(
+      qq_dat = qq_dat,
+      trait_name = trait_name,
+      selected_models = present_models
+    )
 
-      plot_dat <- prepare_manhattan_data(trait_df, selected_models = selected_models)
-      p <- make_manhattan_plot(
-        plot_dat = plot_dat,
-        trait_name = trait_name,
-        selected_models = selected_models,
-        overlay_label = overlay_name
-      )
+    out_file_manhattan <- file.path(
+      output_dir,
+      "manhattan",
+      paste0(trait_name, "_manhattan.png")
+    )
+    out_file_qq <- file.path(
+      output_dir,
+      "qq",
+      paste0(trait_name, "_qq.png")
+    )
 
-      out_file <- file.path(
-        output_dir,
-        "overlay",
-        paste0(trait_name, "_", overlay_name, "_overlay_manhattan.png")
-      )
-
-      ggsave(out_file, p, width = 13, height = 5.5, dpi = 300, bg = "white")
-      cat("  saved:", out_file, "\n")
-    }
+    ggsave(out_file_manhattan, p_manhattan, width = 13, height = 5.5, dpi = 300, bg = "white")
+    ggsave(out_file_qq, p_qq, width = 6.8, height = 6.2, dpi = 300, bg = "white")
+    cat("  saved:", out_file_manhattan, "\n")
+    cat("  saved:", out_file_qq, "\n")
   }
 
   cat("\nDone.\n")
 }
 
+run_all_manhattan <- run_all_gwas_plots
+
 if (sys.nframe() == 0) {
-  run_all_manhattan()
+  run_all_gwas_plots()
 }
