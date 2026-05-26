@@ -42,9 +42,8 @@
 %%<additional latex packages if required can be included here>
 %\usepackage{newunicodechar}
 %\newunicodechar{₀}{$_0$}
-\usepackage[utf8]{inputenc}
-\usepackage{newunicodechar}
-\newunicodechar{₀}{$_0$}
+%\usepackage[utf8]{inputenc}
+%\newunicodechar{μ}{\textmu{}}
 
 %\usepackage{graphicx}%
 %\usepackage{multirow}%
@@ -163,17 +162,25 @@
 % Teosinte Inv4m Inversion Modulates Maize Growth and Flowering via Gene Network Rewiring
 
 
-\author[$1$]{Nirwan Tandukar}
-\author[$2$]{Sarah Fitzsimmons}
-\author[$3$]{Sherry Flint Garcia}
-\author[$4$]{Ruthie Angelovici}
-\author[$5$]{Rubén Rellán-Álvarez}
+\author[$1,\dagger$]{Nirwan Tandukar}
+\author[$2,\dagger$]{Sarah Fitzsimmons}
+\author[$3,*$]{Sherry Flint Garcia}
+\author[$4,*$]{Ruthie Angelovici}
+\author[$5,*$]{Rubén Rellán-Álvarez}
 
 \affil[$1$]{Department of Molecular and Structural Biochemistry, N.C. Plant Sciences Initiative, Genetics and Genomics Program, North Carolina State University, Raleigh, NC, USA}
 \affil[$2$]{Division of Biological Sciences, University of Missouri, Columbia, MO 65211, USA}
 \affil[$3$]{Division of Biological Sciences, Interdisciplinary Plant Group, Christopher S. Bond Life Sciences Center, University of Missouri, Columbia, MO 65211, USA}
 \affil[$4$]{USDA-ARS Plant Genetics Research Unit, Columbia, MO 65211, USA}
 \affil[$5$]{Department of Molecular and Structural Biochemistry, N.C. Plant Sciences Initiative, North Carolina State University, Raleigh, NC, USA}
+
+
+\affil[ ]{
+\begin{tabular}{c}
+$\dagger$These authors contributed equally to this work.\\
+$*$Correspondence: Sherry Flint Garcia (email@missouri.edu), Ruthie Angelovici (email@missouri.edu), and Rubén Rellán-Álvarez (rrellan@ncsu.edu)
+\end{tabular}
+}
 
 
 
@@ -221,7 +228,7 @@ E-mail: frodrig4@ncsu.edu, rrellan@ncsu.edu}
 Among these, aspartate (Asp) and asparagine (Asn), and to a lesser extent, glutamate (Glu) and glutamine (Gln), play important roles in nitrogen assimilation and storage. Asp and Glu are key intermediates in the incorporation of inorganic nitrogen into organic molecules, while Asn and Gln serve as major nitrogen transport and storage compounds due to their high nitrogen-to-carbon ratios and stability. As nitrogen demand increases, these amino acids are degraded to release assimilated nitrogen for metabolic use. In nitrogen-rich environments, elevated levels of free Asn, Asp, Gln, and Glu, as well as increased protein accumulation, have been observed.
 
 
-Quantitative genetic studies have proven to be an effective way to elucidate the genetic architecture of complex traits, such as grain nitrogen. Genome-wide association studies (GWAS) are a powerful tool used to identify SNPs associated with phenotypic variation. However, traditional GWAS often yields a large number of associations, many of which may not be biologically meaningful. To address this, it is best to employ one or more additional quantitative approaches to further clarify results. In environmentally dependent traits, environmental GWAS (envGWAS), which integrates environmental covariates into the association analysis to identify SNPs whose effects vary across environmental gradients, is a valuable complementary method. This approach helps reduce spurious associations and enhances the detection of loci involved in genotype-by-environment interactions, providing a more nuanced understanding of trait architecture. To maximize the power and resolution of these analyses, we leveraged two distinct populations: the Goodman-Buckler Association panel, a diverse inbred panel for GWAS which captures broad allelic variation, and a biparental population derived from two landraces, Indian Chief and Jarvis, that are adapted to contrasting soil nitrogen conditions for envGWAS, enabling the detection of environment-specific genetic effects.
+Quantitative genetic studies have proven to be an effective way to elucidate the genetic architecture of complex traits, such as grain nitrogen. Genome-wide association studies (GWAS) are a powerful tool used to identify SNPs associated with phenotypic variation. However, traditional GWAS often yields a large number of associations, many of which may not be biologically meaningful. To address this, it is best to employ one or more additional quantitative approaches to clarify results further. In environmentally dependent traits, environmental GWAS (envGWAS), which integrates environmental covariates into the association analysis to identify SNPs whose effects vary across environmental gradients, is a valuable complementary method. This approach helps reduce spurious associations and enhances the detection of loci involved in genotype-by-environment interactions, providing a more nuanced understanding of trait architecture. To maximize the power and resolution of these analyses, we leveraged two distinct populations: the Goodman-Buckler Association panel, a diverse inbred panel for GWAS which captures broad allelic variation, and a biparental population derived from two landraces, Indian Chief and Jarvis, that are adapted to contrasting soil nitrogen conditions for envGWAS, enabling the detection of environment-specific genetic effects.
 
 
 \section{Results}\label{results}
@@ -229,14 +236,15 @@ Quantitative genetic studies have proven to be an effective way to elucidate the
 
 \subsection{Amino acid profiling in NAM identifies asparagine and proline as the predominant amino acids} 
 
-\paragraph{Total Protein and Nitrogen Proxy GWAS}
-Total protein can reasonably be calculated from the sum of each PBAA. Our GWAS of total PBAA yielded 16 significant SNPs that contained 501 unique candidate genes within a 200kb region. The majority of these associations were detected using the BLINK and FarmCPU models, with only two SNPs identified by MLMM. Notably, one SNP (7-5322774) was consistently identified across all three models. Though grain protein accounts for a large proportion of the nitrogen found in the grain, it may not accurately represent the levels of nitrogen present due to variances in amino acid composition and levels of free amino acids. For this reason we opted to calculate a proxy nitrogen content that takes these factors into account. GWAS of proxy nitrogen also yielded 16 significant SNPs, though only four overlapped with those identified for total protein. These proxy nitrogen SNPs were associated with 489 candidate genes, 173 of which were also found in the total protein results. As with total protein, most associations were identified using BLINK and FarmCPU. One SNP (1-80777231) was identified by all three models for proxy nitrogen and was also detected in both BLINK and MLMM for total protein. These results suggest that while total protein and proxy nitrogen share some genetic architecture, they also capture distinct aspects of nitrogen-related variation. 
+\subsection{Amino acid GWAS in the NAM panel highlights asparagine, glutamine/glutamate balance, and proline-associated candidate loci}
 
+To identify loci affecting grain amino acid composition, we analyzed NAM grain GWAS results with 25-kb gene annotations (Supplementary Tables~\ref{tab:supp_amino_summary}, \ref{tab:supp_amino_best}). The 25-kb window contained 2,663 unique candidate genes, most linked to a single phenotype (median \texttt{Phenotypes\_count} = 1; maximum = 9). We focused on traits related to nitrogen assimilation and redistribution including absolute concentrations of asparagine (\textit{N}), aspartate (\textit{D}), glutamate (\textit{E}), glutamine (\textit{Q}), and proline (\textit{P}); related family and ratio traits (\textit{IMNTDK}, \textit{D.IMNTDK}, \textit{N.E}, \textit{N.Total}, \textit{Q.E}); and proxy traits \textit{Total\_N} and \textit{Total\_PBAA}. Within this focal set, the most candidate genes were detected for \textit{N.E} (76), \textit{Q.E} (74), \textit{Total} (71), \textit{IMNTDK} (70), \textit{N} (69), and \textit{D.IMNTDK} (60), whereas \textit{Total\_N} and \textit{Total\_PBAA} were associated with 26 and 24 genes, respectively. Across this trait set, top signals were predominantly identified by FarmCPU (507 genes) and BLINK (179 genes).
 
+Gene annotations support a nitrogen-centered, amino acid–remodeling architecture. Absolute glutamine (\textit{Q}) levels were associated with a \textit{NRT1/PTR FAMILY 3.1} transporter (\textit{Zm00001eb287980}), whereas the aspartate-family composite trait \textit{D.IMNTDK} mapped to a \textit{NRT1/PTR FAMILY 4.6} transporter (\textit{Zm00001eb277160}) and a tyrosine aminotransferase (\textit{Zm00001eb201770}) annotated with L-tyrosine:2-oxoglutarate transaminase activity, linking amino acid homeostasis to 2-oxoglutarate–dependent transamination. Glutamate (\textit{E}) was associated with an amino acid transporter, \textit{AMINO ACID TRANSPORTER AVT3A} (\textit{Zm00001eb429100}), and \textit{Total\_N} included a \textit{GLUTAMATE DEHYDROGENASE 3}-related locus (\textit{Zm00001eb060520}) involved in amino acid metabolism, L-glutamate catabolism, and responses to nitrogen starvation. Within the same \textit{Total\_N} interval, we identified a glutathione S-transferase gene cluster (\textit{Zm00001eb021640}, \textit{Zm00001eb021650}, \textit{Zm00001eb021690}) that was also associated with \textit{Total\_PBAA}, indicating convergence between the genetic architectures of proxy nitrogen content and protein-bound amino acid composition.
 
-\paragraph{Free Amino Acid GWAS}
-In addition to the total PBAA and proxy nitrogen traits, we evaluated 110 additional traits related to free amino acid (FAA) accumulation in maize grain. These included the absolute concentrations of all 20 proteinogenic amino acids, their relative abundances (as proportions of total FAAs), and a set of biochemical ratios comparing individual amino acids and their metabolic families. Across the 112 traits, we identified a total of XX,XXX significant SNPs using four GWAS models: BLINK, FarmCPU, MLM, and MLMM. After applying FDR correction, XX,XXX SNPs remained significant, corresponding to XX,XXX candidate genes. To better understand the genetic basis of nitrogen accumulation in maize grain, we focused on traits related to asparagine (Asn), aspartate (Asp), glutamine (Gln), and glutamate (Glu), given their central roles in nitrogen assimilation and transport. In addition to their absolute and relative abundances, we analyzed 11 biochemical ratios involving the glutamate and aspartate amino acid families. Across these 19 traits, we detected 649 significant SNPs: 478 from FarmCPU, 220 from BLINK, 21 from MLMM, and 16 from MLM. Within a 200 kb window of these SNPs, we identified 14,639 candidate genes.
+Furthermore, candidate genes were also involved in senescence, proteostasis, and protein turnover. Aspartate (\textit{D}) colocalized with a RING-type E3 ubiquitin ligase (\textit{Zm00001eb293380}) and a Derlin-1-like ERAD component (\textit{Zm00001eb283510}), while \textit{D.IMNTDK} encompassed multiple ubiquitin/proteolysis loci, including SKP1-like and deubiquitinase genes and a candidate for autophagosome assembly (\textit{Zm00001eb429920}). The broader \textit{Total} trait included an EI24-like macroautophagy gene (\textit{Zm00001eb082660}) and a putative senescence regulator (\textit{Zm00001eb322660}), suggesting that grain amino acid profiles are shaped by protein recycling and senescence-driven nutrient remobilization.
 
+Together, these results show that amino acid GWAS in the NAM panel is dominated by loci for asparagine, glutamine/glutamate balance, amino acid-family ratios, and nitrogen proxy traits highlighting amino acid transport, glutamate-centered nitrogen metabolism, ubiquitin-mediated protein turnover, autophagy, and senescence-related recycling as key determinants of grain nitrogen composition.
 
 \subsection{B64 × CML14 biparental mapping identifies candidate loci for grain asparagine accumulation}
 
@@ -323,7 +331,38 @@ Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger populatio
 
 The full set of candidate genes, annotations, and supporting statistics is provided in Supplementary Table~\ref{tab:selection_candidate_go}.
 
+\section{Discussion}\label{sec12}
 
+Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements. 
+
+
+\begin{table*}[ht]
+\centering
+\scriptsize
+\caption{Overlap between SoilN, Total\_N, or amino-acid GWAS genes and spline-based $F_{ST}$ outlier genes in Indian Chief (IC) and Jarvis (J). Traits shown are SoilN, Total\_N, Asp, Asn, Glu, Gln, and Proline. $F_{ST}$ genes were defined from spline windows with \texttt{fst\_outlier = Yes}. No overlapping genes were shared between IC and J for these traits.}
+\label{tab:fst_gwas_overlap_ic_j}
+\begin{tabular}{p{1.6cm}p{5.9cm}p{5.9cm}p{1.7cm}}
+\hline
+Trait & IC overlap genes & J overlap genes & Shared IC/J \\
+\hline
+SoilN & Zm00001eb411350 & Zm00001eb276840; Zm00001eb276850; Zm00001eb276860 & None \\
+Total\_N & Zm00001eb060520; Zm00001eb060530; Zm00001eb060540; Zm00001eb060550 & None & None \\
+Asp & None & Zm00001eb242960; Zm00001eb242970; Zm00001eb242980; Zm00001eb242990; Zm00001eb243000; Zm00001eb243010; Zm00001eb243020 & None \\
+Asn & Zm00001eb060180; Zm00001eb060190; Zm00001eb101960; Zm00001eb101970; Zm00001eb101980; Zm00001eb162480; Zm00001eb287870 & Zm00001eb132940; Zm00001eb277110; Zm00001eb277130; Zm00001eb277140 & None \\
+Glu & None & Zm00001eb131670; Zm00001eb131680; Zm00001eb237480; Zm00001eb237490 & None \\
+Gln & Zm00001eb201180; Zm00001eb413150 & Zm00001eb012640; Zm00001eb012650; Zm00001eb012660 & None \\
+Proline & Zm00001eb068910; Zm00001eb068930; Zm00001eb068940; Zm00001eb217140; Zm00001eb217150; Zm00001eb217160; Zm00001eb372060 & Zm00001eb131420 & None \\
+\hline
+\end{tabular}
+\end{table*}
+
+
+
+\section{Conclusion}\label{sec13}
+
+Conclusions may be used to restate your hypothesis or research question, restate your major findings, explain the relevance and the added value of your work, highlight any limitations of your study, describe future directions for research and recommendations. 
+
+In some disciplines use of Discussion or 'Conclusion' is interchangeable. It is not mandatory to use both. Please refer to Journal-level guidance for any specific requirements. 
 
 \section{Methods}\label{methods}
 
@@ -450,37 +489,7 @@ We began with 2490 markers in total and following filtering of failed, monomorph
 All scripts and parameter files used in the pipeline are available at the github repository: https://github.com/nirwan1265/Grain\_N\_remobilization.
 
 
-\section{Discussion}\label{sec12}
 
-Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements. 
-
-
-\begin{table*}[ht]
-\centering
-\scriptsize
-\caption{Overlap between SoilN, Total\_N, or amino-acid GWAS genes and spline-based $F_{ST}$ outlier genes in Indian Chief (IC) and Jarvis (J). Traits shown are SoilN, Total\_N, Asp, Asn, Glu, Gln, and Proline. $F_{ST}$ genes were defined from spline windows with \texttt{fst\_outlier = Yes}. No overlapping genes were shared between IC and J for these traits.}
-\label{tab:fst_gwas_overlap_ic_j}
-\begin{tabular}{p{1.6cm}p{5.9cm}p{5.9cm}p{1.7cm}}
-\hline
-Trait & IC overlap genes & J overlap genes & Shared IC/J \\
-\hline
-SoilN & Zm00001eb411350 & Zm00001eb276840; Zm00001eb276850; Zm00001eb276860 & None \\
-Total\_N & Zm00001eb060520; Zm00001eb060530; Zm00001eb060540; Zm00001eb060550 & None & None \\
-Asp & None & Zm00001eb242960; Zm00001eb242970; Zm00001eb242980; Zm00001eb242990; Zm00001eb243000; Zm00001eb243010; Zm00001eb243020 & None \\
-Asn & Zm00001eb060180; Zm00001eb060190; Zm00001eb101960; Zm00001eb101970; Zm00001eb101980; Zm00001eb162480; Zm00001eb287870 & Zm00001eb132940; Zm00001eb277110; Zm00001eb277130; Zm00001eb277140 & None \\
-Glu & None & Zm00001eb131670; Zm00001eb131680; Zm00001eb237480; Zm00001eb237490 & None \\
-Gln & Zm00001eb201180; Zm00001eb413150 & Zm00001eb012640; Zm00001eb012650; Zm00001eb012660 & None \\
-Proline & Zm00001eb068910; Zm00001eb068930; Zm00001eb068940; Zm00001eb217140; Zm00001eb217150; Zm00001eb217160; Zm00001eb372060 & Zm00001eb131420 & None \\
-\hline
-\end{tabular}
-\end{table*}
-
-
-\section{Conclusion}\label{sec13}
-
-Conclusions may be used to restate your hypothesis or research question, restate your major findings, explain the relevance and the added value of your work, highlight any limitations of your study, describe future directions for research and recommendations. 
-
-In some disciplines use of Discussion or 'Conclusion' is interchangeable. It is not mandatory to use both. Please refer to Journal-level guidance for any specific requirements. 
 
 \backmatter
 
