@@ -4,13 +4,8 @@
 
 library(shiny)
 library(DT)
-library(ggplot2)
 library(dplyr)
 library(tibble)
-library(data.table)
-library(rtracklayer)
-library(GenomicRanges)
-library(IRanges)
 
 ################################################################################
 ### PATHS AND CONFIGURATION
@@ -35,337 +30,326 @@ get_app_home <- function() {
 APP_HOME <- get_app_home()
 REPO_ROOT <- normalizePath(file.path(APP_HOME, "..", ".."), mustWork = TRUE)
 
-AMINO_DIR <- "/Users/nirwantandukar/Documents/Research/results/GWAS/Sarah_amino_acid/N_grain/Phenotypes_GWAS_Grain"
-REFERENCE_GFF <- "/Users/nirwantandukar/Library/Mobile Documents/com~apple~CloudDocs/Research/Data/Maize/Maize.annotation/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3"
-AVAILABLE_TRAITS <- c("D", "E", "N", "P", "Q", "Total_N", "Total_PBAA")
-DEFAULT_TRAITS <- AVAILABLE_TRAITS
-DEFAULT_PLOT_TRAIT <- "P"
+MANHATTAN_DIR <- normalizePath(file.path(APP_HOME, "Figs", "manhattan"), mustWork = TRUE)
+QQ_DIR <- normalizePath(file.path(APP_HOME, "Figs", "qq"), mustWork = TRUE)
+BEST_HITS_PATH <- normalizePath(
+  file.path(REPO_ROOT, "tables", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv"),
+  mustWork = TRUE
+)
+ANNOTATION_PATH <- normalizePath(
+  file.path(REPO_ROOT, "tables", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv"),
+  mustWork = TRUE
+)
+
+DEFAULT_INDIVIDUAL_TRAIT <- "P"
+DEFAULT_COMBINED_SCOPE <- "__all__"
 
 TRAIT_LABELS <- c(
+  A = "Alanine",
+  C = "Cysteine",
   D = "Aspartate",
   E = "Glutamate",
+  F = "Phenylalanine",
+  G = "Glycine",
+  H = "Histidine",
+  I = "Isoleucine",
+  K = "Lysine",
+  L = "Leucine",
+  M = "Methionine",
   N = "Asparagine",
   P = "Proline",
   Q = "Glutamine",
+  R = "Arginine",
+  S = "Serine",
+  T = "Threonine",
+  V = "Valine",
+  W = "Tryptophan",
+  Y = "Tyrosine",
   Total_N = "Total nitrogen",
   Total_PBAA = "Total protein-bound amino acids"
 )
 
-WINDOW_BP <- 25000
-MAX_BG_POINTS <- 150000
-MODEL_COLORS <- c(
-  MLM = "#0072B2",
-  MLMM = "#E69F00",
-  BLINK = "#009E73",
-  FarmCPU = "#D55E00"
-)
-
-EMPTY_GENE_TABLE <- tibble(
-  GeneID = character(),
-  GeneSymbol = character(),
-  Phenotypes = character(),
-  Phenotypes_count = integer(),
-  pvalues = character()
-)
-
 ################################################################################
-### THEME AND HELPERS
+### HELPERS
 ################################################################################
 
-plot_theme <- theme_minimal(base_size = 13) +
-  theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0),
-    plot.subtitle = element_text(size = 11, color = "grey35"),
-    axis.title.x = element_text(size = 14, face = "bold", color = "black"),
-    axis.title.y = element_text(size = 14, face = "bold", color = "black"),
-    axis.text.x = element_text(size = 12, color = "black"),
-    axis.text.y = element_text(size = 12, color = "black"),
-    axis.line = element_line(color = "black", linewidth = 0.6),
-    axis.ticks = element_line(color = "black", linewidth = 0.5),
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
-    legend.position = "top",
-    legend.title = element_blank(),
-    legend.text = element_text(size = 11),
-    plot.margin = margin(12, 12, 12, 12)
-  )
+display_trait_name <- function(trait_name) {
+  clean_name <- gsub("_+$", "", trait_name)
 
-trait_choice_labels <- stats::setNames(
-  AVAILABLE_TRAITS,
-  paste0(AVAILABLE_TRAITS, " \u2014 ", TRAIT_LABELS[AVAILABLE_TRAITS])
-)
-
-pretty_trait_name <- function(trait_name) {
   if (trait_name %in% names(TRAIT_LABELS)) {
-    paste0(trait_name, " \u2014 ", TRAIT_LABELS[[trait_name]])
+    paste0(clean_name, " - ", TRAIT_LABELS[[trait_name]])
   } else {
-    trait_name
+    clean_name
   }
 }
 
-thin_rows <- function(df, max_n) {
-  if (is.null(df) || nrow(df) <= max_n) {
-    return(df)
-  }
-
-  keep_idx <- unique(round(seq(1, nrow(df), length.out = max_n)))
-  df[keep_idx, , drop = FALSE]
+trait_group <- function(trait_name) {
+  sub("[.].*$", "", trait_name)
 }
 
-get_gene_label <- function(genes_gr) {
-  gene_id <- as.character(mcols(genes_gr)$ID)
+display_group_name <- function(group_name) {
+  clean_name <- gsub("_+$", "", group_name)
 
-  if ("Name" %in% colnames(mcols(genes_gr))) {
-    gene_name <- as.character(mcols(genes_gr)$Name)
-    ifelse(is.na(gene_name) | gene_name == "", gene_id, gene_name)
+  if (group_name %in% names(TRAIT_LABELS)) {
+    paste0(clean_name, " - ", TRAIT_LABELS[[group_name]])
   } else {
-    gene_id
+    clean_name
   }
 }
 
-annotate_hits <- function(df, phenotype_name, model_name, genes_gr, window_bp = 25000) {
-  if (is.null(df) || nrow(df) == 0) {
-    return(NULL)
-  }
+list_plot_traits <- function(dir_path, suffix) {
+  files <- list.files(dir_path, full.names = FALSE)
+  matches <- files[grepl(paste0(suffix, "[.]png$"), files)]
+  sort(sub(paste0(suffix, "[.]png$"), "", matches))
+}
 
-  snps <- GRanges(
-    seqnames = Rle(paste0("chr", df$Chr)),
-    ranges = IRanges(df$Pos, df$Pos)
-  )
-  mcols(snps)$SNP <- df$SNP
-  mcols(snps)$P.value <- df$P.value
-  mcols(snps)$SNP_Pos <- df$Pos
-
-  extended <- snps
-  start(extended) <- pmax(1L, start(snps) - window_bp)
-  end(extended) <- end(snps) + window_bp
-
-  overlaps <- findOverlaps(genes_gr, extended, ignore.strand = TRUE)
-  if (length(overlaps) == 0) {
-    return(NULL)
-  }
-
-  gene_idx <- queryHits(overlaps)
-  snp_idx <- subjectHits(overlaps)
-  gene_label <- get_gene_label(genes_gr)
-  snp_pos <- mcols(extended)$SNP_Pos[snp_idx]
-
+empty_individual_table <- function() {
   tibble(
-    Phenotype = phenotype_name,
-    Model = model_name,
-    GeneID = as.character(mcols(genes_gr)$ID[gene_idx]),
-    GeneSymbol = gene_label[gene_idx],
-    SNP = mcols(extended)$SNP[snp_idx],
-    SNP_Pos = snp_pos,
-    P.value = mcols(extended)$P.value[snp_idx],
-    log10_P = -log10(mcols(extended)$P.value[snp_idx])
+    GeneID = character(),
+    GeneSymbol = character(),
+    Phenotype = character(),
+    Model = character(),
+    SNP = character(),
+    Chr = integer(),
+    SNP_Pos = numeric(),
+    P.value = numeric(),
+    log10_P = numeric(),
+    Relation = character(),
+    Distance_to_Gene_bp = numeric(),
+    Family_Subfamily = character(),
+    Protein_Class = character(),
+    GO_MF = character(),
+    GO_BO = character(),
+    GO_CC = character()
   )
 }
 
-collapse_best_per_phenotype <- function(annotation_df) {
-  if (is.null(annotation_df) || nrow(annotation_df) == 0) {
+empty_combined_gene_table <- function() {
+  tibble(
+    GeneID = character(),
+    GeneSymbol = character(),
+    GeneChr = character(),
+    GeneStart = numeric(),
+    GeneEnd = numeric(),
+    Phenotypes = character(),
+    Occurrences = integer(),
+    Highest_log10P = numeric(),
+    Top_Pvalue = numeric(),
+    Top_Model = character(),
+    Top_SNP = character(),
+    Top_Relation = character(),
+    Top_Distance_bp = numeric(),
+    Family_Subfamily = character(),
+    Protein_Class = character(),
+    GO_MF = character(),
+    GO_BO = character(),
+    GO_CC = character()
+  )
+}
+
+empty_phenotype_table <- function() {
+  tibble(
+    Phenotype = character(),
+    Gene_count = integer(),
+    Hit_rows = integer(),
+    Highest_log10P = numeric(),
+    Top_Gene = character(),
+    Models = character()
+  )
+}
+
+build_plot_src <- function(plot_type, trait_name) {
+  suffix <- if (identical(plot_type, "manhattan")) {
+    "_manhattan.png"
+  } else {
+    "_qq.png"
+  }
+
+  dir_path <- if (identical(plot_type, "manhattan")) {
+    MANHATTAN_DIR
+  } else {
+    QQ_DIR
+  }
+
+  file_name <- paste0(trait_name, suffix)
+  file_path <- file.path(dir_path, file_name)
+
+  if (!file.exists(file_path)) {
     return(NULL)
   }
 
-  annotation_df %>%
-    dplyr::group_by(GeneID, GeneSymbol, Phenotype) %>%
-    dplyr::slice_min(P.value, n = 1, with_ties = FALSE) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(GeneID, GeneSymbol, Phenotype, log10_P)
+  paste0("amino-figs/", plot_type, "/", utils::URLencode(file_name, reserved = TRUE))
 }
 
-make_gene_summary <- function(best_hits_df, selected_traits) {
-  if (is.null(best_hits_df) || nrow(best_hits_df) == 0) {
-    return(EMPTY_GENE_TABLE)
+join_annotation <- function(df, annotation_lookup) {
+  df %>%
+    dplyr::left_join(annotation_lookup, by = "GeneID") %>%
+    dplyr::mutate(
+      GeneSymbol = dplyr::coalesce(AnnotationGeneSymbol, GeneSymbol)
+    ) %>%
+    dplyr::select(-AnnotationGeneSymbol)
+}
+
+build_individual_hits <- function(best_hits_df, trait_name, cutoff, annotation_lookup) {
+  filtered_hits <- best_hits_df %>%
+    dplyr::filter(
+      Phenotype == trait_name,
+      log10_P >= cutoff
+    ) %>%
+    dplyr::arrange(dplyr::desc(log10_P), GeneSymbol, SNP)
+
+  if (nrow(filtered_hits) == 0) {
+    return(empty_individual_table())
   }
 
-  best_hits_df %>%
-    dplyr::mutate(Phenotype = factor(Phenotype, levels = selected_traits)) %>%
-    dplyr::arrange(GeneSymbol, Phenotype) %>%
-    dplyr::group_by(GeneID, GeneSymbol) %>%
-    dplyr::summarise(
-      Phenotypes = paste(as.character(Phenotype), collapse = ";"),
-      Phenotypes_count = dplyr::n(),
-      pvalues = paste(formatC(log10_P, digits = 2, format = "f"), collapse = ";"),
-      .groups = "drop"
+  join_annotation(filtered_hits, annotation_lookup)
+}
+
+build_combined_gene_hits <- function(best_hits_df, selected_traits, cutoff, annotation_lookup) {
+  filtered_hits <- best_hits_df %>%
+    dplyr::filter(
+      Phenotype %in% selected_traits,
+      log10_P >= cutoff
     ) %>%
-    dplyr::select(
+    dplyr::mutate(Phenotype = factor(Phenotype, levels = selected_traits))
+
+  if (nrow(filtered_hits) == 0) {
+    return(empty_combined_gene_table())
+  }
+
+  counts_df <- filtered_hits %>%
+    dplyr::arrange(Phenotype, dplyr::desc(log10_P)) %>%
+    dplyr::group_by(GeneID, GeneSymbol, GeneChr, GeneStart, GeneEnd) %>%
+    dplyr::summarise(
+      Phenotypes = paste(unique(as.character(Phenotype)), collapse = ";"),
+      Occurrences = dplyr::n_distinct(Phenotype),
+      .groups = "drop"
+    )
+
+  top_rows <- filtered_hits %>%
+    dplyr::group_by(GeneID, GeneSymbol, GeneChr, GeneStart, GeneEnd) %>%
+    dplyr::slice_max(log10_P, n = 1, with_ties = FALSE) %>%
+    dplyr::ungroup() %>%
+    dplyr::transmute(
       GeneID,
       GeneSymbol,
-      Phenotypes,
-      Phenotypes_count,
-      pvalues
-    ) %>%
-    dplyr::arrange(dplyr::desc(Phenotypes_count), GeneSymbol)
+      GeneChr,
+      GeneStart,
+      GeneEnd,
+      Highest_log10P = round(log10_P, 2),
+      Top_Pvalue = signif(P.value, 3),
+      Top_Model = Model,
+      Top_SNP = SNP,
+      Top_Relation = Relation,
+      Top_Distance_bp = Distance_to_Gene_bp
+    )
+
+  counts_df %>%
+    dplyr::select(-GeneSymbol) %>%
+    dplyr::left_join(top_rows, by = c("GeneID", "GeneChr", "GeneStart", "GeneEnd")) %>%
+    join_annotation(annotation_lookup = annotation_lookup) %>%
+    dplyr::arrange(dplyr::desc(Occurrences), dplyr::desc(Highest_log10P), GeneSymbol)
 }
 
-load_trait_raw <- function(trait_name, cache_env) {
-  cache_key <- paste0("raw__", trait_name)
-  if (exists(cache_key, envir = cache_env, inherits = FALSE)) {
-    return(get(cache_key, envir = cache_env, inherits = FALSE))
-  }
-
-  file_path <- file.path(AMINO_DIR, paste0(trait_name, ".csv"))
-  raw_dt <- data.table::fread(
-    file_path,
-    select = c("SNP", "Chr", "Pos", "P.value", "model"),
-    showProgress = FALSE
-  )
-
-  raw_df <- raw_dt %>%
-    as_tibble() %>%
-    dplyr::mutate(
-      Chr = as.integer(Chr),
-      Pos = as.numeric(Pos),
-      P.value = as.numeric(P.value),
-      model = as.character(model),
-      log10_P = -log10(P.value)
-    ) %>%
+build_phenotype_summary <- function(best_hits_df, selected_traits, cutoff, annotation_lookup) {
+  filtered_hits <- best_hits_df %>%
     dplyr::filter(
-      !is.na(Chr),
-      !is.na(Pos),
-      !is.na(P.value),
-      is.finite(P.value),
-      P.value > 0,
-      is.finite(log10_P)
+      Phenotype %in% selected_traits,
+      log10_P >= cutoff
     )
 
-  assign(cache_key, raw_df, envir = cache_env)
-  raw_df
-}
-
-build_plot_data <- function(trait_name, cache_env) {
-  cache_key <- paste0("plot__", trait_name)
-  if (exists(cache_key, envir = cache_env, inherits = FALSE)) {
-    return(get(cache_key, envir = cache_env, inherits = FALSE))
+  if (nrow(filtered_hits) == 0) {
+    return(empty_phenotype_table())
   }
 
-  raw_df <- load_trait_raw(trait_name, cache_env)
-  best_df <- raw_df %>%
-    dplyr::group_by(SNP, Chr, Pos) %>%
-    dplyr::slice_min(P.value, n = 1, with_ties = FALSE) %>%
+  top_rows <- filtered_hits %>%
+    dplyr::group_by(Phenotype) %>%
+    dplyr::slice_max(log10_P, n = 1, with_ties = FALSE) %>%
     dplyr::ungroup() %>%
-    dplyr::rename(best_model = model)
+    join_annotation(annotation_lookup = annotation_lookup) %>%
+    dplyr::transmute(
+      Phenotype,
+      Top_Gene = GeneSymbol,
+      Highest_log10P = round(log10_P, 2)
+    )
 
-  chr_tbl <- best_df %>%
-    dplyr::group_by(Chr) %>%
-    dplyr::summarise(chr_len = max(Pos, na.rm = TRUE), .groups = "drop") %>%
-    dplyr::arrange(Chr) %>%
+  filtered_hits %>%
+    dplyr::group_by(Phenotype) %>%
+    dplyr::summarise(
+      Gene_count = dplyr::n_distinct(GeneID),
+      Hit_rows = dplyr::n(),
+      Models = paste(sort(unique(Model)), collapse = ";"),
+      .groups = "drop"
+    ) %>%
+    dplyr::left_join(top_rows, by = "Phenotype") %>%
     dplyr::mutate(
-      offset = dplyr::lag(cumsum(chr_len), default = 0),
-      center = offset + chr_len / 2
-    )
-
-  plot_df <- best_df %>%
-    dplyr::left_join(chr_tbl %>% dplyr::select(Chr, offset), by = "Chr") %>%
-    dplyr::mutate(pos_cum = Pos + offset) %>%
-    dplyr::arrange(Chr, Pos)
-
-  bg_df <- plot_df %>%
-    dplyr::filter(log10_P < 5)
-  sig_df <- plot_df %>%
-    dplyr::filter(log10_P >= 5)
-
-  plot_data <- list(
-    bg_df = thin_rows(bg_df, MAX_BG_POINTS),
-    sig_df = sig_df,
-    chr_tbl = chr_tbl
-  )
-
-  assign(cache_key, plot_data, envir = cache_env)
-  plot_data
-}
-
-build_trait_gene_hits <- function(trait_name, cutoff, genes_gr, cache_env) {
-  cache_key <- paste0("hits__", trait_name, "__", cutoff)
-  if (exists(cache_key, envir = cache_env, inherits = FALSE)) {
-    return(get(cache_key, envir = cache_env, inherits = FALSE))
-  }
-
-  raw_df <- load_trait_raw(trait_name, cache_env) %>%
-    dplyr::filter(log10_P >= cutoff)
-
-  if (nrow(raw_df) == 0) {
-    assign(cache_key, NULL, envir = cache_env)
-    return(NULL)
-  }
-
-  annotation_list <- lapply(unique(raw_df$model), function(model_name) {
-    model_df <- raw_df %>%
-      dplyr::filter(model == model_name) %>%
-      dplyr::select(SNP, Chr, Pos, P.value)
-
-    annotate_hits(
-      df = model_df,
-      phenotype_name = trait_name,
-      model_name = model_name,
-      genes_gr = genes_gr,
-      window_bp = WINDOW_BP
-    )
-  })
-
-  best_hits <- collapse_best_per_phenotype(dplyr::bind_rows(annotation_list))
-  assign(cache_key, best_hits, envir = cache_env)
-  best_hits
-}
-
-make_manhattan_plot <- function(trait_name, cutoff, plot_data) {
-  trait_title <- pretty_trait_name(trait_name)
-
-  ggplot() +
-    geom_point(
-      data = plot_data$bg_df,
-      aes(x = pos_cum, y = log10_P, color = factor(Chr %% 2)),
-      alpha = 0.4,
-      size = 0.45,
-      show.legend = FALSE
-    ) +
-    scale_color_manual(values = c("0" = "grey65", "1" = "grey40")) +
-    geom_point(
-      data = plot_data$sig_df,
-      aes(x = pos_cum, y = log10_P, color = best_model),
-      alpha = 0.85,
-      size = 1.15
-    ) +
-    scale_x_continuous(
-      breaks = plot_data$chr_tbl$center,
-      labels = plot_data$chr_tbl$Chr,
-      expand = c(0.01, 0.01)
-    ) +
-    scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
-    scale_color_manual(values = MODEL_COLORS, breaks = names(MODEL_COLORS)) +
-    geom_hline(yintercept = 5, linetype = "dashed", color = "black", linewidth = 0.45) +
-    geom_hline(yintercept = 6, linetype = "dashed", color = "grey30", linewidth = 0.45) +
-    geom_hline(yintercept = 7, linetype = "solid", color = "black", linewidth = 0.55) +
-    annotate(
-      "label",
-      x = Inf,
-      y = cutoff,
-      label = paste0("-log10(p) = ", cutoff),
-      hjust = 1.05,
-      vjust = -0.3,
-      size = 4,
-      label.size = NA,
-      fill = "white"
-    ) +
-    labs(
-      title = trait_title,
-      subtitle = "Use the phenotype selector on the right to flip through selected traits",
-      x = "Chromosome",
-      y = expression(-log[10](italic(p))),
-      color = NULL
-    ) +
-    plot_theme
+      Phenotype = as.character(Phenotype)
+    ) %>%
+    dplyr::arrange(dplyr::desc(Gene_count), dplyr::desc(Highest_log10P), Phenotype)
 }
 
 ################################################################################
 ### STATIC DATA
 ################################################################################
 
-genes_gr <- rtracklayer::import(REFERENCE_GFF)
-genes_gr <- genes_gr[mcols(genes_gr)$type == "gene"]
-trait_cache <- new.env(parent = emptyenv())
+best_hits_raw <- read.csv(BEST_HITS_PATH, stringsAsFactors = FALSE, check.names = FALSE)
+annotation_lookup <- read.csv(ANNOTATION_PATH, stringsAsFactors = FALSE, check.names = FALSE) %>%
+  dplyr::transmute(
+    GeneID,
+    AnnotationGeneSymbol = GeneSymbol,
+    Family_Subfamily,
+    Protein_Class,
+    GO_MF,
+    GO_BO,
+    GO_CC
+  ) %>%
+  dplyr::distinct(GeneID, .keep_all = TRUE)
+
+AVAILABLE_TRAITS <- sort(Reduce(
+  intersect,
+  list(
+    unique(best_hits_raw$Phenotype),
+    list_plot_traits(MANHATTAN_DIR, "_manhattan"),
+    list_plot_traits(QQ_DIR, "_qq")
+  )
+))
+
+TRAIT_GROUPS <- tibble(
+  Phenotype = AVAILABLE_TRAITS,
+  Group = vapply(AVAILABLE_TRAITS, trait_group, character(1))
+)
+
+AVAILABLE_GROUPS <- sort(unique(TRAIT_GROUPS$Group))
+GROUP_CHOICES <- stats::setNames(
+  AVAILABLE_GROUPS,
+  vapply(AVAILABLE_GROUPS, display_group_name, character(1))
+)
+TRAIT_CHOICES <- stats::setNames(
+  AVAILABLE_TRAITS,
+  vapply(AVAILABLE_TRAITS, display_trait_name, character(1))
+)
+
+DEFAULT_INDIVIDUAL_TRAIT <- if (DEFAULT_INDIVIDUAL_TRAIT %in% AVAILABLE_TRAITS) {
+  DEFAULT_INDIVIDUAL_TRAIT
+} else {
+  AVAILABLE_TRAITS[[1]]
+}
+DEFAULT_INDIVIDUAL_GROUP <- trait_group(DEFAULT_INDIVIDUAL_TRAIT)
+
+traits_for_group <- function(group_name) {
+  if (identical(group_name, "__all__")) {
+    return(AVAILABLE_TRAITS)
+  }
+
+  TRAIT_GROUPS$Phenotype[TRAIT_GROUPS$Group == group_name]
+}
+
+resource_paths <- shiny::resourcePaths()
+current_fig_path <- unname(resource_paths["amino-figs"])
+
+if (length(current_fig_path) == 0 || !identical(current_fig_path[[1]], file.path(APP_HOME, "Figs"))) {
+  shiny::addResourcePath("amino-figs", file.path(APP_HOME, "Figs"))
+}
 
 ################################################################################
 ### UI
@@ -405,13 +389,9 @@ ui <- fluidPage(
         color: #444444;
         margin-bottom: 10px;
       }
-      .right-controls {
+      .left-controls {
         position: sticky;
         top: 16px;
-      }
-      .btn-blockish {
-        width: 100%;
-        margin-bottom: 8px;
       }
       .control-note {
         font-size: 12px;
@@ -419,9 +399,33 @@ ui <- fluidPage(
         line-height: 1.45;
         margin-top: 10px;
       }
+      .plot-image {
+        width: 100%;
+        max-height: 460px;
+        object-fit: contain;
+        display: block;
+        background: white;
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+      }
+      .tab-content {
+        padding-top: 18px;
+      }
+      .nav-tabs {
+        border-bottom: 1px solid #d9d9d9;
+      }
+      .nav-tabs > li > a {
+        font-weight: 600;
+        color: #38506a;
+      }
       .shiny-output-error-validation {
         color: #7a2d2d;
         font-weight: 600;
+      }
+      @media (max-width: 991px) {
+        .left-controls {
+          position: static;
+        }
       }
     "))
   ),
@@ -431,73 +435,112 @@ ui <- fluidPage(
       div(class = "app-title", "Amino-Acid GWAS Explorer"),
       div(
         class = "app-subtitle",
-        "Browse current amino-acid GWAS phenotypes, flip through Manhattan plots, and collapse candidate genes across one or more selected traits."
+        "Use the individual tab for one GWAS result at a time, or switch to the combined tab to count recurring gene hits across all results."
       )
     )
   ),
-  fluidRow(
-    column(
-      width = 8,
-      div(
-        class = "panel-card",
-        div(class = "card-title", "Manhattan Plot"),
-        plotOutput("manhattan_plot", height = "460px")
-      ),
-      tags$div(style = "height: 16px;"),
-      div(
-        class = "panel-card",
-        div(class = "card-title", "Gene Summary"),
-        uiOutput("summary_strip"),
-        DTOutput("gene_table")
-      )
-    ),
-    column(
-      width = 4,
-      div(
-        class = "panel-card right-controls",
-        div(class = "card-title", "GWAS Options"),
-        selectizeInput(
-          inputId = "traits",
-          label = "Select one or more phenotypes",
-          choices = trait_choice_labels,
-          selected = DEFAULT_TRAITS,
-          multiple = TRUE,
-          options = list(placeholder = "Choose amino-acid traits")
-        ),
-        fluidRow(
-          column(
-            width = 6,
-            actionButton("select_all", "All current", class = "btn-blockish")
-          ),
-          column(
-            width = 6,
-            actionButton("clear_traits", "Clear", class = "btn-blockish")
+  tabsetPanel(
+    id = "main_tabs",
+    tabPanel(
+      "Individual GWAS",
+      fluidRow(
+        column(
+          width = 3,
+          div(
+            class = "panel-card left-controls",
+            div(class = "card-title", "GWAS Controls"),
+            selectInput(
+              inputId = "individual_group",
+              label = "Select amino acid",
+              choices = GROUP_CHOICES,
+              selected = DEFAULT_INDIVIDUAL_GROUP
+            ),
+            selectInput(
+              inputId = "individual_trait",
+              label = "Select GWAS result",
+              choices = TRAIT_CHOICES,
+              selected = DEFAULT_INDIVIDUAL_TRAIT
+            ),
+            selectInput(
+              inputId = "individual_cutoff",
+              label = HTML("Select <code>-log10(p)</code> threshold"),
+              choices = c("5" = 5, "6" = 6, "7" = 7),
+              selected = 7
+            ),
+            div(
+              class = "control-note",
+              "Pick one amino-acid family, then one specific GWAS result. The figures on the right update for that single result, and the table below shows the matching gene annotations."
+            )
           )
         ),
-        radioButtons(
-          inputId = "summary_scope",
-          label = "Lower-table summary",
-          choices = c(
-            "Selected phenotypes (sum some)" = "selected",
-            "All current phenotypes (sum all)" = "all"
+        column(
+          width = 9,
+          fluidRow(
+            column(
+              width = 8,
+              div(
+                class = "panel-card",
+                div(class = "card-title", "Manhattan Plot"),
+                uiOutput("individual_manhattan_plot")
+              )
+            ),
+            column(
+              width = 4,
+              div(
+                class = "panel-card",
+                div(class = "card-title", "QQ Plot"),
+                uiOutput("individual_qq_plot")
+              )
+            )
           ),
-          selected = "selected"
+          tags$div(style = "height: 16px;"),
+          div(
+            class = "panel-card",
+            div(class = "card-title", "GWAS Annotation Table"),
+            uiOutput("individual_summary_strip"),
+            DTOutput("individual_table")
+          )
+        )
+      )
+    ),
+    tabPanel(
+      "Combined Gene Hits",
+      fluidRow(
+        column(
+          width = 3,
+          div(
+            class = "panel-card left-controls",
+            div(class = "card-title", "Gene Hit Filters"),
+            selectInput(
+              inputId = "combined_scope",
+              label = "Combine results from",
+              choices = c("All GWAS results" = "__all__", GROUP_CHOICES),
+              selected = DEFAULT_COMBINED_SCOPE
+            ),
+            selectInput(
+              inputId = "combined_cutoff",
+              label = HTML("Select <code>-log10(p)</code> threshold"),
+              choices = c("5" = 5, "6" = 6, "7" = 7),
+              selected = 7
+            ),
+            div(
+              class = "control-note",
+              "This tab counts how often genes recur across the chosen GWAS set. Use 'All GWAS results' for the full combined view, or switch to one amino-acid group to narrow it down."
+            )
+          )
         ),
-        selectInput(
-          inputId = "cutoff",
-          label = HTML("Minimum <code>-log10(p)</code>"),
-          choices = c("5" = 5, "6" = 6, "7" = 7),
-          selected = 7
-        ),
-        selectInput(
-          inputId = "plot_trait",
-          label = "Trait shown in the Manhattan plot",
-          choices = trait_choice_labels,
-          selected = DEFAULT_PLOT_TRAIT
-        ),
-        div(
-          class = "control-note",
-          "If you select multiple phenotypes, the top panel stays on one phenotype at a time while the lower table collapses genes across your chosen set. We can add the ratio phenotypes later once you decide which ones you want in here."
+        column(
+          width = 9,
+          div(
+            class = "panel-card",
+            div(class = "card-title", "Gene and Phenotype Summaries"),
+            uiOutput("combined_summary_strip"),
+            tabsetPanel(
+              id = "combined_summary_tabs",
+              tabPanel("Top Genes", DTOutput("combined_gene_table")),
+              tabPanel("Phenotypes", DTOutput("combined_phenotype_table"))
+            )
+          )
         )
       )
     )
@@ -509,116 +552,203 @@ ui <- fluidPage(
 ################################################################################
 
 server <- function(input, output, session) {
-  observeEvent(input$select_all, {
-    updateSelectizeInput(session, "traits", selected = AVAILABLE_TRAITS)
-  })
-
-  observeEvent(input$clear_traits, {
-    updateSelectizeInput(session, "traits", selected = character(0))
-  })
-
-  selected_traits <- reactive({
-    AVAILABLE_TRAITS[AVAILABLE_TRAITS %in% input$traits]
-  })
-
-  table_traits <- reactive({
-    if (identical(input$summary_scope, "all")) {
-      AVAILABLE_TRAITS
-    } else {
-      selected_traits()
-    }
-  })
-
   observe({
-    plot_choices <- selected_traits()
-    if (length(plot_choices) == 0) {
-      plot_choices <- AVAILABLE_TRAITS
-    }
+    group_traits <- traits_for_group(input$individual_group)
+    selected_trait <- isolate(input$individual_trait)
 
-    selected_plot <- isolate(input$plot_trait)
-    if (!selected_plot %in% plot_choices) {
-      if (DEFAULT_PLOT_TRAIT %in% plot_choices) {
-        selected_plot <- DEFAULT_PLOT_TRAIT
-      } else {
-        selected_plot <- plot_choices[[1]]
-      }
+    if (!selected_trait %in% group_traits) {
+      selected_trait <- group_traits[[1]]
     }
 
     updateSelectInput(
       session,
-      "plot_trait",
-      choices = stats::setNames(plot_choices, paste0(plot_choices, " \u2014 ", TRAIT_LABELS[plot_choices])),
-      selected = selected_plot
+      "individual_trait",
+      choices = stats::setNames(group_traits, vapply(group_traits, display_trait_name, character(1))),
+      selected = selected_trait
     )
   })
 
-  plot_data <- reactive({
-    req(input$plot_trait)
-    build_plot_data(input$plot_trait, trait_cache)
+  selected_combined_traits <- reactive({
+    req(input$combined_scope)
+    traits_for_group(input$combined_scope)
   })
 
-  gene_summary <- reactive({
-    traits_to_use <- table_traits()
+  individual_hits <- reactive({
+    req(input$individual_trait)
+    build_individual_hits(
+      best_hits_df = best_hits_raw,
+      trait_name = input$individual_trait,
+      cutoff = as.numeric(input$individual_cutoff),
+      annotation_lookup = annotation_lookup
+    )
+  })
 
+  combined_gene_hits <- reactive({
+    build_combined_gene_hits(
+      best_hits_df = best_hits_raw,
+      selected_traits = selected_combined_traits(),
+      cutoff = as.numeric(input$combined_cutoff),
+      annotation_lookup = annotation_lookup
+    )
+  })
+
+  combined_phenotype_hits <- reactive({
+    build_phenotype_summary(
+      best_hits_df = best_hits_raw,
+      selected_traits = selected_combined_traits(),
+      cutoff = as.numeric(input$combined_cutoff),
+      annotation_lookup = annotation_lookup
+    )
+  })
+
+  output$individual_manhattan_plot <- renderUI({
+    req(input$individual_trait)
+
+    plot_src <- build_plot_src("manhattan", input$individual_trait)
     validate(
-      need(
-        length(traits_to_use) > 0,
-        "Select at least one phenotype on the right, or switch the summary to 'All current phenotypes'."
-      )
+      need(!is.null(plot_src), "No Manhattan plot file was found for the selected GWAS result.")
     )
 
-    cutoff_value <- as.numeric(input$cutoff)
-
-    withProgress(message = "Building gene summary", value = 0, {
-      hit_list <- vector("list", length(traits_to_use))
-
-      for (i in seq_along(traits_to_use)) {
-        incProgress(1 / max(length(traits_to_use), 1), detail = traits_to_use[[i]])
-        hit_list[[i]] <- build_trait_gene_hits(
-          trait_name = traits_to_use[[i]],
-          cutoff = cutoff_value,
-          genes_gr = genes_gr,
-          cache_env = trait_cache
-        )
-      }
-
-      combined_hits <- dplyr::bind_rows(hit_list)
-      make_gene_summary(combined_hits, traits_to_use)
-    })
+    tags$img(
+      src = plot_src,
+      alt = paste("Manhattan plot for", display_trait_name(input$individual_trait)),
+      class = "plot-image"
+    )
   })
 
-  output$manhattan_plot <- renderPlot({
-    req(input$plot_trait)
-    make_manhattan_plot(
-      trait_name = input$plot_trait,
-      cutoff = as.numeric(input$cutoff),
-      plot_data = plot_data()
-    )
-  }, res = 120)
+  output$individual_qq_plot <- renderUI({
+    req(input$individual_trait)
 
-  output$summary_strip <- renderUI({
-    summary_df <- gene_summary()
-    traits_to_use <- table_traits()
+    plot_src <- build_plot_src("qq", input$individual_trait)
+    validate(
+      need(!is.null(plot_src), "No QQ plot file was found for the selected GWAS result.")
+    )
+
+    tags$img(
+      src = plot_src,
+      alt = paste("QQ plot for", display_trait_name(input$individual_trait)),
+      class = "plot-image"
+    )
+  })
+
+  output$individual_summary_strip <- renderUI({
+    df <- individual_hits()
 
     tags$div(
       class = "summary-strip",
-      tags$strong(length(traits_to_use)),
-      " phenotypes in summary | ",
-      tags$strong(nrow(summary_df)),
-      " genes meeting the current cutoff | annotation window = ",
-      WINDOW_BP / 1000,
-      " kb each side"
+      tags$strong(display_trait_name(input$individual_trait)),
+      " | ",
+      tags$strong(dplyr::n_distinct(df$GeneID)),
+      " genes meeting the current cutoff | ",
+      tags$strong(nrow(df)),
+      " annotation rows"
     )
   })
 
-  output$gene_table <- renderDT({
-    summary_df <- gene_summary() %>%
+  output$combined_summary_strip <- renderUI({
+    selected_traits <- selected_combined_traits()
+    gene_df <- combined_gene_hits()
+    phenotype_df <- combined_phenotype_hits()
+
+    tags$div(
+      class = "summary-strip",
+      tags$strong(length(selected_traits)),
+      " GWAS results combined | ",
+      tags$strong(nrow(gene_df)),
+      " recurring genes | ",
+      tags$strong(nrow(phenotype_df)),
+      " phenotypes represented"
+    )
+  })
+
+  output$individual_table <- renderDT({
+    summary_df <- individual_hits() %>%
       dplyr::rename(
         `Gene ID` = GeneID,
         `Gene symbol` = GeneSymbol,
-        `Phenotypes` = Phenotypes,
-        `Phenotype count` = Phenotypes_count,
-        `-log10(p)` = pvalues
+        Phenotype = Phenotype,
+        Model = Model,
+        SNP = SNP,
+        Chromosome = Chr,
+        `SNP position` = SNP_Pos,
+        `p-value` = P.value,
+        `-log10(p)` = log10_P,
+        Relation = Relation,
+        `Distance to gene (bp)` = Distance_to_Gene_bp,
+        `Family / subfamily` = Family_Subfamily,
+        `Protein class` = Protein_Class,
+        `GO MF` = GO_MF,
+        `GO BP` = GO_BO,
+        `GO CC` = GO_CC
+      )
+
+    DT::datatable(
+      summary_df,
+      rownames = FALSE,
+      filter = "top",
+      extensions = "Buttons",
+      options = list(
+        pageLength = 12,
+        lengthMenu = c(12, 25, 50, 100),
+        scrollX = TRUE,
+        dom = "Bfrtip",
+        buttons = c("copy", "csv"),
+        autoWidth = TRUE
+      )
+    )
+  })
+
+  output$combined_gene_table <- renderDT({
+    summary_df <- combined_gene_hits() %>%
+      dplyr::rename(
+        `Gene ID` = GeneID,
+        `Gene symbol` = GeneSymbol,
+        Chromosome = GeneChr,
+        `Gene start` = GeneStart,
+        `Gene end` = GeneEnd,
+        Phenotypes = Phenotypes,
+        Occurrences = Occurrences,
+        `Highest -log10(p)` = Highest_log10P,
+        `Top p-value` = Top_Pvalue,
+        `Top model` = Top_Model,
+        `Top SNP` = Top_SNP,
+        `Top relation` = Top_Relation,
+        `Top distance (bp)` = Top_Distance_bp,
+        `Family / subfamily` = Family_Subfamily,
+        `Protein class` = Protein_Class,
+        `GO MF` = GO_MF,
+        `GO BP` = GO_BO,
+        `GO CC` = GO_CC
+      )
+
+    DT::datatable(
+      summary_df,
+      rownames = FALSE,
+      filter = "top",
+      extensions = "Buttons",
+      options = list(
+        pageLength = 12,
+        lengthMenu = c(12, 25, 50, 100),
+        scrollX = TRUE,
+        dom = "Bfrtip",
+        buttons = c("copy", "csv"),
+        autoWidth = TRUE
+      )
+    )
+  })
+
+  output$combined_phenotype_table <- renderDT({
+    summary_df <- combined_phenotype_hits() %>%
+      dplyr::mutate(
+        Phenotype = vapply(Phenotype, display_trait_name, character(1))
+      ) %>%
+      dplyr::rename(
+        `GWAS result` = Phenotype,
+        `Gene count` = Gene_count,
+        `Annotation rows` = Hit_rows,
+        `Highest -log10(p)` = Highest_log10P,
+        `Top gene` = Top_Gene,
+        Models = Models
       )
 
     DT::datatable(

@@ -11,8 +11,8 @@ library(vroom)
 ### CONFIGURATION
 ################################################################################
 
-INPUT_DIR <- "/Users/nirwantandukar/Documents/Research/results/GWAS/Sarah_amino_acid/N_grain/Phenotypes_GWAS_Grain"
-OUTPUT_DIR <- "Figs/Supplementary/amino_gwas_by_trait"
+INPUT_DIR <- "/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUTPUT_DIR <- "Figs"
 
 TARGET_TRAITS <- sort(sub("\\.csv$", "", list.files(INPUT_DIR, pattern = "\\.csv$")))
 MODEL_ORDER <- c("MLM", "MLMM", "BLINK", "FarmCPU")
@@ -217,7 +217,7 @@ make_manhattan_plot <- function(plot_dat, trait_name, selected_models) {
   p <- ggplot() +
     geom_point(
       data = bg_even,
-      aes_string(x = "pos_cum", y = "log10_P"),
+      aes(x = pos_cum, y = log10_P),
       color = "grey65",
       alpha = 0.4,
       size = 0.45,
@@ -225,7 +225,7 @@ make_manhattan_plot <- function(plot_dat, trait_name, selected_models) {
     ) +
     geom_point(
       data = bg_odd,
-      aes_string(x = "pos_cum", y = "log10_P"),
+      aes(x = pos_cum, y = log10_P),
       color = "grey40",
       alpha = 0.4,
       size = 0.45,
@@ -236,7 +236,7 @@ make_manhattan_plot <- function(plot_dat, trait_name, selected_models) {
     p <- p +
       geom_point(
         data = plot_dat$sig_df,
-        aes_string(x = "pos_cum", y = "log10_P", color = "model"),
+        aes(x = pos_cum, y = log10_P, color = model),
         alpha = 0.85,
         size = 1.1,
         inherit.aes = FALSE
@@ -294,7 +294,7 @@ make_qq_plot <- function(qq_dat, trait_name, selected_models) {
     collapse = "  "
   )
 
-  p <- ggplot(qq_dat$qq_df, aes_string(x = "expected", y = "observed")) +
+  p <- ggplot(qq_dat$qq_df, aes(x = expected, y = observed)) +
     geom_abline(
       intercept = 0,
       slope = 1,
@@ -307,7 +307,7 @@ make_qq_plot <- function(qq_dat, trait_name, selected_models) {
     p <- p +
       geom_ribbon(
         data = qq_dat$conf_int,
-        aes_string(x = "expected", ymin = "lower", ymax = "upper"),
+        aes(x = expected, ymin = lower, ymax = upper),
         fill = "grey85",
         alpha = 0.5,
         inherit.aes = FALSE
@@ -316,7 +316,7 @@ make_qq_plot <- function(qq_dat, trait_name, selected_models) {
 
   p +
     geom_point(
-      aes_string(color = "model"),
+      aes(color = model),
       alpha = 0.6,
       size = 0.75
     ) +
