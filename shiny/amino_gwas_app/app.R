@@ -6,6 +6,7 @@ library(shiny)
 library(DT)
 library(dplyr)
 library(tibble)
+library(ggplot2)
 
 ################################################################################
 ### PATHS AND CONFIGURATION
@@ -30,15 +31,45 @@ get_app_home <- function() {
 APP_HOME <- get_app_home()
 REPO_ROOT <- normalizePath(file.path(APP_HOME, "..", ".."), mustWork = TRUE)
 
+resolve_required_path <- function(label, candidates) {
+  existing <- candidates[file.exists(candidates)]
+  if (length(existing) == 0) {
+    stop(
+      paste0(
+        "Missing required file for ", label, ".\n",
+        "Expected one of:\n- ", paste(candidates, collapse = "\n- "), "\n",
+        "For shinyapps.io, include the file inside the app bundle (recommended: data/supplementary/)."
+      ),
+      call. = FALSE
+    )
+  }
+  normalizePath(existing[[1]], mustWork = TRUE)
+}
+
 MANHATTAN_DIR <- normalizePath(file.path(APP_HOME, "Figs", "manhattan"), mustWork = TRUE)
 QQ_DIR <- normalizePath(file.path(APP_HOME, "Figs", "qq"), mustWork = TRUE)
-BEST_HITS_PATH <- normalizePath(
-  file.path(REPO_ROOT, "tables", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv"),
-  mustWork = TRUE
+
+# Prefer app-local files (works for deployment), keep repo-root fallback for local runs.
+BEST_HITS_PATH <- resolve_required_path(
+  label = "best-hit GWAS table",
+  candidates = c(
+    file.path(APP_HOME, "data", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv"),
+    file.path(APP_HOME, "..", "..", "tables", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv")
+  )
 )
-ANNOTATION_PATH <- normalizePath(
-  file.path(REPO_ROOT, "tables", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv"),
-  mustWork = TRUE
+ANNOTATION_PATH <- resolve_required_path(
+  label = "GWAS annotation table",
+  candidates = c(
+    file.path(APP_HOME, "data", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv"),
+    file.path(APP_HOME, "..", "..", "tables", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv")
+  )
+)
+FAA_PATH <- resolve_required_path(
+  label = "FAA phenotype table",
+  candidates = c(
+    file.path(APP_HOME, "data", "supplementary", "SuppTable_FAA.csv"),
+    file.path(REPO_ROOT, "data", "SuppTable_FAA_BLUPs.csv")
+  )
 )
 
 DEFAULT_INDIVIDUAL_TRAIT <- "P"
@@ -158,6 +189,13 @@ empty_phenotype_table <- function() {
   )
 }
 
+empty_faa_distribution <- function() {
+  tibble(
+    taxa = character(),
+    value = numeric()
+  )
+}
+
 build_plot_src <- function(plot_type, trait_name) {
   suffix <- if (identical(plot_type, "manhattan")) {
     "_manhattan.png"
@@ -179,6 +217,56 @@ build_plot_src <- function(plot_type, trait_name) {
   }
 
   paste0("amino-figs/", plot_type, "/", utils::URLencode(file_name, reserved = TRUE))
+}
+
+build_faa_distribution <- function(faa_df, trait_name) {
+  if (!trait_name %in% names(faa_df)) {
+    return(empty_faa_distribution())
+  }
+
+  tibble(
+    taxa = faa_df$taxa,
+    value = as.numeric(faa_df[[trait_name]])
+  ) %>%
+    dplyr::filter(!is.na(value), is.finite(value))
+}
+
+make_faa_distribution_plot <- function(distribution_df, trait_name) {
+  median_value <- stats::median(distribution_df$value, na.rm = TRUE)
+  mean_value <- mean(distribution_df$value, na.rm = TRUE)
+
+  ggplot(distribution_df, aes(x = value)) +
+    geom_histogram(
+      bins = 28,
+      fill = "#6f8f72",
+      color = "white",
+      linewidth = 0.2
+    ) +
+    geom_vline(
+      xintercept = median_value,
+      color = "#2e4d37",
+      linewidth = 0.7,
+      linetype = "dashed"
+    ) +
+    labs(
+      title = display_trait_name(trait_name),
+      subtitle = paste0(
+        "FAA distribution across ", nrow(distribution_df),
+        " lines | median = ", formatC(median_value, digits = 2, format = "f"),
+        " | mean = ", formatC(mean_value, digits = 2, format = "f")
+      ),
+      x = "Phenotype value",
+      y = "Line count"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(size = 15, face = "bold", hjust = 0),
+      plot.subtitle = element_text(size = 10, color = "grey35"),
+      axis.title = element_text(size = 12, face = "bold"),
+      axis.text = element_text(size = 10, color = "black"),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    )
 }
 
 join_annotation <- function(df, annotation_lookup) {
@@ -293,7 +381,9 @@ build_phenotype_summary <- function(best_hits_df, selected_traits, cutoff, annot
 ################################################################################
 
 best_hits_raw <- read.csv(BEST_HITS_PATH, stringsAsFactors = FALSE, check.names = FALSE)
-annotation_lookup <- read.csv(ANNOTATION_PATH, stringsAsFactors = FALSE, check.names = FALSE) %>%
+annotation_lookup <- read.csv(ANNOTATION_PATH, stringsAsFactors = FALSE, check.names = FALSE)
+names(annotation_lookup)[1] <- "GeneID"
+annotation_lookup <- annotation_lookup %>%
   dplyr::transmute(
     GeneID,
     AnnotationGeneSymbol = GeneSymbol,
@@ -304,6 +394,8 @@ annotation_lookup <- read.csv(ANNOTATION_PATH, stringsAsFactors = FALSE, check.n
     GO_CC
   ) %>%
   dplyr::distinct(GeneID, .keep_all = TRUE)
+faa_raw <- read.csv(FAA_PATH, stringsAsFactors = FALSE, check.names = FALSE)
+names(faa_raw)[1] <- "taxa"
 
 AVAILABLE_TRAITS <- sort(Reduce(
   intersect,
@@ -379,6 +471,9 @@ ui <- fluidPage(
         padding: 16px 18px;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       }
+      .top-panel-card {
+        height: 100%;
+      }
       .card-title {
         font-size: 18px;
         font-weight: 700;
@@ -401,7 +496,8 @@ ui <- fluidPage(
       }
       .plot-image {
         width: 100%;
-        max-height: 460px;
+        height: 320px;
+        max-height: 320px;
         object-fit: contain;
         display: block;
         background: white;
@@ -477,19 +573,27 @@ ui <- fluidPage(
           width = 9,
           fluidRow(
             column(
-              width = 8,
+              width = 5,
               div(
-                class = "panel-card",
+                class = "panel-card top-panel-card",
                 div(class = "card-title", "Manhattan Plot"),
                 uiOutput("individual_manhattan_plot")
               )
             ),
             column(
-              width = 4,
+              width = 3,
               div(
-                class = "panel-card",
+                class = "panel-card top-panel-card",
                 div(class = "card-title", "QQ Plot"),
                 uiOutput("individual_qq_plot")
+              )
+            ),
+            column(
+              width = 4,
+              div(
+                class = "panel-card top-panel-card",
+                div(class = "card-title", "FAA Distribution"),
+                plotOutput("individual_faa_distribution", height = "320px")
               )
             )
           ),
@@ -583,6 +687,14 @@ server <- function(input, output, session) {
     )
   })
 
+  individual_faa_distribution <- reactive({
+    req(input$individual_trait)
+    build_faa_distribution(
+      faa_df = faa_raw,
+      trait_name = input$individual_trait
+    )
+  })
+
   combined_gene_hits <- reactive({
     build_combined_gene_hits(
       best_hits_df = best_hits_raw,
@@ -630,6 +742,27 @@ server <- function(input, output, session) {
       class = "plot-image"
     )
   })
+
+  output$individual_faa_distribution <- renderPlot({
+    req(input$individual_trait)
+
+    distribution_df <- individual_faa_distribution()
+    validate(
+      need(
+        nrow(distribution_df) > 0,
+        paste0(
+          "No FAA distribution is available for ",
+          display_trait_name(input$individual_trait),
+          " in SuppTable_FAA.csv."
+        )
+      )
+    )
+
+    make_faa_distribution_plot(
+      distribution_df = distribution_df,
+      trait_name = input$individual_trait
+    )
+  }, res = 120)
 
   output$individual_summary_strip <- renderUI({
     df <- individual_hits()

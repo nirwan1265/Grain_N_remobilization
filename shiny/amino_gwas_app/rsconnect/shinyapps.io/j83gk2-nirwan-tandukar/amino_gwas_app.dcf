@@ -1,0 +1,12 @@
+name: amino_gwas_app
+title: amino_gwas_app
+username: j83gk2-nirwan-tandukar
+account: j83gk2-nirwan-tandukar
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17439547
+bundleId: 12084398
+url: https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
