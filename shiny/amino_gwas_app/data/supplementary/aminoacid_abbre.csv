@@ -1,0 +1,79 @@
+﻿metric,description
+A,Alanine concentration
+A.LAV,Alanine fraction within the LAV family pool (Ala + Leu + Val)
+A.Total,Alanine fraction of the total amino acid pool
+C,Cysteine concentration
+C.SGC,Cysteine fraction within the SGC family pool (Ser + Gly + Cys)
+C.Total,Cysteine fraction of the total amino acid pool
+D,Aspartate concentration
+D.EHPRQ,Aspartate relative to the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+D.IMNTDK,Aspartate fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+D.Total,Aspartate fraction of the total amino acid pool
+E,Glutamate concentration
+E.EHPRQ,Glutamate fraction within the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+E.Total,Glutamate fraction of the total amino acid pool
+EHPRQ,EHPRQ family pool: Glu + His + Pro + Arg + Gln
+F,Phenylalanine concentration
+F.Total,Phenylalanine fraction of the total amino acid pool
+F.WFY,Phenylalanine fraction within the WFY aromatic amino acid pool (Trp + Phe + Tyr)
+G,Glycine concentration
+G.SGC,Glycine fraction within the SGC family pool (Ser + Gly + Cys)
+G.Total,Glycine fraction of the total amino acid pool
+H,Histidine concentration
+H.EHPRQ,Histidine fraction within the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+H.Total,Histidine fraction of the total amino acid pool
+I,Isoleucine concentration
+I.IMNTDK,Isoleucine fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+I.IVL,Isoleucine fraction within the IVL branched-chain amino acid pool (Ile + Val + Leu)
+I.LAV,Isoleucine relative to the LAV family pool (Ala + Leu + Val)
+I.Total,Isoleucine fraction of the total amino acid pool
+IMNTDK,IMNTDK aspartate-family pool: Ile + Met + Asn + Thr + Asp + Lys
+IVL,IVL branched-chain amino acid pool: Ile + Val + Leu
+K,Lysine concentration
+K.IMNTDK,Lysine fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+K.Total,Lysine fraction of the total amino acid pool
+L,Leucine concentration
+L.IVL,Leucine fraction within the IVL branched-chain amino acid pool (Ile + Val + Leu)
+L.LAV,Leucine fraction within the LAV family pool (Ala + Leu + Val)
+L.Total,Leucine fraction of the total amino acid pool
+LAV,LAV family pool: Ala + Leu + Val
+M,Methionine concentration
+M.IMNTDK,Methionine fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+M.Total,Methionine fraction of the total amino acid pool
+N,Asparagine concentration
+N.D,Asparagine-to-aspartate ratio or relative abundance
+N.E,Asparagine-to-glutamate ratio or relative abundance
+N.IMNTDK,Asparagine fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+N.Q,Asparagine-to-glutamine ratio or relative abundance
+N.Total,Asparagine fraction of the total amino acid pool
+P,Proline concentration
+P.EHPRQ,Proline fraction within the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+P.Total,Proline fraction of the total amino acid pool
+Q,Glutamine concentration
+Q.E,Glutamine-to-glutamate ratio or relative abundance
+Q.EHPRQ,Glutamine fraction within the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+Q.Total,Glutamine fraction of the total amino acid pool
+R,Arginine concentration
+R.EHPRQ,Arginine fraction within the EHPRQ family pool (Glu + His + Pro + Arg + Gln)
+R.Total,Arginine fraction of the total amino acid pool
+S,Serine concentration
+S.SGC,SGC family pool (Ser + Gly + Cys)
+S.Total,Serine fraction of the total amino acid pool
+SGC,Serine family pool: Ser + Gly + Cys
+T,Threonine concentration
+T.IMNTDK,Threonine fraction within the IMNTDK aspartate-family pool (Ile + Met + Asn + Thr + Asp + Lys)
+T.Total,Threonine fraction of the total amino acid pool
+Total_N,Total amino-acid-derived nitrogen proxy
+Total_PBAA,Total protein-bound amino acid pool
+Total,Total measured amino acid pool
+V,Valine concentration
+V.IVL,Valine fraction within the IVL branched-chain amino acid pool (Ile + Val + Leu)
+V.LAV,Valine fraction within the Pyruvate family pool (Ala + Leu + Val)
+V.Total,Valine fraction of the total amino acid pool
+W,Tryptophan concentration
+W.Total,Tryptophan fraction of the total amino acid pool
+W.WFY,Tryptophan fraction within the WFY aromatic amino acid pool (Trp + Phe + Tyr)
+WFY,WFY aromatic amino acid pool: Trp + Phe + Tyr
+Y,Tyrosine concentration
+Y.Total,Tyrosine fraction of the total amino acid pool
+Y.WFY,Tyrosine fraction within the WFY aromatic amino acid pool (Trp + Phe + Tyr)

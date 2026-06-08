@@ -71,34 +71,17 @@ FAA_PATH <- resolve_required_path(
     file.path(REPO_ROOT, "data", "SuppTable_FAA_BLUPs.csv")
   )
 )
+ABBREVIATION_PATH <- resolve_required_path(
+  label = "amino-acid abbreviation table",
+  candidates = c(
+    file.path(APP_HOME, "data", "supplementary", "aminoacid_abbre.csv"),
+    file.path(REPO_ROOT, "tables", "supplementary", "aminoacid_abbre.csv")
+  )
+)
 
 DEFAULT_INDIVIDUAL_TRAIT <- "P"
+DEFAULT_INDIVIDUAL_SCOPE <- "__all__"
 DEFAULT_COMBINED_SCOPE <- "__all__"
-
-TRAIT_LABELS <- c(
-  A = "Alanine",
-  C = "Cysteine",
-  D = "Aspartate",
-  E = "Glutamate",
-  F = "Phenylalanine",
-  G = "Glycine",
-  H = "Histidine",
-  I = "Isoleucine",
-  K = "Lysine",
-  L = "Leucine",
-  M = "Methionine",
-  N = "Asparagine",
-  P = "Proline",
-  Q = "Glutamine",
-  R = "Arginine",
-  S = "Serine",
-  T = "Threonine",
-  V = "Valine",
-  W = "Tryptophan",
-  Y = "Tyrosine",
-  Total_N = "Total nitrogen",
-  Total_PBAA = "Total protein-bound amino acids"
-)
 
 ################################################################################
 ### HELPERS
@@ -106,6 +89,7 @@ TRAIT_LABELS <- c(
 
 display_trait_name <- function(trait_name) {
   clean_name <- gsub("_+$", "", trait_name)
+  clean_name <- gsub("_NYC", "", clean_name, fixed = TRUE)
 
   if (trait_name %in% names(TRAIT_LABELS)) {
     paste0(clean_name, " - ", TRAIT_LABELS[[trait_name]])
@@ -114,18 +98,30 @@ display_trait_name <- function(trait_name) {
   }
 }
 
-trait_group <- function(trait_name) {
-  sub("[.].*$", "", trait_name)
-}
+make_trait_choice_labels <- function(traits) {
+  base_labels <- vapply(traits, display_trait_name, character(1))
+  label_counts <- table(base_labels)
+  duplicate_labels <- names(label_counts[label_counts > 1])
 
-display_group_name <- function(group_name) {
-  clean_name <- gsub("_+$", "", group_name)
-
-  if (group_name %in% names(TRAIT_LABELS)) {
-    paste0(clean_name, " - ", TRAIT_LABELS[[group_name]])
-  } else {
-    clean_name
+  if (length(duplicate_labels) == 0) {
+    return(base_labels)
   }
+
+  final_labels <- base_labels
+
+  for (label_name in duplicate_labels) {
+    duplicate_idx <- which(base_labels == label_name)
+    variant_counter <- 1L
+
+    for (idx in duplicate_idx) {
+      if (grepl("_NYC_", traits[[idx]], fixed = TRUE)) {
+        final_labels[[idx]] <- paste0(label_name, " [variant ", variant_counter, "]")
+        variant_counter <- variant_counter + 1L
+      }
+    }
+  }
+
+  final_labels
 }
 
 list_plot_traits <- function(dir_path, suffix) {
@@ -396,44 +392,51 @@ annotation_lookup <- annotation_lookup %>%
   dplyr::distinct(GeneID, .keep_all = TRUE)
 faa_raw <- read.csv(FAA_PATH, stringsAsFactors = FALSE, check.names = FALSE)
 names(faa_raw)[1] <- "taxa"
+trait_abbreviations <- read.csv(ABBREVIATION_PATH, stringsAsFactors = FALSE, check.names = FALSE)
+names(trait_abbreviations)[1] <- "metric"
+TRAIT_LABELS <- stats::setNames(trait_abbreviations$description, trait_abbreviations$metric)
+ABBREV_TRAITS <- sort(unique(trait_abbreviations$metric))
 
-AVAILABLE_TRAITS <- sort(Reduce(
+PLOT_TRAITS <- sort(Reduce(
   intersect,
   list(
-    unique(best_hits_raw$Phenotype),
     list_plot_traits(MANHATTAN_DIR, "_manhattan"),
     list_plot_traits(QQ_DIR, "_qq")
   )
 ))
+INDIVIDUAL_TRAITS <- sort(intersect(ABBREV_TRAITS, PLOT_TRAITS))
+COMBINED_TRAITS <- sort(intersect(ABBREV_TRAITS, unique(best_hits_raw$Phenotype)))
 
-TRAIT_GROUPS <- tibble(
-  Phenotype = AVAILABLE_TRAITS,
-  Group = vapply(AVAILABLE_TRAITS, trait_group, character(1))
+INDIVIDUAL_TRAIT_CHOICES <- stats::setNames(
+  INDIVIDUAL_TRAITS,
+  vapply(INDIVIDUAL_TRAITS, display_trait_name, character(1))
 )
+COMBINED_TRAIT_CHOICES <- stats::setNames(
+  paste0("trait::", COMBINED_TRAITS),
+  vapply(COMBINED_TRAITS, display_trait_name, character(1))
+)
+COMBINED_SCOPE_CHOICES <- c("All GWAS results" = "__all__", COMBINED_TRAIT_CHOICES)
 
-AVAILABLE_GROUPS <- sort(unique(TRAIT_GROUPS$Group))
-GROUP_CHOICES <- stats::setNames(
-  AVAILABLE_GROUPS,
-  vapply(AVAILABLE_GROUPS, display_group_name, character(1))
-)
-TRAIT_CHOICES <- stats::setNames(
-  AVAILABLE_TRAITS,
-  vapply(AVAILABLE_TRAITS, display_trait_name, character(1))
-)
-
-DEFAULT_INDIVIDUAL_TRAIT <- if (DEFAULT_INDIVIDUAL_TRAIT %in% AVAILABLE_TRAITS) {
+DEFAULT_INDIVIDUAL_TRAIT <- if (DEFAULT_INDIVIDUAL_TRAIT %in% INDIVIDUAL_TRAITS) {
   DEFAULT_INDIVIDUAL_TRAIT
 } else {
-  AVAILABLE_TRAITS[[1]]
+  INDIVIDUAL_TRAITS[[1]]
 }
-DEFAULT_INDIVIDUAL_GROUP <- trait_group(DEFAULT_INDIVIDUAL_TRAIT)
 
-traits_for_group <- function(group_name) {
-  if (identical(group_name, "__all__")) {
-    return(AVAILABLE_TRAITS)
+traits_for_combined_selection <- function(selection_value) {
+  if (identical(selection_value, "__all__")) {
+    return(COMBINED_TRAITS)
   }
 
-  TRAIT_GROUPS$Phenotype[TRAIT_GROUPS$Group == group_name]
+  if (startsWith(selection_value, "trait::")) {
+    selected_trait <- sub("^trait::", "", selection_value)
+    if (selected_trait %in% COMBINED_TRAITS) {
+      return(selected_trait)
+    }
+    return(character(0))
+  }
+
+  character(0)
 }
 
 resource_paths <- shiny::resourcePaths()
@@ -542,19 +545,13 @@ ui <- fluidPage(
       fluidRow(
         column(
           width = 3,
-          div(
-            class = "panel-card left-controls",
-            div(class = "card-title", "GWAS Controls"),
-            selectInput(
-              inputId = "individual_group",
-              label = "Select amino acid",
-              choices = GROUP_CHOICES,
-              selected = DEFAULT_INDIVIDUAL_GROUP
-            ),
+            div(
+              class = "panel-card left-controls",
+              div(class = "card-title", "GWAS Controls"),
             selectInput(
               inputId = "individual_trait",
               label = "Select GWAS result",
-              choices = TRAIT_CHOICES,
+              choices = INDIVIDUAL_TRAIT_CHOICES,
               selected = DEFAULT_INDIVIDUAL_TRAIT
             ),
             selectInput(
@@ -565,7 +562,7 @@ ui <- fluidPage(
             ),
             div(
               class = "control-note",
-              "Pick one amino-acid family, then one specific GWAS result. The figures on the right update for that single result, and the table below shows the matching gene annotations."
+              "Pick one GWAS result. The figures on the right update for that single result, and the table below shows the matching gene annotations."
             )
           )
         ),
@@ -618,7 +615,7 @@ ui <- fluidPage(
             selectInput(
               inputId = "combined_scope",
               label = "Combine results from",
-              choices = c("All GWAS results" = "__all__", GROUP_CHOICES),
+              choices = COMBINED_SCOPE_CHOICES,
               selected = DEFAULT_COMBINED_SCOPE
             ),
             selectInput(
@@ -629,7 +626,7 @@ ui <- fluidPage(
             ),
             div(
               class = "control-note",
-              "This tab counts how often genes recur across the chosen GWAS set. Use 'All GWAS results' for the full combined view, or switch to one amino-acid group to narrow it down."
+              "This tab counts how often genes recur across the chosen GWAS set. Use 'All GWAS results' for the full combined view, or pick one GWAS result to inspect its gene-hit summary."
             )
           )
         ),
@@ -656,25 +653,9 @@ ui <- fluidPage(
 ################################################################################
 
 server <- function(input, output, session) {
-  observe({
-    group_traits <- traits_for_group(input$individual_group)
-    selected_trait <- isolate(input$individual_trait)
-
-    if (!selected_trait %in% group_traits) {
-      selected_trait <- group_traits[[1]]
-    }
-
-    updateSelectInput(
-      session,
-      "individual_trait",
-      choices = stats::setNames(group_traits, vapply(group_traits, display_trait_name, character(1))),
-      selected = selected_trait
-    )
-  })
-
   selected_combined_traits <- reactive({
     req(input$combined_scope)
-    traits_for_group(input$combined_scope)
+    traits_for_combined_selection(input$combined_scope)
   })
 
   individual_hits <- reactive({
