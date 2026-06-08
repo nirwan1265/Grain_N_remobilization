@@ -236,9 +236,9 @@ Quantitative genetic studies have proven to be an effective way to elucidate the
 
 \subsection{Kernel FAA variation in the Goodman--Buckler panel highlights Asn/Pro dominance and N-related GWAS signals}
 
-Average free amino acid (FAA) composition was evaluated across 280 maize lines grown in four replicates at Genetics Farm near Columbia, Missouri. To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (supp fig). Asparagine ranked as the most abundant amino acid in 144 of 280 genotypes (51\%), while proline ranked first in 116 genotypes (41\%). Notably, asparagine and proline comprised the top two amino acids in 180 of 280 genotypes (64\%), regardless of order. 
+Average free amino acid (FAA) composition was evaluated across 280 maize lines grown in four replicates at Genetics Farm near Columbia, Missouri (Supplementary Table 1). To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (Supplementary Fig. \ref{fig:supp_faa_asn_pro_rank}). Asparagine ranked as the most abundant amino acid in 144 of 280 genotypes (51\%), while proline ranked first in 116 genotypes (41\%). Notably, asparagine and proline comprised the top two amino acids in 180 of 280 genotypes (64\%), regardless of order (Supplementary Table 1). 
 
-Furthermore, to identify loci associated with grain amino acid composition, we analyzed 78 amino-acid-derived phenotypes (Supplementary Tables~\ref{tab:supp_amino_summary}, \ref{tab:supp_amino_best}). The phenotypes were based on its importance. At a significance threshold of $-\log_{10}(p) \geq 7$, we identified 1,941 unique candidate genes. Most candidate genes were associated with a single phenotype (1,646 genes), whereas 295 genes were shared across multiple phenotypes. The largest numbers of candidate genes were detected for \textit{N.E} (76), \textit{Q.E} (74), \textit{Total} (71), \textit{IMNTDK} (70), \textit{N} (69), \textit{SGC} (66), \textit{I.IMNTDK} (65), \textit{G} (64), \textit{R.Total} (64), \textit{N.D} (63), \textit{S} (62), and \textit{D.IMNTDK} (60). The amino-acid-derived N proxy traits \textit{Total\_N} and \textit{Total\_PBAA} were associated with 26 and 24 candidate genes, respectively. Among annotated significant hits, associations were dominated by FarmCPU and BLINK. The complete GWAS results are available through the Shiny web server at:
+Furthermore, to identify loci associated with grain amino acid composition, we analyzed 78 amino acid-derived phenotypes (Supplementary Tables 1-2). The phenotypes were based on their importance. At a significance threshold of $-\log_{10}(p) \geq 7$, we identified 1,941 unique candidate genes. Most candidate genes were associated with a single phenotype (1,646 genes), whereas 295 genes were shared across multiple phenotypes. The largest number of candidate genes was detected for \textit{N.E} with 76 genes. The amino-acid-derived N proxy traits \textit{Total\_N} and \textit{Total\_PBAA} were associated with 26 and 24 candidate genes, respectively. Among annotated significant hits, associations were dominated by FarmCPU and BLINK. The complete GWAS results are available through the Shiny web server at:
 \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
 
 For downstream interpretation, we focused on traits related to nitrogen assimilation and redistribution, including absolute concentrations of asparagine (\textit{N}), aspartate (\textit{D}), glutamate (\textit{E}), glutamine (\textit{Q}), and proline (\textit{P}); related family and ratio traits (\textit{IMNTDK}, \textit{D.IMNTDK}, \textit{N.E}, \textit{N.Total}, \textit{Q.E}); and proxy traits \textit{Total\_N} and \textit{Total\_PBAA}. Gene annotations for this subset supported a nitrogen-centered amino acid remodeling signal. Absolute glutamine (\textit{Q}) was associated with a \textit{NRT1/PTR FAMILY 3.1} transporter (\textit{Zm00001eb287980}), whereas the aspartate-family composite trait \textit{D.IMNTDK} mapped to a \textit{NRT1/PTR FAMILY 4.6} transporter (\textit{Zm00001eb277160}) and a tyrosine aminotransferase (\textit{Zm00001eb201770}) annotated with L-tyrosine:2-oxoglutarate transaminase activity, linking amino acid homeostasis to 2-oxoglutarate-dependent transamination. Glutamate (\textit{E}) was associated with \textit{AMINO ACID TRANSPORTER AVT3A} (\textit{Zm00001eb429100}), and \textit{Total\_N} included a \textit{GLUTAMATE DEHYDROGENASE 3}-related locus (\textit{Zm00001eb060520}) annotated with amino acid metabolism, L-glutamate catabolism, and response to nitrogen starvation. Within the same \textit{Total\_N} interval, we identified a glutathione S-transferase gene cluster (\textit{Zm00001eb021640}, \textit{Zm00001eb021650}, \textit{Zm00001eb021690}) that was also associated with \textit{Total\_PBAA}, suggesting convergence between proxy nitrogen content and protein-bound amino acid composition.
@@ -251,10 +251,9 @@ Together, these results indicate that grain amino acid GWAS supports a broader m
 
 \subsection{Soil nitrogen enviornment GWAS highlights aspartate-family and asparagine metabolism in maize landrace adaptation}
 
-The Goodman-Buckler amino acid results suggested that grain N-related amino acid variation is associated with amino acid transport, Glu/Gln metabolism, Asp-family metabolism, and protein turnover. We therefore asked whether natural variation in maize landraces exposed to different soil N environments pointed to similar biological pathways. The soil N GWAS reflects historical environmental associations rather than a directly measured grain phenotype. Therefore, we interpreted this comparison cautiously. Our objective was not to equate soil N adaptation with grain amino acid composition, but rather to assess whether independent ecological and grain-biochemical layers converged on related nitrogen-metabolism functions. To address this, we integrated the Romero Navarro \textit{et al.} maize landrace panel with total soil N estimates for each accession (ref). The sampled landraces span Mexico, Central America, and South America, capturing broad variation in soil nitrogen availability (Fig.~\ref{fig:soilN_gwas}A).
+The Goodman-Buckler amino acid results suggested that grain N-related amino acid variation is associated with amino acid transport, Glu/Gln metabolism, Asp-family metabolism, and protein turnover. We therefore asked whether natural variation in maize landraces exposed to different soil N environments pointed to similar biological pathways. The soil N GWAS reflects historical environmental associations rather than a directly measured grain phenotype (Ref soil N map). Therefore, we interpreted this comparison cautiously. Our objective was not to equate soil N adaptation with grain amino acid composition, but rather to assess whether independent ecological and grain-biochemical layers converged on related nitrogen-metabolism functions. To address this, we integrated the Romero Navarro \textit{et al.} maize landrace panel with total soil N estimates for each accession (ref). The sampled landraces span Mexico, Central America, and South America, capturing broad variation in soil nitrogen availability (Fig.~\ref{fig:soilN_gwas}A).
 
-Furthermore, we performed GWAS using a mixed linear model with three genotype principal components as covariates, and also applied the models, summarizing the strongest signals across the models (Fig.~\ref{fig:soilN_gwas}B). The GWAS identified multiple loci exceeding the Bonferroni significance thresholds (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} A). Model overlap analysis showed that BLINK and FarmCPU yielded most of the high-confidence signals, with 79 SNPs shared between them and six SNPs shared across all four models (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} B).
-
+Furthermore, we performed GWAS using a mixed linear model with three genotype principal components as covariates, and also applied the same models as in the grain GWAS, summarizing the strongest signals across the models (Fig.~\ref{fig:soilN_gwas}B). The GWAS identified multiple loci exceeding the Bonferroni significance thresholds (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} A). Model overlap analysis showed that BLINK and FarmCPU yielded most of the high-confidence signals, with 79 SNPs shared between them and six SNPs shared across all four models (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} B).
 
 \begin{figure*}[ht!]
 \centering
@@ -264,16 +263,15 @@ Furthermore, we performed GWAS using a mixed linear model with three genotype pr
     \label{fig:soilN_gwas}
 \end{figure*}
 
-Two candidates are notable because their functions link soil N variation to amino acid metabolism. The top candidate for MLM, \textit{Zm00001eb005710}, encodes a CN hydrolase domain-containing protein. It shows a strong association with soil N ($-\log_{10}(P) = 14.01$) and is annotated with omega-amidase/NIT2-like activity, hydrolase activity on carbon--nitrogen bonds, and roles in oxaloacetate, asparagine, and glutamine metabolism (ref). A second candidate, \textit{Zm00001eb220040}, encodes a protein with an aspartate/glutamate/uridylate kinase domain and is associated with soil N at $-\log_{10}(P) = 11.14$ (ref). Its GO annotations include aspartate kinase activity, amino acid biosynthesis, and threonine biosynthesis. Since aspartate kinase catalyzes an early committed step in the aspartate-family amino acid pathway, this locus is a plausible mediator of soil N effects on downstream amino acid biosynthesis (ref).
+Two of the six SNPs shared across all four GWAS models mapped to focal nitrogen-metabolism candidate loci, S1\_16128632 within Zm00001eb005710 and S5\_22338979 4.4 kb downstream of Zm00001eb220040. \textit{Zm00001eb005710}, encodes a CN hydrolase domain-containing protein. It shows a strong association with soil N ($-\log_{10}(P) = 14.01$) and is annotated with omega-amidase/NIT2-like activity, hydrolase activity on C--N bonds, and roles in oxaloacetate, asparagine, and glutamine metabolism (Supplementary Table 3). A second candidate, \textit{Zm00001eb220040}, encodes a protein with an aspartate/glutamate/uridylate kinase domain and is associated with soil N at $-\log_{10}(P) = 11.14$ . Its GO annotations include aspartate kinase activity, amino acid biosynthesis, and threonine biosynthesis. Since aspartate kinase catalyzes an early committed step in the aspartate-family amino acid pathway, this locus is a plausible mediator of soil N effects on downstream amino acid biosynthesis (Supplementary Table 3). These inferences are based on annotations and GO terms rather than direct experiments, and should be viewed cautiously.
 
-Together, these results highlight \textit{Zm00001eb220040} and \textit{Zm00001eb005710} as candidates related to nitrogen-metabolism involved in aspartate, asparagine, and glutamine metabolism. These inferences are based on annotations and GO terms rather than direct experiments and should be viewed cautiously.
+Two of the loci point to regulatory and trafficking mechanisms. SNP S3\_54622531 lies within 25 kb of \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger and ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} regulates thermotolerance and grain size, with loss-of-function alleles increasing both \citep{Lin2023TTL1}. A second SNP, S9\_129109559, falls within \textit{Zm00001eb393130}, a vacuolar protein sorting-associated protein 52A gene, with a nearby nitrilase-associated gene, \textit{Zm00001eb393120}, in the same 25-kb window. Arabidopsis Vps52p/POK localizes to the Golgi and functions in vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, suggesting this locus may link soil-N association to protein sorting, vesicle trafficking, and intracellular transport that could alter nutrient redistribution or cellular remodeling under contrasting N conditions. Together with the omega-amidase and aspartate kinase loci, these SNPs indicate that the shared soil-N GWAS signal includes both direct N-metabolism candidates and broader regulatory or trafficking components.
 
 \subsection{Free amino acid analysis in Indian Chief and Jarvis implicate protein turnover in population-specific N allocation}
 
 To connect the Buckler-Goodman amino acid GWAS and soil N environment GWAS with a selection-based population framework, we next examined the Indian Chief and Jarvis maize populations. These populations provide an independent system for testing whether short-term selection altered amino acid pools and N allocation in grains because Indian Chief and Jarvis served as open-pollinated base populations in a reciprocal recurrent selection experiment for grain weight over 14 cycles \citep{Moll1994}. The authors showed that reciprocal recurrent selection altered nitrogen allocation differently. At nonlimiting N supply, Jarvis, after 14 cycles of reciprocal recurrent selection, accumulated greater grain N and exhibited greater post-anthesis loss of N from stover relative to the starting Jarvis population. In contrast, Indian Chief, after 14 cycles of reciprocal recurrent selection, showed increased post-anthesis stover biomass but had lower grain weight, lower post-anthesis loss of N from stover, and no significant increase in grain N relative to the original Indian Chief population \citep{Moll1994}.
 
-For FAA profiling, representative Cycle~0 and Cycle~14 individuals from Indian Chief and Jarvis were grown at the Central Crops Research Station in Clayton, North Carolina, under standard field management practices. We then analyzed FAA  abundance and composition metrics at Cycle~0 and Cycle~14 for grains (Supplementary Fig.~\ref{fig:supp_ic_j_amino_profiles}; Supplementary Table~\ref{tab:supp_ic_j_amino_profile_stats}). Indian Chief showed significant remodeling of both total FAA abundance and relative FAA composition. Total FAA abundance increased from 7.62 in Cycle~0 to 13.42 in Cycle~14 (Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0194$), indicating an expansion of the measured free amino acid pool. Within this expanded pool, proline became more dominant (proline fraction increased from 0.320 to 0.519 ($p = 0.0157$; BH-adjusted $p = 0.0283$)). In contrast, acidic amino acids decreased as fractions of the total FAA pool. The aspartate fraction decreased from 0.115 to 0.075 ($p = 0.0157$; BH-adjusted $p = 0.0283$), and the glutamate fraction decreased from 0.140 to 0.062 ($p = 0.0068$; BH-adjusted $p = 0.0203$). Thus, Indian Chief Cycle~14 showed both increased total FAA abundance and a compositional shift away from Asp/Glu fractions and toward proline enrichment. This shift is relevant because the soil N GWAS identified candidate genes connected to aspartate/asparagine and glutamine metabolism, including an aspartate kinase candidate.
-
+For FAA profiling, representative Cycle~0 and Cycle~14 individuals from Indian Chief and Jarvis were grown at the Central Crops Research Station in Clayton, North Carolina, under standard field management practices. We then analyzed FAA  abundance and composition metrics at Cycle~0 and Cycle~14 for grains (Fig. \ref{fig:fig4_faa}; Supplementary Fig.~\ref{fig:supp_pbaa_profiles}; Supplementary Table 5). Indian Chief showed significant remodeling of both total FAA abundance and relative FAA composition. Total FAA abundance increased from 7.62 in Cycle~0 to 13.42 in Cycle~14 (Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0194$), indicating an expansion of the measured free amino acid pool. Within this expanded pool, proline became more dominant (proline fraction increased from 0.320 to 0.519 ($p = 0.0157$; BH-adjusted $p = 0.0283$)). In contrast, acidic amino acids decreased as fractions of the total FAA pool. The aspartate fraction decreased from 0.115 to 0.075 ($p = 0.0157$; BH-adjusted $p = 0.0283$), and the glutamate fraction decreased from 0.140 to 0.062 ($p = 0.0068$; BH-adjusted $p = 0.0203$) (Supplementary Table 4). Thus, Indian Chief Cycle 14 showed both increased total FAA abundance and a compositional shift away from Asp/Glu fractions and toward proline enrichment. This shift is relevant because the soil N GWAS identified candidate genes connected to aspartate/asparagine and glutamine metabolism, including an aspartate kinase candidate.
 
 \begin{figure*}[htbp]
 \centering
@@ -284,14 +282,14 @@ Relative free amino acid (FAA) composition in Indian Chief (A) and Jarvis (B) at
 \label{fig:fig4_faa}
 \end{figure*}
 
-In contrast, Jarvis showed fewer significant changes. The clearest Jarvis signal was an increase in Asp fraction from 0.075 in Cycle~0 to 0.137 in Cycle~14. This change was nominally significant before multiple-testing correction (Wilcoxon rank-sum $p = 0.0189$) but not after BH correction ($p = 0.1323$). Other FAA metrics (total FAA abundance, proline fraction, N-rich FAA pool, and Glu fraction) did not differ significantly between cycles. Thus, unlike Indian Chief, Jarvis did not show statistically supported changes.
+In contrast, Jarvis showed fewer significant changes. The clearest Jarvis signal was an increase in Asp fraction from 0.075 in Cycle~0 to 0.137 in Cycle~14. This change was nominally significant before multiple-testing correction (Wilcoxon rank-sum $p = 0.0189$) but not after BH correction ($p = 0.1323$). Other FAA metrics (total FAA abundance, proline fraction, N-rich FAA pool, and Glu fraction) did not differ significantly between cycles (Supplementary Table 5). Thus, unlike Indian Chief, Jarvis did not show statistically supported changes.
 
-To test whether FAA compositional remodeling was accompanied by changes in amino acid-derived N pools, we converted FAA measurements to N-equivalent values by weighting each amino acid by its N content and normalizing by sample mass (Supplementary Fig.~\ref{fig:supp_ic_j_aa_n_pools}; Supplementary Table~\ref{tab:supp_ic_j_aa_n_pools}). These values represent amino acid-derived N pools, not total elemental grain N. In Indian Chief, FAA-derived N per mg increased significantly from Cycle~0 to Cycle~14 (1.75 to 2.99; Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0129$), indicating the expansion of the free amino acid N pool. Other changes were not significant. Thus, amino acid-derived N estimates indicate a significant increase in the free amino acid N pool in Indian Chief Cycle~14, whereas Jarvis showed only nonsignificant decreases. 
 
+To test whether FAA compositional remodeling was accompanied by changes in amino acid-derived N pools, we converted FAA measurements to N-equivalent values by weighting each amino acid by its N content and normalizing by sample mass (Supplementary Fig.~\ref{fig:supp_ic_j_aa_n_pools}; Supplementary Table 6). These values represent amino acid-derived N pools, and not total elemental grain N as in the original study \citep{Moll1994}. In Indian Chief, FAA-derived N per mg increased significantly from Cycle~0 to Cycle~14 (1.75 to 2.99; Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0129$), indicating the expansion of the free amino acid N pool. Other changes were not significant. Thus, amino acid-derived N estimates indicate a significant increase in the free amino acid N pool in Indian Chief Cycle~14, whereas Jarvis showed only nonsignificant decreases. 
 
 \subsection{Skim sequencing reveals generation-specific genetic differentiation in Indian Chief and Jarvis}
 
-We also performed skim sequencing on approximately 100 individuals each from the Indian Chief and Jarvis maize populations for both cycles. Sample-level sequencing metrics matched expectations for low-coverage skim sequencing (Supplementary Fig.~\ref{fig:seq_sample_level}). Across 379 individuals, the mean sequencing depth was 0.73$\times$ (median 0.72$\times$, range 0.32--1.91$\times$). Most samples had 0.5--1.0$\times$ coverage (323/379); 26 were below 0.5$\times$, 29 were between 1.0$\times$ and 1.5$\times$, and one exceeded 1.5$\times$ (Supplementary Fig.~\ref{fig:supp_seq_sample} A,C). Despite the low depth, genotype recovery was high and uniform, with $\sim$59.0 million genotypes called per individual (Supplementary Fig.~\ref{fig:supp_seq_sample} B). Missing data were moderate for skim sequencing, with a median of 102{,}814 missing genotypes per sample.
+We also performed skim sequencing on approximately 100 individuals from the Indian Chief and Jarvis maize populations for both cycles. Sample-level sequencing metrics matched expectations for low-coverage skim sequencing (Supplementary Fig.~\ref{fig:supp_seq_sample}). Across 379 individuals, the mean sequencing depth was 0.73$\times$ (median 0.72$\times$, range 0.32--1.91$\times$). Most samples had 0.5--1.0$\times$ coverage (323/379); 26 were below 0.5$\times$, 29 were between 1.0$\times$ and 1.5$\times$, and one exceeded 1.5$\times$ (Supplementary Fig.~\ref{fig:supp_seq_sample} A,C). Despite the low depth, genotype recovery was high and uniform, with $\sim$59.0 million genotypes called per individual (Supplementary Fig.~\ref{fig:supp_seq_sample} B). Missing data were moderate for skim sequencing, with a median of 102{,}814 missing genotypes per sample.
 
 Variant-level summary statistics indicated that the dataset was suitable for population-level genetic analyses (Supplementary Fig.~\ref{fig:supp_seq_variant}). Per-site sequencing depth was centered near 7$\times$ across retained variants, with an interquartile range of 5–9$\times$ (Supplementary Fig.~\ref{fig:supp_seq_variant} A). The minor allele frequency spectrum was skewed toward low-frequency variants, as expected for segregating breeding populations with substantial standing genetic variation (Supplementary Fig.~\ref{fig:supp_seq_variant} B) (ref). Missing genotype counts declined smoothly across samples ranked by missingness, indicating that missing data were not driven by a small subset of problematic individuals (Supplementary Fig.~\ref{fig:supp_seq_variant} C). Transition/transversion ratios were highly consistent across the 10 maize chromosomes (1.74–1.81; genome-wide mean 1.785; Supplementary Fig.~\ref{fig:supp_seq_variant} D). After filtering, 512,667 SNPs were retained, and a linkage-disequilibrium–pruned subset of 57,568 markers was used for population-structure analyses.
 
@@ -308,12 +306,12 @@ Shared-SNP summaries provide a complementary view of allele-composition shifts a
 
 \subsection{Selection scans reveal population-specific amino acid and protein-turnover candidates}
 
-To identify genomic regions differentiated across 14 cycles of reciprocal recurrent selection, we compared Cycle~0 and Cycle~14 within Indian Chief and Jarvis using three population-genetic statistics: $F_{ST}$, $\Delta$ Tajima's~$D$, and $\log_2(\pi_{C14}/\pi_{C0})$. Genome-wide scans included 2,162 windows in Indian Chief and 2,151 in Jarvis. We prioritized a conservative concordant set requiring windows to fall in the top 5\% of $F_{ST}$ and the bottom 5\% of both $\Delta$ Tajima's~$D$ and $\log_2(\pi_{C14}/\pi_{C0})$. This filter identified 8 windows in Indian Chief and 10 in Jarvis (0.37\% and 0.46\% of windows, respectively), containing 213 and 184 genes. We treated these as higher-confidence candidates because they showed coordinated signals of differentiation and reduced diversity after selection.
+To identify genomic regions differentiated across 14 cycles of reciprocal recurrent selection, we compared Cycle~0 and Cycle~14 within Indian Chief and Jarvis using three population-genetic statistics: $F_{ST}$, $\Delta$ Tajima's~$D$, and $\log_2(\pi_{C14}/\pi_{C0})$. Genome-wide scans included 2,162 windows in Indian Chief and 2,151 in Jarvis (Supplementary Table 7,8). We prioritized a conservative concordant set requiring windows to fall in the top 5\% of $F_{ST}$ and the bottom 5\% of both $\Delta$ Tajima's~$D$ and $\log_2(\pi_{C14}/\pi_{C0})$. This filter identified 8 windows in Indian Chief and 10 in Jarvis (0.37\% and 0.46\% of windows, respectively), containing 213 and 184 genes. We treated these as higher-confidence candidates because they showed coordinated signals of differentiation and reduced diversity after selection.
 
 
-In Indian Chief, concordant candidate regions were enriched for functions related to protein turnover, cellular recycling, nitrogen transport, and amino acid metabolism. These included autophagy-related genes, ubiquitin and proteasome components, cysteine and aspartyl proteases, and transporters involved in ammonium or peptide/nitrate transport (ref). Representative candidates included \textit{Zm00001eb372060}, \textit{Zm00001eb287690}, and \textit{Zm00001eb352300}, annotated as autophagy-related proteins; \textit{Zm00001eb214780}, annotated as a senescence-specific cysteine protease; \textit{Zm00001eb214890}, annotated as an ammonium transporter; \textit{Zm00001eb287950}, annotated as an NRT1/PTR-family transporter; and \textit{Zm00001eb214770}, annotated as NADP-specific glutamate dehydrogenase. These functions are consistent with cellular protein degradation, organelle recycling, and amino acid release during nutrient redistribution.
+In Indian Chief, concordant candidate regions were enriched for functions related to protein turnover, cellular recycling, nitrogen transport, and amino acid metabolism (Supplementary Table 9). These included autophagy-related genes, ubiquitin and proteasome components, cysteine and aspartyl proteases, and transporters involved in ammonium or peptide/nitrate transport (ref). Representative candidates included \textit{Zm00001eb372060}, \textit{Zm00001eb287690}, and \textit{Zm00001eb352300}, annotated as autophagy-related proteins; \textit{Zm00001eb214780}, annotated as a senescence-specific cysteine protease; \textit{Zm00001eb214890}, annotated as an ammonium transporter; \textit{Zm00001eb287950}, annotated as an NRT1/PTR-family transporter; and \textit{Zm00001eb214770}, annotated as NADP-specific glutamate dehydrogenase. These functions are consistent with cellular protein degradation, organelle recycling, and amino acid release during nutrient redistribution.
 
-Because reciprocal recurrent selection was applied for only 14 cycles, selected loci may show moderate allele-frequency shifts without strong sweep-like reductions in diversity or consistent changes in Tajima's~$D$. We therefore also examined the broader top 5\% $F_{ST}$ outlier set. Candidate genes from this were interpreted cautiously. They were used as an exploratory set to evaluate whether selection cycles converged with independent evidence from NAM grain GWAS and soil N GWAS. Using this broader $F_{ST}$-only scan, the Indian Chief candidate set reinforced the amino acid and N-remobilization themes identified by the concordant scan. Candidate genes included \textit{Zm00001eb214360}, annotated as aspartate-semialdehyde dehydrogenase; \textit{Zm00001eb294790}, annotated as threonine synthase; \textit{Zm00001eb060520}, \textit{Zm00001eb427810}, and \textit{Zm00001eb162300}, annotated as glutamate dehydrogenase or glutamate dehydrogenase-related genes; \textit{Zm00001eb162900}, annotated as glutamine synthetase; and \textit{Zm00001eb217220}, annotated as a glutamine amidotransferase domain-containing protein. Indian Chief also contained amino acid transporter candidates and a glutaredoxin-family candidate. Together, these annotations suggest that selection-associated differentiation in Indian Chief involved broader remodeling of Asp-family metabolism, Glu/Gln interconversion, amino acid transport, protein turnover, and redox-associated N metabolism. This genomic pattern matches the FAA phenotype in Indian Chief Cycle~14, where total FAA abundance and Pro fraction increased while Asp and Glu fractions decreased.
+Because reciprocal recurrent selection was applied for only 14 cycles, selected loci may show moderate allele-frequency shifts without strong sweep-like reductions in diversity or consistent changes in Tajima's~$D$. We therefore also examined the broader top 5\% $F_{ST}$ outlier set (Supplementary Table 7). Candidate genes from this were interpreted cautiously. They were used as an exploratory set to evaluate whether selection cycles converged with independent evidence from NAM grain GWAS and soil N GWAS. Using this broader $F_{ST}$-only scan, the Indian Chief candidate set reinforced the amino acid and N-remobilization themes identified by the concordant scan. Candidate genes included \textit{Zm00001eb214360}, annotated as aspartate-semialdehyde dehydrogenase; \textit{Zm00001eb294790}, annotated as threonine synthase; \textit{Zm00001eb060520}, \textit{Zm00001eb427810}, and \textit{Zm00001eb162300}, annotated as glutamate dehydrogenase or glutamate dehydrogenase-related genes; \textit{Zm00001eb162900}, annotated as glutamine synthetase; and \textit{Zm00001eb217220}, annotated as a glutamine amidotransferase domain-containing protein. Indian Chief also contained amino acid transporter candidates and a glutaredoxin-family candidate. Together, these annotations suggest that selection-associated differentiation in Indian Chief involved broader remodeling of Asp-family metabolism, Glu/Gln interconversion, amino acid transport, protein turnover, and redox-associated N metabolism. This genomic pattern matches the FAA phenotype in Indian Chief Cycle~14, where total FAA abundance and Pro fraction increased while Asp and Glu fractions decreased.
 
 \begin{figure*}[ht!]
     \centering
@@ -322,9 +320,9 @@ Because reciprocal recurrent selection was applied for only 14 cycles, selected 
     \label{fig:fig5}
 \end{figure*}
 
-In Jarvis, concordant candidate regions also contained genes related to protein turnover, translation, organellar function, and stress-associated metabolism. These included \textit{Zm00001eb210360}, annotated as an OTU-domain deubiquitinating enzyme; \textit{Zm00001eb146560}, annotated as an NPL4-like protein involved in ubiquitin-dependent protein catabolism; \textit{Zm00001eb175050}, annotated as a ubiquitin carboxyl-terminal hydrolase; and \textit{Zm00001eb210720}, annotated as a 26S proteasome regulatory subunit. Additional candidates were associated with ER stress, chloroplast protein import, thylakoid organization, and mitochondrial electron transport. These annotations suggest that Jarvis differentiation also involved protein quality control and organellar remodeling.
+In Jarvis, concordant candidate regions also contained genes related to protein turnover, translation, organellar function, and stress-associated metabolism. These included \textit{Zm00001eb210360}, annotated as an OTU-domain deubiquitinating enzyme; \textit{Zm00001eb146560}, annotated as an NPL4-like protein involved in ubiquitin-dependent protein catabolism; \textit{Zm00001eb175050}, annotated as a ubiquitin carboxyl-terminal hydrolase; and \textit{Zm00001eb210720}, annotated as a 26S proteasome regulatory subunit (Supplementary Table 10). Additional candidates were associated with ER stress, chloroplast protein import, thylakoid organization, and mitochondrial electron transport. These annotations suggest that Jarvis differentiation also involved protein quality control and organellar remodeling.
 
-Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger population-specific connection to Asp-family amino acid metabolism. Most notably, Jarvis contained \textit{Zm00001eb094670}, annotated as aspartate kinase with GO terms for aspartate kinase activity and biosynthesis of threonine, lysine via diaminopimelate, and homoserine. This candidate is highly relevant as the Asp fraction showed the clearest FAA compositional change in Jarvis, increasing from Cycle~0 to Cycle~14 before multiple-testing correction. The presence of an aspartate kinase candidate provides a direct genomic link between the Jarvis $F_{ST}$ scan and Asp-family metabolism. Additional Jarvis candidates supported amino acid transport and interconversion, including \textit{Zm00001eb231430} (aspartate--tRNA ligase), \textit{Zm00001eb237500} (D-amino-acid transaminase), \textit{Zm00001eb132750} (lysine/histidine transporter-like protein), \textit{Zm00001eb159580} (putative GABA transporter), and \textit{Zm00001eb389560} (GLUTAMINE DUMPER 5). Jarvis also contained glutamine/glutathione-related candidates, including \textit{Zm00001eb232460}, \textit{Zm00001eb131830}, \textit{Zm00001eb131840}, and \textit{Zm00001eb210730}. Thus, Jarvis selection-associated differentiation appears to involve Asp-family metabolism, amino acid transport, glutamine-linked metabolism, and glutathione-associated redox processes. The full set of candidate genes, annotations, and supporting statistics is provided in Supplementary Table~\ref{tab:selection_candidate_go}.
+Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger population-specific connection to Asp-family amino acid metabolism (Supplementary Table 8). Most notably, Jarvis contained \textit{Zm00001eb094670}, annotated as aspartate kinase with GO terms for aspartate kinase activity and biosynthesis of threonine, lysine via diaminopimelate, and homoserine. This candidate is highly relevant as the Asp fraction showed the clearest FAA compositional change in Jarvis, increasing from Cycle~0 to Cycle~14 before multiple-testing correction. The presence of an aspartate kinase candidate provides a direct genomic link between the Jarvis $F_{ST}$ scan and Asp-family metabolism. Additional Jarvis candidates supported amino acid transport and interconversion, including \textit{Zm00001eb231430} (aspartate--tRNA ligase), \textit{Zm00001eb237500} (D-amino-acid transaminase), \textit{Zm00001eb132750} (lysine/histidine transporter-like protein), \textit{Zm00001eb159580} (putative GABA transporter), and \textit{Zm00001eb389560} (GLUTAMINE DUMPER 5). Jarvis also contained glutamine/glutathione-related candidates, including \textit{Zm00001eb232460}, \textit{Zm00001eb131830}, \textit{Zm00001eb131840}, and \textit{Zm00001eb210730}. Thus, Jarvis selection-associated differentiation appears to involve Asp-family metabolism, amino acid transport, glutamine-linked metabolism, and glutathione-associated redox processes.
 
 
 \subsection{B64 $\times$ CML14 biparental mapping identifies a shared chromosome 3 QTL for Asp and Pro}
@@ -499,7 +497,7 @@ GWAS was performed on maize landraces (n = 3,511) using four GWAS models: MLM, M
 \paragraph{Metabolite GWAS}
 Using the same pipeline described above for the envGWAS, we performed metabolite GWAS using the Goodman-Buckler Association Panel (n-278). In total, XXX SNPs were used to evaluate 110 traits for FAAs and 77 traits for PBAAs including absolute composition, total composition, relative composition, and various biochemical ratios. Prior to analysis, best linear unbiased predictions or BLUPs were calculated for each trait. For the metabolite GWAS, we used a GAPIT pipeline based on Holistic Analysis with Pre- and Post-Integration, or HAPPI GWAS. This pipeline, as described in (Slaten et al., 2020), removes outliers, optimizes transformation, and calculates BLUPs prior to the association study. 
 
-To estimate the nitrogen content of the Goodman-Buckler maize association panel, we calculated the respective percentage of mass occupied by nitrogen in the 20 proteinogenic amino acids. Across the 4 composite samples, we multiplied the quantity of each amino acid in μg/mg by the calculated \% nitrogen mass for that amino acid to solve for the  quantity of nitrogen in μg/mg. We added the totals for each of the 20 proteinogenic amino acids together for the free amino acids as well as the quantified protein bound amino acids to find total approximated nitrogen content in each composite sample. 
+To estimate the nitrogen content of the Goodman-Buckler maize association panel, we calculated the respective percentage of mass occupied by nitrogen in the 20 proteinogenic amino acids. Across the 4 composite samples, we multiplied the quantity of each amino acid in $\mu\mathrm{g}/\mathrm{mg}$ by the calculated \% nitrogen mass for that amino acid to solve for the  quantity of nitrogen in $\mu\mathrm{g}/\mathrm{mg}$. We added the totals for each of the 20 proteinogenic amino acids together for the free amino acids as well as the quantified protein bound amino acids to find total approximated nitrogen content in each composite sample. 
 
 \[
 \%N_X =
@@ -544,65 +542,43 @@ All scripts and parameter files used in the pipeline are available at the github
 
 
 
-\section{Supplementary information}
 
-If your article has accompanying supplementary file/s please state so here. 
-
-Authors reporting data from electrophoretic gels and blots should supply the full unprocessed scans for key as part of their Supplementary information. This may be requested by the editorial team/s if it is missing.
-
-Please refer to Journal-level guidance for any specific requirements.
 
 \section{Acknowledgements}
 
-Acknowledgements are not compulsory. Where included they should be brief. Grant or contribution numbers may be acknowledged.
+The work on this paper and Nirwan Tandukar was supported by the U.S. Department of Energy, Office of Science, Biological and Environmental Research program, Early Career Award Number DE-SC0021889.
+This work was supported in part by the Science and Technologies for Phosphorus Sustainability (STEPS) Center, a National Science Foundation Science and Technology Center (CBET-2019435).
+We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their contribution to field work and sampling that made possible the research in this manuscript.
 
-Please refer to Journal-level guidance for any specific requirements.
 
-\section*{Declarations}
 
-Some journals require declarations to be submitted in a standardised format. Please check the Instructions for Authors of the journal to which you are submitting to see if you need to complete this section. If yes, your manuscript must contain the following sections under the heading `Declarations':
 
-\begin{itemize}
-\item Funding
-\item Conflict of interest/Competing interests (check journal-specific guidelines for which heading to use)
-\item Ethics approval and consent to participate
-\item Consent for publication
-\item Data availability 
-\item Materials availability
-\item Code availability 
-\item Author contribution
-\end{itemize}
 
-\noindent
-If any of the sections are not relevant to your manuscript, please include the heading and write `Not applicable' for that section. 
+\bibliography{sn-bibliography}
+\pagebreak
 
-%%===================================================%%
-%% For presentation purpose, we have included        %%
-%% \bigskip command. Please ignore this.             %%
-%%===================================================%%
-\bigskip
-\begin{flushleft}%
-Editorial Policies for:
+\onecolumn
 
-\bigskip\noindent
-Springer journals and proceedings: \url{https://www.springer.com/gp/editorial-policies}
 
-\bigskip\noindent
-Nature Portfolio journals: \url{https://www.nature.com/nature-research/editorial-policies}
+\section{Supplement}
+\beginsupplement
 
-\bigskip\noindent
-\textit{Scientific Reports}: \url{https://www.nature.com/srep/journal-policies/editorial-policies}
 
-\bigskip\noindent
-BMC journals: \url{https://www.biomedcentral.com/getpublished/editorial-policies}
-\end{flushleft}
+% =========================
+% SUPP FIGURE S1
+% =========================                                                    
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_FAA_Asn_Pro_panel.png}
+\caption{
+Ranking-based summary of free amino acid (FAA) composition across 280 maize genotypes. \textbf{A}, number of genotypes in which asparagine, proline, or another amino acid ranked as the most abundant FAA based on genotype-level average values across replicates. \textbf{B}, number of genotypes in which asparagine and proline together comprised the top two FAA, regardless of order. Counts above bars indicate the number and percentage of genotypes in each category.
+}
+\label{fig:supp_faa_asn_pro_rank}
+\end{figure*}
 
-\begin{appendices}
-
-\section{Section title of first appendix}\label{secA1}
-
-An appendix contains supplementary information that is not an essential part of the text itself but which may be helpful in providing a more comprehensive understanding of the research problem or it is information that is too cumbersome to be included in the body of the paper.
-
+% =========================
+% SUPP FIGURE S2
+% =========================                                                     
 \begin{figure*}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_QQ_venn.png}
@@ -610,6 +586,10 @@ An appendix contains supplementary information that is not an essential part of 
     \label{fig:supp_soiln_qq_venn}
 \end{figure*}
 
+
+% =========================
+% SUPP FIGURE S3
+% =========================                                                  
 \begin{figure*}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{Figs/Supplementary/Supp_AminoAcid_Selected_Manhattan_QQ.png}
@@ -617,13 +597,9 @@ An appendix contains supplementary information that is not an essential part of 
     \label{fig:supp_amino_gwas}
 \end{figure*}
 
-\begin{figure*}[!htbp]
-    \centering
-    \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_seq_statistics_variant_level.png}
-    \caption{Supplementary variant-level quality summaries for the skim-sequencing data set. \textbf{A}, Variant depth distribution. \textbf{B}, Minor allele frequency spectrum. \textbf{C}, Missing genotypes per sample ranked across individuals. \textbf{D}, Transition/transversion ratio by chromosome.}
-    \label{fig:supp_seq_variant}
-\end{figure*}
-
+% =========================
+% SUPP FIGURE S4
+% =========================                                                  
 \begin{figure*}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_seq_statistics_sample_level.png}
@@ -631,31 +607,39 @@ An appendix contains supplementary information that is not an essential part of 
     \label{fig:supp_seq_sample}
 \end{figure*}
 
-%%=============================================%%
-%% For submissions to Nature Portfolio Journals %%
-%% please use the heading ``Extended Data''.   %%
-%%=============================================%%
+% =========================
+% SUPP FIGURE S5
+% =========================                                                  
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_seq_statistics_variant_level.png}
+    \caption{Supplementary variant-level quality summaries for the skim-sequencing data set. \textbf{A}, Variant depth distribution. \textbf{B}, Minor allele frequency spectrum. \textbf{C}, Missing genotypes per sample ranked across individuals. \textbf{D}, Transition/transversion ratio by chromosome.}
+    \label{fig:supp_seq_variant}
+\end{figure*}
 
-%%=============================================================%%
-%% Sample for another appendix section			       %%
-%%=============================================================%%
+% =========================
+% SUPP FIGURE S6
+% =========================                                                  
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_IC_J_amino_profiles.png}
+\caption{
+Relative protein-bound amino acid (PBAA) composition in Indian Chief (A) and Jarvis (B) at generation 0 (G0) and generation 14 (G14). Values are shown as relative fractions of the total protein-bound amino acid pool using biological-sample means. Radar plots summarize changes in PBAA composition between G0 and G14 within each population.
+}
+\label{fig:supp_pbaa_profiles}
+\end{figure*}
 
-%% \section{Example of another appendix section}\label{secA2}%
-%% Appendices may be used for helpful, supporting or essential material that would otherwise 
-%% clutter, break up or be distracting to the text. Appendices can consist of sections, figures, 
-%% tables and equations etc.
+% =========================
+% SUPP FIGURE S7
+% =========================                                                  
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_IC_J_AA_N_pools.png}
+\caption{
+Estimated amino-acid-derived nitrogen pools in Indian Chief and Jarvis at generation 0 (G0) and generation 14 (G14). \textbf{A}, free amino acid (FAA)-derived nitrogen per mg. \textbf{B}, protein-bound amino acid (PBAA)-derived nitrogen per mg. \textbf{C}, total amino-acid-derived nitrogen per mg, calculated as the sum of FAA-derived and PBAA-derived nitrogen. Values are shown for biological-sample means. Nitrogen pools were estimated by weighting each amino acid by its number of nitrogen atoms and normalizing by sample mass. Brackets indicate within-population comparisons between G0 and G14 based on Wilcoxon rank-sum tests; `ns` = not significant, `**` $P < 0.01$.
+}
+\label{fig:supp_ic_j_aa_n_pools}
+\end{figure*}
 
-\end{appendices}
-
-%%===========================================================================================%%
-%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
-%% system, please include the references within the manuscript file itself. You may do this  %%
-%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
-%% file, and delete the associated \verb+\bibliography+ commands.                            %%
-%%===========================================================================================%%
-
-\bibliography{sn-bibliography}% common bib file
-%% if required, the content of .bbl file can be included here once bbl is generated
-%%\input sn-article.bbl
 
 \end{document}
