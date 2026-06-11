@@ -1,0 +1,47 @@
+Functional_category,GeneID,Preferred_label,Annotation,SoilN_GWAS,Amino_acid_GWAS,Indian_Chief_scan,Jarvis_scan,Evidence_layers,Interpretive_note
+Asp/Asn metabolism and C-N interconversion,Zm00001eb005710,CN hydrolase domain-containing protein,OMEGA-AMIDASE NIT2 (PTHR23088:SF30),SoilN (14.01),,,,1,Soil N omega-amidase/NIT2-like candidate linked to Asn/Gln-associated metabolism.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb220040,Aspartate_glutamate_uridylate kinase domain-containing protein,Aspartate_glutamate_uridylate kinase domain-containing protein,SoilN (11.14),,,,1,Soil N aspartate kinase candidate at the entry point to the Asp-family pathway.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb201770,,Tyrosine aminotransferase,,D.IMNTDK (n=1),,,1,Amino-acid GWAS transaminase candidate linking amino-acid balance to 2-oxoglutarate-dependent chemistry.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb257910,,Aspartate aminotransferase / GOT-like protein,,M;M.Total (n=2),,,1,Methionine-associated GWAS candidate consistent with Asp-family transamination.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb214360,,aspartate-semialdehyde dehydrogenase,,,top5_FST,,1,Indian Chief top-5% FST candidate for the step immediately after aspartate kinase.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb094670,,aspartate kinase,,,,top5_FST,1,Jarvis top-5% FST aspartate kinase candidate discussed as ask2-like.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb152450,,Aspartate aminotransferase,,,,top5_FST,1,Jarvis aspartate aminotransferase / glutamate-oxaloacetate transaminase candidate.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb231540,,L-aspartate oxidase,,,,top5_FST,1,Jarvis L-aspartate oxidase candidate linking Asp metabolism to NAD biosynthesis.
+Asp/Asn metabolism and C-N interconversion,Zm00001eb294790,,threonine synthase,,,top5_FST,,1,Indian Chief threonine synthase candidate in the downstream Asp-family branch.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb060520,Glutamate dehydrogenase,GLUTAMATE DEHYDROGENASE 3-RELATED (PTHR11606:SF29),,Total_N (n=1),top5_FST,,2,Key bridge between Total_N GWAS and Indian Chief FST; glutamate dehydrogenase-related.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb214770,,NADP-specific glutamate dehydrogenase,,,all_three,,1,Indian Chief all-three candidate annotated as NADP-specific glutamate dehydrogenase.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb427810,,Glutamate dehydrogenase,,,top5_FST,,1,Indian Chief top-5% FST glutamate dehydrogenase-related candidate.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb162300,,Amino acid dehydrogenase family protein,,,top5_FST,,1,Indian Chief top-5% FST glutamate dehydrogenase-related candidate.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb162900,,GS catalytic domain-containing protein,,,top5_FST,,1,Indian Chief top-5% FST glutamine synthetase candidate.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb217220,,Glutamine amidotransferase domain-containing protein,,,top5_FST,,1,Indian Chief glutamine amidotransferase-domain candidate; broader glutamine-dependent biosynthesis.
+Glu/Gln metabolism and glutamine-dependent reactions,Zm00001eb232460,,Glutamine amidotransferase domain-containing protein,,,,top5_FST,1,Jarvis glutamine amidotransferase-domain candidate interpreted cautiously.
+Transport and intracellular trafficking,Zm00001eb287980,Protein NRT1_ PTR FAMILY 3.1,PROTEIN NRT1_ PTR FAMILY 3.1 (PTHR11654:SF421),,Q (n=1),,,1,Glutamine-associated NRT1/PTR-family transporter from the amino-acid GWAS.
+Transport and intracellular trafficking,Zm00001eb277160,,Protein NRT1_ PTR FAMILY 4.6,,D.IMNTDK;N.D;N.E;N.IMNTDK;N.Total (n=5),,top5_FST,2,Asp/Asn-related NRT1/PTR-family transporter associated with multiple amino-acid ratio traits.
+Transport and intracellular trafficking,Zm00001eb429100,Amino acid transporter transmembrane domain-containing protein,AMINO ACID TRANSPORTER AVT3A (PTHR22950:SF674),,A;E;G;LAV (n=4),,,1,AVT3A-like amino-acid transporter associated with glutamate and related traits.
+Transport and intracellular trafficking,Zm00001eb214890,,Ammonium transporter,,,all_three,,1,Indian Chief all-three ammonium transporter candidate.
+Transport and intracellular trafficking,Zm00001eb287950,,NRT1/PTR-family transporter,,,all_three,,1,Indian Chief all-three NRT1/PTR-family transporter candidate.
+Transport and intracellular trafficking,Zm00001eb132750,,Lysine/histidine transporter-like protein,,,,top5_FST,1,Jarvis amino-acid transporter candidate with lysine/histidine transporter-like annotation.
+Transport and intracellular trafficking,Zm00001eb159580,,Putative GABA transporter 2,,,,top5_FST,1,Jarvis putative GABA transporter candidate.
+Transport and intracellular trafficking,Zm00001eb389560,,Protein GLUTAMINE DUMPER 5,,,,top5_FST,1,Jarvis GLUTAMINE DUMPER 5 candidate consistent with intracellular amino-acid movement.
+Transport and intracellular trafficking,Zm00001eb393130,Vacuolar protein sorting-associated protein 52 A,VACUOLAR PROTEIN SORTING-ASSOCIATED PROTEIN 52 HOMOLOG (PTHR14190:SF7),SoilN (8.92),,,,1,Soil N trafficking candidate annotated as vacuolar protein sorting-associated protein 52A.
+Transport and intracellular trafficking,Zm00001eb130210,PIT1,RING_FYVE_PHD ZINC FINGER SUPERFAMILY PROTEIN (PTHR23012:SF180),SoilN (9.32),,,,1,Soil N regulatory/trafficking candidate annotated as a RING/FYVE/PHD zinc-finger ubiquitin ligase.
+Transport and intracellular trafficking,Zm00001eb393120,Nitrilase-associated protein,Nitrilase-associated protein,SoilN (8.92),,,,1,Soil N neighboring nitrilase-associated candidate in the VPS52A interval.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb372060,Autophagy-related protein,Autophagy-related protein,,P (n=1),all_three,,2,Indian Chief all-three autophagy-related gene and the main proline-overlap candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb287690,,Autophagy-related protein 18g,,,all_three,,1,Indian Chief all-three autophagy-related candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb352300,,Autophagy-related protein 18a,,Y (n=1),all_three,,2,Indian Chief all-three autophagy-related candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb214780,,Senescence-specific cysteine protease SAG39,,,all_three,,1,Indian Chief senescence-specific cysteine protease candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb082660,,Zm00001eb082660,,Total (n=1),,,1,Amino-acid GWAS macroautophagy candidate from the broader Total trait.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb322660,Senescence regulator,Putative senescence regulator,,EHPRQ;H;P;S;T;Total (n=6),,,1,Amino-acid GWAS senescence regulator candidate from the broader Total trait.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb293380,RING-type E3 ubiquitin transferase,RING-H2 FINGER PROTEIN ATL2L (PTHR22765:SF446),,D;D.Total (n=2),,,1,Aspartate GWAS RING-type E3 ubiquitin ligase candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb283510,Derlin-1.2,DERLIN (PTHR11009:SF32),,D;EHPRQ;F;IVL;SGC;T;Total (n=7),,,1,Aspartate GWAS Derlin-1-like ERAD candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb429920,,Autophagosome assembly-related protein,,D.IMNTDK (n=1),,,1,D.IMNTDK GWAS candidate annotated for autophagosome assembly.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb210360,,OTU domain-containing protein,,A.LAV;D.IMNTDK;L.LAV (n=3),,all_three,2,Jarvis all-three OTU-domain deubiquitinating enzyme candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb146560,,NPL4-like protein 1,,,,all_three,1,Jarvis all-three NPL4-like candidate involved in ubiquitin-dependent protein catabolism.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb175050,,Ubiquitin carboxyl-terminal hydrolase,,,,all_three,1,Jarvis all-three ubiquitin carboxyl-terminal hydrolase candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb210720,,26S proteasome non-ATPase regulatory subunit 12 homolog B,,,,all_three,1,Jarvis all-three 26S proteasome regulatory subunit candidate.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb021640,Glutathione S-transferase,GLUTATHIONE S-TRANSFERASE (PTHR11260:SF771),,Total_N;Total_PBAA (n=2),,,1,Total_N / Total_PBAA glutathione S-transferase cluster in the proxy N interval.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb021650,glutathione transferase,GLUTATHIONE TRANSFERASE (PTHR11260:SF641),,Total_N;Total_PBAA (n=2),,,1,Total_N / Total_PBAA glutathione S-transferase cluster in the proxy N interval.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb021690,Glutathione S-transferase,GLUTATHIONE S-TRANSFERASE (PTHR11260:SF668),,Total_N;Total_PBAA (n=2),,,1,Total_N / Total_PBAA glutathione S-transferase cluster in the proxy N interval.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb131830,,Glutaredoxin-C13,,,,all_three,1,Jarvis glutamine/glutathione-related candidate noted in the broader top-5% FST set.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb131840,,Glutaredoxin-C13,,,,all_three,1,Jarvis glutamine/glutathione-related candidate noted in the broader top-5% FST set.
+"Proteostasis, autophagy, senescence, and redox",Zm00001eb210730,,Monothiol glutaredoxin-S14 chloroplastic,,,,all_three,1,Jarvis glutamine/glutathione-related candidate noted in the broader top-5% FST set.
