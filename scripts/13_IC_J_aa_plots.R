@@ -7,6 +7,7 @@ library(tidyverse)
 library(ggplot2)
 library(patchwork)
 library(scales)
+library(effsize)
 
 ################################################################################
 ### CONFIGURATION
@@ -175,6 +176,11 @@ compute_generation_stats <- function(bio_means, pool_name) {
         error = function(e) NA_real_
       )
 
+      cliff_obj <- tryCatch(
+        effsize::cliff.delta(g14_vals, g0_vals),
+        error = function(e) NULL
+      )
+
       comparison_label <- if (pop_name == "Indian Chief") {
         "IC0_vs_IC14"
       } else {
@@ -190,7 +196,11 @@ compute_generation_stats <- function(bio_means, pool_name) {
         n_group14 = length(g14_vals),
         mean_group0 = mean(g0_vals, na.rm = TRUE),
         mean_group14 = mean(g14_vals, na.rm = TRUE),
-        p_value = p_val
+        median_group0 = median(g0_vals, na.rm = TRUE),
+        median_group14 = median(g14_vals, na.rm = TRUE),
+        p_value = p_val,
+        cliffs_delta = if (is.null(cliff_obj)) NA_real_ else unname(cliff_obj$estimate),
+        cliffs_magnitude = if (is.null(cliff_obj)) NA_character_ else as.character(cliff_obj$magnitude)
       )
     }) %>%
       mutate(

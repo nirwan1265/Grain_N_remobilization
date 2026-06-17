@@ -3,6 +3,7 @@
 ################################################################################
 
 library(tidyverse)
+library(effsize)
 
 ################################################################################
 ### CONFIGURATION
@@ -131,6 +132,11 @@ compute_metric_stats <- function(samples_df, metric_names) {
         error = function(e) NA_real_
       )
 
+      cliff_obj <- tryCatch(
+        effsize::cliff.delta(g14_vals, g0_vals),
+        error = function(e) NULL
+      )
+
       tibble(
         population = pop_name,
         comparison = if_else(pop_name == "Indian Chief", "IC0_vs_IC14", "JV0_vs_JV14"),
@@ -141,7 +147,9 @@ compute_metric_stats <- function(samples_df, metric_names) {
         mean_group14 = mean(g14_vals, na.rm = TRUE),
         median_group0 = median(g0_vals, na.rm = TRUE),
         median_group14 = median(g14_vals, na.rm = TRUE),
-        p_value = p_val
+        p_value = p_val,
+        cliffs_delta = if (is.null(cliff_obj)) NA_real_ else unname(cliff_obj$estimate),
+        cliffs_magnitude = if (is.null(cliff_obj)) NA_character_ else as.character(cliff_obj$magnitude)
       )
     }) %>%
       mutate(
@@ -177,6 +185,8 @@ build_summary_table <- function(stats_df, metric_descriptions) {
       median_group14,
       p_value,
       p_adj,
+      cliffs_delta,
+      cliffs_magnitude,
       raw_sig,
       bh_sig,
       result_summary

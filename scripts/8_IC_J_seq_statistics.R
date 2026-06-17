@@ -184,21 +184,6 @@ p_density <- ggplot(depth_df, aes(x = mean_depth)) +
   ) +
   plot_theme
 
-p_scatter <- ggplot(
-  depth_df,
-  aes(x = mean_depth, y = n_genotypes / 1e6, color = coverage_group)
-) +
-  geom_point(alpha = 0.85, size = 2) +
-  geom_vline(xintercept = 0.8, linetype = "dashed", color = "#D55E00", linewidth = 0.5) +
-  scale_color_manual(values = coverage_colors, name = "Coverage Group") +
-  scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-  labs(
-    title = "Depth vs Genotypes Called",
-    x = "Mean Depth (x)",
-    y = "Genotypes Called (Millions)"
-  ) +
-  plot_theme
-
 ranked_df <- depth_df %>%
   dplyr::arrange(dplyr::desc(mean_depth)) %>%
   dplyr::mutate(sample_rank = dplyr::row_number())
@@ -215,12 +200,12 @@ p_ranked <- ggplot(ranked_df, aes(x = sample_rank, y = mean_depth, fill = covera
   plot_theme +
   theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
 
-sample_plot <- ((p_density + p_scatter) / p_ranked) +
+sample_plot <- (p_density / p_ranked) +
   plot_layout(guides = "collect", heights = c(1, 1.15)) +
   plot_annotation(tag_levels = "A") &
   theme(legend.position = "top")
 
-save_png(sample_plot, sample_file, width = 12, height = 10)
+save_png(sample_plot, sample_file, width = 10, height = 9)
 
 cat("\nSaved variant-level QC figure to:\n")
 cat("  ", variant_file, "\n", sep = "")
