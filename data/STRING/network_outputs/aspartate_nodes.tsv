@@ -1,0 +1,18 @@
+node_id	label	protein_description	match_origin
+B6U3W8_MAIZE	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase (AIZE)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	functional_annotation
+A0A1D6H377	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase (H377)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	functional_annotation
+A0A1D6J506	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase (J506)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	functional_annotation
+A0A1D6MU53	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase (MU53)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	functional_annotation
+Pco080711	ATP-citrate synthase	ATP-citrate synthase.	none
+Pco118382	Aspartate aminotransferase	Aspartate aminotransferase.	protein_annotation,functional_annotation
+A0A1D6HNF9	Aspartate aminotransferase chloro	Aspartate aminotransferase chloroplastic.	protein_annotation,functional_annotation
+B4FA80_MAIZE	Aspartokinase	Aspartokinase.	functional_annotation
+A0A1D6MP94	Enolase-phosphatase E1	Enolase-phosphatase E1.	functional_annotation
+B4FFP2_MAIZE	Glutamate dehydrogenase	Glutamate dehydrogenase; Belongs to the Glu/Leu/Phe/Val dehydrogenases family.	functional_annotation
+A0A1D6GZS8	L-aspartate oxidase	L-aspartate oxidase; Catalyzes the oxidation of L-aspartate to iminoaspartate.	protein_annotation,functional_annotation
+Pco104294	Malate dehydrogenase	Malate dehydrogenase.	none
+A0A1D6MNB9	Phosphoenolpyruvate carboxylase 4	Phosphoenolpyruvate carboxylase 4.	none
+A0A1D6MRL4	Quinolinate synthase chloro	Quinolinate synthase chloroplastic.	functional_annotation
+A0A1D6QM74	Tyrosine aminotransferase	Tyrosine aminotransferase.	none
+A0A1D6MRA8	Zea CEFD homolog1	Zea CEFD homolog1.	none
+A0A1D6DW09	isoaspartyl peptidase/L-asparaginase 2	Putative isoaspartyl peptidase/L-asparaginase 2.	functional_annotation

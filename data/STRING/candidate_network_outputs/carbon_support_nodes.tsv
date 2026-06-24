@@ -1,0 +1,9 @@
+node_id	label	protein_description	node_type
+A0A1D6HNF9	Aspartate aminotransferase chloro	Aspartate aminotransferase chloroplastic.	neighbor
+Pco118382	Aspartate aminotransferase cyto	Aspartate aminotransferase.	neighbor
+A0A1D6GZS8	L-aspartate oxidase	L-aspartate oxidase; Catalyzes the oxidation of L-aspartate to iminoaspartate.	neighbor
+Pco128534b	Pyruvate dehydrogenase E2	Dihydrolipoamide acetyltransferase component of pyruvate dehydrogenase complex.	neighbor
+Pco080711	ATP-citrate synthase	ATP-citrate synthase.	seed
+Pco104294	Malate dehydrogenase	Malate dehydrogenase.	seed
+A0A1D6MNB9	PEP carboxylase 4	Phosphoenolpyruvate carboxylase 4.	seed
+A0A1D6MRL4	Quinolinate synthase chloro	Quinolinate synthase chloroplastic.	seed

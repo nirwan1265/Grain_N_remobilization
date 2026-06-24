@@ -1,0 +1,18 @@
+node_id	label	protein_description	node_type
+B6U3W8_MAIZE	ARD dioxygenase (AIZE)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	neighbor
+A0A1D6H377	ARD dioxygenase (H377)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	neighbor
+A0A1D6J506	ARD dioxygenase (J506)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	neighbor
+A0A1D6MU53	ARD dioxygenase (MU53)	1,2-dihydroxy-3-keto-5-methylthiopentene dioxygenase; Catalyzes the formation of formate and 2-keto-4- methylthiobutyrate (KMTB) from 1,2-dihydroxy-3-keto-5-methylthiopentene (DHK-MTPene).	neighbor
+Pco080711	ATP-citrate synthase	ATP-citrate synthase.	neighbor
+Pco104294	Malate dehydrogenase	Malate dehydrogenase.	neighbor
+A0A1D6MNB9	PEP carboxylase 4	Phosphoenolpyruvate carboxylase 4.	neighbor
+A0A1D6MRL4	Quinolinate synthase chloro	Quinolinate synthase chloroplastic.	neighbor
+B4FIE9_MAIZE	SAM synthase	S-adenosylmethionine synthase; Catalyzes the formation of S-adenosylmethionine from methionine and ATP.	neighbor
+A0A1D6MRA8	Zea CEFD homolog1	Zea CEFD homolog1.	neighbor
+A0A1D6HNF9	Aspartate aminotransferase chloro	Aspartate aminotransferase chloroplastic.	seed
+Pco118382	Aspartate aminotransferase cyto	Aspartate aminotransferase.	seed
+B4FA80_MAIZE	Aspartokinase	Aspartokinase.	seed
+B4FFP2_MAIZE	Glutamate dehydrogenase	Glutamate dehydrogenase; Belongs to the Glu/Leu/Phe/Val dehydrogenases family.	seed
+A0A1D6DW09	L-asparaginase 2	Putative isoaspartyl peptidase/L-asparaginase 2.	seed
+A0A1D6GZS8	L-aspartate oxidase	L-aspartate oxidase; Catalyzes the oxidation of L-aspartate to iminoaspartate.	seed
+A0A1D6QM74	Tyrosine aminotransferase	Tyrosine aminotransferase.	seed

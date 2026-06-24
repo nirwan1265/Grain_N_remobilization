@@ -1,0 +1,9 @@
+node_id	label	category	protein_description	string_interactions_in_export
+A0A096TZE2	Ammonium transporter	Ammonium transport	Ammonium transporter.	0
+A0A1D6MR48	Peptide/nitrate transporter	Nitrate / peptide transport	Putative peptide/nitrate transporter.	0
+A0A1D6MWS7	Transmembrane amino acid transporter	Amino acid transport	Transmembrane amino acid transporter family protein.	0
+A0A1D6MYM4	Amino acid permease 6	Amino acid transport	Amino acid permease 6.	0
+A0A1D6MYN4	Amino acid permease 2/3	Amino acid transport	Amino acid permease 2.	0
+Sut4	Sucrose transporter 4	Source-sink carbon transport	Sucrose transporter4.	0
+A0A1D6MRZ5	SWEET17a	Source-sink carbon transport	Sugars will eventually be exported transporter17a; Belongs to the SWEET sugar transporter family.	0
+B4FTH1_MAIZE	Bidirectional SWEET transporter	Source-sink carbon transport	Bidirectional sugar transporter SWEET; Mediates both low-affinity uptake and efflux of sugar across the membrane; Belongs to the SWEET sugar transporter family.	0
