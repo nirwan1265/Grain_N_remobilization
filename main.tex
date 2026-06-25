@@ -418,11 +418,12 @@ Indian Chief showed a complementary pattern. The broader $F_{ST}$ outlier set in
 
 The Goodman--Buckler amino acid GWAS added a grain-focused layer to this interpretation. Methionine and methionine-normalized traits identified \textit{Zm00001eb257910}, annotated as an aspartate aminotransferase/GOT-like gene. Since methionine is an aspartate-family amino acid, this AspAT/GOT signal supports a role for aspartate transamination in natural variation for grain amino acid composition. This is consistent with rice data, where AspAT overexpression altered nitrogen metabolism and increased seed amino acid and protein contents \citep{Zhou2009AspAT}. Thus, the FAA GWAS highlights an aspartate-related enzyme linked to a grain trait downstream of aspartate-family metabolism.
 
-%<STRING here?> 
+The soil-N environment GWAS provides an ecological layer that is consistent with the involvement of aspartate-family metabolism in N-related adaptation; though this signal should not be interpreted as direct support for grain amino acid variation. Soil N is one of many environmental drivers that covary with landrace distribution, and the connection between the soil N environment and grain amino acid composition is indirect. A key candidate from this layer was \textit{Zm00001eb220040}, an aspartate/glutamate/uridylate kinase domain-containing gene with aspartate kinase activity. A second soil-N candidate, \textit{Zm00001eb005710}, annotated as an omega-amidase/NIT2-like CN hydrolase, is more directly related to Asn/Gln-linked C--N recycling and is discussed below with the Glu/Gln-centered candidates.
 
-The soil-N environment GWAS provides an ecological layer that is consistent with involvement of aspartate-family metabolism in N-related adaptation, though this signal should not be interpreted as direct support for grain amino acid variation. Soil N is one of many environmental drivers that covary with landrace distribution, and the connection between soil N environment and grain amino acid composition is indirect. A key candidate from this layer was \textit{Zm00001eb220040}, an aspartate/glutamate/uridylate kinase domain-containing gene with aspartate kinase activity. A second soil-N candidate, \textit{Zm00001eb005710}, annotated as an omega-amidase/NIT2-like CN hydrolase, is more directly related to Asn/Gln-linked C--N recycling and is discussed below with the Glu/Gln-centered candidates.
+Furthermore, we queried the combined candidate-gene set against STRING \citep{STRING} using a very high-confidence threshold (combined score $\geq 0.9$; Supplementary Fig.~\ref{fig:supp_string_theme_network}). This recovered a compact interaction network centered on aspartate aminotransferase, aspartate aminotransferase chloroplastic, L-aspartate oxidase, aspartokinase, glutamate dehydrogenase, and L-asparaginase 2, with first-neighbor links to malate dehydrogenase, phosphoenolpyruvate carboxylase, ATP-citrate synthase, quinolinate synthase, and tyrosine aminotransferase. The STRING network indicates that our candidate genes are not isolated hits but instead form an interconnected Asp/Glu-centered module linking aspartate-family metabolism with carbon-skeleton supply, amino-group transfer, and downstream N remobilization.
 
-Together, these results highlight aspartate-family metabolism as a recurring theme point for ecological adaptation, recurrent selection, and grain amino acid variation. Although the specific candidate genes differ among analyses, their repeated placement in aspartate-family entry steps, downstream branch-point reactions, Asp-derived NAD metabolism, and Asp--Glu transamination suggests that modulation of aspartate-derived N flux is likely an important component of maize grain N remodeling.
+
+Together, these results highlight aspartate-family metabolism as a recurring focal point for ecological adaptation, recurrent selection, and grain amino acid variation. Although the specific candidate genes differ among analyses, their repeated placement in aspartate-family entry steps, downstream branch-point reactions, Asp-derived NAD metabolism, and Asp--Glu transamination suggests that modulation of aspartate-derived N flux is likely an important component of maize grain N remodeling.
 
 
 
@@ -653,14 +654,16 @@ and summed across amino acids to generate total proxy nitrogen values prior to B
 \subsubsection{Quantitative Trait Loci Mapping}
 We began with 2490 markers in total and following filtering of failed, monomorphic, and heterozygous markers 611 were used for the analysis. Markers were re-coded to be compatible with the r/qtl \citep{Broman2003} package used for mapping. Each allele was re-coded to AA to correspond with the allele associated with B64, BB for CML14, and AB if heterozygous. Best Linear Unbiased Predictions of absolute free aspartate content were calculated and used to construct the genetic map. To ensure quality of the genetic map, markers with more than 10\% inconclusive genotyping results were excluded and segregation ratios were checked to identify and remedy potential switched alleles. Linkage groups were formed by calculating max recombination fraction at 0.35 and minimum LOD at 15. Ultimately, one linkage group required manual separation and subsequent re-calculation of recombination fraction and LOD to produce an accurate genetic map to reflect the 10 chromosomes of maize. QTL scans were performed and significance thresholds were established at a=0.05 using 1000 permutations and Haley-Knott regression.
 
+\subsection{STRING network analysis of candidate genes}
+
+Protein association networks for candidate genes from all our analysis were constructed using STRING v12.0 (\url{https://string-db.org/}; \citealp{Szklarczyk2023STRING}). Candidate genes from our integrative analyses were queried against the \textit{Zea mays} network, and functional associations were retrieved from the STRING web interface using v4 gene version. We applied a stringent confidence cutoff, retaining only interactions with a high confidence score of $\geq 0.900$. 
+
+
 \subsubsection{Publicly Available Tools and Datasets}
 Genes within the confidence interval of the shared QTL were identified using B73 coordinates and the "Find gene models by position" tool in MaizeGDB \citep{MaizeGDB} and their annotations were sourced from Maize Mine \citep{maizemine}. Expression data for these genes were retrieved from qTeller \citep{qteller}, which provides RNA-seq-based transcript abundance across maize kernel tissues and developmental timepoints. Predicted protein-protein interactions among genes in the QTL region were obtained using STRING \citep{STRING}, which integrates known and predicted associations from multiple sources including text mining, experiments, co-occurrence, and databases.
 
 \section{Data availability}
 All scripts and parameter files used in the pipeline are available at the github repository: https://github.com/nirwan1265/Grain\_N\_remobilization.
-
-
-
 
 
 
@@ -799,7 +802,7 @@ Estimated amino acid-derived nitrogen pools in Indian Chief and Jarvis at genera
 % =========================
 % SUPP FIGURE S10
 % =========================
-\begin{figure*}[htbp]
+\begin{figure*}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{Figs/Supplementary/QTL_gene_heatmap.png}
 \caption{
@@ -807,6 +810,21 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 }
 \label{fig:QTL_gene_heatmap}
 \end{figure*}
+
+
+% =========================
+% SUPP FIGURE S11
+% =========================
+
+
+\begin{figure*}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_string_theme_networks.png}
+    \caption{\textbf{High-confidence STRING network of candidate genes associated with maize grain nitrogen metabolism.}
+    Network from STRING retaining only very high-confidence associations (combined score ≥ 0.9). Colored nodes represent candidate genes and gray nodes represent first-neighbor proteins added by STRING. Node size indicates the number of connections in the network. The network reveals a prominent aspartate/glutamate-centered module linked to nitrogen remobilization and grain nitrogen metabolism.}
+    \label{fig:supp_string_theme_network}
+\end{figure*}
+
 
 \clearpage
 \newpage
