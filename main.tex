@@ -355,7 +355,7 @@ Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger populatio
 
 We used a previously developed B64 $\times$ CML14 F$_{2:3}$ biparental population that had been used to map kernel free asparagine content (\cite{Fitzsimmons2026KernelKitchen}, InPrep). Although this population was originally selected for variation in asparagine rather than proline or aspartate, grain amino acid measurements for the same lines allowed us to test whether other amino acid traits also showed segregating genetic variation in this background. B64 and CML14 were not the most extreme lines for Pro and Asp in the Goodman–Buckler panel (Supplementary Fig. \ref{fig:suppfig_asp_pro_raw_values}). Thus, we treated this biparental family as an exploratory test of segregating amino acid variation. We focused on Pro and Asp because our other population data implicated these traits. Asp-family metabolism repeatedly emerged in the soil N GWAS and Indian Chief/Jarvis selection scans, while proline was strongly remodeled in Indian Chief and overlapped with recurrent-selection candidate regions.
 
-BLUPs for free Pro and Asp were calculated across two replicates and used for QTL mapping. Interval-mapping QTL scans were performed using Haley--Knott regression. The QTL scans for Pro and Asp identified the same QTL, while the three Asn traits identified another QTL (Fig. \ref{fig:fig6_qtl_pro_asp}). The genetic map consisted of 611 SNP markers (Fig. \ref{fig:fig6_qtl_pro_asp}) distributed across 10 linkage groups, and the significance threshold was determined after 1,000 permutations ($\alpha = 0.05$).
+BLUPs for free Pro and Asp were calculated across two replicates and used for QTL mapping. Interval-mapping QTL scans were performed using Haley--Knott regression. The QTL scans for Pro and Asp identified the same QTL, while the three Asn traits identified another QTL (Fig. \ref{fig:fig6_qtl_pro_asp}). The genetic map consisted of 611 SNP markers (Fig. \ref{fig:suppfig_genetic_map}, Supplementary Fig. ~\ref{fig:QTL_Aspartate}, Supplementary Fig. ~\ref{fig:QTL_Proline}) distributed across 10 linkage groups, and the significance threshold was determined after 1,000 permutations ($\alpha = 0.05$).
 
 % =========================
 % FIGURE 6
@@ -791,8 +791,48 @@ Estimated amino acid-derived nitrogen pools in Indian Chief and Jarvis at genera
     \label{fig:suppfig_asp_pro_raw_values}
 \end{figure*}
 
+
 % =========================
 % SUPP FIGURE S10
+% =========================
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/QTL_Aspartate.png}
+\caption{
+QTL for Free Aspartate. Identified from biparental F2:F3 mapping population on chromosome 3, with red dashed line representing threshold of significance.
+}
+\label{fig:QTL_Aspartate}
+\end{figure*}
+
+% =========================
+% SUPP FIGURE S11
+% =========================
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/QTL_Proline.png}
+\caption{
+QTL for Free Proline. Identified from biparental F2:F3 mapping population on chromosome 3, with red dashed line representing threshold of significance.
+}
+\label{fig:QTL_Proline}
+\end{figure*}
+
+
+
+% =========================
+% SUPP FIGURE S12
+% =========================
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{Figs/Supplementary/Nitrogen_map.png}
+\caption{
+Genetic map of F2:F3 mapping population
+}
+\label{fig:suppfig_genetic_map}
+\end{figure*}
+
+
+% =========================
+% SUPP FIGURE S13
 % =========================
 \begin{figure*}[!htbp]
 \centering
@@ -805,7 +845,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 
 
 % =========================
-% SUPP FIGURE S11
+% SUPP FIGURE S14
 % =========================
 
 
@@ -937,6 +977,15 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \makeatother
 \label{S14_Table}
 \textbf{Paired comparisons of FAA and PBAA metrics across the Goodman--Buckler Association Panel.} Paired Wilcoxon signed-rank test results comparing FAA and PBAA values across matched Goodman--Buckler taxa for broad amino acid pool size, amino-acid-derived nitrogen proxy, proline fraction, and nitrogen-rich fraction.
+
+% --- Table S15 ---
+\paragraph*{S15 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S15 Table}
+\makeatother
+\label{S15_Table}
+\textbf{Candidate genes within the Pro/Asp QTL region with embryo RNA-seq expression.} RNA-seq expression values are shown for candidate genes in the chromosome~3 Pro/Asp QTL region across maize embryo developmental stages at 16, 18, 20, and 22 days after pollination (DAP). The table includes gene identifier, chromosome, genomic start position, gene annotation, and embryo-stage expression values. The full table is provided as \texttt{SuppTable\_15\_QTL\_genes\_RNAseq\_embryo}.
 
 
 \end{document}
