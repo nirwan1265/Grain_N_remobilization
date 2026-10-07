@@ -1,2 +1,0 @@
-Phenotype,Models_run,N_models_run,N_rows_raw,M_snps_assumed,P_suggestive,P_bonferroni,P_star_in_file,N_sugg_union,N_sugg_2plus,N_sugg_3plus,N_sugg_all_models,N_bonf_union,N_bonf_2plus,N_bonf_3plus,N_bonf_all_models,Runtime_min,N_sugg_MLM,N_bonf_MLM,N_sugg_MLMM,N_bonf_MLMM,N_sugg_BLINK,N_bonf_BLINK,N_sugg_FarmCPU,N_bonf_FarmCPU
-L.Total,BLINK+FarmCPU,2,8355592,4117796,2.42848358685083e-07,1.21424179342542e-08,,0,0,0,0,0,0,0,0,0.315537575880686,0,0,0,0,0,0,0,0
