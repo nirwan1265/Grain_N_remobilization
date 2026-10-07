@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --job-name=split_by_model
+#SBATCH --array=1-78%12
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=48G
+#SBATCH --time=02:00:00
+#SBATCH --output=logs/split_%A_%a.out
+#SBATCH --error=logs/split_%A_%a.err
+################################################################################
+## SLURM array driver for 30_split_trait_by_model.R -- one task per phenotype.
+##
+##   mkdir -p logs
+##   ls /rsstu/.../split_by_trait/*.csv | xargs -n1 basename | sed 's/\.csv$//' \
+##       | sort > traits.txt
+##   wc -l traits.txt          # adjust --array=1-<N> above to match
+##   sbatch 30_split_trait_by_model.sbatch
+##
+## 48G is sized for fread on a ~1.6 GB / 12.5M-row CSV plus one model-sized
+## copy. Drop to 32G if the cluster is tight; raise if a task is OOM-killed.
+################################################################################
+
+set -euo pipefail
+
+IN_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUT_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/by_model"
+TRAIT_LIST="traits.txt"
+
+module load R || true
+
+TRAIT=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$TRAIT_LIST")
+if [[ -z "$TRAIT" ]]; then
+  echo "no trait at line ${SLURM_ARRAY_TASK_ID} of ${TRAIT_LIST}" >&2
+  exit 1
+fi
+
+echo "=== task ${SLURM_ARRAY_TASK_ID}: ${TRAIT} ==="
+Rscript 30_split_trait_by_model.R "$TRAIT" "$IN_DIR" "$OUT_DIR"

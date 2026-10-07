@@ -1,0 +1,68 @@
+#!/bin/bash
+#BSUB -n 1
+#BSUB -W 240
+#BSUB -q sara
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=20GB]"
+#BSUB -J "split[1-78]%12"
+#BSUB -o logs/split.%J.%I.out
+#BSUB -e logs/split.%J.%I.err
+################################################################################
+## LSF job-array driver for 30_split_trait_by_model.R -- one task per phenotype.
+##
+## SETUP (run once, from this directory):
+##   mkdir -p logs
+##   ls /rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait/*.csv \
+##     | xargs -n1 basename | sed 's/\.csv$//' | sort > traits.txt
+##   wc -l traits.txt          # must equal the array range in -J above
+##
+## SUBMIT:
+##   bsub < 30_split_trait_by_model.bsub
+##
+## MONITOR:
+##   bjobs -A              # array summary: pending / running / done / exited
+##   bjobs -l <jobid>      # detail
+##   grep -L "done in" logs/split.*.out     # tasks that did not reach the end
+##
+## RESUBMIT just the failed indices (LSF accepts a comma/range list):
+##   #BSUB -J "split[7,19,41]"
+##
+## NOTES ON THE LSF HEADER
+##   -J "split[1-78]%12" is the array; $LSB_JOBINDEX is the 1-based task index.
+##     The %12 throttles to 12 concurrent tasks so the array does not saturate
+##     the queue or the shared filesystem. Raise or drop it as the queue allows.
+##   -W 240 is 240 MINUTES (LSF takes [hours:]minutes, unlike SLURM's D-HH:MM:SS).
+##     Each task reads one ~1-2 GB CSV and writes small .RData files, so it
+##     should finish in well under an hour; 240 is headroom, not an estimate.
+##   -R "rusage[mem=20GB]" is sized for fread holding one trait file with seven
+##     columns selected. Raise it if a task dies with an LSF memory-limit
+##     message or an R "cannot allocate vector" error.
+##   -o/-e use %J (job id) and %I (array index) so tasks do not overwrite each
+##     other's logs. The logs/ directory must exist BEFORE submitting or LSF
+##     silently discards output.
+################################################################################
+
+set -euo pipefail
+
+IN_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUT_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/by_model"
+TRAIT_LIST="traits.txt"
+
+## R on the cluster -- use whichever applies, comment out the other.
+module load R 2>/dev/null || true
+# conda activate r_env
+
+if [[ ! -f "$TRAIT_LIST" ]]; then
+  echo "missing $TRAIT_LIST -- see SETUP in the header" >&2
+  exit 1
+fi
+
+TRAIT=$(sed -n "${LSB_JOBINDEX}p" "$TRAIT_LIST")
+if [[ -z "${TRAIT:-}" ]]; then
+  echo "no trait on line ${LSB_JOBINDEX} of ${TRAIT_LIST}" >&2
+  echo "array range in -J is larger than the trait list" >&2
+  exit 1
+fi
+
+echo "=== array index ${LSB_JOBINDEX} on $(hostname): ${TRAIT} ==="
+Rscript 30_split_trait_by_model.R "$TRAIT" "$IN_DIR" "$OUT_DIR"

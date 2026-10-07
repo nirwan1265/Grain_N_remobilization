@@ -1,0 +1,56 @@
+m (markers assumed)              : 4117796
+suggestive  1/m                  : 2.4285e-07  (-log10 6.6147)
+Bonferroni  0.05/m               : 1.2142e-08  (-log10 7.9157)
+phenotypes scanned               : 76
+
+SNPs significant in >=k models, summed over phenotypes:
+  suggestive  >=1     2327  >=2      189  >=3        6  all      145
+  Bonferroni  >=1     1272  >=2       88  >=3        0  all       60
+
+significant SNPs per model, summed over phenotypes:
+  MLM      suggestive       36   Bonferroni        3
+  MLMM     suggestive        0   Bonferroni        0
+  BLINK    suggestive      738   Bonferroni      408
+  FarmCPU  suggestive     1748   Bonferroni      949
+
+--- COMMON TO ALL MODELS at suggestive 1/m ---
+  consensus SNP x phenotype pairs : 145
+  distinct consensus SNPs         : 136
+  phenotypes with a consensus SNP : 40
+  unique candidate genes          : 160
+    single-phenotype genes        : 139
+    multi-phenotype  genes        : 21
+  top traits by candidate-gene count:
+    N.Total      19
+    R.Total      15
+    N.D          12
+    Total        12
+    N            9
+    K.IMNTDK     9
+    S.Total      9
+    Q            8
+    N.E          7
+    R.EHPRQ      7
+    Total_N      6
+    Total_PBAA   3
+
+--- COMMON TO ALL MODELS at Bonferroni 0.05/m ---
+  consensus SNP x phenotype pairs : 60
+  distinct consensus SNPs         : 55
+  phenotypes with a consensus SNP : 28
+  unique candidate genes          : 67
+    single-phenotype genes        : 59
+    multi-phenotype  genes        : 8
+  top traits by candidate-gene count:
+    R.Total      10
+    N            9
+    R.EHPRQ      7
+    N.D          6
+    Total_N      6
+    Q            5
+    N.Total      4
+    N.E          3
+    Q.Total      3
+    K.IMNTDK     3
+    Total_N      6
+    Total_PBAA   2
