@@ -9,11 +9,13 @@
 ## column A and then down column B, and the recurring peak reads straight down
 ## each column.
 ##
-## Panel letters are per COLUMN (A, B), not per plot: eight letters would be a
-## lookup table rather than a label. Each plot names its own phenotype in the
-## corner, and the model that produced the association, because the models were
-## not all run for every phenotype -- E.Total is BLINK, the rest FarmCPU, and a
-## reader comparing panels needs to know that.
+## There are no panel letters. All eight plots show the same quantity for the
+## same locus, differing only in phenotype, so lettering them would imply a
+## grouping that does not exist and would have to be referenced one by one in
+## the text. Each plot names its own phenotype in the corner, and the model that
+## produced the association, because the models were not all run for every
+## phenotype -- E.Total is BLINK, the rest FarmCPU, and a reader comparing plots
+## needs to know that. The two columns are a space-saving layout, nothing more.
 ##
 ## Input : final/results/manhattan_thin/<trait>__<MODEL>.csv  (Chr, Pos, P)
 ##         produced on the HPC by 32_thin_for_manhattan.R
@@ -40,10 +42,10 @@ PEAK_WINDOW <- 250e3          # anchor the arrow on the lead SNP within this
 
 ## columns of four, ordered by significance
 COLUMNS <- list(
-  list(tag = "A", panels = list(
+  list(panels = list(
     c("EHPRQ",   "FarmCPU"), c("LAV", "FarmCPU"),
     c("A",       "FarmCPU"), c("Total", "FarmCPU"))),
-  list(tag = "B", panels = list(
+  list(panels = list(
     c("IVL",     "FarmCPU"), c("T", "FarmCPU"),
     c("E.Total", "BLINK"),   c("S", "FarmCPU")))
 )
@@ -61,8 +63,6 @@ theme_gwas <- theme_minimal(base_size = 11) +
         panel.grid.major.x = element_blank(),
         panel.grid.minor   = element_blank(),
         legend.position    = "none",
-        plot.tag           = element_text(face = "bold", size = 18),
-        plot.tag.position  = "topleft",
         plot.margin        = margin(4, 6, 4, 6))
 
 read_scan <- function(trait, model) {
@@ -85,7 +85,7 @@ genome_end <- chrlen[, max(offset + len)]
 label_hjust <- function(g) { f <- g / genome_end
   if (f > 0.85) 1.02 else if (f < 0.15) -0.02 else 0.5 }
 
-panel <- function(trait, model, show_x, gene_lab = NA_character_, col_tag = NULL) {
+panel <- function(trait, model, show_x, gene_lab = NA_character_) {
   d <- merge(read_scan(trait, model), chrlen[, .(Chr, offset)], by = "Chr")
   d[, gpos := Pos + offset][, logp := -log10(P)]
   d[, band := factor(Chr %% 2)]
@@ -121,10 +121,9 @@ panel <- function(trait, model, show_x, gene_lab = NA_character_, col_tag = NULL
                 colour = marker_col) else NULL} +
     coord_cartesian(clip = "off") +
     labs(x = if (show_x) "Chromosome" else NULL,
-         y = expression(bold(-log[10](italic(p)))), tag = col_tag) +
+         y = expression(bold(-log[10](italic(p))))) +
     theme_gwas +
-    theme(axis.text.x = if (show_x) element_text(size = 7.5) else element_blank(),
-          plot.margin = margin(if (is.null(col_tag)) 4 else 14, 6, 4, 6))
+    theme(axis.text.x = if (show_x) element_text(size = 7.5) else element_blank())
 }
 
 cols_built <- lapply(COLUMNS, function(cl) {
@@ -133,8 +132,7 @@ cols_built <- lapply(COLUMNS, function(cl) {
     message("  ", p[1], " / ", p[2])
     panel(p[1], p[2],
           show_x   = (i == length(cl$panels)),
-          gene_lab = if (i == 1) sprintf("%s  %s", GENE_LAB, GENE) else NA_character_,
-          col_tag  = if (i == 1) cl$tag else NULL)
+          gene_lab = if (i == 1) sprintf("%s  %s", GENE_LAB, GENE) else NA_character_)
   })
   wrap_plots(ps, ncol = 1)
 })

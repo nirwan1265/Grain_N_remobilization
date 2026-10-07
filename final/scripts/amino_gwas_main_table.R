@@ -26,11 +26,30 @@
 ##   shiny/.../SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv   PANTHER/GO
 ##
 ## OUTPUTS (final/supp_tables/ and final/main_tables/)
-##   MainTable1_amino_gwas_top_loci.tex        main-text table, top 5 loci
-##   SuppTable2_amino_gwas_candidate_genes.csv every Bonferroni gene
-##   SuppTable2b_amino_gwas_genes_per_trait.csv
-##   SuppTable3_amino_gwas_replicated_genes.csv
-##   SuppTable4_amino_gwas_loci_ranked.csv     all loci, ranked, with GO
+##   MainTable1_amino_gwas_top_loci.tex      main-text table, top 5 loci
+##   SuppTable_16_amino_gwas_candidate_genes.csv
+##        one row per gene x phenotype x SNP. This is the table the per-phenotype
+##        counts in the text come from, and it cannot be replaced by S3: a locus
+##        hit by several phenotypes lists all of its genes against every one of
+##        them, so deriving per-phenotype gene sets from S3 overcounts for 44 of
+##        69 phenotypes (by up to 14 genes).
+##   SuppTable_17_amino_gwas_loci.csv
+##        loci, ranked by phenotype count, with every gene in the window and
+##        PANTHER/GO annotation for the best-annotated one. Loci merge significant
+##        SNPs within LOCUS_GAP; this is set to the annotation window (25 kb) so
+##        that one locus is one set of shared candidate genes. Merging is needed
+##        at all because a single signal is routinely carried by several adjacent
+##        SNPs -- the chr9 locus below spans five SNPs over 12.6 kb -- and counting
+##        those separately would split one association across several table rows.
+##
+## Numbering continues the manuscript's existing supplement (S1-S15); these two
+## are appended as S16 and S17 rather than renumbered into it, because S1-S15 are
+## cited throughout the paper and S2/S3 are already taken by the amino acid
+## abbreviation key and the soil N GWAS annotation.
+##
+## A per-trait gene count table is not written: it is one aggregation away from S16
+##   aggregate(GeneID ~ Phenotype, SuppTable_16, function(g) length(unique(g)))
+## and S16 cannot be replaced by S17 -- see the note on S17 below.
 ##
 ## Usage: Rscript amino_gwas_main_table.R [repo_root]
 ################################################################################
@@ -53,7 +72,9 @@ M          <- 4177796
 ALPHA      <- 0.05
 P_BONF     <- ALPHA / M
 WINDOW_BP  <- 25000
-LOCUS_GAP  <- 100000     # merge significant SNPs closer than this into one locus
+LOCUS_GAP  <- WINDOW_BP  # 25 kb: the same window used for gene annotation, so a
+                         # locus is exactly the set of significant SNPs whose
+                         # candidate-gene windows can overlap
 N_MAIN     <- 5          # rows in the main-text table
 
 load1 <- function(p) { e <- new.env(parent = emptyenv()); n <- load(p, envir = e); get(n[1], envir = e) }
@@ -121,15 +142,7 @@ say(w, ann, "UNION (significant in >=1 of MLM / BLINK / FarmCPU)")
 say(w[replicated == TRUE], ann[replicated == TRUE], "REPLICATED (>=2 of the 3 models)")
 
 setorder(ann, min_P)
-fwrite(ann, file.path(SUPP_DIR, "SuppTable2_amino_gwas_candidate_genes.csv"))
-fwrite(ann[replicated == TRUE], file.path(SUPP_DIR, "SuppTable3_amino_gwas_replicated_genes.csv"))
-
-per_trait <- merge(ann[, .(n_genes_union = uniqueN(GeneID)), by = Phenotype],
-                   ann[replicated == TRUE, .(n_genes_replicated = uniqueN(GeneID)), by = Phenotype],
-                   by = "Phenotype", all.x = TRUE)
-per_trait[is.na(n_genes_replicated), n_genes_replicated := 0L]
-setorder(per_trait, -n_genes_union)
-fwrite(per_trait, file.path(SUPP_DIR, "SuppTable2b_amino_gwas_genes_per_trait.csv"))
+fwrite(ann, file.path(SUPP_DIR, "SuppTable_16_amino_gwas_candidate_genes.csv"))
 
 ## ---- loci --------------------------------------------------------------------
 
@@ -157,14 +170,25 @@ loc_genes <- lg[, .(n_genes = uniqueN(GeneID), genes = paste(unique(GeneID), col
                     pclass = Protein_Class[1], go_bp = GO_BO[1], go_mf = GO_MF[1]), by = locus]
 loc <- merge(loc, loc_genes, by = "locus", all.x = TRUE)
 setorder(loc, -n_phenotypes, best_P)
-fwrite(loc, file.path(SUPP_DIR, "SuppTable4_amino_gwas_loci_ranked.csv"))
+fwrite(loc, file.path(SUPP_DIR, "SuppTable_17_amino_gwas_loci.csv"))
 cat(sprintf("\nloci %d | with >=1 gene %d | replicated %d\n",
             nrow(loc), loc[!is.na(n_genes), .N], loc[replicated == TRUE, .N]))
 
 ## ---- main-text LaTeX table ---------------------------------------------------
 
-tidy <- function(s) { s <- gsub("\\(PTHR[^)]*\\)", "", s); s <- gsub("\\(PC[0-9]+\\)", "", s)
-  s <- gsub("_", "/", trimws(s)); s <- tolower(s); substr(s, 1, 1) <- toupper(substr(s, 1, 1)); s }
+## Sentence-case the PANTHER family name but leave acronyms and locus-style
+## identifiers upright: lowercasing everything turns DUF223 into "Duf223" and
+## CBS into "Cbs".
+tidy <- function(s) {
+  s <- gsub("\\(PTHR[^)]*\\)", "", s); s <- gsub("\\(PC[0-9]+\\)", "", s)
+  s <- gsub("_", "/", trimws(s))
+  w <- strsplit(s, " +")[[1]]
+  keep <- grepl("^[A-Z0-9]+[0-9][A-Z0-9]*$", w) | grepl("^(DUF|CBS|ERAD|GO)", w)
+  w[!keep] <- tolower(w[!keep])
+  out <- paste(w, collapse = " ")
+  substr(out, 1, 1) <- toupper(substr(out, 1, 1))
+  out
+}
 
 ## The main table is drawn from ALL loci, not only "replicated" ones.
 ## Whether a locus can replicate is largely determined by which models ran for
@@ -173,29 +197,34 @@ tidy <- function(s) { s <- gsub("\\(PTHR[^)]*\\)", "", s); s <- gsub("\\(PC[0-9]
 ## pipeline completeness. The Models column discloses the evidence instead.
 top <- head(loc[!is.na(family) & family != ""], N_MAIN)
 
-tex <- c("\\begin{table}[ht]", "\\centering", "\\small",
+tex <- c("\\begin{table*}[t]", "\\centering",
   paste0("\\caption{Top five loci from the Goodman--Buckler amino acid GWAS, ranked by the ",
          "number of phenotypes with a Bonferroni-significant association ",
-         "($P \\le 1.20 \\times 10^{-8}$). Loci were defined by merging significant SNPs ",
-         "within 100 kb. The Models column lists the models in which the lead SNP exceeded ",
-         "the threshold; MLM returned results for 35 of 76 phenotypes and MLMM for none, so ",
-         "the number of models available differs between phenotypes and cross-model agreement ",
-         "is not used as a selection criterion. Candidate genes lie within 25 kb of a ",
-         "significant SNP; where a window contained several genes, the gene with a PANTHER ",
-         "family assignment is shown and the total is given in parentheses.}"),
-  "\\label{tab:amino_gwas_top_loci}", "\\begin{tabular}{llrllll}", "\\hline",
-  "Locus & Lead SNP & $n$ phen. & Best $P$ & Models & Candidate gene & Putative function \\\\", "\\hline")
+         "($P \\le 1.20 \\times 10^{-8}$). Loci merge significant SNPs within 25 kb, the same ",
+         "window used for gene annotation; positions are B73 RefGen\\_v5. The Models column ",
+         "lists the models in which the lead SNP exceeded the threshold: MLM returned results ",
+         "for 35 of 76 phenotypes and MLMM for none, so model availability differs between ",
+         "phenotypes and cross-model agreement is not used as a selection criterion. Where a ",
+         "window contained several genes, the gene with a PANTHER family assignment is shown ",
+         "and the total is given in parentheses.}"),
+  "\\label{tab:amino_gwas_top_loci}", "\\small",
+  "\\setlength{\\tabcolsep}{6pt}",
+  "\\begin{tabularx}{\\textwidth}{@{}l l r l l >{\\raggedright\\arraybackslash}X@{}}",
+  "\\hline",
+  "Locus & Best $P$ & $n$ phen. & Models & Candidate gene & Putative function \\\\", "\\hline")
 
+## Lead SNP is deliberately NOT a column: the SNP identifiers encode AGPv4
+## coordinates while Pos is v5, so printing "9-128366189" beside "chr9:130.4 Mb"
+## looks like a 2 Mb error. The identifiers are in Supplementary Table S3.
 for (i in seq_len(nrow(top))) {
   x  <- top[i]
   gl <- if (x$n_genes > 1) sprintf("%s (of %d)", x$top_gene, x$n_genes) else x$top_gene
   e  <- sprintf("%.1e", x$best_P)
-  tex <- c(tex, sprintf("chr%d:%.1f Mb & %s & %d & $%s\\times10^{-%d}$ & %s & \\texttt{%s} & %s \\\\",
-    x$Chr, x$lead_Pos / 1e6, x$lead_SNP, x$n_phenotypes,
-    sub("e.*", "", e), abs(as.integer(sub(".*e", "", e))),
-    gsub("\\+", ", ", x$lead_models), gl, tidy(x$family)))
+  tex <- c(tex, sprintf("chr%d:%.1f Mb & $%s\\times10^{-%d}$ & %d & %s & \\texttt{%s} & %s \\\\",
+    x$Chr, x$lead_Pos / 1e6, sub("e.*", "", e), abs(as.integer(sub(".*e", "", e))),
+    x$n_phenotypes, gsub("\\+", ", ", x$lead_models), gl, tidy(x$family)))
 }
-tex <- c(tex, "\\hline", "\\end{tabular}", "\\end{table}")
+tex <- c(tex, "\\hline", "\\end{tabularx}", "\\end{table*}")
 writeLines(tex, file.path(MAIN_DIR, "MainTable1_amino_gwas_top_loci.tex"))
 
 cat("\n", paste(tex, collapse = "\n"), "\n", sep = "")

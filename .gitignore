@@ -6,3 +6,5 @@
 tmp/
 VennDiagram.*.log
 tmp_gwas_debug*/
+final/results/_stage/
+final/**/_to_delete/
