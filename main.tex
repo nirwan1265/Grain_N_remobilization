@@ -235,20 +235,22 @@ We integrate grain amino acid profiling, grain amino acid GWAS, soil-N environme
 
 \section{Results}\label{results}
 
-\subsection{Kernel FAA variation in the Goodman--Buckler panel highlights Asn/Pro dominance and N-related GWAS signals}
+\subsection{Kernel FAA variation in the Goodman--Buckler panel highlights Asn and Pro dominance}
 
-Free amino acid (FAA) composition was evaluated across 280 of the 282 lines in the Goodman-Buckler panel grown in four replicates (two years x two blocks) at Genetics Farm near Columbia, Missouri (Supplementary Table S1). To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} A--B). Asparagine was ranked as the most abundant amino acid in 146 of 280 genotypes (52\%), while proline ranked first in 118 genotypes (42\%). Notably, asparagine and proline comprised the top two amino acids in 179 of 280 genotypes (64\%), regardless of order (Supplementary Table S1).This rank dominance reflected large differences in abundance. The median genotype-mean concentrations varied 144-fold across the 20 FAAs, from asparagine and proline (highest) to cysteine and methionine (lowest) (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} C). However, abundance did not match variability as methionine was the least abundant yet most variable across genotypes (CV 180\%), followed by glutamine (CV 130\%), while asparagine and proline were relatively stable (CV 70\% and 63\%).
+Free amino acid (FAA) composition was evaluated across 280 of the 282 lines in the Goodman-Buckler panel grown in four replicates (two years x two blocks) at Genetics Farm near Columbia, Missouri (Supplementary Tables S1--S2). To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} A--B). Asparagine was ranked as the most abundant amino acid in 146 of 280 genotypes (52\%), while proline ranked first in 118 genotypes (42\%). Notably, asparagine and proline comprised the top two amino acids in 179 of 280 genotypes (64\%), regardless of order (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank}B). This rank dominance reflected large differences in abundance. The median genotype-mean concentrations varied 144-fold across the 20 FAAs, from asparagine and proline (highest) to cysteine and methionine (lowest) (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} C). However, abundance did not match variability, as methionine was the least abundant yet most variable across genotypes (CV 180\%), followed by glutamine (CV 130\%), while asparagine and proline were relatively stable (CV 70\% and 63\%).
 
-Amino acids were highly repeatable. Median broad-sense heritability ($H^2$) was 0.71 across 40 FAA traits (range 0.14--0.88) and 0.53 across 76 protein-bound amino acid (PBAA) traits (range 0.09--0.83). The most heritable were lysine (0.88), asparagine (0.83), aspartate (0.81) and proline (0.80) (Supplementary Fig.~\ref{fig:supp_heritability}A). SNP-based genomic heritability captured 70\% of repeatable variation in FAA pools and 92\% in PBAA pools, suggesting more FAA variation is non-additive or not tagged by the marker panel (Supplementary Fig.~\ref{fig:supp_heritability}B).
+Amino acid phenotypes were highly repeatable. Median broad-sense heritability ($H^2$) was 0.71 across 40 FAA traits (range 0.14--0.88) and 0.53 across 76 protein-bound amino acid (PBAA) traits (range 0.09--0.83). The most heritable traits were lysine (0.88), asparagine (0.83), aspartate (0.81), and proline (0.80) (Supplementary Fig.~\ref{fig:supp_heritability}A; Supplementary Table S3). SNP-based genomic heritability captured 70\% of repeatable variation in FAA pools and 92\% in PBAA pools, suggesting that more FAA variation is non-additive or not tagged by the marker panel (Supplementary Fig.~\ref{fig:supp_heritability}B). Because $h^2$ was estimated from 272 genotypes, its 95\% profile intervals are wide (median width 0.52), and individual traits should not be ranked by $h^2$. $H^2$ fell within the $h^2$ interval for 73\% of traits, indicating that the scatter around the identity line reflects $h^2$ sampling error rather than disagreement between estimators.
+
+Furthermore, to quantify FAA composition within the grain amino acid pool, we compared genotype-level FAA and PBAA across matched taxa ($n = 279$; Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}, Supplementary Table S4) \citep{Shrestha2022}. The protein-bound pool dominated, exceeding the free pool 47-fold for total amino acids and 42-fold for amino acid-derived N (paired Wilcoxon signed-rank tests, all $P < 10^{-13}$). Thus, FAAs contributed only 2.4\% of estimated grain amino acid-derived N. However, pool composition differed. Proline was 21.2\% of FAAs compared to 10.6\% of PBAAs, and the N-rich fraction was 32.8\% compared to 26.5\%. Composition variability across genotypes also differed (CV). The proline fraction was 44\% (FAA) compared to 8\% (PBAA), and the N-rich fraction was 34\% compared to 6\%. Thus, protein-bound composition is nearly fixed across the panel, whereas FAA composition varies widely and drives mapping power.
 
 To identify loci associated with grain amino acid composition, we analyzed 113 amino acid-derived phenotypes (Supplementary Tables S1--S2). The phenotypes analyzed were the absolute or total abundance of each FAA (20), the relative abundance of total FAA (20), biochemical ratios of FAAs relative to related individuals or families (70), and calculated quantities of total FAA, PBAA \citep{Shrestha2022}, and estimated (proxy) nitrogen (3).
 
-Using a Bonferroni genome-wide threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times 10^{-8}$; $-\log_{10}(p)\ge 7.92$), we detected 1,124 significant SNPs across 69 of 76 amino acid phenotypes yielding 1,182 unique candidate genes. Most genes were phenotype-specific (999) and 183 were shared. \textit{N.E} had the most candidate genes (51)(\ref{fig:supp_amino_gwas}). The five loci associated with the most phenotypes and their candidate genes are listed in Table~\ref{tab:amino_gwas_top_loci}. The most pleiotropic locus (Chr9, 130.4 Mb) surpassed the threshold in eight phenotypes (individual amino acids, family composites, and total FAA) and showed the same peak in each (Fig.~\ref{fig:amino_locus_manhattan}). Furthermore, to compare candidate gene sets across populations described below, we also used a suggestive threshold of $1/m$ (one expected false positive genome-wide), computed per panel ($2.39 \times 10^{-7}$ in the Goodman--Buckler panel; $2.02 \times 10^{-6}$ in the landrace panel). Full per-model results with manhattan plots, QQ plots, and gene annotations are available at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
+Using a Bonferroni genome-wide threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times 10^{-8}$; $-\log_{10}(p)\ge 7.92$), we detected 1,124 significant SNPs across 69 of 76 amino acid phenotypes. Of these, 634 fell within 25 kb of a gene in the B73 RefGen\_v5 annotation, yielding 1,182 unique candidate genes (Supplementary Table S5). Most genes were phenotype-specific (999), and 183 were shared. \textit{N.E} had the most candidate genes (51) (Supplementary Fig.~\ref{fig:supp_amino_gwas}). The five loci associated with the most phenotypes and their candidate genes are listed in Table~\ref{tab:amino_gwas_top_loci}; all loci are given in Supplementary Table S6. The most pleiotropic locus (Chr9, 130.4 Mb) surpassed the threshold in eight phenotypes (individual amino acids, family composites, and total FAA) and showed the same peak in each (Fig.~\ref{fig:amino_locus_manhattan}). Furthermore, to compare candidate gene sets across populations described below, we also used a suggestive threshold of $1/m$ (one expected false positive genome-wide), computed per panel ($2.39 \times 10^{-7}$ in the Goodman--Buckler panel; $2.02 \times 10^{-6}$ in the landrace panel). Full per-model results with manhattan plots, QQ plots, and gene annotations are available at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
 
 \begin{table*}[t]
 \centering
-\caption{Top five loci from the Goodman--Buckler amino acid GWAS, ranked by the number of phenotypes
-with a Bonferroni-significant association ($P \le 1.20\times10^{-8}$) with putative functions}
+\caption{Top five loci from the Goodman--Buckler amino acid GWAS, ranked by the number of
+phenotypes with a Bonferroni-significant association ($P \le 1.20 \times 10^{-8}$).s}
 \label{tab:amino_gwas_top_loci}
 \small
 \setlength{\tabcolsep}{6pt}
@@ -256,11 +258,11 @@ with a Bonferroni-significant association ($P \le 1.20\times10^{-8}$) with putat
 \hline
 Locus & Best $P$ & $n$ phen. & Models & Candidate gene & Putative function \\
 \hline
-chr9:130.4 Mb & $4.5\times10^{-13}$ & 8 & FarmCPU        & \texttt{Zm00001eb393450}        & Lysine-rich arabinogalactan protein 17 \\
-chr6:140.8 Mb & $2.1\times10^{-15}$ & 7 & BLINK, FarmCPU & \texttt{Zm00001eb283470} (of 7) & Extensin-like protein \\
-chr7:162.2 Mb & $1.7\times10^{-16}$ & 6 & BLINK, FarmCPU & \texttt{Zm00001eb322650} (of 4) & 2-Iminobutanoate/2-iminopropanoate deaminase \\
-chr3:134.6 Mb & $9.7\times10^{-11}$ & 6 & FarmCPU        & \texttt{Zm00001eb137670} (of 5) & DUF223 domain-containing protein \\
-chr4:210.8 Mb & $1.5\times10^{-18}$ & 5 & FarmCPU        & \texttt{Zm00001eb200900}        & CBS domain-containing protein \\
+chr9:130.4 Mb & $4.5\times10^{-13}$ & 8 & FarmCPU & \texttt{Zm00001eb393450} & Lysine-rich arabinogalactan protein 17 \\
+chr7:162.2 Mb & $1.7\times10^{-16}$ & 5 & BLINK, FarmCPU & \texttt{Zm00001eb322660} (of 2) & OS07G0516300 protein \\
+chr2:238.0 Mb & $1.2\times10^{-15}$ & 5 & FarmCPU & \texttt{Zm00001eb116160} & OS11G0691500 protein \\
+chr6:110.9 Mb & $2.9\times10^{-18}$ & 4 & BLINK, FarmCPU & \texttt{Zm00001eb276330} (of 2) & SERINC-domain containing serine and sphingolipid biosynthesis protein \\
+chr6:140.8 Mb & $2.1\times10^{-15}$ & 4 & BLINK, FarmCPU & \texttt{Zm00001eb283510} (of 4) & Derlin \\
 \hline
 \end{tabularx}
 \end{table*}
@@ -268,23 +270,18 @@ chr4:210.8 Mb & $1.5\times10^{-18}$ & 5 & FarmCPU        & \texttt{Zm00001eb2009
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=0.82\textwidth]{final/main_figs/Fig_amino_Zm00001eb393450_manhattan.png}
-    \caption{A single locus on chromosome 9 is associated with eight amino acid
-    phenotypes. Manhattan plots for every phenotype with a Bonferroni-significant
-    association at \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506, B73
-    RefGen\_v5), ordered by significance down column \textbf{A} and then down column
-    \textbf{B}. The arrow in each plot marks the lead SNP within 250 kb of the gene.
-    Dashed red line, Bonferroni threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times
-    10^{-8}$); dotted blue line, suggestive threshold ($1/m = 2.39 \times 10^{-7}$). The
-    association model is given in parentheses after each phenotype: MLM returned results
-    for 35 of 76 phenotypes and MLMM for none, so the model shown is the one available
-    for that phenotype. For rendering, SNPs with $P \ge 0.01$ are subsampled 1-in-25;
-    all SNPs below that value are drawn.}
+    \caption{A single locus on chromosome 9 is associated with eight amino acid phenotypes.
+    Manhattan plots for every phenotype with a Bonferroni-significant association at
+    \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506, B73 RefGen\_v5), ordered by
+    significance. The arrow in each plot marks the lead SNP within 250 kb of the gene. Dashed
+    red line, Bonferroni threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times 10^{-8}$);
+    dotted blue line, suggestive threshold ($1/m = 2.39 \times 10^{-7}$). The association model
+    is given in parentheses after each phenotype: MLM returned results for 35 of 76 phenotypes
+    and MLMM for none, so the model shown is the one available for that phenotype. For
+    rendering, SNPs with $P \ge 0.01$ are subsampled 1-in-25; all SNPs below that value are
+    drawn.}
     \label{fig:amino_locus_manhattan}
 \end{figure*}
-
-
-
-Furthermore, to place FAA composition in the broader grain amino acid pool, we compared genotype-level FAA and protein bound amino acid (PBAA) across the Goodman--Buckler panel using matched taxa (Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}; Supplementary Table S1)(\cite{Shrestha2022}). The protein-bound pool was much larger than the free pool for both total amino acids and amino acid-derived N. In contrast, FAA was more enriched for proline and had a higher N-rich fraction than PBAA, showing that FAA and PBAA capture distinct but complementary aspects of grain N allocation. Thus, the free pool was not simply a scaled-down version of the protein-bound pool but instead, FAA was biased toward specific amino acid classes, including proline, suggesting that variation in FAA composition reflects active amino acid pool remodeling rather than only differences in total grain amino acid abundance.
 
 
 \subsection{Soil nitrogen enviornment GWAS highlights aspartate-family and asparagine metabolism in maize landrace adaptation}
@@ -717,29 +714,22 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
 % =========================                                                    
 \begin{figure*}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig1_FAA_Asn_Pro_rank.png}
-    \caption{Asparagine and proline dominate the free amino acid pool in the
-    Goodman--Buckler panel. \textbf{A}, Number of genotypes in which each free amino acid
-    was ranked most abundant, based on genotype means across four replicates.
+    \includegraphics[width=0.95\textwidth]{final/supp_figs/SuppFig1_FAA_composition.png}
+    \caption{Free amino acid composition of the Goodman--Buckler panel.
+    \textbf{A}, Number of genotypes in which each free amino acid ranked most abundant,
+    based on genotype means across four replicates ($n = 280$ genotypes).
     \textbf{B}, Number of genotypes in which asparagine and proline together occupied the
-    top two ranks, in either order. Counts are computed from the raw plot records for
-    280 genotypes.}
+    top two ranks, in either order.
+    \textbf{C}, Abundance and variability of each free amino acid. Left, concentration per
+    genotype mean on a log scale: point, median across genotypes; thick bar, interquartile
+    range; thin bar, 5th--95th percentile; amino acids ordered by median. Right,
+    coefficient of variation across genotypes for the same ordering. Median concentrations
+    span 144-fold between the most and least abundant amino acids. Abundance and
+    variability are not equivalent orderings: methionine is both the least abundant amino
+    acid and the most variable (CV 180\%), whereas asparagine and proline are comparatively
+    stable (CV 70\% and 63\%). Asparagine is shown in blue and proline in orange
+    throughout.}
     \label{fig:supp_faa_asn_pro_rank}
-\end{figure*}
-
-
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=0.95\textwidth]{final/supp_figs/SuppFig1C_FAA_abundance.png}
-    \caption{Abundance and variability of the 20 free amino acids in the Goodman--Buckler
-    panel. Left, concentration per genotype mean on a log scale: point, median across
-    genotypes; thick bar, interquartile range; thin bar, 5th--95th percentile; amino
-    acids ordered by median. Right, coefficient of variation across genotypes for the
-    same ordering. Asparagine and proline are highlighted in red. Median concentrations
-    span 144-fold between the most and least abundant amino acids, and abundance and
-    variability are not equivalent orderings: methionine is both the least abundant and
-    the most variable amino acid (CV 180\%).}
-    \label{fig:supp_faa_abundance}
 \end{figure*}
 
 
@@ -763,7 +753,28 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
     \label{fig:supp_heritability}
 \end{figure*}
 
-
+% =========================
+% SUPP FIGURE S2
+% =========================  
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig2_heritability.png}
+    \caption{Heritability of grain amino acid phenotypes in the Goodman--Buckler panel.
+    \textbf{A}, Broad-sense heritability $H^2$ on a line-mean basis, estimated on the log
+    scale from the raw plot records (two years $\times$ two blocks) with the model
+    $y \sim 1 + (1|\mathrm{taxa}) + (1|\mathrm{year}) + (1|\mathrm{taxa{:}year}) +
+    (1|\mathrm{year{:}block})$, for 40 free and 76 protein-bound amino acid traits. The
+    Cullis generalized $H^2$ agrees with the line-mean estimate to within 0.018 across
+    every trait and is not shown separately. \textbf{B}, Genomic heritability $h^2$ from a
+    VanRaden genomic relationship matrix plotted against $H^2$, with error bars giving the
+    95\% profile-likelihood interval on $h^2$ and the dashed line showing $y = x$. Because
+    $H^2$ is estimated from approximately 1{,}000 plot records and $h^2$ from 272
+    genotypes, the $h^2$ intervals are wide (median width 0.52) and point estimates cross
+    the line freely; $H^2$ falls within the $h^2$ interval for 73\% of traits. Fifteen of
+    116 traits returned a non-zero $h^2$ from a permuted phenotype and are excluded from
+    panel \textbf{B}; their $H^2$ is unaffected and is retained in panel \textbf{A}.}
+    \label{fig:supp_heritability}
+\end{figure*}
 
 % =========================
 % SUPP FIGURE S2
