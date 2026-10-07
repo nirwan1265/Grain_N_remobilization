@@ -257,6 +257,117 @@ build_label_df <- function(amino_order, stats_df, population_name, label_radius)
   list(base = base_df, sig = sig_df)
 }
 
+make_sig_boxplot <- function(
+  bio_means,
+  stats_df,
+  population_name,
+  plot_title,
+  base_theme = NULL,
+  plot_title_size = 14
+) {
+  pop_stats <- stats_df %>%
+    filter(
+      pool == "FAA",
+      population == population_name,
+      !is.na(raw_sig),
+      raw_sig != ""
+    ) %>%
+    mutate(amino_acid = as.character(amino_acid))
+
+  if (nrow(pop_stats) == 0) {
+    return(
+      ggplot() +
+        geom_blank() +
+        labs(title = plot_title) +
+        (if (is.null(base_theme)) amino_plot_theme else base_theme) +
+        theme(
+          plot.title = element_text(size = plot_title_size, face = "bold", hjust = 0.5),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank()
+        )
+    )
+  }
+
+  amino_levels <- pop_stats %>%
+    arrange(p_value) %>%
+    pull(amino_acid)
+
+  plot_df <- bio_means %>%
+    filter(
+      pool == "FAA",
+      population == population_name,
+      as.character(amino_acid) %in% amino_levels
+    ) %>%
+    mutate(
+      amino_acid = factor(as.character(amino_acid), levels = amino_levels),
+      group_label = factor(
+        group_label,
+        levels = if (population_name == "Indian Chief") {
+          c("Indian Chief G0", "Indian Chief G14")
+        } else {
+          c("Jarvis G0", "Jarvis G14")
+        }
+      )
+    )
+
+  y_top <- plot_df %>%
+    group_by(amino_acid) %>%
+    summarise(y = max(value, na.rm = TRUE), .groups = "drop") %>%
+    left_join(pop_stats %>% select(amino_acid, raw_sig), by = "amino_acid") %>%
+    mutate(y = y * 1.12)
+
+  applied_theme <- if (is.null(base_theme)) amino_plot_theme else base_theme
+
+  ggplot(plot_df, aes(x = amino_acid, y = value, fill = group_label, color = group_label)) +
+    geom_boxplot(
+      position = position_dodge(width = 0.72),
+      width = 0.56,
+      alpha = 0.22,
+      linewidth = 0.9,
+      outlier.shape = NA
+    ) +
+    geom_jitter(
+      position = position_jitterdodge(jitter.width = 0.12, dodge.width = 0.72),
+      size = 2.0,
+      alpha = 0.7,
+      stroke = 0
+    ) +
+    geom_text(
+      data = y_top,
+      aes(x = amino_acid, y = y, label = raw_sig),
+      inherit.aes = FALSE,
+      color = "firebrick",
+      size = 5.6,
+      fontface = "bold"
+    ) +
+    scale_fill_manual(values = group_colors) +
+    scale_color_manual(values = group_colors) +
+    scale_y_continuous(
+      labels = scales::label_number(accuracy = 0.01),
+      expand = expansion(mult = c(0.04, 0.18))
+    ) +
+    labs(
+      title = plot_title,
+      x = NULL,
+      y = "Relative FAA fraction"
+    ) +
+    applied_theme +
+    theme(
+      plot.title = element_text(size = plot_title_size, face = "bold", hjust = 0.5, margin = margin(b = 8)),
+      axis.title.y = element_text(size = 18, face = "bold"),
+      axis.text.x = element_text(size = 15, face = "bold", color = "black"),
+      axis.text.y = element_text(size = 15, face = "bold", color = "black"),
+      axis.line = element_line(color = "black"),
+      axis.ticks = element_line(color = "black"),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = "grey88", linewidth = 0.35),
+      legend.position = "top",
+      legend.title = element_blank(),
+      legend.background = element_rect(fill = "white", color = "grey70", linewidth = 0.4)
+    )
+}
+
 make_radar_plot <- function(
   group_means,
   stats_df,
@@ -397,35 +508,21 @@ build_amino_profile_outputs <- function(
     compute_generation_stats(pbaa_relative_obj$bio_means, "PBAA")
   )
 
-  faa_ic_plot <- make_radar_plot(
-    group_means = faa_relative_obj$group_means,
-    stats_df = stats_df %>% filter(pool == "FAA"),
-    amino_order = faa_relative_obj$amino_order,
+  faa_ic_plot <- make_sig_boxplot(
+    bio_means = faa_relative_obj$bio_means,
+    stats_df = stats_df,
     population_name = "Indian Chief",
-    plot_title = "Indian Chief relative FAA composition, C0 vs C14",
+    plot_title = "Indian Chief nominally significant relative FAA, C0 vs C14",
     base_theme = base_theme,
-    amino_label_size = faa_amino_label_size,
-    sig_label_size = faa_sig_label_size,
-    grid_label_size = faa_grid_label_size,
-    trace_linewidth = faa_trace_linewidth,
-    amino_label_face = faa_amino_label_face,
-    sig_label_face = faa_sig_label_face,
     plot_title_size = faa_plot_title_size
   )
 
-  faa_j_plot <- make_radar_plot(
-    group_means = faa_relative_obj$group_means,
-    stats_df = stats_df %>% filter(pool == "FAA"),
-    amino_order = faa_relative_obj$amino_order,
+  faa_j_plot <- make_sig_boxplot(
+    bio_means = faa_relative_obj$bio_means,
+    stats_df = stats_df,
     population_name = "Jarvis",
-    plot_title = "Jarvis relative FAA composition, C0 vs C14",
+    plot_title = "Jarvis nominally significant relative FAA, C0 vs C14",
     base_theme = base_theme,
-    amino_label_size = faa_amino_label_size,
-    sig_label_size = faa_sig_label_size,
-    grid_label_size = faa_grid_label_size,
-    trace_linewidth = faa_trace_linewidth,
-    amino_label_face = faa_amino_label_face,
-    sig_label_face = faa_sig_label_face,
     plot_title_size = faa_plot_title_size
   )
 
