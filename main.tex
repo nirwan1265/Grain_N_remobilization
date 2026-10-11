@@ -304,112 +304,104 @@ Pyruvate & \texttt{2-231615843} & $1.2\times10^{-15}$ & 3 & \texttt{IVL, L, V} &
 
 The Goodman--Buckler analysis identified 2,512 candidate genes for grain amino acid composition, concentrated in a few loci linked to multiple phenotypes. Because these results reflect standing variation in a temperate inbred panel under managed fertility, we asked whether maize landraces sampled across a soil nitrogen gradient implicate the same genomic regions, suggesting shared loci responding to field nitrogen availability.
 
-The soil N GWAS reflects historical environmental associations rather than a directly measured grain phenotype \citep{Batjes2006ISRICWISE5ArcMin}. Therefore, we interpreted this comparison cautiously. Our objective was not to equate soil N adaptation with grain amino acid composition, but rather to assess whether independent ecological and grain-biochemical layers implicated related N-metabolism functions. To address this, we integrated the Romero Navarro \citep{RomeroNavarro2017Landraces} maize landrace panel with total soil N estimates at 0--5~cm and 5--15~cm for each accession \citep{Batjes2006ISRICWISE5ArcMin}. The two depths were strongly correlated across the 3,107 accessions scanned ($r = 0.84$; Fig.~\ref{fig:soilN_gwas}A), so we used 0--5~cm as the primary phenotype and 5--15~cm as a consistency check rather than as an independent replicate. The sampled landraces span Mexico, Central America, and South America, capturing broad variation in soil N availability (Fig.~\ref{fig:soilN_gwas}B). One feature of this design requires emphasis: soil N is a property of the collection site rather than of the plant, and the 3,107 accessions carry only 467 distinct values. Genomic heritability of soil N in this panel is 1.00, well outside the range obtained from permuted phenotypes; it is unchanged after removing 10 genotype principal components and is still 0.98 after removing 50 (0.88 at 5--15~cm; Fig.~\ref{fig:soilN_gwas}C). The phenotype is therefore very nearly a deterministic function of genome-wide ancestry. Principal component correction cannot resolve this: the three components used as covariates account for only 2.01\% of genotypic variance, because structure in a panel sampled continuously across the Americas is diffuse rather than concentrated in a few axes (Supplementary Fig.~\ref{fig:supp_pca_scree}). We therefore treated confounding with relatedness as the primary threat to interpretation and tested it directly rather than assuming covariate adjustment had removed it.
+Soil N GWAS captures historical environmental associations, not a measured grain phenotype \citep{Batjes2006ISRICWISE5ArcMin}, so we interpreted it cautiously. Our goal was not to equate soil N adaptation with grain amino acid composition, but to ask whether independent ecological and grain-biochemical signals implicate similar N-metabolism functions. We paired the Romero Navarro \citep{RomeroNavarro2017Landraces} maize landrace panel with total soil N estimates at 0--5~cm and 5--15~cm for each accession \citep{Batjes2006ISRICWISE5ArcMin}. Because the two depths were highly correlated across 3,107 accessions ($r = 0.84$; Fig.~\ref{fig:soilN_gwas}A), we used 0--5~cm as the primary phenotype and 5--15~cm as a check. The landraces span Mexico, Central America, and South America, covering broad variation in soil N (Fig.~\ref{fig:soilN_gwas}B). A key limitation is that soil N is a site property: 3,107 accessions map to only 467 distinct values. Accordingly, genomic heritability of soil N is ~1.00 (vs. permuted phenotypes), unchanged after removing 10 genotype PCs and still 0.98 after removing 50 (0.88 at 5--15~cm; Fig.~\ref{fig:soilN_gwas}C), indicating soil N is nearly deterministic from genome-wide ancestry. PC correction cannot fix this: the three PCs used as covariates explain only 2.01\% of genotypic variance because structure is diffuse in a panel sampled continuously across the Americas (Supplementary Fig.~\ref{fig:supp_pca_scree}). We therefore treated relatedness confounding as the main interpretive risk and tested it directly rather than assuming covariates removed it.
 
-We scanned soil N with the same three models used for the grain GWAS (MLM, BLINK, FarmCPU), each run genome-wide on 495,755 markers with three genotype principal components as covariates, and applied the same 5\% false discovery rate threshold (Fig.~\ref{fig:soilN_gwas}D). The scan identified 234 significant SNPs (MLM 2, BLINK 218, FarmCPU 30), of which 15 were significant in at least two models and one in all three. Of these, 216 lay within 25 kb of a B73 RefGen\_v5 gene, yielding 448 candidate genes (Supplementary Table~S16). Because FarmCPU selects pseudo-QTNs as covariates and reports P values from a model that already contains them, its P values are post-selection and are not Bonferroni statements; the multi-locus models are therefore treated as a candidate-generating layer rather than as independent confirmation.
+We performed a soil-N GWAS using the same three models as for grain (MLM, BLINK, FarmCPU), scanning 495,755 markers with three genotype PCs as covariates and a 5\% FDR threshold (Fig.~\ref{fig:soilN_gwas}D). We found 234 significant SNPs (MLM 2, BLINK 218, FarmCPU 30); 15 were significant in at least two models and one in all three. Of these, 216 were within 25 kb of a B73 RefGen\_v5 gene, yielding 448 candidate genes (Supplementary Table~S16). Because FarmCPU reports post-selection P values after adding pseudo-QTNs as covariates, we treat multi-locus results as candidate-generating rather than confirmatory.
 
-To test whether these associations track nitrogen or merely the ancestry structure correlated with it, we scanned seven environmental control traits in the same panel, through the same pipeline and at the same threshold: latitude, absolute latitude, longitude, elevation, soil pH, cation exchange capacity, and aridity. Soil N showed the lowest overlap with the geographic traits of any phenotype tested (Supplementary Fig.~\ref{fig:supp_soiln_specificity}A). Four of its 234 SNPs (1.7\%) were also significant for latitude, absolute latitude, longitude or elevation, against 1.1 expected by chance. The same comparison applied to latitude itself returned 18.9\% overlap and to longitude 16.0\%, confirming that the test detects geographically driven signal when it is present. Soil N associations were also consistent across depth: 51 of the 234 SNPs (21.8\%) were significant for soil nitrogen at 5--15~cm as well, and only one of those 51 overlapped any geographic trait. Given the correlation between the two depths, this agreement is expected and indicates stability of the association rather than independent replication. The clearest residual overlap was with aridity, shared by 38 SNPs (16.2\%) and by 17 of the 51 SNPs common to both depths (Supplementary Fig.~\ref{fig:supp_soiln_specificity}B). The strongest association in the scan, S9\_151742636 ($P = 2.6 \times 10^{-13}$), 5 kb from \textit{Zm00001eb399680}, a chloroplastic Sec-independent (TatC) protein translocase, is one of these: it is significant in two models and at both depths, but is also significant for soil pH and aridity. Aridity governs mineralization rates and is therefore expected to share genetic architecture with soil N, so we treat this overlap as a shared mechanism rather than as contamination. Together these results indicate that the soil-N signal is not a relabelling of geography, while leaving the relatedness confound described above unresolved; the full SNP-by-trait matrix is given in Supplementary Table~S15.
+To assess geographic confounding, we ran the same GWAS on eight other environmental variables and quantified SNP overlap among traits (Supplementary Figure~\ref{suppfig:soilN_specificity}; Supplementary Table~S18). Only 1.7\% of soil-N (0--5\,cm) SNPs (4/234) overlapped with latitude, $|$latitude$|$, longitude, or elevation—the lowest overlap of any trait (vs.\ 18.9\% for latitude and 16.0\% for longitude; Supplementary Figure~\ref{suppfig:soilN_specificity}A). This overlap was still 3.7-fold above the 1.1 SNPs expected by chance ($P = 0.023$; Supplementary Table~S18), but soil N was not enriched for overlap with any single geographic variable (0--2 shared SNPs; $P \geq 0.065$). In contrast, soil N was strongly enriched for overlap with soil N at 5--15\,cm (51 shared vs.\ 0.1 expected), aridity (38 vs.\ 0.2), soil pH (13 vs.\ 0.1), and CEC (3 vs.\ 0.2) (Supplementary Figure~\ref{suppfig:soilN_specificity}B; Supplementary Table~S18). Because soil N at 0--5 and 5--15\,cm is highly correlated ($r = 0.84$; Figure~\ref{fig:soilN}A), their shared SNPs indicate consistency rather than independent replication. Overall, 189/234 soil-N SNPs were not significant for any other environmental variable (Supplementary Table~S15), including 14 supported by at least two models (Table~\ref{tab:soilN_specific}).
 
-Fourteen SNPs were significant in at least two models and in none of the seven environmental traits (Table~\ref{tab:soilN_specific}). Two of these mapped to focal nitrogen-metabolism candidates. S5\_22338979 lies 4.4 kb from \textit{Zm00001eb220040}, which encodes a protein with an aspartate/glutamate/uridylate kinase domain annotated for aspartate kinase activity, amino acid biosynthesis and threonine biosynthesis. It is the only soil-N SNP significant in all three models, it is significant at both soil depths, and a second independent SNP 41 bp away (S5\_22338938) marks the same locus. Since aspartate kinase catalyzes an early committed step in the aspartate-family amino acid pathway, this locus is a plausible mediator of soil N effects on downstream amino acid biosynthesis. S1\_16128632 falls within \textit{Zm00001eb005710}, a CN hydrolase domain-containing protein annotated as omega-amidase/NIT2-like, with hydrolase activity on C--N bonds and roles in oxaloacetate, asparagine and glutamine metabolism. The strongest soil-N-specific association, S8\_138640842 ($P = 3.5 \times 10^{-11}$), lies inside \textit{Zm00001eb356170}, a methionine S-methyltransferase. At 5--15~cm a second methionine-cycle enzyme was recovered, S-adenosylmethionine synthase (\textit{Zm00001eb354640}, 0.1 kb from S8\_133179205), so that both the methylation of methionine and the synthesis of S-adenosylmethionine from it are represented in the soil-N scan. These inferences rest on annotation and GO terms rather than direct experiments and should be viewed cautiously.
+Fourteen SNPs were significant in at least two models and in none of seven environmental traits (Table~\ref{tab:soilN_specific}). Two map near nitrogen-metabolism candidates. S5\_22338979 is 4.4 kb from \textit{Zm00001eb220040} (aspartate kinase; amino acid/threonine biosynthesis). It is the only soil-N SNP significant in all three models, is significant at both depths, and is supported by a second SNP 41 bp away (S5\_22338938), making this locus a plausible mediator of soil-N effects on downstream amino acid biosynthesis. S1\_16128632 falls within \textit{Zm00001eb005710}, an omega-amidase/NIT2-like CN-hydrolase implicated in oxaloacetate, asparagine, and glutamine metabolism. The strongest soil-N-specific hit, S8\_138640842 ($P = 3.5 \times 10^{-11}$), lies in \textit{Zm00001eb356170} (methionine S-methyltransferase). At 5--15~cm, a second methionine-cycle enzyme was recovered: S-adenosylmethionine synthase (\textit{Zm00001eb354640}, 0.1 kb from S8\_133179205), so both methionine methylation and SAM synthesis are represented. These interpretations are annotation-based and should be treated cautiously.
 
-Two further loci point to regulatory and trafficking mechanisms. S3\_54622531 lies within 25 kb of \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger and ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} regulates thermotolerance and grain size, with loss-of-function alleles increasing both \citep{Lin2023TTL1}; this SNP is significant in two models and at both soil depths. A second SNP, S9\_129109559, falls within \textit{Zm00001eb393130}, a vacuolar protein sorting-associated protein 52A gene, with a nearby nitrilase-associated gene, \textit{Zm00001eb393120}, in the same 25-kb window. Arabidopsis Vps52p/POK localizes to the Golgi and functions in vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, suggesting this locus may link soil-N association to protein sorting and intracellular transport that could alter nutrient redistribution under contrasting N conditions. This SNP reached significance in only one of the three models and is the weakest of the candidates named here, consistent with its behaviour under the latent-factor scan, and it should be weighted accordingly.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MAIN TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table*}[t]
-\centering
-\caption{Soil-nitrogen-associated SNPs in the maize landrace panel that are specific to soil nitrogen. All 14 are significant at a 5\% false discovery rate in at least two of the three association models and are \emph{not} significant for any of the seven environmental control traits scanned in the same panel (latitude, absolute latitude, longitude, elevation, pH, cation exchange capacity, aridity). The N$_{5\text{--}15}$ column marks SNPs that are also significant for soil nitrogen at 5--15~cm depth. Positions are B73 RefGen\_v5 and are carried in the marker name. The nearest gene within 25~kb is shown, with its distance where the SNP lies outside it; all genes in each window, and the per-trait significance of every SNP, are given in Supplementary Tables~S15 and S16.}
-\label{tab:soilN_specific}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{@{}l c c r r l >{\raggedright\arraybackslash}X@{}}
-\hline
-SNP & Models & N$_{5\text{--}15}$ & Best $P$ & MAF & Nearest gene ($\le$25 kb) & Putative function \\
-\hline
-\texttt{S5\_22338979} & 3 & yes & $1.9\times10^{-8}$ & 0.030 & \texttt{Zm00001eb220040} ($+$4.4 kb) & Aspartate/glutamate/uridylate kinase domain-containing protein \\
-\texttt{S5\_47128668} & 2 & yes & $4.8\times10^{-8}$ & 0.323 & --- & no gene within 25 kb \\
-\texttt{S3\_54622531} & 2 & yes & $6.5\times10^{-8}$ & 0.050 & \texttt{Zm00001eb130210} ($+$17.9 kb) & RING/FYVE/PHD zinc finger, \textit{TTL1}-like \\
-\texttt{S5\_53136163} & 2 & yes & $5.7\times10^{-7}$ & 0.221 & \texttt{Zm00001eb226000} & Protein kinase domain-containing protein \\
-\texttt{S1\_5543355} & 2 & yes & $1.2\times10^{-6}$ & 0.090 & \texttt{Zm00001eb001920} & Transcription repressor \\
-\texttt{S8\_138640842} & 2 & -- & $3.5\times10^{-11}$ & 0.254 & \texttt{Zm00001eb356170} & Methionine S-methyltransferase \\
-\texttt{S1\_87643408} & 2 & -- & $2.6\times10^{-10}$ & 0.356 & \texttt{Zm00001eb022740} & Syndetin \\
-\texttt{S2\_191754648} & 2 & -- & $6.2\times10^{-10}$ & 0.074 & \texttt{Zm00001eb100890} & Uncharacterised protein \\
-\texttt{S8\_153826994} & 2 & -- & $5.1\times10^{-8}$ & 0.020 & \texttt{Zm00001eb359990} & Homeobox-DDT domain protein RLT1 \\
-\texttt{S5\_22338938} & 2 & -- & $6.5\times10^{-8}$ & 0.031 & \texttt{Zm00001eb220040} ($+$4.3 kb) & Aspartate/glutamate/uridylate kinase domain-containing protein \\
-\texttt{S1\_16128632} & 2 & -- & $2.9\times10^{-7}$ & 0.016 & \texttt{Zm00001eb005710} & CN hydrolase domain-containing protein (omega-amidase/NIT2) \\
-\texttt{S6\_37926580} & 2 & -- & $7.4\times10^{-7}$ & 0.179 & \texttt{Zm00001eb265710} & HB transcription factor \\
-\texttt{S6\_161051050} & 2 & -- & $1.1\times10^{-6}$ & 0.231 & \texttt{Zm00001eb289040} ($+$3.1 kb) & Uncharacterised protein \\
-\texttt{S2\_117202525} & 2 & -- & $2.1\times10^{-6}$ & 0.071 & --- & no gene within 25 kb \\
-\hline
-\end{tabularx}
-\end{table*}
+Two additional loci suggest regulatory/trafficking roles. S3\_54622531 lies within 25 kb of \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger ubiquitin ligase; its rice homolog \textit{TTL1}/\textit{OsRFPV-7} affects thermotolerance and grain size \citep{Lin2023TTL1}. This SNP is significant in two models and at both depths. S9\_129109559 falls within \textit{Zm00001eb393130} (vacuolar protein sorting-associated protein 52A), with nearby \textit{Zm00001eb393120} (nitrilase-associated) in the same 25-kb window. Because Arabidopsis Vps52p/POK localizes to the Golgi and mediates vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, this locus may connect soil-N association to protein sorting and transport affecting nutrient redistribution. However, it is significant in only one model and is the weakest candidate here, so it should be weighted accordingly.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MAIN FIGURE 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{final/main_figs/Fig2_soilN.png}
-    \caption{Soil nitrogen association mapping in the maize landrace panel.
-    (\textbf{A}) Total soil nitrogen at 0--5~cm against 5--15~cm for the 3,107 accessions
-    scanned ($r = 0.84$); the dotted line is $y = x$ and the solid line the least-squares fit.
-    (\textbf{B}) Collection sites coloured by soil nitrogen at 0--5~cm, with the distribution of
-    values inset; the accessions carry 467 distinct values.
-    (\textbf{C}) Genomic heritability of soil nitrogen at both depths after removing 0, 10 and
-    50 genotype principal components from the phenotype. Error bars at 0 components are 95\%
-    profile-likelihood confidence intervals; heritability estimated from 1,000 permuted
-    phenotypes did not exceed 0.05. Heritability is unchanged after removing 10 components and
-    remains 0.98 at 0--5~cm after removing 50, indicating that the confounding between soil
-    nitrogen and genome-wide relatedness is not concentrated in the leading components.
-    (\textbf{D}) Manhattan plot of the three-model scan at 0--5~cm, showing all 495,755 markers.
-    Each SNP is drawn once at its smallest $P$ value; SNPs significant in at least one model are
-    coloured by the model giving the smallest $P$ among those that call them, and SNPs
-    significant in at least two models are ringed. Dashed lines mark the Benjamini--Hochberg
-    threshold at a 5\% false discovery rate for each model, in that model's colour, because the
-    threshold is estimated separately for each. Labelled genes are those discussed in the text.}
-    \label{fig:soilN_gwas}
-\end{figure*}
 
+%===================== FIGURE 2 =====================
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{final/main_figs/Fig2_soilN.png}
+  \caption{\textbf{Soil nitrogen at the collection site of 3,107 maize landraces.}
+  \textbf{(A)} Soil N at 0--5\,cm vs.\ 5--15\,cm ($r = 0.84$); solid line, least-squares fit;
+  dotted line, $y = x$.
+  \textbf{(B)} Collection sites coloured by soil N at 0--5\,cm; inset, distribution of
+  soil N across accessions.
+  \textbf{(C)} Genomic heritability ($h^2$) of soil N at both depths after removing
+  0, 10 and 50 genotype principal components from the phenotype; error bars, 95\% CI at
+  0 PCs; permuted phenotypes (1,000$\times$) gave $h^2 \leq 0.05$.
+  \textbf{(D)} Genome-wide association for soil N (0--5\,cm); all 495,755 SNPs are shown.
+  Coloured points are SNPs significant at 5\% Benjamini--Hochberg FDR in at least one model
+  (MLM, BLINK, FarmCPU; 3 PCs), coloured by the model with the lowest $P$; ringed points
+  are significant in at least two models. The dashed red line marks the 5\% FDR threshold
+  ($-\log_{10}P = 4.66$, the most lenient of the three models' thresholds).
+  Candidate genes named in the text are labelled.}
+  \label{fig:soilN}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%  SUPPLEMENTARY FIGURE -- SPECIFICITY  %%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig_soilN_specificity.png}
-    \caption{Soil nitrogen associations are not explained by geography.
-    Nine traits were scanned in the same landrace panel with the same three models, the same
-    three genotype principal components and the same 5\% false discovery rate threshold.
-    (\textbf{A}) For each trait, the percentage of its significant SNPs that are also significant
-    for at least one of the four geographic traits (latitude, absolute latitude, longitude,
-    elevation), leaving the trait itself out of that union. Grey ticks mark the proportion
-    expected if the two SNP sets were independent. Latitude and longitude act as positive
-    controls: a geographically driven trait overlaps the others at 16--19\%. Soil nitrogen at
-    0--5~cm is the lowest of the nine at 1.7\% (4 of 234 SNPs, against 1.1 expected).
-    (\textbf{B}) Soil nitrogen compared with each trait individually; orange points are the
-    observed number of shared SNPs, grey points the expectation under independence. The
-    strongest sharing is with soil nitrogen at 5--15~cm (51 SNPs), which is expected given the
-    correlation between depths, and with aridity (38 SNPs); no geographic trait shares more than
-    two. $^{*}P<0.05$, $^{**}P<10^{-5}$, $^{***}P<10^{-20}$, hypergeometric test, which assumes
-    independent traits and therefore overstates significance for correlated pairs;
-    n.s., not significant.}
-    \label{fig:supp_soiln_specificity}
-\end{figure*}
+%===================== SUPP FIGURE: specificity =====================
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{final/supp_figs/SuppFig_soilN_specificity.png}
+  \caption{\textbf{Overlap of soil-N associations with other environmental GWAS.}
+  Each trait was scanned with MLM, BLINK and FarmCPU (3 PCs, 495,755 SNPs); a SNP counts
+  as significant for a trait if it reaches 5\% FDR in any model.
+  \textbf{(A)} Percentage of each trait's significant SNPs that are also significant for a
+  geographic trait (latitude, $|$latitude$|$, longitude, elevation; the trait itself
+  excluded). Vertical ticks, percentage expected by chance.
+  \textbf{(B)} SNPs shared between soil N (0--5\,cm) and each other trait: observed (orange)
+  vs.\ expected (grey). One-sided hypergeometric test, $M = 495{,}755$:
+  *\,$P<0.05$; **\,$P<10^{-5}$; ***\,$P<10^{-20}$; n.s., not significant.
+  Full results in Supplementary Table~S18.}
+  \label{suppfig:soilN_specificity}
+\end{figure}
 
+%===================== SUPP FIGURE: genotype PCA scree =====================
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{final/supp_figs/SuppFig_genotype_PCA_scree.png}
+  \caption{\textbf{Genotype principal components of the landrace panel.}
+  \textbf{(A)} Variance explained by each of the first 20 PCs.
+  \textbf{(B)} Cumulative variance explained. The last large drop is from PC2 to PC3;
+  after PC3, each further PC explains $\leq 0.06$ percentage points less than the one before.
+  The first three PCs (blue; 2.01\% of variance) were used as GWAS covariates.}
+  \label{suppfig:pca_scree}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%  SUPPLEMENTARY FIGURE -- PCA SCREE  %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{final/supp_figs/SuppFig_genotype_PCA_scree.png}
-    \caption{Genotype principal component structure in the Romero-Navarro maize landrace panel
-    ($n = 3{,}539$; 495,755 markers). (\textbf{A}) Variance explained by each of the first 20
-    principal components; the three used as GWAS covariates are shown in blue. The decrement
-    between successive components is 0.750 percentage points from PC1 to PC2 and 0.194 from PC2
-    to PC3, but no more than 0.06 for any later pair, so PC3 is the last component before the
-    scree flattens. (\textbf{B}) Cumulative variance explained. The first three components
-    together account for 2.01\% of genotypic variance, reflecting the diffuse population
-    structure of a panel sampled continuously across Mexico, Central America and South America
-    rather than a small number of discrete subpopulations.}
-    \label{fig:supp_pca_scree}
-\end{figure*}
-
+%===================== SUPP TABLE S18 =====================
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{\textbf{Supplementary Table S18. Environmental overlap test for FDR-significant SNPs.}
+  Observed vs.\ expected number of shared FDR-significant SNPs (MLM, BLINK and FarmCPU combined).
+  Expected $= n_1 n_2 / M$, with $M = 495{,}755$; $P$, one-sided hypergeometric test.
+  The test assumes independent traits, so it overstates enrichment for correlated traits.}
+  \label{tab:S18}
+  \begin{tabular}{llrrrrrl}
+  \hline
+  Trait & Compared with & $n_1$ & $n_2$ & Observed & Expected & Fold & $P$ \\
+  \hline
+  \multicolumn{8}{l}{\textit{Each trait vs.\ geographic union (trait itself excluded)}}\\
+  Latitude          & Geographic union & 604 & 1,778 & 114 & 2.17 & 52.6 & $4.0\times10^{-156}$ \\
+  Longitude         & Geographic union & 725 & 1,659 & 116 & 2.43 & 47.8 & $2.0\times10^{-153}$ \\
+  Soil N (5--15 cm) & Geographic union & 222 & 2,268 &  12 & 1.02 & 11.8 & $7.5\times10^{-10}$ \\
+  CEC               & Geographic union & 330 & 2,268 &  16 & 1.51 & 10.6 & $6.0\times10^{-12}$ \\
+  Aridity           & Geographic union & 353 & 2,268 &  14 & 1.62 &  8.7 & $1.7\times10^{-9}$ \\
+  Soil pH           & Geographic union & 313 & 2,268 &  12 & 1.43 &  8.4 & $3.4\times10^{-8}$ \\
+  Elevation         & Geographic union & 187 & 2,087 &   6 & 0.79 &  7.6 & $1.6\times10^{-4}$ \\
+  $|$Latitude$|$    & Geographic union & 878 & 1,406 &  16 & 2.49 &  6.4 & $8.6\times10^{-9}$ \\
+  Soil N (0--5 cm)  & Geographic union & 234 & 2,268 &   4 & 1.07 &  3.7 & 0.023 \\
+  \hline
+  \multicolumn{8}{l}{\textit{Soil N (0--5 cm) vs.\ each trait}}\\
+  Soil N (0--5 cm) & Soil N (5--15 cm) & 234 & 222 & 51 & 0.11 & 486.7 & $3.6\times10^{-122}$ \\
+  Soil N (0--5 cm) & Aridity           & 234 & 353 & 38 & 0.17 & 228.1 & $2.4\times10^{-77}$ \\
+  Soil N (0--5 cm) & Soil pH           & 234 & 313 & 13 & 0.15 &  88.0 & $1.3\times10^{-21}$ \\
+  Soil N (0--5 cm) & CEC               & 234 & 330 &  3 & 0.16 &  19.3 & $5.5\times10^{-4}$ \\
+  Soil N (0--5 cm) & $|$Latitude$|$    & 234 & 878 &  2 & 0.41 &   4.8 & 0.065 \\
+  Soil N (0--5 cm) & Latitude          & 234 & 604 &  1 & 0.29 &   3.5 & 0.25 \\
+  Soil N (0--5 cm) & Longitude         & 234 & 725 &  1 & 0.34 &   2.9 & 0.29 \\
+  Soil N (0--5 cm) & Elevation         & 234 & 187 &  0 & 0.09 &   0.0 & 1.00 \\
+  \hline
+  \end{tabular}
+\end{table}
 
 
 
