@@ -235,74 +235,182 @@ We integrate grain amino acid profiling, grain amino acid GWAS, soil-N environme
 
 \section{Results}\label{results}
 
-\subsection{Kernel FAA variation in the Goodman--Buckler panel highlights Asn and Pro dominance}
+\subsection{Kernel free amino acid composition in the Goodman--Buckler panel is dominated by asparagine and proline}
 
-Free amino acid (FAA) composition was evaluated across 280 of the 282 lines in the Goodman-Buckler panel grown in four replicates (two years x two blocks) at Genetics Farm near Columbia, Missouri (Supplementary Tables S1--S2). To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} A--B). Asparagine was ranked as the most abundant amino acid in 146 of 280 genotypes (52\%), while proline ranked first in 118 genotypes (42\%). Notably, asparagine and proline comprised the top two amino acids in 179 of 280 genotypes (64\%), regardless of order (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank}B). This rank dominance reflected large differences in abundance. The median genotype-mean concentrations varied 144-fold across the 20 FAAs, from asparagine and proline (highest) to cysteine and methionine (lowest) (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank} C). However, abundance did not match variability, as methionine was the least abundant yet most variable across genotypes (CV 180\%), followed by glutamine (CV 130\%), while asparagine and proline were relatively stable (CV 70\% and 63\%).
+Free amino acid (FAA) composition was evaluated across 280 of the 282 lines in the Goodman--Buckler panel grown in four replicates (two years $\times$ two blocks) at the Genetics Farm near Columbia, Missouri (Supplementary Tables S1--S2). To assess relative abundance, amino acids were ranked within each genotype based on average values across replicates. Asparagine and proline consistently showed the highest relative abundance across the panel (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank}A--B). Asparagine ranked as the most abundant amino acid in 146 of 280 genotypes (52\%), while proline ranked first in 118 genotypes (42\%). Notably, asparagine and proline comprised the top two amino acids in 179 of 280 genotypes (64\%), regardless of order (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank}B). This rank dominance reflected large differences in abundance: median genotype-mean concentrations varied 144-fold across the 20 FAAs, from asparagine and proline (highest) to cysteine and methionine (lowest) (Supplementary Fig.~\ref{fig:supp_faa_asn_pro_rank}C). Abundance and variability were nevertheless decoupled (Supplementary Table S3). Methionine showed the greatest genotypic variability (CV 180\%) despite low abundance, followed by glutamine (CV 130\%), whereas glutamate, tryptophan, and glycine varied the least (CV 44--54\%). Asparagine and proline were moderately variable (CV 70\% and 63\%; median 72\% across the 20 FAAs) yet still spanned 116-fold and 34-fold across the 280 genotype means, indicating substantial genotypic variation in both.
 
-Amino acid phenotypes were highly repeatable. Median broad-sense heritability ($H^2$) was 0.71 across 40 FAA traits (range 0.14--0.88) and 0.53 across 76 protein-bound amino acid (PBAA) traits (range 0.09--0.83). The most heritable traits were lysine (0.88), asparagine (0.83), aspartate (0.81), and proline (0.80) (Supplementary Fig.~\ref{fig:supp_heritability}A; Supplementary Table S3). SNP-based genomic heritability captured 70\% of repeatable variation in FAA pools and 92\% in PBAA pools, suggesting that more FAA variation is non-additive or not tagged by the marker panel (Supplementary Fig.~\ref{fig:supp_heritability}B). Because $h^2$ was estimated from 272 genotypes, its 95\% profile intervals are wide (median width 0.52), and individual traits should not be ranked by $h^2$. $H^2$ fell within the $h^2$ interval for 73\% of traits, indicating that the scatter around the identity line reflects $h^2$ sampling error rather than disagreement between estimators.
+Amino acid phenotypes were repeatable. Median broad-sense heritability ($H^2$) was 0.71 across 40 FAA traits (range 0.14--0.88) and 0.53 across 76 protein-bound amino acid (PBAA) traits (range 0.09--0.83), so most of the variation among line means reflects genotype rather than plot-to-plot noise. The most heritable individual FAAs were lysine (0.88), asparagine (0.83), aspartate (0.81), and proline (0.80). Therefore, the free amino acids that are most abundant and most variable across the panel are also the most reliably measured. Genomic heritability estimated from the marker-based relationship matrix gave medians of 0.47 for FAA and 0.50 for PBAA traits, confirming that a substantial share of this variation is additive and therefore accessible to association mapping (Supplementary Fig.~\ref{fig:supp_heritability}; Supplementary Table S4).
 
-Furthermore, to quantify FAA composition within the grain amino acid pool, we compared genotype-level FAA and PBAA across matched taxa ($n = 279$; Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}, Supplementary Table S4) \citep{Shrestha2022}. The protein-bound pool dominated, exceeding the free pool 47-fold for total amino acids and 42-fold for amino acid-derived N (paired Wilcoxon signed-rank tests, all $P < 10^{-40}$). Thus, FAAs contributed only 2.4\% of estimated grain amino acid-derived N. However, pool composition differed. Proline was 21.2\% of FAAs compared to 10.6\% of PBAAs. Because acid hydrolysis converts asparagine to aspartate and glutamine to glutamate, the protein-bound data resolve only Asx and Glx. We therefore computed the combined amide and basic fraction (Asx + Glx + Arg + Lys + His) identically in both pools, collapsing free aspartate with asparagine and free glutamate with glutamine. This fraction was 51.2\% of the free pool compared to 26.5\% of the protein-bound pool. Restricted to unambiguously N-rich residues, which only the free pool resolves, asparagine, glutamine, arginine, lysine and histidine together accounted for 32.8\% of FAAs. Composition variability across genotypes also differed (CV). The proline fraction was 44\% (FAA) compared to 8\% (PBAA), and the combined amide and basic fraction 20\% compared to 6\%. Thus, protein-bound composition is nearly fixed across the panel, whereas FAA composition varies widely and drives mapping power.
+To quantify the free pool's contribution to grain amino acid nitrogen, we compared genotype-level FAA and PBAA across matched taxa ($n = 279$; Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}, Supplementary Table S5) \citep{Shrestha2022}. The protein-bound pool dominated, exceeding the free pool 47-fold for total amino acids and 42-fold for amino acid-derived N (paired Wilcoxon signed-rank tests, all $P < 10^{-40}$). FAAs, therefore, contributed only 2.4\% of estimated grain amino acid-derived N. Pool composition, nevertheless, differed. Because acid hydrolysis converts asparagine to aspartate and glutamine to glutamate, protein-bound measurements resolve only Asx and Glx. Tryptophan and cysteine are destroyed, and glycine was not reported. Thus, the protein-bound pool includes 15 amino acids compared to 20 in the free pool. To compare the two pools on the same basis we used matched denominators throughout: free Asp+Asn and Glu+Gln were combined, and glycine, tryptophan, and cysteine --- 8.4\% of the free pool --- were excluded from the free-pool total. On this basis proline was 23.1\% of FAAs compared with 10.6\% of PBAAs, and (Asx + Glx + Arg + Lys + His) was 56.0\% of the free pool against 26.5\% of the protein-bound pool. Because the matched fraction necessarily bundles aspartate with asparagine and glutamate with glutamine, it includes residues carrying a single nitrogen. Restricted to unambiguously N-rich residues, which only the free pool resolves, asparagine, glutamine, arginine, lysine, and histidine together accounted for 35.7\% of FAAs. Composition variability across genotypes also differed. The proline fraction varied by 44\% (FAA) against 8\% (PBAA), and the combined amide and basic fraction by 20\% against 6\%. Thus, the free pool is a small but compositionally labile and highly repeatable fraction of grain amino acid nitrogen, dominated by asparagine and proline and enriched for nitrogen-rich residues, whereas protein-bound composition varies far less across the panel.
 
-To identify loci associated with grain amino acid composition, we analyzed 113 amino acid-derived phenotypes (Supplementary Tables S1--S2). The phenotypes analyzed were the absolute or total abundance of each FAA (20), the relative abundance of total FAA (20), biochemical ratios of FAAs relative to related individuals or families (70), and calculated quantities of total FAA, PBAA \citep{Shrestha2022}, and estimated (proxy) nitrogen (3).
-
-Using a Bonferroni genome-wide threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times 10^{-8}$; $-\log_{10}(p)\ge 7.92$), we detected 1,124 significant SNPs across 69 of 76 amino acid phenotypes. Of these, 634 fell within 25 kb of a gene in the B73 RefGen\_v5 annotation, yielding 1,182 unique candidate genes (Supplementary Table S5). Most genes were phenotype-specific (999), and 183 were shared. \textit{N.E} had the most candidate genes (51) (Supplementary Fig.~\ref{fig:supp_amino_gwas}). The five loci associated with the most phenotypes and their candidate genes are listed in Table~\ref{tab:amino_gwas_top_loci}; all loci are given in Supplementary Table S6. The most pleiotropic locus (Chr9, 130.4 Mb) surpassed the threshold in eight phenotypes (individual amino acids, family composites, and total FAA) and showed the same peak in each (Fig.~\ref{fig:amino_locus_manhattan}). Furthermore, to compare candidate gene sets across populations described below, we also used a suggestive threshold of $1/m$ (one expected false positive genome-wide), computed per panel ($2.39 \times 10^{-7}$ in the Goodman--Buckler panel; $2.02 \times 10^{-6}$ in the landrace panel). Full per-model results with manhattan plots, QQ plots, and gene annotations are available at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
-
-\begin{table*}[t]
-\centering
-\caption{Top five loci from the Goodman--Buckler amino acid GWAS, ranked by the number of
-phenotypes with a Bonferroni-significant association ($P \le 1.20 \times 10^{-8}$).s}
-\label{tab:amino_gwas_top_loci}
-\small
-\setlength{\tabcolsep}{6pt}
-\begin{tabularx}{\textwidth}{@{}l l r l l >{\raggedright\arraybackslash}X@{}}
-\hline
-Locus & Best $P$ & $n$ phen. & Models & Candidate gene & Putative function \\
-\hline
-chr9:130.4 Mb & $4.5\times10^{-13}$ & 8 & FarmCPU & \texttt{Zm00001eb393450} & Lysine-rich arabinogalactan protein 17 \\
-chr7:162.2 Mb & $1.7\times10^{-16}$ & 5 & BLINK, FarmCPU & \texttt{Zm00001eb322660} (of 2) & OS07G0516300 protein \\
-chr2:238.0 Mb & $1.2\times10^{-15}$ & 5 & FarmCPU & \texttt{Zm00001eb116160} & OS11G0691500 protein \\
-chr6:110.9 Mb & $2.9\times10^{-18}$ & 4 & BLINK, FarmCPU & \texttt{Zm00001eb276330} (of 2) & SERINC-domain containing serine and sphingolipid biosynthesis protein \\
-chr6:140.8 Mb & $2.1\times10^{-15}$ & 4 & BLINK, FarmCPU & \texttt{Zm00001eb283510} (of 4) & Derlin \\
-\hline
-\end{tabularx}
-\end{table*}
+\caption{A locus on chromosome 9 is associated with nine amino acid phenotypes. Shown are Manhattan plots for eight phenotypes with an FDR-significant association at \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506), \textit{N.E} ($P = 1.2 \times 10^{-7}$) is omitted. Arrows mark the lead SNP within 250 kb of the gene. Dashed red lines indicate the 5\% Benjamini--Hochberg FDR threshold (cutoffs $P = 8.6 \times 10^{-7}$ to $3.1 \times 10^{-8}$; $-\log_{10}$ 6.1--7.5). The model for each phenotype is in parentheses.}
 
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=0.82\textwidth]{final/main_figs/Fig_amino_Zm00001eb393450_manhattan.png}
-    \caption{A single locus on chromosome 9 is associated with eight amino acid phenotypes.
-    Manhattan plots for every phenotype with a Bonferroni-significant association at
-    \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506, B73 RefGen\_v5), ordered by
-    significance. The arrow in each plot marks the lead SNP within 250 kb of the gene. Dashed
-    red line, Bonferroni threshold ($\alpha/m = 0.05/4{,}177{,}796 = 1.20 \times 10^{-8}$);
-    dotted blue line, suggestive threshold ($1/m = 2.39 \times 10^{-7}$). The association model
-    is given in parentheses after each phenotype: MLM returned results for 35 of 76 phenotypes
-    and MLMM for none, so the model shown is the one available for that phenotype. For
-    rendering, SNPs with $P \ge 0.01$ are subsampled 1-in-25; all SNPs below that value are
-    drawn.}
+    \caption{A locus on chromosome 9 is associated with nine amino acid phenotypes. Shown are Manhattan plots for eight phenotypes with an FDR-significant association at \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506), \textit{N.E} ($P = 1.2 \times 10^{-7}$) is omitted. Arrows mark the lead SNP within 250 kb of the gene. Dashed red lines indicate the 5\% Benjamini--Hochberg FDR threshold (cutoffs $P = 8.6 \times 10^{-7}$ to $3.1 \times 10^{-8}$; $-\log_{10}$ 6.1--7.5). The model for each phenotype is in parentheses.}
     \label{fig:amino_locus_manhattan}
 \end{figure*}
 
+\subsection{Association mapping of 78 kernel amino acid phenotypes identifies 2,512 candidate genes}
 
-\subsection{Soil nitrogen enviornment GWAS highlights aspartate-family and asparagine metabolism in maize landrace adaptation}
+To identify loci affecting grain amino acid composition, we scanned 78 amino acid–derived phenotypes (Supplementary Tables S1--S2), including absolute abundance of 20 individual FAAs; six biosynthetic-family composites (IMNTDK, EHPRQ, SGC, WFY, LAV, IVL); 20 ratios to the total free pool; 25 ratios to the family composite; four ratios between amino acids (N.D, N.E, N.Q, Q.E); and three whole-pool measures (total FAA, total PBAA \citep{Shrestha2022}, and estimated nitrogen).
 
-The Goodman-Buckler amino acid GWAS results suggested that grain N-related amino acid variation is associated with amino acid transport, Glu/Gln metabolism, Asp-family metabolism, and protein turnover. We therefore asked whether natural variation in maize landraces exposed to different soil N environments pointed to some of the same broad biological pathways.
+At a Benjamini--Hochberg false discovery rate of 5\%, applied per phenotype and model, we found 2,461 significant SNPs across 71 phenotypes. Of these, 1,446 were within 25 kb of a B73 RefGen\_v5 gene, yielding 2,512 candidate genes (Supplementary Table S6). Most were phenotype-specific (2,084), with 428 shared; \textit{N.E} had the most (124). The loci significant for the most phenotypes are in Table~\ref{tab:amino_gwas_top_loci} (all 2,158 loci: Supplementary Table S7). The top locus (chr9, 130.35--130.36 Mb) was significant for nine phenotypes and showed a consistent peak (Fig.~\ref{fig:amino_locus_manhattan}). Full results (Manhattan plots, QQ plots, annotations) are at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
 
-The soil N GWAS reflects historical environmental associations rather than a directly measured grain phenotype (\cite{Batjes2006ISRICWISE5ArcMin}). Therefore, we interpreted this comparison cautiously. Our objective was not to equate soil N adaptation with grain amino acid composition, but rather to assess whether independent ecological and grain-biochemical layers implicated related N-metabolism functions. To address this, we integrated the Romero Navarro \citep{RomeroNavarro2017Landraces} maize landrace panel with total soil N estimates for each accession (\cite{Batjes2006ISRICWISE5ArcMin}). The sampled landraces span Mexico, Central America, and South America, capturing broad variation in soil N availability (Fig.~\ref{fig:soilN_gwas}A).
+The aspartate family yielded the most candidate genes (1,080 genes from 590 SNPs across 22 phenotypes), followed by glutamate (637), serine (442), pyruvate (300), and aromatic (243). Aspartate leads partly because it has the most phenotypes: it accounts for 22 of the 78 phenotypes scanned, and per phenotype the gap to serine is small (49 against 44 genes). These counts therefore show where we had the power to detect signals, not which pathways are more polymorphic. Table~\ref{tab:amino_gwas_top_loci} lists, within each biosynthetic family and across all phenotypes, the loci significant for the most phenotypes. The most pleiotropic locus genome-wide (chr9, 130.35--130.36 Mb; five SNPs over 12.6 kb) was significant for nine phenotypes spanning four biosynthetic families and the whole free pool, and contains \textit{Zm00001eb393450} (lysine-rich arabinogalactan protein 17) and \textit{Zm00001eb393460} (zinc finger protein AZF2). Within the aspartate family, the two leading loci are dominated by asparagine phenotypes: the locus on chromosome 6 (113.8 Mb) is significant for seven phenotypes, all of them asparagine or aspartate traits (\textit{N}, \textit{N.D}, \textit{N.E}, \textit{N.IMNTDK}, \textit{N.Total}, \textit{D.IMNTDK}, \textit{M.IMNTDK}), and contains \textit{Zm00001eb277160}, a member of the NRT1/PTR (NPF) nitrate and peptide transporter family. The glutamate family is likewise dominated by a single amino acid in two forms: glutamine, whose leading loci are each significant for \textit{Q} and all three of its ratios, and arginine, whose locus on chromosome 5 (222.1 Mb; $P = 2.1 \times 10^{-17}$, the smallest $P$ in the family) is significant for the absolute trait and both of its ratios. Thus the strongest family-level signals sit on individual amino acids --- asparagine, glutamine and arginine --- rather than on the family composites, and only the asparagine locus carries a gene with an annotated role in nitrogen transport.
 
-Furthermore, we performed GWAS using a mixed linear model with three genotype principal components as covariates, and also applied the same models as in the grain GWAS, summarizing the strongest signals across the models (Fig.~\ref{fig:soilN_gwas}B). The GWAS identified multiple loci exceeding the Bonferroni significance thresholds (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} A). Model overlap analysis showed that BLINK and FarmCPU yielded most of the high-confidence signals, with 79 SNPs shared between them and six SNPs shared across all four models (Supplementary Fig.~\ref{fig:supp_soiln_qq_venn} B).
 
-\begin{figure*}[ht!]
+\begin{table*}[t]
 \centering
+\caption{Loci associated with the most amino acid phenotypes in the Goodman--Buckler FAA GWAS. Phenotypes were assigned to a family by the amino acid they report on. Note that marker identifiers carry the coordinate of the original (AGPv4) assembly, whereas gene annotation used B73 reference genome version 5 positions, so the number in a marker name is not its v5 coordinate; both are given in Supplementary Table S6.}
+\label{tab:amino_gwas_top_loci}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{@{}l l r r l >{\raggedright\arraybackslash}X@{}}
+\hline
+Family & Lead SNP & Best $P$ & $n$ phen. & Phenotype(s) & Candidate genes within 25 kb (putative function) \\
+\hline
+All phenotypes & \texttt{9-128366189} & $4.5\times10^{-13}$ & 8 & \texttt{A, E.Total, EHPRQ (+5)} & Zm00001eb393450 (Lysine-rich arabinogalactan protein 17) \\
+ & \texttt{7-156783044} & $1.7\times10^{-16}$ & 5 & \texttt{H, P, S (+2)} & Zm00001eb322660 (Senescence regulator), Zm00001eb322670 (uncharacterised) \\
+ & \texttt{2-231615843} & $1.2\times10^{-15}$ & 5 & \texttt{I, IVL, L (+2)} & Zm00001eb116160 (S-receptor kinase1) \\
+\hline
+Aspartate & \texttt{5-6851962} & $1.1\times10^{-13}$ & 4 & \texttt{D.IMNTDK, M.IMNTDK, N.D (+1)} & Zm00001eb214500 (Protein ENHANCED DISEASE RESISTANCE 2 C-terminal domain-containing protein), Zm00001eb214510 (OsWRKY4 family protein), Zm00001eb214490 (Origin recognition complex5), Zm00001eb214480 (uncharacterised), Zm00001eb214470 (Ovule protein), Zm00001eb214460 (uncharacterised) \\
+ & \texttt{6-109336639} & $8.0\times10^{-13}$ & 4 & \texttt{D.IMNTDK, N, N.D (+1)} & Zm00001eb277110 (UDP-galactose\_UDP-glucose transporter 3), Zm00001eb277130 (uncharacterised), Zm00001eb277140 (UDP-galactose\_UDP-glucose transporter 3), Zm00001eb277150 (uncharacterised), Zm00001eb277160 (Protein NRT1\_ PTR FAMILY 4.6) \\
+\hline
+Glutamate & \texttt{3-186609917} & $3.8\times10^{-12}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb149460 (Expansin) \\
+ & \texttt{5-216273624} & $2.1\times10^{-17}$ & 3 & \texttt{R, R.EHPRQ, R.Total} & Zm00001eb257880 (uncharacterised), Zm00001eb257860 (Two-component response regulator), Zm00001eb257870 (uncharacterised), Zm00001eb257890 (non-specific serine\_threonine protein kinase), Zm00001eb257850 (poly(A)-specific ribonuclease) \\
+ & \texttt{4-834837} & $7.6\times10^{-17}$ & 3 & \texttt{Q, Q.EHPRQ, Q.Total} & Zm00001eb164350 (GRAS transcription factor (Fragment)) \\
+\hline
+Serine & \texttt{4-3053638} & $2.1\times10^{-16}$ & 2 & \texttt{S, S.Total} & Zm00001eb165420 (AAA-type ATPase family protein), Zm00001eb165430 (Carboxypeptidase), Zm00001eb165440 (Anaphase-promoting complex subunit 4-like WD40 domain-containing protein), Zm00001eb165450 (Sodium\_calcium exchanger membrane region domain-containing protein) \\
+ & \texttt{10-148840622} & $1.3\times10^{-12}$ & 2 & \texttt{G, SGC} & Zm00001eb433530 (Ubiquinone biosynthesis protein COQ4 homolog, mitochondrial), Zm00001eb433540 (Chlorophyll a-b binding protein, chloroplastic), Zm00001eb433520 (uncharacterised), Zm00001eb433550 (S-acyltransferase) \\
+ & \texttt{10-134742382} & $1.6\times10^{-12}$ & 2 & \texttt{G.SGC, S.SGC} & Zm00001eb427580 (C2C2-GATA transcription factor) \\
+ & \texttt{9-48623727} & $2.3\times10^{-12}$ & 2 & \texttt{C.SGC, SGC} & Zm00001eb382010 (uncharacterised) \\
+ & \texttt{6-157438491} & $6.7\times10^{-12}$ & 2 & \texttt{G.SGC, S.SGC} & Zm00001eb289160 (Protein LIKE COV 2), Zm00001eb289150 (Polypyrimidine tract-binding protein homolog 3), Zm00001eb289140 (Acid phosphatase\_vanadium-dependent haloperoxidase-related protein) \\
+\hline
+Aromatic & \texttt{1-279724987} & $3.6\times10^{-13}$ & 2 & \texttt{WFY, Y} & Zm00001eb057780 (uncharacterised), Zm00001eb057790 (UDP-glycosyltransferase 83A1), Zm00001eb057800 (Peptidyl-prolyl cis-trans isomerase), Zm00001eb057770 (UDP-glycosyltransferase 83A1), Zm00001eb057750 (Glycosyltransferase), Zm00001eb057760 (uncharacterised), Zm00001eb057740 (UDP-glycosyltransferase 83A1) \\
+ & \texttt{1-229772599} & $3.4\times10^{-11}$ & 2 & \texttt{WFY, Y} & Zm00001eb044710 (DNA-directed RNA polymerase subunit beta) \\
+ & \texttt{3-134034027} & $1.8\times10^{-10}$ & 2 & \texttt{W, Y} & Zm00001eb137680 (Golgin candidate 6), Zm00001eb137620 (Golgin candidate 6), Zm00001eb137670 (uncharacterised), Zm00001eb137660 (uncharacterised) \\
+\hline
+Pyruvate & \texttt{2-231615843} & $1.2\times10^{-15}$ & 3 & \texttt{IVL, L, V} & Zm00001eb116160 (S-receptor kinase1) \\
+ & \texttt{10-129288186} & $2.8\times10^{-13}$ & 3 & \texttt{IVL, LAV, V} & Zm00001eb425750 (La protein 1) \\
+ & \texttt{9-128364318} & $5.9\times10^{-13}$ & 3 & \texttt{A, IVL, LAV} & Zm00001eb393450 (Lysine-rich arabinogalactan protein 17) \\
+\hline
+\end{tabularx}
+\end{table*}
+
+
+\subsection{Soil nitrogen environment GWAS highlights aspartate-family and asparagine metabolism in maize landrace adaptation}
+
+The Goodman--Buckler analysis identified 2,512 candidate genes for grain amino acid composition, concentrated in a few loci linked to multiple phenotypes. Because these results reflect standing variation in a temperate inbred panel under managed fertility, we asked whether maize landraces sampled across a soil nitrogen gradient implicate the same genomic regions, suggesting shared loci responding to field nitrogen availability.
+
+The soil N GWAS reflects historical environmental associations rather than a directly measured grain phenotype \citep{Batjes2006ISRICWISE5ArcMin}. Therefore, we interpreted this comparison cautiously. Our objective was not to equate soil N adaptation with grain amino acid composition, but rather to assess whether independent ecological and grain-biochemical layers implicated related N-metabolism functions. To address this, we integrated the Romero Navarro \citep{RomeroNavarro2017Landraces} maize landrace panel with total soil N estimates at 0--5~cm and 5--15~cm for each accession \citep{Batjes2006ISRICWISE5ArcMin}. The two depths were strongly correlated across the 3,107 accessions scanned ($r = 0.84$; Fig.~\ref{fig:soilN_gwas}A), so we used 0--5~cm as the primary phenotype and 5--15~cm as a consistency check rather than as an independent replicate. The sampled landraces span Mexico, Central America, and South America, capturing broad variation in soil N availability (Fig.~\ref{fig:soilN_gwas}B). One feature of this design requires emphasis: soil N is a property of the collection site rather than of the plant, and the 3,107 accessions carry only 467 distinct values. Genomic heritability of soil N in this panel is 1.00, well outside the range obtained from permuted phenotypes; it is unchanged after removing 10 genotype principal components and is still 0.98 after removing 50 (0.88 at 5--15~cm; Fig.~\ref{fig:soilN_gwas}C). The phenotype is therefore very nearly a deterministic function of genome-wide ancestry. Principal component correction cannot resolve this: the three components used as covariates account for only 2.01\% of genotypic variance, because structure in a panel sampled continuously across the Americas is diffuse rather than concentrated in a few axes (Supplementary Fig.~\ref{fig:supp_pca_scree}). We therefore treated confounding with relatedness as the primary threat to interpretation and tested it directly rather than assuming covariate adjustment had removed it.
+
+We scanned soil N with the same three models used for the grain GWAS (MLM, BLINK, FarmCPU), each run genome-wide on 495,755 markers with three genotype principal components as covariates, and applied the same 5\% false discovery rate threshold (Fig.~\ref{fig:soilN_gwas}D). The scan identified 234 significant SNPs (MLM 2, BLINK 218, FarmCPU 30), of which 15 were significant in at least two models and one in all three. Of these, 216 lay within 25 kb of a B73 RefGen\_v5 gene, yielding 448 candidate genes (Supplementary Table~S16). Because FarmCPU selects pseudo-QTNs as covariates and reports P values from a model that already contains them, its P values are post-selection and are not Bonferroni statements; the multi-locus models are therefore treated as a candidate-generating layer rather than as independent confirmation.
+
+To test whether these associations track nitrogen or merely the ancestry structure correlated with it, we scanned seven environmental control traits in the same panel, through the same pipeline and at the same threshold: latitude, absolute latitude, longitude, elevation, soil pH, cation exchange capacity, and aridity. Soil N showed the lowest overlap with the geographic traits of any phenotype tested (Supplementary Fig.~\ref{fig:supp_soiln_specificity}A). Four of its 234 SNPs (1.7\%) were also significant for latitude, absolute latitude, longitude or elevation, against 1.1 expected by chance. The same comparison applied to latitude itself returned 18.9\% overlap and to longitude 16.0\%, confirming that the test detects geographically driven signal when it is present. Soil N associations were also consistent across depth: 51 of the 234 SNPs (21.8\%) were significant for soil nitrogen at 5--15~cm as well, and only one of those 51 overlapped any geographic trait. Given the correlation between the two depths, this agreement is expected and indicates stability of the association rather than independent replication. The clearest residual overlap was with aridity, shared by 38 SNPs (16.2\%) and by 17 of the 51 SNPs common to both depths (Supplementary Fig.~\ref{fig:supp_soiln_specificity}B). The strongest association in the scan, S9\_151742636 ($P = 2.6 \times 10^{-13}$), 5 kb from \textit{Zm00001eb399680}, a chloroplastic Sec-independent (TatC) protein translocase, is one of these: it is significant in two models and at both depths, but is also significant for soil pH and aridity. Aridity governs mineralization rates and is therefore expected to share genetic architecture with soil N, so we treat this overlap as a shared mechanism rather than as contamination. Together these results indicate that the soil-N signal is not a relabelling of geography, while leaving the relatedness confound described above unresolved; the full SNP-by-trait matrix is given in Supplementary Table~S15.
+
+Fourteen SNPs were significant in at least two models and in none of the seven environmental traits (Table~\ref{tab:soilN_specific}). Two of these mapped to focal nitrogen-metabolism candidates. S5\_22338979 lies 4.4 kb from \textit{Zm00001eb220040}, which encodes a protein with an aspartate/glutamate/uridylate kinase domain annotated for aspartate kinase activity, amino acid biosynthesis and threonine biosynthesis. It is the only soil-N SNP significant in all three models, it is significant at both soil depths, and a second independent SNP 41 bp away (S5\_22338938) marks the same locus. Since aspartate kinase catalyzes an early committed step in the aspartate-family amino acid pathway, this locus is a plausible mediator of soil N effects on downstream amino acid biosynthesis. S1\_16128632 falls within \textit{Zm00001eb005710}, a CN hydrolase domain-containing protein annotated as omega-amidase/NIT2-like, with hydrolase activity on C--N bonds and roles in oxaloacetate, asparagine and glutamine metabolism. The strongest soil-N-specific association, S8\_138640842 ($P = 3.5 \times 10^{-11}$), lies inside \textit{Zm00001eb356170}, a methionine S-methyltransferase. At 5--15~cm a second methionine-cycle enzyme was recovered, S-adenosylmethionine synthase (\textit{Zm00001eb354640}, 0.1 kb from S8\_133179205), so that both the methylation of methionine and the synthesis of S-adenosylmethionine from it are represented in the soil-N scan. These inferences rest on annotation and GO terms rather than direct experiments and should be viewed cautiously.
+
+Two further loci point to regulatory and trafficking mechanisms. S3\_54622531 lies within 25 kb of \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger and ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} regulates thermotolerance and grain size, with loss-of-function alleles increasing both \citep{Lin2023TTL1}; this SNP is significant in two models and at both soil depths. A second SNP, S9\_129109559, falls within \textit{Zm00001eb393130}, a vacuolar protein sorting-associated protein 52A gene, with a nearby nitrilase-associated gene, \textit{Zm00001eb393120}, in the same 25-kb window. Arabidopsis Vps52p/POK localizes to the Golgi and functions in vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, suggesting this locus may link soil-N association to protein sorting and intracellular transport that could alter nutrient redistribution under contrasting N conditions. This SNP reached significance in only one of the three models and is the weakest of the candidates named here, consistent with its behaviour under the latent-factor scan, and it should be weighted accordingly.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MAIN TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table*}[t]
+\centering
+\caption{Soil-nitrogen-associated SNPs in the maize landrace panel that are specific to soil nitrogen. All 14 are significant at a 5\% false discovery rate in at least two of the three association models and are \emph{not} significant for any of the seven environmental control traits scanned in the same panel (latitude, absolute latitude, longitude, elevation, pH, cation exchange capacity, aridity). The N$_{5\text{--}15}$ column marks SNPs that are also significant for soil nitrogen at 5--15~cm depth. Positions are B73 RefGen\_v5 and are carried in the marker name. The nearest gene within 25~kb is shown, with its distance where the SNP lies outside it; all genes in each window, and the per-trait significance of every SNP, are given in Supplementary Tables~S15 and S16.}
+\label{tab:soilN_specific}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{@{}l c c r r l >{\raggedright\arraybackslash}X@{}}
+\hline
+SNP & Models & N$_{5\text{--}15}$ & Best $P$ & MAF & Nearest gene ($\le$25 kb) & Putative function \\
+\hline
+\texttt{S5\_22338979} & 3 & yes & $1.9\times10^{-8}$ & 0.030 & \texttt{Zm00001eb220040} ($+$4.4 kb) & Aspartate/glutamate/uridylate kinase domain-containing protein \\
+\texttt{S5\_47128668} & 2 & yes & $4.8\times10^{-8}$ & 0.323 & --- & no gene within 25 kb \\
+\texttt{S3\_54622531} & 2 & yes & $6.5\times10^{-8}$ & 0.050 & \texttt{Zm00001eb130210} ($+$17.9 kb) & RING/FYVE/PHD zinc finger, \textit{TTL1}-like \\
+\texttt{S5\_53136163} & 2 & yes & $5.7\times10^{-7}$ & 0.221 & \texttt{Zm00001eb226000} & Protein kinase domain-containing protein \\
+\texttt{S1\_5543355} & 2 & yes & $1.2\times10^{-6}$ & 0.090 & \texttt{Zm00001eb001920} & Transcription repressor \\
+\texttt{S8\_138640842} & 2 & -- & $3.5\times10^{-11}$ & 0.254 & \texttt{Zm00001eb356170} & Methionine S-methyltransferase \\
+\texttt{S1\_87643408} & 2 & -- & $2.6\times10^{-10}$ & 0.356 & \texttt{Zm00001eb022740} & Syndetin \\
+\texttt{S2\_191754648} & 2 & -- & $6.2\times10^{-10}$ & 0.074 & \texttt{Zm00001eb100890} & Uncharacterised protein \\
+\texttt{S8\_153826994} & 2 & -- & $5.1\times10^{-8}$ & 0.020 & \texttt{Zm00001eb359990} & Homeobox-DDT domain protein RLT1 \\
+\texttt{S5\_22338938} & 2 & -- & $6.5\times10^{-8}$ & 0.031 & \texttt{Zm00001eb220040} ($+$4.3 kb) & Aspartate/glutamate/uridylate kinase domain-containing protein \\
+\texttt{S1\_16128632} & 2 & -- & $2.9\times10^{-7}$ & 0.016 & \texttt{Zm00001eb005710} & CN hydrolase domain-containing protein (omega-amidase/NIT2) \\
+\texttt{S6\_37926580} & 2 & -- & $7.4\times10^{-7}$ & 0.179 & \texttt{Zm00001eb265710} & HB transcription factor \\
+\texttt{S6\_161051050} & 2 & -- & $1.1\times10^{-6}$ & 0.231 & \texttt{Zm00001eb289040} ($+$3.1 kb) & Uncharacterised protein \\
+\texttt{S2\_117202525} & 2 & -- & $2.1\times10^{-6}$ & 0.071 & --- & no gene within 25 kb \\
+\hline
+\end{tabularx}
+\end{table*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MAIN FIGURE 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[ht!]
     \centering
-    \includegraphics[width=\linewidth]{Figs/main/Fig1.png}
-    \caption{Geographic distribution of soil nitrogen and genome-wide association results for soil N. \textbf{A}, Sampling locations across the Americas colored by soil N, with an inset histogram showing the soil N distribution across accessions. \textbf{B}, Manhattan plot of soil N GWAS results across chromosomes. Colored points indicate loci identified by the MLM, MLMM, BLINK, and FarmCPU models. Horizontal lines indicate suggestive and more stringent significance thresholds.}
+    \includegraphics[width=\textwidth]{final/main_figs/Fig2_soilN.png}
+    \caption{Soil nitrogen association mapping in the maize landrace panel.
+    (\textbf{A}) Total soil nitrogen at 0--5~cm against 5--15~cm for the 3,107 accessions
+    scanned ($r = 0.84$); the dotted line is $y = x$ and the solid line the least-squares fit.
+    (\textbf{B}) Collection sites coloured by soil nitrogen at 0--5~cm, with the distribution of
+    values inset; the accessions carry 467 distinct values.
+    (\textbf{C}) Genomic heritability of soil nitrogen at both depths after removing 0, 10 and
+    50 genotype principal components from the phenotype. Error bars at 0 components are 95\%
+    profile-likelihood confidence intervals; heritability estimated from 1,000 permuted
+    phenotypes did not exceed 0.05. Heritability is unchanged after removing 10 components and
+    remains 0.98 at 0--5~cm after removing 50, indicating that the confounding between soil
+    nitrogen and genome-wide relatedness is not concentrated in the leading components.
+    (\textbf{D}) Manhattan plot of the three-model scan at 0--5~cm, showing all 495,755 markers.
+    Each SNP is drawn once at its smallest $P$ value; SNPs significant in at least one model are
+    coloured by the model giving the smallest $P$ among those that call them, and SNPs
+    significant in at least two models are ringed. Dashed lines mark the Benjamini--Hochberg
+    threshold at a 5\% false discovery rate for each model, in that model's colour, because the
+    threshold is estimated separately for each. Labelled genes are those discussed in the text.}
     \label{fig:soilN_gwas}
 \end{figure*}
 
-Two of the six SNPs shared across all four GWAS models mapped to focal nitrogen-metabolism candidate loci, S1\_16128632 within \textit{Zm00001eb005710} and S5\_22338979 4.4 kb downstream of \textit{Zm00001eb220040}. \textit{Zm00001eb005710}, encodes a CN hydrolase domain-containing protein. It is annotated as omega-amidase/NIT2-like activity, hydrolase activity on C--N bonds, and roles in oxaloacetate, asparagine, and glutamine metabolism (Supplementary Table S3). A second candidate, \textit{Zm00001eb220040}, encodes a protein with an aspartate/glutamate/uridylate kinase domain. Its GO annotations include aspartate kinase activity, amino acid biosynthesis, and threonine biosynthesis. Since aspartate kinase catalyzes an early committed step in the aspartate-family amino acid pathway, this locus is a plausible mediator of soil N effects on downstream amino acid biosynthesis (Supplementary Table S3). These inferences are based on annotations and GO terms rather than direct experiments and should be viewed cautiously.
 
-Two of the loci point to regulatory and trafficking mechanisms. SNP S3\_54622531 lies within 25 kb of \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger and ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} regulates thermotolerance and grain size, with loss-of-function alleles increasing both \citep{Lin2023TTL1}. A second SNP, S9\_129109559, falls within \textit{Zm00001eb393130}, a vacuolar protein sorting-associated protein 52A gene, with a nearby nitrilase-associated gene, \textit{Zm00001eb393120}, in the same 25-kb window. Arabidopsis Vps52p/POK localizes to the Golgi and functions in vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, suggesting this locus may link soil-N association to protein sorting, vesicle trafficking, and intracellular transport that could alter nutrient redistribution or cellular remodeling under contrasting N conditions. Together with the omega-amidase and aspartate kinase loci, these SNPs indicate that the shared soil-N GWAS signal includes both direct N-metabolism candidates and broader regulatory or trafficking components.
+%%%%%%%%%%%%%%%%%%%%%  SUPPLEMENTARY FIGURE -- SPECIFICITY  %%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig_soilN_specificity.png}
+    \caption{Soil nitrogen associations are not explained by geography.
+    Nine traits were scanned in the same landrace panel with the same three models, the same
+    three genotype principal components and the same 5\% false discovery rate threshold.
+    (\textbf{A}) For each trait, the percentage of its significant SNPs that are also significant
+    for at least one of the four geographic traits (latitude, absolute latitude, longitude,
+    elevation), leaving the trait itself out of that union. Grey ticks mark the proportion
+    expected if the two SNP sets were independent. Latitude and longitude act as positive
+    controls: a geographically driven trait overlaps the others at 16--19\%. Soil nitrogen at
+    0--5~cm is the lowest of the nine at 1.7\% (4 of 234 SNPs, against 1.1 expected).
+    (\textbf{B}) Soil nitrogen compared with each trait individually; orange points are the
+    observed number of shared SNPs, grey points the expectation under independence. The
+    strongest sharing is with soil nitrogen at 5--15~cm (51 SNPs), which is expected given the
+    correlation between depths, and with aridity (38 SNPs); no geographic trait shares more than
+    two. $^{*}P<0.05$, $^{**}P<10^{-5}$, $^{***}P<10^{-20}$, hypergeometric test, which assumes
+    independent traits and therefore overstates significance for correlated pairs;
+    n.s., not significant.}
+    \label{fig:supp_soiln_specificity}
+\end{figure*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%  SUPPLEMENTARY FIGURE -- PCA SCREE  %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{final/supp_figs/SuppFig_genotype_PCA_scree.png}
+    \caption{Genotype principal component structure in the Romero-Navarro maize landrace panel
+    ($n = 3{,}539$; 495,755 markers). (\textbf{A}) Variance explained by each of the first 20
+    principal components; the three used as GWAS covariates are shown in blue. The decrement
+    between successive components is 0.750 percentage points from PC1 to PC2 and 0.194 from PC2
+    to PC3, but no more than 0.06 for any later pair, so PC3 is the last component before the
+    scree flattens. (\textbf{B}) Cumulative variance explained. The first three components
+    together account for 2.01\% of genotypic variance, reflecting the diffuse population
+    structure of a panel sampled continuously across Mexico, Central America and South America
+    rather than a small number of discrete subpopulations.}
+    \label{fig:supp_pca_scree}
+\end{figure*}
+
+
 
 
 \subsection{Free amino acid analysis in Indian Chief and Jarvis implicate protein turnover in population-specific N allocation}
@@ -732,6 +840,9 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
     \label{fig:supp_faa_asn_pro_rank}
 \end{figure*}
 
+% =========================
+% SUPP FIGURE S2
+% =========================  
 
 \begin{figure*}[ht!]
     \centering
@@ -753,28 +864,7 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
     \label{fig:supp_heritability}
 \end{figure*}
 
-% =========================
-% SUPP FIGURE S2
-% =========================  
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig2_heritability.png}
-    \caption{Heritability of grain amino acid phenotypes in the Goodman--Buckler panel.
-    \textbf{A}, Broad-sense heritability $H^2$ on a line-mean basis, estimated on the log
-    scale from the raw plot records (two years $\times$ two blocks) with the model
-    $y \sim 1 + (1|\mathrm{taxa}) + (1|\mathrm{year}) + (1|\mathrm{taxa{:}year}) +
-    (1|\mathrm{year{:}block})$, for 40 free and 76 protein-bound amino acid traits. The
-    Cullis generalized $H^2$ agrees with the line-mean estimate to within 0.018 across
-    every trait and is not shown separately. \textbf{B}, Genomic heritability $h^2$ from a
-    VanRaden genomic relationship matrix plotted against $H^2$, with error bars giving the
-    95\% profile-likelihood interval on $h^2$ and the dashed line showing $y = x$. Because
-    $H^2$ is estimated from approximately 1{,}000 plot records and $h^2$ from 272
-    genotypes, the $h^2$ intervals are wide (median width 0.52) and point estimates cross
-    the line freely; $H^2$ falls within the $h^2$ interval for 73\% of traits. Fifteen of
-    116 traits returned a non-zero $h^2$ from a permuted phenotype and are excluded from
-    panel \textbf{B}; their $H^2$ is unaffected and is retained in panel \textbf{A}.}
-    \label{fig:supp_heritability}
-\end{figure*}
+
 
 % =========================
 % SUPP FIGURE S2
