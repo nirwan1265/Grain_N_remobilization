@@ -63,15 +63,26 @@ legend_inside <- function(x, y, just) {
   else       theme(legend.position = c(x, y), legend.justification = just)
 }
 
-base_thm <- theme_classic(base_size = 11) +
-  theme(axis.text  = element_text(colour = "black", size = 9),
-        axis.title = element_text(size = 10),
-        axis.line  = element_line(colour = "black", linewidth = 0.5),
-        axis.ticks = element_line(colour = "black", linewidth = 0.45),
-        legend.key.size = unit(0.35, "cm"),
-        legend.text  = element_text(size = 8),
-        legend.title = element_text(size = 8.5),
-        plot.margin  = margin(6, 8, 6, 8))
+## ---- house theme (as in final/scripts/SuppFig2_heritability.R and
+## scripts/10_Fig4_Fst_Tajima_Pi.R) -- every panel uses it
+plot_theme <- theme_minimal(base_size = 24) +
+  theme(
+    plot.title   = element_text(size = 14, face = "bold", hjust = 0.5,
+                                margin = margin(b = 10)),
+    plot.tag     = element_text(size = 24, face = "bold"),
+    plot.tag.position = c(0.01, 0.99),
+    axis.title.x = element_text(size = 18, face = "bold"),
+    axis.title.y = element_text(size = 18, face = "bold"),
+    axis.text.x  = element_text(size = 16, colour = "black"),
+    axis.text.y  = element_text(size = 16, face = "bold", colour = "black"),
+    axis.line    = element_line(colour = "black"),
+    panel.grid   = element_blank(),
+    legend.background = element_rect(fill = "white", colour = "grey70", linewidth = 0.4),
+    legend.title = element_blank(),
+    legend.text  = element_text(size = 13),
+    plot.margin  = margin(15, 15, 15, 15)
+  )
+base_thm <- plot_theme
 
 ################################################################################
 ## PANELS A and B — heritability
@@ -85,7 +96,7 @@ perm_hi <- max(h2$perm_null_max)
 pA <- ggplot(h2, aes(Layer, h2, colour = Layer)) +
   annotate("rect", xmin = 0.4, xmax = 2.6, ymin = 0, ymax = perm_hi,
            fill = "grey75", alpha = 0.55) +
-  annotate("text", x = 2.58, y = perm_hi + 0.035, hjust = 1, size = 2.9,
+  annotate("text", x = 2.58, y = perm_hi + 0.035, hjust = 1, size = 5,
            fontface = "italic", colour = "grey30",
            label = "permuted phenotypes (1,000x)") +
   geom_errorbar(aes(ymin = h2_lo, ymax = h2_hi), width = 0.10, linewidth = 0.6) +
@@ -93,7 +104,7 @@ pA <- ggplot(h2, aes(Layer, h2, colour = Layer)) +
   scale_colour_manual(values = LAYER_COL, guide = "none") +
   scale_x_discrete(expand = c(0, 0.4)) +
   scale_y_continuous(limits = c(-0.02, 1.06), breaks = seq(0, 1, 0.25)) +
-  labs(x = "Soil depth", y = expression(paste("Genomic ", italic(h)^2))) +
+  labs(x = "Soil depth", y = expression(bold(paste("Genomic ", bolditalic(h)^2)))) +
   base_thm
 
 ## ---- B: h2 after removing genotype PCs from the phenotype ------------------
@@ -106,18 +117,18 @@ ci0 <- h2[, .(Layer, nPC = 0L, lo = h2_lo, hi = h2_hi)]
 pB <- ggplot(pB_dat, aes(nPC, h2, colour = Layer, group = Layer)) +
   geom_hline(yintercept = 1, linewidth = 0.3, linetype = "dotted", colour = "grey60") +
   geom_errorbar(data = ci0, aes(x = nPC, ymin = lo, ymax = hi, colour = Layer),
-                inherit.aes = FALSE, width = 1.6, linewidth = 0.6,
+                inherit.aes = FALSE, width = 1.6, linewidth = 1.0,
                 position = position_dodge(width = 1.2)) +
-  geom_line(linewidth = 0.7) +
-  geom_point(size = 2.4) +
-  annotate("text", x = 50, y = 0.805, hjust = 1, vjust = 0, size = 3.0, colour = "grey30",
+  geom_line(linewidth = 1.3) +
+  geom_point(size = 4.5) +
+  annotate("text", x = 50, y = 0.805, hjust = 1, vjust = 0, size = 5.2, colour = "grey30",
            parse = TRUE,
            label = sprintf('"permuted phenotypes (1,000x): "~italic(h)^2 <= %.2f', perm_max)) +
   scale_colour_manual(values = LAYER_COL, name = "Soil depth") +
   scale_x_continuous(breaks = c(0, 10, 50)) +
   scale_y_continuous(limits = c(0.80, 1.02), breaks = seq(0.80, 1.00, 0.05)) +
   labs(x = "Genotype PCs removed from phenotype",
-       y = expression(paste("Genomic ", italic(h)^2))) +
+       y = expression(bold(paste("Genomic ", bolditalic(h)^2)))) +
   base_thm +
   legend_inside(0.03, 0.30, c(0, 0)) +
   theme(legend.background = element_rect(fill = alpha("white", 0.85), colour = NA))
@@ -132,11 +143,11 @@ cat(sprintf("panel A: n = %d, Pearson r = %.3f (95%% CI %.3f-%.3f)\n",
 lim <- range(c(dep$N_0_5, dep$N_5_15))
 pDep <- ggplot(dep, aes(N_0_5, N_5_15)) +
   geom_abline(slope = 1, intercept = 0, linetype = "dotted", colour = "grey55", linewidth = 0.4) +
-  geom_point(size = 0.9, alpha = 0.35, shape = 16, colour = LAYER_COL[["0-5 cm"]]) +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = "black", linewidth = 0.6) +
-  annotate("text", x = lim[1], y = lim[2], hjust = 0, vjust = 1, size = 3.2,
+  geom_point(size = 1.8, alpha = 0.35, shape = 16, colour = LAYER_COL[["0-5 cm"]]) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = "black", linewidth = 1.1) +
+  annotate("text", x = lim[1], y = lim[2], hjust = 0, vjust = 1, size = 6.5,
            label = sprintf("italic(r) == %.2f", rr$estimate), parse = TRUE) +
-  annotate("text", x = lim[1], y = lim[2] - 0.08 * diff(lim), hjust = 0, vjust = 1, size = 3.0,
+  annotate("text", x = lim[1], y = lim[2] - 0.08 * diff(lim), hjust = 0, vjust = 1, size = 5.5,
            label = sprintf("n = %s", format(nrow(dep), big.mark = ","))) +
   coord_equal(xlim = lim, ylim = lim) +
   labs(x = "Soil N, 0-5 cm", y = "Soil N, 5-15 cm") +
@@ -155,22 +166,23 @@ wmap <- wmap[long >= -125 & long <= -28 & lat >= -56 & lat <= 42]
 pC_map <- ggplot() +
   geom_polygon(data = wmap, aes(long, lat, group = group),
                fill = "grey95", colour = "grey70", linewidth = 0.18) +
-  geom_point(data = geo, aes(long, lat, colour = soil_n), size = 0.55, alpha = 0.8) +
+  geom_point(data = geo, aes(long, lat, colour = soil_n), size = 1.3, alpha = 0.8) +
   coord_fixed(1.3, xlim = c(-118, -32), ylim = c(-48, 38)) +
   scale_colour_viridis_c(option = "D", name = "Soil N") +
   labs(x = "Longitude", y = "Latitude") +
   base_thm +
   legend_inside(0.97, 0.97, c(1, 1)) +
-  theme(legend.key.height = unit(0.85, "cm"), legend.key.width = unit(0.25, "cm"),
+  theme(legend.title = element_text(size = 14, face = "bold"),
+        legend.key.height = unit(1.6, "cm"), legend.key.width = unit(0.45, "cm"),
         legend.background = element_rect(fill = alpha("white", 0.8), colour = NA))
 
 pC_hist <- ggplot(geo, aes(soil_n, fill = after_stat(x))) +
   geom_histogram(bins = 25, colour = "black", linewidth = 0.25) +
   scale_fill_viridis_c(option = "D", guide = "none") +
   labs(x = "Soil N", y = "Count") +
-  theme_classic(base_size = 8) +
-  theme(axis.text = element_text(colour = "black", size = 6),
-        axis.title = element_text(size = 7),
+  theme_classic(base_size = 13) +
+  theme(axis.text = element_text(colour = "black", size = 13),
+        axis.title = element_text(size = 14, face = "bold"),
         plot.background = element_rect(fill = "white", colour = "grey60", linewidth = 0.3),
         plot.margin = margin(3, 4, 3, 3))
 
@@ -201,6 +213,10 @@ scan_all <- rbindlist(lapply(MODELS, read_full))
 cut <- scan_all[fdr_sig == TRUE, .(cutoff = max(P)), by = Model]
 cut[, logc := -log10(cutoff)]
 print(cut)
+## ONE line drawn: 5% FDR at the most lenient per-model cutoff, so every
+## FDR-significant SNP (any model) sits on or above it
+fdr_line <- min(cut$logc)
+cat(sprintf("single FDR 5%% line at -log10(p) = %.2f\n", fdr_line))
 
 ## models in which each SNP is FDR-significant
 nmod <- scan_all[fdr_sig == TRUE, .(n_models = uniqueN(Model)), by = SNP]
@@ -242,27 +258,29 @@ lab[, hj := c(S1_16128632 = 0, S5_22338979 = 0, S8_138640842 = 0.5, S9_151742636
 ymax <- max(best$logp) * 1.08
 pD <- ggplot() +
   geom_point(data = bg, aes(x, logp, colour = grp),
-             size = 0.45, alpha = 0.6, shape = 16, show.legend = FALSE) +
-  geom_hline(data = cut, aes(yintercept = logc, colour = Model),
-             linewidth = 0.5, linetype = "dashed", show.legend = FALSE) +
-  geom_point(data = sig, aes(x, logp, colour = Model), size = 1.9, alpha = 0.9) +
+             size = 0.9, alpha = 0.6, shape = 16, show.legend = FALSE) +
+  geom_hline(yintercept = fdr_line, linewidth = 1.0, linetype = "dashed",
+             colour = "red3") +
+  annotate("text", x = min(best$x), y = fdr_line, label = "FDR 5%",
+           hjust = 0, vjust = 1.6, size = 5.5, fontface = "bold", colour = "red3") +
+  geom_point(data = sig, aes(x, logp, colour = Model), size = 3.6, alpha = 0.9) +
   geom_point(data = sig[n_models >= 2], aes(x, logp),
-             shape = 21, size = 3.4, stroke = 0.55, colour = "black", fill = NA,
+             shape = 21, size = 6.2, stroke = 1.0, colour = "black", fill = NA,
              show.legend = FALSE) +
   scale_colour_manual(values = c(odd = "grey68", even = "grey45", MODEL_COL),
                       breaks = MODELS, name = "Best model") +
-  geom_text(data = lab, aes(x, logp + 0.55, label = gene, hjust = hj),
-            size = 2.7, fontface = "italic") +
+  geom_text(data = lab, aes(x, logp + 0.7, label = gene, hjust = hj),
+            size = 5.2, fontface = "italic") +
   scale_x_continuous(breaks = chr_tbl$centre, labels = chr_tbl$Chr,
                      expand = expansion(mult = 0.02)) +
   scale_y_continuous(limits = c(0, ymax), expand = expansion(mult = c(0, 0.02))) +
-  labs(x = "Chromosome", y = expression(-log[10](italic(p)))) +
+  labs(x = "Chromosome", y = expression(bold(-log[10](bolditalic(p))))) +
   base_thm +
   legend_inside(0.005, 0.995, c(0, 1)) +
   theme(legend.direction = "horizontal",
         legend.background = element_rect(fill = alpha("white", 0.85),
                                          colour = "grey70", linewidth = 0.3)) +
-  guides(colour = guide_legend(override.aes = list(size = 2.6, alpha = 1)))
+  guides(colour = guide_legend(override.aes = list(size = 5, alpha = 1)))
 
 ################################################################################
 ## ASSEMBLE
@@ -271,10 +289,10 @@ top <- (pDep | wrap_elements(full = pC) | pB) + plot_layout(widths = c(1, 1.05, 
 fig <- (top / pD) +
   plot_layout(heights = c(1.15, 1.00)) +
   plot_annotation(tag_levels = "A") &
-  theme(plot.tag = element_text(size = 13, face = "bold"))
+  theme(plot.tag = element_text(size = 32, face = "bold"))
 
 ggsave(file.path(OUTDIR, "Fig2_soilN.png"), fig,
-       width = 15.0, height = 10.5, dpi = 400, bg = "white")
+       width = 26, height = 18, dpi = 300, limitsize = FALSE, bg = "white")
 ggsave(file.path(OUTDIR, "Fig2_soilN.pdf"), fig,
-       width = 15.0, height = 10.5, bg = "white")
+       width = 26, height = 18, limitsize = FALSE, bg = "white")
 cat("written:", file.path(OUTDIR, "Fig2_soilN.png"), "\n")
