@@ -1,0 +1,49 @@
+#!/bin/bash
+#BSUB -n 1
+#BSUB -W 240
+#BSUB -q sara
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=40GB]"
+#BSUB -J "fdr[1-78]%12"
+#BSUB -o logs/fdr.%J.%I.out
+#BSUB -e logs/fdr.%J.%I.err
+################################################################################
+## LSF array driver for 30b_split_trait_FDR.R -- one task per phenotype.
+##
+## SETUP (once, from this directory):
+##   mkdir -p logs
+##   ls /rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait/*.csv \
+##     | xargs -n1 basename | sed 's/\.csv$//' | sort > traits.txt
+##   wc -l traits.txt      # MUST equal the array range above. Last time it did
+##                         # not get checked and tasks 52 (Q.E) and 55 (R) were
+##                         # lost silently.
+##
+## SUBMIT:   bsub < 30b_split_trait_FDR.bsub
+##
+## AFTER:    ls $OUT_DIR/summary/*.csv | wc -l     # must be 78
+##           comm -23 traits.txt <(ls $OUT_DIR/summary/*.csv | xargs -n1 basename \
+##                                 | sed 's/_summary\.csv$//' | sort)
+##           grep -l "re-run" logs/fdr.*.err        # RETAIN_P too tight anywhere?
+##
+## RESUBMIT failed indices:  #BSUB -J "fdr[52,55]"
+##
+## Output goes to by_model_fdr/, NOT by_model/ -- the Bonferroni results stay
+## intact so the two thresholds can be compared before anything is committed to.
+################################################################################
+set -euo pipefail
+
+IN_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUT_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/by_model_fdr"
+TRAIT_LIST="traits.txt"
+
+module load R 2>/dev/null || true
+
+if [[ ! -f "$TRAIT_LIST" ]]; then echo "missing $TRAIT_LIST -- see SETUP" >&2; exit 1; fi
+TRAIT=$(sed -n "${LSB_JOBINDEX}p" "$TRAIT_LIST")
+if [[ -z "${TRAIT:-}" ]]; then
+  echo "no trait on line ${LSB_JOBINDEX} of ${TRAIT_LIST} -- array range exceeds the list" >&2
+  exit 1
+fi
+
+echo "=== array index ${LSB_JOBINDEX} on $(hostname): ${TRAIT} ==="
+Rscript 30b_split_trait_FDR.R "$TRAIT" "$IN_DIR" "$OUT_DIR"

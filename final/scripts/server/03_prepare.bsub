@@ -1,0 +1,37 @@
+#!/bin/bash
+#BSUB -J vcf2mat
+#BSUB -n 1
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -W 120
+#BSUB -o logs/prepare.%J.out
+#BSUB -e logs/prepare.%J.err
+
+BASE=/share/maize/ntanduk/GrainN/GWAS_env
+PY=/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/env_GAPIT/bin/python3
+mkdir -p "$BASE/logs" "$BASE/geno"
+
+# Locate all_maize2.vcf.gz without needing anyone to type a path.
+# $VCF can still be set from the command line to override:
+#     bsub -env "all, VCF=/full/path/all_maize2.vcf.gz" < 03_prepare.bsub
+VCF=${VCF:-/rsstu/users/r/rrellan/sara/ZeaGEA/RomeroNavarro2017/vcf/v5/all_maize2.vcf.gz}
+
+if [ -z "$VCF" ]; then
+  echo "searching for all_maize2.vcf.gz ..."
+  for root in /rsstu/users/r/rrellan /share/maize/ntanduk "$HOME"; do
+    [ -d "$root" ] || continue
+    VCF=$(find "$root" -name all_maize2.vcf.gz -type f 2>/dev/null | head -1)
+    [ -n "$VCF" ] && break
+  done
+fi
+
+if [ -z "$VCF" ] || [ ! -f "$VCF" ]; then
+  echo "ERROR: could not find all_maize2.vcf.gz."
+  echo "Run this and resubmit with the result:"
+  echo "   find / -name all_maize2.vcf.gz 2>/dev/null"
+  echo "   bsub -env \"all, VCF=<that path>\" < 03_prepare.bsub"
+  exit 1
+fi
+
+echo "VCF: $VCF"
+echo "size: $(du -h "$VCF" | cut -f1)"
+"$PY" "$BASE/00_vcf_to_matrix.py" "$VCF" "$BASE/geno"

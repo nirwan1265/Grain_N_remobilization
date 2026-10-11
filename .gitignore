@@ -10,3 +10,5 @@ final/results/_stage/
 final/**/_to_delete/
 final/results/
 tmp_gwas_debug*/
+final/**/_to_delete*/
+final/**/_to_delete*/

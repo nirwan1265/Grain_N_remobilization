@@ -1,0 +1,100 @@
+#!/bin/bash
+#BSUB -n 1
+#BSUB -W 240
+#BSUB -q sara
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=40GB]"
+#BSUB -J fdr_all
+#BSUB -o /share/maize/ntanduk/GrainN/GWAS_env/logs/fdr_all.%J.out
+#BSUB -e /share/maize/ntanduk/GrainN/GWAS_env/logs/fdr_all.%J.err
+################################################################################
+## NO JOB ARRAY. One job, all 78 traits in sequence.
+##
+## WHY NOT AN ARRAY: on this cluster `bsub <` with -J "name[1-78]" fails every
+## task instantly with
+##     Cannot open your job file: /home/ntanduk/.lsbatch/<ts>.<jobid>.<index>
+## the trailing number being the array index. LSF cannot read the per-index
+## spool file. Arrays have now failed here three times. Do not reintroduce one.
+##
+## WHY ABSOLUTE PATHS EVERYWHERE: the conda env is active on the LOGIN node, not
+## on the compute node, so a bare `Rscript` is not on PATH where this runs. The
+## same applies to the working directory -- nothing here depends on where you
+## happened to be standing when you typed bsub.
+##
+## EDIT THESE FOUR IF ANYTHING MOVES. Everything else is derived.
+################################################################################
+
+WORKDIR="/share/maize/ntanduk/GrainN/GWAS_env"
+RSCRIPT_BIN="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/R_plot/bin/Rscript"
+IN_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUT_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/by_model_fdr"
+
+TRAIT_LIST="${WORKDIR}/traits.txt"
+RSCRIPT_FILE="${WORKDIR}/30b_split_trait_FDR.R"
+
+################################################################################
+## SETUP (once, on the login node):
+##   mkdir -p ${WORKDIR}/logs
+##   ls ${IN_DIR}/*.csv | xargs -n1 basename | sed 's/\.csv$//' | sort > ${TRAIT_LIST}
+##   wc -l ${TRAIT_LIST}        # must be 78
+##   ls -la ${RSCRIPT_BIN}      # must exist -- if not, fix RSCRIPT_BIN above
+##
+## SUBMIT:  bsub < 30b_run_all_FDR.bsub
+## WATCH :  tail -f ${WORKDIR}/logs/fdr_all.*.out
+################################################################################
+
+cd "$WORKDIR" || { echo "FATAL: cannot cd to $WORKDIR" >&2; exit 1; }
+
+echo "=== host $(hostname) ==="
+echo "cwd      : $(pwd)"
+echo "Rscript  : $RSCRIPT_BIN"
+echo "started  : $(date)"
+echo
+
+if [[ ! -x "$RSCRIPT_BIN" ]]; then
+  echo "FATAL: $RSCRIPT_BIN is not executable on this compute node." >&2
+  echo "       The conda env is only active on the login node; give the full path." >&2
+  exit 1
+fi
+for f in "$TRAIT_LIST" "$RSCRIPT_FILE"; do
+  [[ -f "$f" ]] || { echo "FATAL: $f not found -- see SETUP in this file" >&2; exit 1; }
+done
+
+"$RSCRIPT_BIN" -e 'cat("R", as.character(getRversion()), "| data.table",
+  as.character(packageVersion("data.table")), "\n")' || {
+  echo "FATAL: Rscript ran but data.table is missing in that env" >&2; exit 1; }
+
+N=$(grep -c . "$TRAIT_LIST")
+echo "traits to process: $N"
+echo "output           : $OUT_DIR"
+echo
+
+FAILED=()
+i=0
+while IFS= read -r TRAIT; do
+  [[ -z "$TRAIT" ]] && continue
+  i=$((i+1))
+  echo "---------- [$i/$N] $TRAIT ----------"
+  if "$RSCRIPT_BIN" "$RSCRIPT_FILE" "$TRAIT" "$IN_DIR" "$OUT_DIR"; then
+    :
+  else
+    echo "!!! FAILED: $TRAIT" >&2
+    FAILED+=("$TRAIT")
+  fi
+done < "$TRAIT_LIST"
+
+echo
+echo "=== finished $(date) ==="
+DONE=$(ls "$OUT_DIR"/summary/*_summary.csv 2>/dev/null | wc -l)
+echo "summary files written: $DONE of $N"
+
+if [[ ${#FAILED[@]} -gt 0 ]]; then
+  echo "FAILED TRAITS (${#FAILED[@]}): ${FAILED[*]}" >&2
+  echo "re-run just these:" >&2
+  for t in "${FAILED[@]}"; do
+    echo "  $RSCRIPT_BIN $RSCRIPT_FILE $t $IN_DIR $OUT_DIR" >&2
+  done
+  exit 1
+fi
+
+echo "all $N traits completed"

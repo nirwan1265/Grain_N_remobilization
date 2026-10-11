@@ -40,7 +40,7 @@
 ##
 ## Input : final/results/_stage/{FAA,PBAA}_Goodman_Buckler.csv
 ## Output: final/supp_figs/SuppFig3_FAA_vs_PBAA_pools.png / .pdf
-##         final/supp_tables/SuppTable_S4_FAA_vs_PBAA_pools.csv
+##         final/supp_tables/SuppTable_S5_FAA_vs_PBAA_pools.csv
 ################################################################################
 
 suppressPackageStartupMessages({
@@ -93,11 +93,20 @@ PB[, Total := rowSums(.SD, na.rm = TRUE), .SDcols = PBAA_AA]
 ## collapse FAA to the hydrolysate's resolution so both are computed identically
 F[, `:=`(Asx_equiv = D + N, Glx_equiv = E + Q)]
 
-F[,  Proline_fraction := P / Total]      # P here is the proline column of F
+## MATCHED DENOMINATOR. The hydrolysate resolves 15 amino acids: Gly is not
+## reported, Trp and Cys are destroyed. Dividing the free pool by its full
+## 20-amino-acid total while dividing the bound pool by its 15 therefore
+## compares fractions of different wholes, and understates every free-pool
+## fraction by the ~8.4% of the free pool that Gly+Trp+Cys carry. Both sides
+## now use the 15 amino acids they share. This is the calculation the Results
+## text describes; the previous version divided by `Total`.
+F[, Total_matched := Total - G - W - C]
+
+F[,  Proline_fraction := P / Total_matched]   # P here is the proline column of F
 PB[, Proline_fraction := Pro / Total]
-F[, amide_basic_fraction := (Asx_equiv + Glx_equiv + R + K + H) / Total]
+F[, amide_basic_fraction := (Asx_equiv + Glx_equiv + R + K + H) / Total_matched]
 PB[, amide_basic_fraction := (Asx + Glx + Arg + Lys + His) / Total]
-F[, N_rich_strict_fraction := (N + Q + R + K + H) / Total]   # FAA only
+F[, N_rich_strict_fraction := (N + Q + R + K + H) / Total_matched]   # FAA only
 
 ## N proxy under the three Asx/Glx assumptions
 F[, N_proxy := as.matrix(.SD) %*% faa_n[FAA_AA], .SDcols = FAA_AA]
@@ -136,7 +145,7 @@ s4 <- rbindlist(list(
   cmp("FAA_N_proxy",     "PBAA_N_proxy_1.5", "Amino acid-derived N proxy (Asx/Glx = 1.5 N)"),
   cmp("FAA_proline",     "PBAA_proline",     "Proline fraction"),
   cmp("FAA_amide_basic", "PBAA_amide_basic", "Asx + Glx + basic fraction (matched definition)")))
-fwrite(s4, file.path(TAB, "SuppTable_S4_FAA_vs_PBAA_pools.csv"))
+fwrite(s4, file.path(TAB, "SuppTable_S5_FAA_vs_PBAA_pools.csv"))
 
 for (i in seq_len(nrow(s4))) { x <- s4[i]
   cat(sprintf("%-48s FAA %9.3f (CV %4.1f%%) | PBAA %9.3f (CV %4.1f%%) | %5.1fx | p=%.2g\n",

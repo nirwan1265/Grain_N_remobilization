@@ -30,9 +30,23 @@ ROOT     <- if (length(commandArgs(TRUE))) commandArgs(TRUE)[1] else "."
 IN_DIR   <- file.path(ROOT, "final", "results", "manhattan_thin")
 OUT_FILE <- file.path(ROOT, "final", "main_figs", "Fig_amino_Zm00001eb393450_manhattan.png")
 
-M          <- 4177796
-BONFERRONI <- 0.05 / M        # 1.1968e-08
-SUGGESTIVE <- 1 / M           # 2.3936e-07
+## THRESHOLD: Benjamini-Hochberg FDR 5%, the threshold used throughout the
+## paper. BH gives each phenotype x model its own cutoff, so each panel draws
+## its own line rather than one shared line. In practice the nine cutoffs span
+## -log10 6.05 to 6.97, under one log unit, so the panels stay comparable by
+## eye. The Bonferroni and suggestive lines of the previous version are gone:
+## neither threshold is used anywhere in the manuscript any more.
+FDR_DIR <- file.path(ROOT, "final", "results", "goodman_buckler_amino_acid_gwas",
+                     "by_model_fdr", "by_model")
+
+fdr_cutoff <- function(trait, model) {
+  f <- file.path(FDR_DIR, sprintf("%s_%s.RData", trait, model))
+  if (!file.exists(f)) stop("no FDR file for ", trait, " / ", model, ": ", f)
+  e <- new.env(parent = emptyenv()); nm <- load(f, envir = e)
+  d <- as.data.table(get(nm[1], envir = e))
+  if (!nrow(d[fdr_sig == TRUE])) stop(trait, "/", model, ": no FDR-significant SNP")
+  max(d[fdr_sig == TRUE]$P.value)
+}
 
 GENE       <- "Zm00001eb393450"
 GENE_LAB   <- "Lysine-rich arabinogalactan protein 17"
@@ -41,6 +55,11 @@ GENE_POS   <- 130359872       # gene midpoint, v5
 PEAK_WINDOW <- 250e3          # anchor the arrow on the lead SNP within this
 
 ## columns of four, ordered by significance
+## The locus is FDR-significant for NINE phenotypes. Eight are shown, in two
+## columns of four, ordered by the strength of the association here. N.E is the
+## ninth and weakest (P = 1.2e-07 against 4.5e-13 for EHPRQ) and is left out of
+## the figure; the caption says so. To add it, append c("N.E", "FarmCPU") and
+## put the thinned scan in final/results/manhattan_thin/.
 COLUMNS <- list(
   list(panels = list(
     c("EHPRQ",   "FarmCPU"), c("LAV", "FarmCPU"),
@@ -52,8 +71,7 @@ COLUMNS <- list(
 
 band_dark  <- "#3B3B3B"
 band_light <- "#9E9E9E"
-bonf_col   <- "#C0392B"
-sugg_col   <- "#2980B9"
+fdr_col    <- "#C0392B"
 marker_col <- "#1A5276"
 
 theme_gwas <- theme_minimal(base_size = 11) +
@@ -100,10 +118,8 @@ panel <- function(trait, model, show_x, gene_lab = NA_character_) {
 
   ggplot(d, aes(gpos, logp, colour = band)) +
     geom_point(size = .8, alpha = .85) +
-    geom_hline(yintercept = -log10(SUGGESTIVE), linetype = "dotted",
-               colour = sugg_col, linewidth = .5) +
-    geom_hline(yintercept = -log10(BONFERRONI), linetype = "dashed",
-               colour = bonf_col, linewidth = .6) +
+    geom_hline(yintercept = -log10(fdr_cutoff(trait, model)), linetype = "dashed",
+               colour = fdr_col, linewidth = .6) +
     annotate("segment", x = px, xend = px, y = a_hi, yend = a_lo,
              colour = marker_col, linewidth = .7,
              arrow = arrow(type = "closed", length = unit(0.07, "inches"))) +
@@ -126,13 +142,16 @@ panel <- function(trait, model, show_x, gene_lab = NA_character_) {
     theme(axis.text.x = if (show_x) element_text(size = 7.5) else element_blank())
 }
 
-cols_built <- lapply(COLUMNS, function(cl) {
+cols_built <- lapply(seq_along(COLUMNS), function(ci) {
+  cl <- COLUMNS[[ci]]
   ps <- lapply(seq_along(cl$panels), function(i) {
     p <- cl$panels[[i]]
     message("  ", p[1], " / ", p[2])
     panel(p[1], p[2],
           show_x   = (i == length(cl$panels)),
-          gene_lab = if (i == 1) sprintf("%s  %s", GENE_LAB, GENE) else NA_character_)
+          ## label the gene once, on the very first panel -- with three columns
+          ## the old `i == 1` rule printed it three times
+          gene_lab = if (i == 1 && ci == 1) sprintf("%s  %s", GENE_LAB, GENE) else NA_character_)
   })
   wrap_plots(ps, ncol = 1)
 })
