@@ -4,12 +4,12 @@
 ## test for the soil-N GWAS signal, built from the control GWAS themselves.
 ##
 ## Each trait (soil N 0-5 / 5-15 cm, aridity, pH, CEC, elevation, latitude,
-## |latitude|, longitude) was scanned with MLM, BLINK and FarmCPU (3 PCs,
+## longitude) was scanned with MLM, BLINK and FarmCPU (3 PCs,
 ## 495,755 SNPs); a SNP is significant for a trait if BH-FDR <= 0.05 in any
 ## model.
 ##
 ## A  share of each trait's significant SNPs that are also significant for a
-##    geographic trait (union of latitude, |latitude|, longitude, elevation,
+##    geographic trait (union of latitude, longitude, elevation,
 ##    trait itself left out). Tick = share expected by chance.
 ## B  soil N (0-5 cm) against every other trait: observed shared SNPs vs the
 ##    hypergeometric expectation  E = n_soilN * n_trait / M.
@@ -31,10 +31,10 @@ TAB  <- gv("GN_TABDIR", file.path(REPO, "final", "supp_tables"))
 dir.create(FIG, FALSE, TRUE); dir.create(TAB, FALSE, TRUE)
 
 M <- 495755; MODELS <- c("MLM", "BLINK", "FarmCPU")
-GEO <- c("latitude", "abs_latitude", "longitude", "elevation")
+GEO <- c("latitude", "longitude", "elevation")
 LAB <- c(N_0_5 = "Soil N (0-5 cm)", N_5_15 = "Soil N (5-15 cm)", aridity = "Aridity",
          pH = "Soil pH", CEC = "CEC", elevation = "Elevation", latitude = "Latitude",
-         abs_latitude = "|Latitude|", longitude = "Longitude")
+         longitude = "Longitude")
 
 plot_theme <- theme_minimal(base_size = 24) +
   theme(plot.title = element_text(size = 14, face = "bold", hjust = 0.5, margin = margin(b = 10)),

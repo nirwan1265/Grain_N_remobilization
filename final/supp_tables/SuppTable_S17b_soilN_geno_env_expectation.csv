@@ -1,9 +1,9 @@
 group,axis,n,k,pct,P_vs_genome,P_vs_Ncorrelated
-Whole genome,Geographic (4 axes),495755,13632,2.74974533791893,,
-Whole genome,"Geographic + pH, CEC, aridity (7 axes)",495755,16548,3.33793910298434,,
-Top 1% |r| with soil N,Geographic (4 axes),4957,2370,47.8111761145854,,
-Top 1% |r| with soil N,"Geographic + pH, CEC, aridity (7 axes)",4957,3265,65.8664514827517,,
-Soil-N GWAS SNPs (FDR),Geographic (4 axes),234,38,16.2393162393162,2.07478516680171e-18,3.16305011668726e-24
-Soil-N GWAS SNPs (FDR),"Geographic + pH, CEC, aridity (7 axes)",234,44,18.8034188034188,1.75700100339463e-20,2.11669767067862e-49
-"Soil-N GWAS, >=2 models",Geographic (4 axes),15,3,20,,
-"Soil-N GWAS, >=2 models","Geographic + pH, CEC, aridity (7 axes)",15,3,20,,
+Whole genome,Geographic (3 axes),495755,8956,1.8065375034039,,
+Whole genome,"Geographic + pH, CEC, aridity (6 axes)",495755,12078,2.43628405159807,,
+Top 1% |r| with soil N,Geographic (3 axes),4957,1779,35.8886423239863,,
+Top 1% |r| with soil N,"Geographic + pH, CEC, aridity (6 axes)",4957,2840,57.2927173693766,,
+Soil-N GWAS SNPs (FDR),Geographic (3 axes),234,31,13.2478632478632,1.08681416447273e-17,5.94808890534155e-15
+Soil-N GWAS SNPs (FDR),"Geographic + pH, CEC, aridity (6 axes)",234,38,16.2393162393162,3.84776724975138e-20,2.42247262885178e-38
+"Soil-N GWAS, >=2 models",Geographic (3 axes),15,2,13.3333333333333,,
+"Soil-N GWAS, >=2 models","Geographic + pH, CEC, aridity (6 axes)",15,3,20,,

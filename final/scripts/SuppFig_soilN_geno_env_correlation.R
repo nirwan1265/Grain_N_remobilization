@@ -11,20 +11,22 @@
 ##        lead genes, and which environmental GWAS each SNP is also significant in.
 ##
 ## A  the 15 SNPs significant in >= 2 models: tile = genome-wide percentile of
-##    |r| with each variable; dot = SNP also FDR-significant in that variable's
-##    GWAS. Right: call.
+##    |r| with each variable; circle = SNP also FDR-significant in that
+##    variable's GWAS (not drawn for soil N 0-5 cm, where every SNP is). Right: call.
 ## B  expectation test: share of SNPs in the top 1 % of the genome on >= 1
-##    geographic axis (latitude, |latitude|, longitude, elevation) or >= 1
-##    environmental axis (+ pH, CEC, aridity), for the genome, for SNPs in the top
-##    1 % for soil N by correlation alone, and for the GWAS soil-N SNPs.
+##    geographic axis (latitude, longitude, elevation) or >= 1 environmental axis
+##    (+ pH, CEC, aridity), for the genome, for SNPs in the top 1 % for soil N by
+##    correlation alone, and for the GWAS soil-N SNPs.
 ##
-## Call (per SNP; comparators = 7 non-N axes)
-##   linked to geography/climate : top 1 % on >= 1 comparator
-##   not testable                : soil-N |r| outside the top 5 % (signal only
-##                                 conditional, in BLINK/FarmCPU) -- the marginal
-##                                 test cannot clear it
-##   watch                       : best comparator 1-5 %
-##   clear                       : no comparator in the top 5 %
+## Call (per SNP; comparators = 6 non-N variables)
+##   linked to environment : top 1 % of the genome on >= 1 comparator
+##   inconclusive          : the SNP's own genotype-soil N correlation is weak
+##                           (outside the top 5 % of the genome), so there is no
+##                           soil-N correlation to compare the other variables
+##                           against; the test cannot separate it either way.
+##                           Typical of SNPs whose GWAS signal appears only in
+##                           BLINK/FarmCPU after adjusting for other loci.
+##   not linked            : neither of the above
 ################################################################################
 suppressPackageStartupMessages({library(data.table); library(ggplot2); library(patchwork)})
 gv   <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
@@ -46,11 +48,11 @@ plot_theme <- theme_minimal(base_size = 24) +
         legend.title = element_blank(), legend.text = element_text(size = 13),
         plot.margin = margin(15, 15, 15, 15))
 
-VARS <- c("N_0_5", "N_5_15", "latitude", "abs_latitude", "longitude", "elevation", "pH", "CEC", "aridity")
+VARS <- c("N_0_5", "N_5_15", "latitude", "longitude", "elevation", "pH", "CEC", "aridity")
 LAB  <- c(N_0_5 = "Soil N\n0-5 cm", N_5_15 = "Soil N\n5-15 cm", latitude = "Latitude",
-          abs_latitude = "|Latitude|", longitude = "Longitude", elevation = "Elevation",
+          longitude = "Longitude", elevation = "Elevation",
           pH = "pH", CEC = "CEC", aridity = "Aridity")
-GEO <- c("latitude", "abs_latitude", "longitude", "elevation")
+GEO <- c("latitude", "longitude", "elevation")
 CMP <- c(GEO, "pH", "CEC", "aridity")
 
 g <- fread(F_COR)
@@ -62,9 +64,8 @@ g[, cmp_axis := CMP[apply(as.matrix(.SD), 1, which.min)], .SDcols = paste0("pct_
 s <- fread(F_S15)
 x <- merge(s[, .(SNP, Chr, Pos, MAF, n_models, min_P, env_hits, replicates_N_5_15,
                  lead_gene, lead_rel, lead_dist, lead_name)], g, by = "SNP")
-x[, call := fifelse(cmp_min < 1, "linked to geography/climate",
-            fifelse(pct_N_0_5 >= 5, "not testable",
-            fifelse(cmp_min < 5, "watch", "clear")))]
+x[, call := fifelse(cmp_min < 1, "linked to environment",
+            fifelse(pct_N_0_5 >= 5, "inconclusive", "not linked"))]
 cat(sprintf("%d FDR soil-N SNPs matched to correlations (of %d)\n", nrow(x), nrow(s)))
 print(x[n_models >= 2, .N, by = call])
 
@@ -82,16 +83,16 @@ hm <- melt(h, id.vars = c("SNP", "rowlab", "env_hits", "replicates_N_5_15"),
 hm[, var := sub("^pct_", "", var)]
 hm[, bin := cut(pct, c(-Inf, 0.1, 1, 5, Inf), labels = c("top 0.1%", "top 1%", "top 5%", "> 5%"))]
 hm[, hit := mapply(function(v, e, r) {
-  if (v == "N_0_5") return(TRUE); if (v == "N_5_15") return(isTRUE(r))
-  v %in% trimws(strsplit(e, ",")[[1]]) }, var, ifelse(is.na(env_hits), "", gsub("abs_latitude", "abs_latitude", env_hits)), replicates_N_5_15)]
+  if (v == "N_0_5") return(FALSE); if (v == "N_5_15") return(isTRUE(r))
+  v %in% trimws(strsplit(e, ",")[[1]]) }, var, ifelse(is.na(env_hits), "", env_hits), replicates_N_5_15)]
 hm[, var := factor(var, levels = VARS)]
 
-callcol <- c(`linked to geography/climate` = "#B2182B", `not testable` = "grey45",
-             watch = "#E08214", clear = "#1B7837")
+callcol <- c(`linked to environment` = "#B2182B", `inconclusive` = "grey45",
+             `not linked` = "#1B7837")
 pA <- ggplot(hm, aes(var, rowlab)) +
   geom_tile(aes(fill = bin), colour = "white", linewidth = 1.2) +
   geom_point(data = hm[hit == TRUE], shape = 21, size = 4.2, fill = "white", colour = "black", stroke = 1) +
-  geom_vline(xintercept = c(2.5, 6.5), linewidth = 0.8, colour = "grey20") +
+  geom_vline(xintercept = c(2.5, 5.5), linewidth = 0.8, colour = "grey20") +
   scale_fill_manual(values = c(`top 0.1%` = "#08306B", `top 1%` = "#2171B5", `top 5%` = "#9ECAE1", `> 5%` = "grey93"),
                     drop = FALSE, name = "Genome-wide rank of |r|") +
   geom_text(data = h, aes(x = length(VARS) + 0.75, y = rowlab, label = call, colour = call),
@@ -99,7 +100,7 @@ pA <- ggplot(hm, aes(var, rowlab)) +
   scale_colour_manual(values = callcol) +
   scale_x_discrete(labels = LAB, expand = expansion(add = c(0.6, 4.6))) +
   labs(x = NULL, y = NULL,
-       caption = "Tile: genome-wide rank of |r(genotype, variable)|.  Dot: SNP also FDR-significant in that variable's GWAS.") +
+       caption = "Tile: genome-wide rank of |r(genotype, variable)|.  Circle: SNP also FDR-significant in that variable's GWAS.") +
   coord_cartesian(clip = "off") +
   plot_theme +
   theme(axis.line = element_blank(), axis.text.x = element_text(size = 14, face = "bold"),
@@ -112,8 +113,8 @@ nN  <- g[pct_N_0_5 < 1]                     # SNPs correlated with soil N, no GW
 grp <- list(`Whole genome` = g, `Top 1% |r| with soil N` = nN,
             `Soil-N GWAS SNPs (FDR)` = x, `Soil-N GWAS, >=2 models` = x[n_models >= 2])
 B <- rbindlist(lapply(names(grp), function(k) { d <- grp[[k]]
-  rbind(data.table(group = k, axis = "Geographic (4 axes)", n = nrow(d), k = sum(d$geo_min < 1)),
-        data.table(group = k, axis = "Geographic + pH, CEC, aridity (7 axes)", n = nrow(d), k = sum(d$cmp_min < 1)))}))
+  rbind(data.table(group = k, axis = "Geographic (3 axes)", n = nrow(d), k = sum(d$geo_min < 1)),
+        data.table(group = k, axis = "Geographic + pH, CEC, aridity (6 axes)", n = nrow(d), k = sum(d$cmp_min < 1)))}))
 B[, pct := 100 * k / n]
 B[, group := factor(group, levels = names(grp))]
 ## binomial tests: GWAS SNPs vs genome (more than chance?) and vs soil-N-correlated SNPs (less?)
@@ -145,7 +146,8 @@ fig <- (pA | pB) + plot_layout(widths = c(2.1, 1)) + plot_annotation(tag_levels 
   theme(plot.tag = element_text(size = 28, face = "bold"))
 for (ext in c("png", "pdf"))
   ggsave(file.path(FIG, paste0("SuppFig_soilN_geno_env_correlation.", ext)), fig,
-         width = 28, height = 13, dpi = 300, bg = "white")
+         width = 28, height = 13, dpi = 300, bg = "white",
+         device = if (ext == "pdf") cairo_pdf else "png")
 
 ## ---- Supplementary Table S17 -------------------------------------------------
 setorder(x, -n_models, min_P)
@@ -155,7 +157,8 @@ s17 <- x[, c(list(SNP = SNP, Chr = Chr, Pos = Pos, MAF = round(MAF, 4), n_models
              setNames(lapply(VARS, function(v) signif(get(paste0("pct_", v)), 3)), paste0("pct_", VARS)),
              list(best_geographic_pct = signif(geo_min, 3), best_comparator_pct = signif(cmp_min, 3),
                   best_comparator = cmp_axis, env_GWAS_hits = env_hits,
-                  also_N_5_15_GWAS = replicates_N_5_15, call = call))]
+                  also_N_5_15_GWAS = replicates_N_5_15,
+                  call = fifelse(call == "inconclusive", "inconclusive (weak soil-N correlation)", call)))]
 fwrite(s17, file.path(TAB, "SuppTable_S17_soilN_geno_env_correlation.csv"))
 fwrite(B, file.path(TAB, "SuppTable_S17b_soilN_geno_env_expectation.csv"))
 cat("written figure + S17\n")
