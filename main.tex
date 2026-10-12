@@ -243,7 +243,6 @@ Amino acid phenotypes were repeatable. Median broad-sense heritability ($H^2$) w
 
 To quantify the free pool's contribution to grain amino acid nitrogen, we compared genotype-level FAA and PBAA across matched taxa ($n = 279$; Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}, Supplementary Table S5) \citep{Shrestha2022}. The protein-bound pool dominated, exceeding the free pool 47-fold for total amino acids and 42-fold for amino acid-derived N (paired Wilcoxon signed-rank tests, all $P < 10^{-40}$). FAAs, therefore, contributed only 2.4\% of estimated grain amino acid-derived N. Pool composition, nevertheless, differed. Because acid hydrolysis converts asparagine to aspartate and glutamine to glutamate, protein-bound measurements resolve only Asx and Glx. Tryptophan and cysteine are destroyed, and glycine was not reported. Thus, the protein-bound pool includes 15 amino acids compared to 20 in the free pool. To compare the two pools on the same basis we used matched denominators throughout: free Asp+Asn and Glu+Gln were combined, and glycine, tryptophan, and cysteine --- 8.4\% of the free pool --- were excluded from the free-pool total. On this basis proline was 23.1\% of FAAs compared with 10.6\% of PBAAs, and (Asx + Glx + Arg + Lys + His) was 56.0\% of the free pool against 26.5\% of the protein-bound pool. Because the matched fraction necessarily bundles aspartate with asparagine and glutamate with glutamine, it includes residues carrying a single nitrogen. Restricted to unambiguously N-rich residues, which only the free pool resolves, asparagine, glutamine, arginine, lysine, and histidine together accounted for 35.7\% of FAAs. Composition variability across genotypes also differed. The proline fraction varied by 44\% (FAA) against 8\% (PBAA), and the combined amide and basic fraction by 20\% against 6\%. Thus, the free pool is a small but compositionally labile and highly repeatable fraction of grain amino acid nitrogen, dominated by asparagine and proline and enriched for nitrogen-rich residues, whereas protein-bound composition varies far less across the panel.
 
-\caption{A locus on chromosome 9 is associated with nine amino acid phenotypes. Shown are Manhattan plots for eight phenotypes with an FDR-significant association at \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506), \textit{N.E} ($P = 1.2 \times 10^{-7}$) is omitted. Arrows mark the lead SNP within 250 kb of the gene. Dashed red lines indicate the 5\% Benjamini--Hochberg FDR threshold (cutoffs $P = 8.6 \times 10^{-7}$ to $3.1 \times 10^{-8}$; $-\log_{10}$ 6.1--7.5). The model for each phenotype is in parentheses.}
 
 %===================== FIGURE 1 =====================
 
@@ -309,13 +308,13 @@ The Goodman--Buckler analysis identified 2,512 candidate genes for grain amino a
 
 A soil-N GWAS captures historical environmental associations rather than a measured grain phenotype, so we interpreted it cautiously. Our aim was not to equate soil-N adaptation with grain amino acid composition, but to ask whether independent ecological and grain-biochemical signals point to similar N-metabolism functions. We paired the Romero Navarro maize landrace panel \citep{RomeroNavarro2017Landraces} with total soil N at 0--5~cm and 5--15~cm at each accession's collection site \citep{Batjes2006ISRICWISE5ArcMin}. The two depths were highly correlated across 3,107 accessions ($r = 0.84$; Fig.~\ref{fig:soilN_gwas}A), so we used 0--5~cm as the primary phenotype and 5--15~cm as a check. The landraces span Mexico, Central America and South America and cover a broad range of soil N (Fig.~\ref{fig:soilN_gwas}B). A key limitation is that soil N is a property of the site, not the plant: the 3,107 accessions map to only 467 distinct values. As a result, the genomic heritability of soil N was $\sim$1.00 (permuted phenotypes, $h^2 \leq 0.05$). It was unchanged after removing 10 genotype PCs and was still 0.98 after removing 50 (0.88 at 5--15~cm; Fig.~\ref{fig:soilN_gwas}C), so soil N is almost fully predicted by genome-wide ancestry. PC covariates cannot remove this: the three PCs used explain only 2.01\% of genotypic variance, because structure is diffuse in a panel sampled continuously across the Americas (Supplementary Fig.~\ref{fig:supp_pca_scree}). We therefore treated confounding by relatedness and geography as the main interpretive risk and tested it directly.
 
-We ran the soil-N GWAS with the same three models used for grain (MLM, BLINK, FarmCPU), scanning 495,755 markers with three genotype PCs as covariates and a 5\% Benjamini--Hochberg FDR threshold (Fig.~\ref{fig:soilN_gwas}D). We found 234 significant SNPs (MLM 2, BLINK 218, FarmCPU 30); 15 were significant in at least two models and one in all three. Of the 234, 216 were within 25~kb of a B73 RefGen\_v5 gene, giving 448 candidate genes (Supplementary Table~S16). Because FarmCPU reports P values after adding pseudo-QTNs as covariates, we treat multi-locus results as candidate-generating rather than confirmatory.
+We ran the soil-N GWAS with the same three models used for grain (MLM, BLINK, FarmCPU), scanning 495,755 markers with three genotype PCs as covariates and a 5\% Benjamini--Hochberg FDR threshold (Fig.~\ref{fig:soilN_gwas}D). We found 234 significant SNPs (MLM 2, BLINK 218, FarmCPU 30); 15 were significant in at least two models and one in all three. Of the 234, 216 were within 25~kb of a B73 RefGen\_v5 gene, giving 448 candidate genes (Supplementary Table~S8). Because FarmCPU reports P values after adding pseudo-QTNs as covariates, we treat multi-locus results as candidate-generating rather than confirmatory.
 
-To test whether these associations simply track geography or climate, we used two approaches. First, we ran the same GWAS on the other site variables (latitude, longitude, elevation, soil pH, CEC, aridity and soil N at 5--15~cm) and counted the SNPs each shared with soil N (Supplementary Fig.~\ref{suppfig:soilN_specificity}; Supplementary Table~S18). Only 2 of the 234 soil-N SNPs (0.9\%) were also significant for latitude, longitude or elevation, no more than the 0.7 expected by chance ($P = 0.14$), whereas latitude and longitude shared 18.2\% and 15.0\% of their SNPs with the other geographic variables (Supplementary Fig.~\ref{suppfig:soilN_specificity}A). Soil N instead shared many SNPs with soil N at 5--15~cm (51 vs.\ 0.1 expected), aridity (38 vs.\ 0.2), soil pH (13 vs.\ 0.1) and CEC (3 vs.\ 0.2) (Supplementary Fig.~\ref{suppfig:soilN_specificity}B). Because the two depths are highly correlated, their shared SNPs show consistency, not independent replication. In total, 190 of the 234 soil-N SNPs were not significant for any other variable (Supplementary Table~S15), including 14 of the 15 SNPs detected by at least two models. Second, for every SNP in the genome we computed the correlation between its genotype and each site variable across the 3,107 accessions, and ranked it against all other SNPs (Supplementary Fig.~\ref{suppfig:soilN_geno_env}; Supplementary Table~S17). A SNP whose genotype correlates with soil N but not with any other variable is likely tracking soil N itself; one that correlates equally with latitude or aridity cannot be separated from them. Of the 234 soil-N SNPs, 31 (13.2\%) ranked in the top 1\% of the genome for at least one geographic variable, against 1.8\% genome-wide ($P = 1.1\times10^{-17}$). However, among SNPs chosen only because their genotype correlates with soil N, the share was 35.9\%, so the GWAS SNPs carry much less geographic signal than correlation alone would produce ($P = 5.9\times10^{-15}$; Supplementary Fig.~\ref{suppfig:soilN_geno_env}B). Among the 15 multi-model SNPs, three were linked to the environment (Supplementary Fig.~\ref{suppfig:soilN_geno_env}A). The clearest was S9\_151742636, 5~kb from \textit{Zm00001eb399680} (chloroplast Sec-independent translocase TatC) and the strongest SNP in the scan ($P = 2.6\times10^{-13}$; Fig.~\ref{fig:soilN_gwas}D). Its genotype ranked in the top 0.001\% of the genome for correlation with aridity and soil pH, and it was also significant in the pH and aridity GWAS, so we treat it as a climate-linked locus rather than a soil-N candidate. S6\_161051050 (\textit{Zm00001eb289040}; aridity, top 0.95\%) and S5\_47128668 (no gene within 25~kb; CEC, top 0.2\%) were excluded on the same grounds. Five SNPs, including both aspartate kinase SNPs and the $\omega$-amidase SNP, correlated strongly with soil N and not with any other variable. The remaining seven were inconclusive: their genotype correlated only weakly with soil N across all accessions (outside the top 5\% of the genome), so there was no soil-N correlation to compare against and the test could not separate them either way. Their GWAS signal appears only in BLINK and FarmCPU, which test each SNP after accounting for population structure and other strongly associated SNPs. None of these seven was significant in any of the other environmental GWAS, which used the same models. Twelve SNPs detected by at least two models passed both tests (Table~\ref{tab:soilN_specific}).
+To test whether these associations simply track geography or climate, we used two approaches. First, we ran the same GWAS on the other site variables (latitude, longitude, elevation, soil pH, CEC, aridity and soil N at 5--15~cm) and counted the SNPs each shared with soil N (Supplementary Fig.~\ref{suppfig:soilN_specificity}; Supplementary Table~S9). Only 2 of the 234 soil-N SNPs (0.9\%) were also significant for latitude, longitude or elevation, no more than the 0.7 expected by chance ($P = 0.14$), whereas latitude and longitude shared 18.2\% and 15.0\% of their SNPs with the other geographic variables (Supplementary Fig.~\ref{suppfig:soilN_specificity}A). Soil N instead shared many SNPs with soil N at 5--15~cm (51 vs.\ 0.1 expected), aridity (38 vs.\ 0.2), soil pH (13 vs.\ 0.1) and CEC (3 vs.\ 0.2) (Supplementary Fig.~\ref{suppfig:soilN_specificity}B). Because the two depths are highly correlated, their shared SNPs show consistency, not independent replication. In total, 190 of the 234 soil-N SNPs were not significant for any other variable (Supplementary Table~S10), including 14 of the 15 SNPs detected by at least two models. Second, for every SNP in the genome we computed the correlation between its genotype and each site variable across the 3,107 accessions, and ranked it against all other SNPs (Supplementary Fig.~\ref{suppfig:soilN_geno_env}; Supplementary Table~S11). A SNP whose genotype correlates with soil N but not with any other variable is likely tracking soil N itself; one that correlates equally with latitude or aridity cannot be separated from them. Of the 234 soil-N SNPs, 31 (13.2\%) ranked in the top 1\% of the genome for at least one geographic variable, against 1.8\% genome-wide ($P = 1.1\times10^{-17}$). However, among SNPs chosen only because their genotype correlates with soil N, the share was 35.9\%, so the GWAS SNPs carry much less geographic signal than correlation alone would produce ($P = 5.9\times10^{-15}$; Supplementary Fig.~\ref{suppfig:soilN_geno_env}B; Supplementary Table~S12). Among the 15 multi-model SNPs, three were linked to the environment (Supplementary Fig.~\ref{suppfig:soilN_geno_env}A). The clearest was S9\_151742636, 5~kb from \textit{Zm00001eb399680} (chloroplast Sec-independent translocase TatC) and the strongest SNP in the scan ($P = 2.6\times10^{-13}$; Fig.~\ref{fig:soilN_gwas}D). Its genotype ranked in the top 0.001\% of the genome for correlation with aridity and soil pH, and it was also significant in the pH and aridity GWAS, so we treat it as a climate-linked locus rather than a soil-N candidate. S6\_161051050 (\textit{Zm00001eb289040}; aridity, top 0.95\%) and S5\_47128668 (no gene within 25~kb; CEC, top 0.2\%) were excluded on the same grounds. Five SNPs, including both aspartate kinase SNPs and the $\omega$-amidase SNP, correlated strongly with soil N and not with any other variable. The remaining seven were inconclusive: their genotype correlated only weakly with soil N across all accessions (outside the top 5\% of the genome), so there was no soil-N correlation to compare against and the test could not separate them either way. Their GWAS signal appears only in BLINK and FarmCPU, which test each SNP after accounting for population structure and other strongly associated SNPs. None of these seven was significant in any of the other environmental GWAS, which used the same models. Twelve SNPs detected by at least two models passed both tests (Table~\ref{tab:soilN_specific}).
 
 Two of these map near nitrogen-metabolism genes. S5\_22338979 lies 4.4~kb from \textit{Zm00001eb220040}, an aspartate kinase, the first enzyme of the aspartate-derived amino acid pathway (lysine, threonine, methionine). It is the only soil-N SNP significant in all three models, it is also significant at 5--15~cm, and a second SNP 41~bp away (S5\_22338938) is significant in two models. Its genotype ranked in the top 1\% of the genome for soil N at both depths and outside the top 20\% for every other site variable. S1\_16128632 falls within \textit{Zm00001eb005710}, an $\omega$-amidase/NIT2-like CN-hydrolase that acts on the transamination products of glutamine and asparagine. It ranked in the top 0.2\% of the genome for soil N and outside the top 15\% for every other variable. The strongest of the 12 SNPs, S8\_138640842 ($P = 3.5\times10^{-11}$), lies within \textit{Zm00001eb356170} (methionine S-methyltransferase); its signal comes only from BLINK and FarmCPU, and it was inconclusive in the correlation test. At 5--15~cm, a second methionine-cycle enzyme was recovered: S8\_133179205 lies 0.1~kb from \textit{Zm00001eb354640} (S-adenosylmethionine synthase) and was not linked to any other site variable (strongest, aridity, top 8.7\%). These interpretations rest on annotation and should be treated as hypotheses
 
-Two further loci suggest regulatory or trafficking roles. S3\_54622531, significant in two models and at both depths, lies 17.9~kb from \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} affects thermotolerance and grain size \citep{Lin2023TTL1}; it passed both specificity tests. S9\_129109559 falls within \textit{Zm00001eb393130} (vacuolar protein sorting-associated protein 52A), with \textit{Zm00001eb393120} (nitrilase-associated) in the same 25-kb window. Arabidopsis Vps52/POK localizes to the Golgi and mediates vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, so this locus may link soil N to protein sorting and nutrient redistribution. However, it is significant in only one model, making it the weakest candidate here. However, it is significant in only one model and its genotype is moderately correlated with $|$latitude$|$ (top 1.9\%), making it the weakest candidate here.
+Two further loci suggest regulatory or trafficking roles. S3\_54622531, significant in two models and at both depths, lies 17.9~kb from \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} affects thermotolerance and grain size \citep{Lin2023TTL1}; it passed both specificity tests. S9\_129109559 falls within \textit{Zm00001eb393130} (vacuolar protein sorting-associated protein 52A), with \textit{Zm00001eb393120} (nitrilase-associated) in the same 25-kb window. Arabidopsis Vps52/POK localizes to the Golgi and mediates vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, so this locus may link soil N to protein sorting and nutrient redistribution. However, it is significant in only one model, making it the weakest candidate here.
 
 %===================== TABLE 2 =====================
 \begin{table}[htbp]
@@ -324,9 +323,9 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
   \caption{\textbf{Soil-N SNPs detected by at least two GWAS models that passed both
   environmental specificity tests.} SNPs were FDR-significant (5\%) for soil N at 0--5~cm in at
   least two of MLM (M), BLINK (B) and FarmCPU (F); were not significant in the GWAS of latitude,
-  longitude, elevation, soil pH, CEC or aridity (Supplementary Table~S15); and their genotype was
+  longitude, elevation, soil pH, CEC or aridity (Supplementary Table~S10); and their genotype was
   not in the top 1\% of the genome for correlation with any of those variables
-  (Supplementary Table~S17). $P$, lowest $P$ across models; 5--15~cm, also FDR-significant for
+  (Supplementary Table~S11). $P$, lowest $P$ across models; 5--15~cm, also FDR-significant for
   soil N at 5--15~cm; Corr., genotype--environment correlation call: not linked, genotype
   correlates strongly with soil N and with no other variable; inconclusive, genotype correlates
   only weakly with soil N across all accessions, so the correlation test cannot judge it
@@ -371,45 +370,9 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
   are significant in at least two models. The dashed red line marks the 5\% FDR threshold
   ($-\log_{10}P = 4.66$, the most lenient of the three models' thresholds).
   Candidate genes named in the text are labelled.}
-  \label{fig:soilN}
+  \label{fig:soilN_gwas}
 \end{figure*}
 
-%===================== SUPP TABLE S18 =====================
-\begin{table}[htbp]
-  \centering
-  \small
-  \caption{\textbf{Supplementary Table S18. Environmental overlap test for FDR-significant SNPs.}
-  Observed vs.\ expected number of shared FDR-significant SNPs (MLM, BLINK and FarmCPU combined).
-  Expected $= n_1 n_2 / M$, with $M = 495{,}755$; $P$, one-sided hypergeometric test.
-  The test assumes independent traits, so it overstates enrichment for correlated traits.}
-  \label{tab:S18}
-  \begin{tabular}{llrrrrrl}
-  \hline
-  Trait & Compared with & $n_1$ & $n_2$ & Observed & Expected & Fold & $P$ \\
-  \hline
-  \multicolumn{8}{l}{\textit{Each trait vs.\ geographic union (trait itself excluded)}}\\
-  Latitude          & Geographic union & 604 & 1,778 & 114 & 2.17 & 52.6 & $4.0\times10^{-156}$ \\
-  Longitude         & Geographic union & 725 & 1,659 & 116 & 2.43 & 47.8 & $2.0\times10^{-153}$ \\
-  Soil N (5--15 cm) & Geographic union & 222 & 2,268 &  12 & 1.02 & 11.8 & $7.5\times10^{-10}$ \\
-  CEC               & Geographic union & 330 & 2,268 &  16 & 1.51 & 10.6 & $6.0\times10^{-12}$ \\
-  Aridity           & Geographic union & 353 & 2,268 &  14 & 1.62 &  8.7 & $1.7\times10^{-9}$ \\
-  Soil pH           & Geographic union & 313 & 2,268 &  12 & 1.43 &  8.4 & $3.4\times10^{-8}$ \\
-  Elevation         & Geographic union & 187 & 2,087 &   6 & 0.79 &  7.6 & $1.6\times10^{-4}$ \\
-  $|$Latitude$|$    & Geographic union & 878 & 1,406 &  16 & 2.49 &  6.4 & $8.6\times10^{-9}$ \\
-  Soil N (0--5 cm)  & Geographic union & 234 & 2,268 &   4 & 1.07 &  3.7 & 0.023 \\
-  \hline
-  \multicolumn{8}{l}{\textit{Soil N (0--5 cm) vs.\ each trait}}\\
-  Soil N (0--5 cm) & Soil N (5--15 cm) & 234 & 222 & 51 & 0.11 & 486.7 & $3.6\times10^{-122}$ \\
-  Soil N (0--5 cm) & Aridity           & 234 & 353 & 38 & 0.17 & 228.1 & $2.4\times10^{-77}$ \\
-  Soil N (0--5 cm) & Soil pH           & 234 & 313 & 13 & 0.15 &  88.0 & $1.3\times10^{-21}$ \\
-  Soil N (0--5 cm) & CEC               & 234 & 330 &  3 & 0.16 &  19.3 & $5.5\times10^{-4}$ \\
-  Soil N (0--5 cm) & $|$Latitude$|$    & 234 & 878 &  2 & 0.41 &   4.8 & 0.065 \\
-  Soil N (0--5 cm) & Latitude          & 234 & 604 &  1 & 0.29 &   3.5 & 0.25 \\
-  Soil N (0--5 cm) & Longitude         & 234 & 725 &  1 & 0.34 &   2.9 & 0.29 \\
-  Soil N (0--5 cm) & Elevation         & 234 & 187 &  0 & 0.09 &   0.0 & 1.00 \\
-  \hline
-  \end{tabular}
-\end{table}
 
 \subsection{Free amino acid analysis in Indian Chief and Jarvis implicate protein turnover in population-specific N allocation}
 % \rra{This paragraph says Jarvis "exhibited greater post-anthesis loss of N from stover," but in the Methods (Grain/Stover Nitrogen) you say that the additional Jarvis grain N came from post-anthesis UPTAKE while stover-to-grain remobilization was "largely unchanged. You need to double check what Moll et al says in their paper. This changes the framing of the paper. If the grain-N were driven by post-anthesis uptake, the heavy emphasis on senesecence/autophagy/remobilization needs to be soften. Also, you probably want to cite https://www.nature.com/articles/s41598-019-45485-5}
@@ -417,7 +380,7 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
 
 To connect the Goodman--Buckler amino acid GWAS and soil-N environmental GWAS with a selection-based population framework, we next examined the Indian Chief and Jarvis maize populations. These populations provide an independent system for testing whether short-term selection altered grain amino acid pools and N allocation because Indian Chief and Jarvis served as open-pollinated base populations in a reciprocal recurrent-selection experiment for grain yield over 14 cycles \citep{Moll1994}. The original study showed that reciprocal recurrent selection altered N allocation differently between the two populations. At nonlimiting N supply, Jarvis Cycle~14 accumulated greater grain N, driven primarily by greater post-anthesis N uptake from the soil, while apparent N remobilization from stover to grain remained largely unchanged relative to the starting Jarvis population. In contrast, Indian Chief Cycle~14 showed increased post-anthesis stover biomass, lower post-anthesis N loss from stover, and no significant increase in grain N relative to the original Indian Chief population \citep{Moll1994}. These contrasting outcomes are consistent with broader maize NUE studies showing that grain N gains can reflect both improved N recovery from the soil and altered internal N allocation during grain filling \citep{Mueller2019NUE}. Therefore, we interpret the Indian Chief and Jarvis amino acid profiles as evidence of grain amino acid pool remodeling and N allocation differences, rather than as direct evidence for increased senescence-driven N remobilization.
 
-For FAA profiling, representative Cycle~0 and Cycle~14 individuals from Indian Chief and Jarvis were grown at the Central Crops Research Station in Clayton, North Carolina, under standard field management practices. We then analyzed FAA  abundance and composition metrics at Cycle~0 and Cycle~14 for grains (Fig. \ref{fig:fig4_faa}; Supplementary Fig.~\ref{fig:supp_pbaa_profiles}; Supplementary Table S5). Indian Chief showed significant remodeling of both total FAA abundance and relative FAA composition. Total FAA abundance increased from 7.62 in Cycle~0 to 13.42 in Cycle~14 (Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0194$), indicating an expansion of the measured free amino acid pool. Within this expanded pool, proline became more dominant (proline fraction increased from 0.320 to 0.519 ($p = 0.0157$; BH-adjusted $p = 0.0283$)). In contrast, acidic amino acids decreased as fractions of the total FAA pool. The aspartate fraction decreased from 0.115 to 0.075 ($p = 0.0157$; BH-adjusted $p = 0.0283$), and the glutamate fraction decreased from 0.140 to 0.062 ($p = 0.0068$; BH-adjusted $p = 0.0203$) (Supplementary Table S4). Thus, Indian Chief Cycle 14 showed both increased total FAA abundance and a compositional shift away from Asp/Glu fractions and toward proline enrichment. This shift is relevant because the soil N GWAS identified candidate genes connected to aspartate/asparagine and glutamine metabolism, including an aspartate kinase candidate.
+For FAA profiling, representative Cycle~0 and Cycle~14 individuals from Indian Chief and Jarvis were grown at the Central Crops Research Station in Clayton, North Carolina, under standard field management practices. We then analyzed FAA  abundance and composition metrics at Cycle~0 and Cycle~14 for grains (Fig. \ref{fig:fig4_faa}; Supplementary Fig.~\ref{fig:supp_pbaa_profiles}; Supplementary Table S15). Indian Chief showed significant remodeling of both total FAA abundance and relative FAA composition. Total FAA abundance increased from 7.62 in Cycle~0 to 13.42 in Cycle~14 (Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0194$), indicating an expansion of the measured free amino acid pool. Within this expanded pool, proline became more dominant (proline fraction increased from 0.320 to 0.519 ($p = 0.0157$; BH-adjusted $p = 0.0283$)). In contrast, acidic amino acids decreased as fractions of the total FAA pool. The aspartate fraction decreased from 0.115 to 0.075 ($p = 0.0157$; BH-adjusted $p = 0.0283$), and the glutamate fraction decreased from 0.140 to 0.062 ($p = 0.0068$; BH-adjusted $p = 0.0203$) (Supplementary Table S14). Thus, Indian Chief Cycle 14 showed both increased total FAA abundance and a compositional shift away from Asp/Glu fractions and toward proline enrichment. This shift is relevant because the soil N GWAS identified candidate genes connected to aspartate/asparagine and glutamine metabolism, including an aspartate kinase candidate.
 
 \begin{figure*}[ht!]
 \centering
@@ -428,9 +391,9 @@ Relative free amino acid (FAA) composition in Indian Chief (A) and Jarvis (B) at
 \label{fig:fig4_faa}
 \end{figure*}
 
-In contrast, Jarvis showed fewer significant changes. The clearest Jarvis signal was an increase in Asp fraction from 0.075 in Cycle~0 to 0.137 in Cycle~14. This change was nominally significant before multiple-testing correction (Wilcoxon rank-sum $p = 0.0189$) but not after BH correction ($p = 0.1323$). Other FAA metrics (total FAA abundance, proline fraction, N-rich FAA pool, and Glu fraction) did not differ significantly between cycles (Supplementary Table S5). Thus, unlike Indian Chief, Jarvis did not show statistically supported changes.
+In contrast, Jarvis showed fewer significant changes. The clearest Jarvis signal was an increase in Asp fraction from 0.075 in Cycle~0 to 0.137 in Cycle~14. This change was nominally significant before multiple-testing correction (Wilcoxon rank-sum $p = 0.0189$) but not after BH correction ($p = 0.1323$). Other FAA metrics (total FAA abundance, proline fraction, N-rich FAA pool, and Glu fraction) did not differ significantly between cycles (Supplementary Table S15). Thus, unlike Indian Chief, Jarvis did not show statistically supported changes.
 
-To test whether FAA compositional remodeling was accompanied by changes in amino acid-derived N pools, we converted FAA and PBAA measurements to N-equivalent values by weighting each amino acid by its N content and normalizing by sample mass (Supplementary Fig.~\ref{fig:supp_ic_j_aa_n_pools}; Supplementary Table S6). These values represent amino acid-derived N pools and not total elemental grain N as measured in the original recurrent-selection study \citep{Moll1994}. In Indian Chief, FAA-derived N per mg increased significantly from Cycle~0 to Cycle~14 (1.75 to 2.99; Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0129$), indicating the expansion of the free amino acid N pool. In contrast, PBAA-derived N and total amino acid-derived N did not change significantly, suggesting that the Indian Chief response was concentrated in the soluble FAA pool rather than in the larger protein-bound amino acid pool. This distinction is important because the FAA-derived N increase occurred alongside proline enrichment and reduced Asp/Glu fractions, indicating compositional remodeling of soluble amino acid N rather than a uniform increase across all grain amino acid pools. This interpretation is consistent with the Goodman--Buckler FAA--PBAA comparison, where the FAA and PBAA pools differed strongly in scale and composition, with FAA showing stronger proline enrichment and a higher N-rich fraction (Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}; Supplementary Tables S12--S14). Jarvis showed no significant changes in FAA-derived, PBAA-derived, or total amino acid-derived N pools.
+To test whether FAA compositional remodeling was accompanied by changes in amino acid-derived N pools, we converted FAA and PBAA measurements to N-equivalent values by weighting each amino acid by its N content and normalizing by sample mass (Supplementary Fig.~\ref{fig:supp_ic_j_aa_n_pools}; Supplementary Table S16). These values represent amino acid-derived N pools and not total elemental grain N as measured in the original recurrent-selection study \citep{Moll1994}. In Indian Chief, FAA-derived N per mg increased significantly from Cycle~0 to Cycle~14 (1.75 to 2.99; Wilcoxon rank-sum $p = 0.0043$; BH-adjusted $p = 0.0129$), indicating the expansion of the free amino acid N pool. In contrast, PBAA-derived N and total amino acid-derived N did not change significantly, suggesting that the Indian Chief response was concentrated in the soluble FAA pool rather than in the larger protein-bound amino acid pool. This distinction is important because the FAA-derived N increase occurred alongside proline enrichment and reduced Asp/Glu fractions, indicating compositional remodeling of soluble amino acid N rather than a uniform increase across all grain amino acid pools. This interpretation is consistent with the Goodman--Buckler FAA--PBAA comparison, where the FAA and PBAA pools differed strongly in scale and composition, with FAA showing stronger proline enrichment and a higher N-rich fraction (Supplementary Fig.~\ref{fig:supp_gb_faa_pbaa_metrics}; Supplementary Tables S22--S14). Jarvis showed no significant changes in FAA-derived, PBAA-derived, or total amino acid-derived N pools.
 
 
 
@@ -463,13 +426,13 @@ Shared-SNP summaries provide a complementary view of allele-composition shifts a
 
 \subsection{Selection scans reveal population-specific amino acid and protein-turnover candidates}
 
-To identify genomic regions differentiated across 14 cycles of reciprocal recurrent selection, we compared Cycle~0 and Cycle~14 within Indian Chief and Jarvis using three population-genetic statistics: $F_{ST}$, $\Delta$ Tajima's~$D$, and $\log_2(\pi_{C14}/\pi_{C0})$ (Fig. \ref{fig:fig5}). Because reciprocal recurrent selection bases within-population decisions on hybrid performance, Indian Chief and Jarvis experienced correlated—though not independent—selection histories, which may contribute to functional similarities between their candidate sets. Genome-wide scans included 2,162 windows in Indian Chief and 2,151 in Jarvis (Supplementary Table S7--S8). We prioritized a conservative concordant set requiring windows to fall in the top 5\% of $F_{ST}$ and the bottom 5\% of both $\Delta$ Tajima's~$D$ and $\log_2(\pi_{C14}/\pi_{C0})$. This filter identified 8 windows in Indian Chief and 10 in Jarvis, containing 213 and 184 genes, respectively. We treated these as higher-confidence candidates because they showed coordinated signals of differentiation and reduced diversity after selection.
+To identify genomic regions differentiated across 14 cycles of reciprocal recurrent selection, we compared Cycle~0 and Cycle~14 within Indian Chief and Jarvis using three population-genetic statistics: $F_{ST}$, $\Delta$ Tajima's~$D$, and $\log_2(\pi_{C14}/\pi_{C0})$ (Fig. \ref{fig:fig5}). Because reciprocal recurrent selection bases within-population decisions on hybrid performance, Indian Chief and Jarvis experienced correlated—though not independent—selection histories, which may contribute to functional similarities between their candidate sets. Genome-wide scans included 2,162 windows in Indian Chief and 2,151 in Jarvis (Supplementary Table S17--S8). We prioritized a conservative concordant set requiring windows to fall in the top 5\% of $F_{ST}$ and the bottom 5\% of both $\Delta$ Tajima's~$D$ and $\log_2(\pi_{C14}/\pi_{C0})$. This filter identified 8 windows in Indian Chief and 10 in Jarvis, containing 213 and 184 genes, respectively. We treated these as higher-confidence candidates because they showed coordinated signals of differentiation and reduced diversity after selection.
 
 % \rra{include link to table}.
 
-In Indian Chief, concordant candidate regions were enriched for functions related to protein turnover, cellular recycling, nitrogen transport, and amino acid metabolism (Supplementary Table S9).  These included autophagy-related genes, ubiquitin and proteasome components, cysteine and aspartyl proteases, and transporters involved in ammonium or peptide/nitrate transport. Representative candidates included \textit{Zm00001eb372060}, \textit{Zm00001eb287690}, and \textit{Zm00001eb352300}, annotated as autophagy-related proteins; \textit{Zm00001eb214780}, annotated as a senescence-specific cysteine protease; \textit{Zm00001eb214890}, annotated as an ammonium transporter; \textit{Zm00001eb287950}, annotated as an NRT1/PTR-family transporter; and \textit{Zm00001eb214770}, annotated as NADP-specific glutamate dehydrogenase. These functions are consistent with cellular protein degradation, organelle recycling, and amino acid release during nutrient redistribution.
+In Indian Chief, concordant candidate regions were enriched for functions related to protein turnover, cellular recycling, nitrogen transport, and amino acid metabolism (Supplementary Table S19).  These included autophagy-related genes, ubiquitin and proteasome components, cysteine and aspartyl proteases, and transporters involved in ammonium or peptide/nitrate transport. Representative candidates included \textit{Zm00001eb372060}, \textit{Zm00001eb287690}, and \textit{Zm00001eb352300}, annotated as autophagy-related proteins; \textit{Zm00001eb214780}, annotated as a senescence-specific cysteine protease; \textit{Zm00001eb214890}, annotated as an ammonium transporter; \textit{Zm00001eb287950}, annotated as an NRT1/PTR-family transporter; and \textit{Zm00001eb214770}, annotated as NADP-specific glutamate dehydrogenase. These functions are consistent with cellular protein degradation, organelle recycling, and amino acid release during nutrient redistribution.
 
-Since reciprocal recurrent selection was applied for only 14 cycles, selected loci may show moderate allele-frequency shifts without strong sweep-like reductions in diversity or consistent changes in Tajima's $D$. We therefore also examined the broader top 5\% $F_{ST}$ outlier set (Supplementary Table S7). TThey were used as an exploratory set to evaluate whether selection cycles highlighted candidate genes in overlapping functional categories with grain FAA GWAS and soil N GWAS. Using this broader $F_{ST}$-only scan, the Indian Chief candidate set reinforced the amino acid and N-remobilization themes identified by the concordant scan. Candidate genes included \textit{Zm00001eb214360}, annotated as aspartate-semialdehyde dehydrogenase; \textit{Zm00001eb294790}, annotated as threonine synthase; \textit{Zm00001eb060520}, \textit{Zm00001eb427810}, and \textit{Zm00001eb162300}, annotated as glutamate dehydrogenase or glutamate dehydrogenase-related genes; \textit{Zm00001eb162900}, annotated as glutamine synthetase; and \textit{Zm00001eb217220}, annotated as a glutamine amidotransferase domain-containing protein. Indian Chief also contained amino acid transporter candidates and a glutaredoxin-family candidate. Together, these annotations suggest that selection-associated differentiation in Indian Chief involved broader remodeling of Asp-family metabolism, Glu/Gln interconversion, amino acid transport, protein turnover, and redox-associated N metabolism. This genomic pattern matches the FAA phenotype in Indian Chief Cycle~14, where total FAA abundance and Pro fraction increased while Asp and Glu fractions decreased. Additionally, with effective population sizes of approximately 100 individuals per cycle, genetic drift may have contributed to the allele-frequency differences observed between Cycle 0 and Cycle 14 in both populations. Although requiring concordance across FST, $\Delta$Tajima's D, and $\Delta\pi$ reduces the probability that drift alone explains the candidate windows, we cannot formally exclude drift as a contributing factor, particularly for loci outside the concordant set.
+Since reciprocal recurrent selection was applied for only 14 cycles, selected loci may show moderate allele-frequency shifts without strong sweep-like reductions in diversity or consistent changes in Tajima's $D$. We therefore also examined the broader top 5\% $F_{ST}$ outlier set (Supplementary Table S17). TThey were used as an exploratory set to evaluate whether selection cycles highlighted candidate genes in overlapping functional categories with grain FAA GWAS and soil N GWAS. Using this broader $F_{ST}$-only scan, the Indian Chief candidate set reinforced the amino acid and N-remobilization themes identified by the concordant scan. Candidate genes included \textit{Zm00001eb214360}, annotated as aspartate-semialdehyde dehydrogenase; \textit{Zm00001eb294790}, annotated as threonine synthase; \textit{Zm00001eb060520}, \textit{Zm00001eb427810}, and \textit{Zm00001eb162300}, annotated as glutamate dehydrogenase or glutamate dehydrogenase-related genes; \textit{Zm00001eb162900}, annotated as glutamine synthetase; and \textit{Zm00001eb217220}, annotated as a glutamine amidotransferase domain-containing protein. Indian Chief also contained amino acid transporter candidates and a glutaredoxin-family candidate. Together, these annotations suggest that selection-associated differentiation in Indian Chief involved broader remodeling of Asp-family metabolism, Glu/Gln interconversion, amino acid transport, protein turnover, and redox-associated N metabolism. This genomic pattern matches the FAA phenotype in Indian Chief Cycle~14, where total FAA abundance and Pro fraction increased while Asp and Glu fractions decreased. Additionally, with effective population sizes of approximately 100 individuals per cycle, genetic drift may have contributed to the allele-frequency differences observed between Cycle 0 and Cycle 14 in both populations. Although requiring concordance across FST, $\Delta$Tajima's D, and $\Delta\pi$ reduces the probability that drift alone explains the candidate windows, we cannot formally exclude drift as a contributing factor, particularly for loci outside the concordant set.
 
 \begin{figure*}[ht!]
     \centering
@@ -478,9 +441,9 @@ Since reciprocal recurrent selection was applied for only 14 cycles, selected lo
     \label{fig:fig5}
 \end{figure*}
 
-In Jarvis, concordant candidate regions also contained genes related to protein turnover, translation, organellar function, and stress-associated metabolism. These included \textit{Zm00001eb210360}, annotated as an OTU-domain deubiquitinating enzyme; \textit{Zm00001eb146560}, annotated as an NPL4-like protein involved in ubiquitin-dependent protein catabolism; \textit{Zm00001eb175050}, annotated as a ubiquitin carboxyl-terminal hydrolase; and \textit{Zm00001eb210720}, annotated as a 26S proteasome regulatory subunit (Supplementary Table S10). Additional candidates were associated with ER stress, chloroplast protein import, thylakoid organization, and mitochondrial electron transport. These annotations suggest that Jarvis differentiation also involved protein quality control and organellar remodeling.
+In Jarvis, concordant candidate regions also contained genes related to protein turnover, translation, organellar function, and stress-associated metabolism. These included \textit{Zm00001eb210360}, annotated as an OTU-domain deubiquitinating enzyme; \textit{Zm00001eb146560}, annotated as an NPL4-like protein involved in ubiquitin-dependent protein catabolism; \textit{Zm00001eb175050}, annotated as a ubiquitin carboxyl-terminal hydrolase; and \textit{Zm00001eb210720}, annotated as a 26S proteasome regulatory subunit (Supplementary Table S20). Additional candidates were associated with ER stress, chloroplast protein import, thylakoid organization, and mitochondrial electron transport. These annotations suggest that Jarvis differentiation also involved protein quality control and organellar remodeling.
 
-Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger population-specific connection to Asp-family amino acid metabolism (Supplementary Table S8). Most notably, Jarvis contained \textit{Zm00001eb094670}, annotated as aspartate kinase with GO terms for aspartate kinase activity and biosynthesis of threonine, lysine via diaminopimelate, and homoserine. This candidate is highly relevant as the Asp fraction showed the clearest FAA compositional change in Jarvis, increasing from Cycle~0 to Cycle~14 before multiple-testing correction. The presence of an aspartate kinase candidate provides a direct genomic link between the Jarvis $F_{ST}$ scan and Asp-family metabolism. Additional Jarvis candidates supported amino acid transport and interconversion, including \textit{Zm00001eb231430} (aspartate--tRNA ligase), \textit{Zm00001eb237500} (D-amino acid transaminase), \textit{Zm00001eb132750} (lysine/histidine transporter-like protein), \textit{Zm00001eb159580} (putative GABA transporter), and \textit{Zm00001eb389560} (GLUTAMINE DUMPER 5). Jarvis also contained glutamine/glutathione-related candidates, including \textit{Zm00001eb232460}, \textit{Zm00001eb131830}, \textit{Zm00001eb131840}, and \textit{Zm00001eb210730}. Thus, Jarvis selection-associated differentiation appears to involve Asp-family metabolism, amino acid transport, glutamine-linked metabolism, and glutathione-associated redox processes.
+Similarly, the broader Jarvis $F_{ST}$ outlier set revealed a stronger population-specific connection to Asp-family amino acid metabolism (Supplementary Table S18). Most notably, Jarvis contained \textit{Zm00001eb094670}, annotated as aspartate kinase with GO terms for aspartate kinase activity and biosynthesis of threonine, lysine via diaminopimelate, and homoserine. This candidate is highly relevant as the Asp fraction showed the clearest FAA compositional change in Jarvis, increasing from Cycle~0 to Cycle~14 before multiple-testing correction. The presence of an aspartate kinase candidate provides a direct genomic link between the Jarvis $F_{ST}$ scan and Asp-family metabolism. Additional Jarvis candidates supported amino acid transport and interconversion, including \textit{Zm00001eb231430} (aspartate--tRNA ligase), \textit{Zm00001eb237500} (D-amino acid transaminase), \textit{Zm00001eb132750} (lysine/histidine transporter-like protein), \textit{Zm00001eb159580} (putative GABA transporter), and \textit{Zm00001eb389560} (GLUTAMINE DUMPER 5). Jarvis also contained glutamine/glutathione-related candidates, including \textit{Zm00001eb232460}, \textit{Zm00001eb131830}, \textit{Zm00001eb131840}, and \textit{Zm00001eb210730}. Thus, Jarvis selection-associated differentiation appears to involve Asp-family metabolism, amino acid transport, glutamine-linked metabolism, and glutathione-associated redox processes.
 
 
 \subsection{B64 $\times$ CML14 biparental mapping identifies a shared chromosome 3 QTL for Asp and Pro}
@@ -517,7 +480,7 @@ For this shared QTL, the LOD support interval (1.5 LOD drop) was between 14.36 a
 
 \section{Discussion}\label{sec12}
 
-The results support a model in which maize grain N variation arises through multiple genetic pathways that implicate related biological functions. Across soil-N environmental GWAS, grain amino acid GWAS, Indian Chief and Jarvis population-genomic scans, and exploratory B64 $\times$ CML14 biparental mapping, most candidate genes were specific to individual datasets, yet their annotations consistently involved connected N-remobilization and amino acid metabolism processes. We therefore interpret the study as consistent with shared functional themes rather than single-locus control. Candidate genes supporting this view are listed in Supplementary Table S11, and the conceptual model is shown in Fig.~\ref{fig:fig7_integrative_synthesis}. The following sections examine the main recurring functional modules and their implications for grain amino acid composition and N allocation.
+The results support a model in which maize grain N variation arises through multiple genetic pathways that implicate related biological functions. Across soil-N environmental GWAS, grain amino acid GWAS, Indian Chief and Jarvis population-genomic scans, and exploratory B64 $\times$ CML14 biparental mapping, most candidate genes were specific to individual datasets, yet their annotations consistently involved connected N-remobilization and amino acid metabolism processes. We therefore interpret the study as consistent with shared functional themes rather than single-locus control. Candidate genes supporting this view are listed in Supplementary Table S21, and the conceptual model is shown in Fig.~\ref{fig:fig7_integrative_synthesis}. The following sections examine the main recurring functional modules and their implications for grain amino acid composition and N allocation.
 
 
 
@@ -532,7 +495,7 @@ The results support a model in which maize grain N variation arises through mult
     The figure summarizes shared pathway themes across candidate sets rather than repeated recovery of the same locus.
     Across datasets, candidate genes repeatedly implicated N uptake and amino acid transport, protein turnover, autophagy and senescence, Glu/Gln cycling and ammonium reassimilation, Asp-family metabolism, redox buffering, and intracellular trafficking.
     These functional modules provide mechanistic links to grain N-related outcomes, including free amino acid composition remodeling, Pro/Asn/Asp/Glu balance, protein-bound amino acid accumulation, and N allocation between vegetative tissues and grain.
-    Candidate-gene details and dataset-level support are provided in Supplementary Table S11.}
+    Candidate-gene details and dataset-level support are provided in Supplementary Table S21.}
     \label{fig:fig7_integrative_synthesis}
 \end{figure*}
 
@@ -864,6 +827,26 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
 
 % =========================
 % SUPP FIGURE S3
+% =========================
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{final/supp_figs/SuppFig3_FAA_vs_PBAA_pools.png}
+    \caption{Free (FAA) and protein-bound (PBAA) amino acid pools across matched Goodman--Buckler
+    lines ($n = 279$). \textbf{A}, Total amino acid pool. \textbf{B}, Amino acid-derived N proxy,
+    with each amino acid weighted by its number of N atoms (Asx and Glx, unresolved after acid
+    hydrolysis, at 1.5 N). \textbf{C}, Proline fraction. \textbf{D}, Asx + Glx + basic
+    (Arg, Lys, His) fraction. Fractions use matched denominators: free Asp + Asn and Glu + Gln
+    are combined, and glycine, tryptophan and cysteine, which are not measured in the
+    protein-bound pool, are excluded from the free-pool total. Values are on the source assay
+    scale (log scale in \textbf{A}--\textbf{B}). Violins show the distribution across lines and
+    boxes the median and interquartile range. Paired Wilcoxon signed-rank tests are given in
+    Supplementary Table~S5.}
+    \label{fig:supp_gb_faa_pbaa_metrics}
+\end{figure*}
+
+
+% =========================
+% SUPP FIGURE S4
 % =========================                                                    
 
 \begin{figure}[htbp]
@@ -874,11 +857,11 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
   \textbf{(B)} Cumulative variance explained. The last large drop is from PC2 to PC3;
   after PC3, each further PC explains $\leq 0.06$ percentage points less than the one before.
   The first three PCs (blue; 2.01\% of variance) were used as GWAS covariates.}
-  \label{suppfig:pca_scree}
+  \label{fig:supp_pca_scree}
 \end{figure}
 
 % =========================
-% SUPP FIGURE S4
+% SUPP FIGURE S5
 % =========================
 \begin{figure}[htbp]
   \centering
@@ -892,13 +875,13 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
   \textbf{(B)} SNPs shared between soil N (0--5~cm) and each other variable: observed (orange)
   vs.\ expected (grey). One-sided hypergeometric test, $M = 495{,}755$:
   *\,$P<0.05$; **\,$P<10^{-5}$; ***\,$P<10^{-20}$; n.s., not significant.
-  Full results in Supplementary Table~S18.}
+  Full results in Supplementary Table~S9.}
   \label{suppfig:soilN_specificity}
 \end{figure}
 
 
 % =========================
-% SUPP FIGURE S5
+% SUPP FIGURE S6
 % =========================                                                    
 
 \begin{figure}[htbp]
@@ -925,7 +908,7 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
   \textbf{(B)} Expectation test: percentage of SNPs whose genotype is in the top 1\% for at least
   one geographic variable (latitude, longitude, elevation; top) or for at least one of all six
   non-N variables (bottom), for the whole genome, for SNPs in the top 1\% for correlation with
-  soil N, and for the soil-N GWAS SNPs. Full results in Supplementary Table~S17.}
+  soil N, and for the soil-N GWAS SNPs. Full results in Supplementary Tables~S11--S12.}
   \label{suppfig:soilN_geno_env}
 \end{figure}
 
@@ -933,42 +916,6 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
 
 
 
-%===================== SUPP TABLE S17 (15 >=2-model SNPs; all 234 in the CSV) =====================
-\begin{table}[htbp]
-  \centering
-  \scriptsize
-  \caption{\textbf{Supplementary Table S17. Genotype--environment correlation test for soil-N
-  SNPs detected by at least two models.} Values are the genome-wide rank of $|r|$ between
-  genotype and each variable, as a percentage (0.1 = top 0.1\% of 495,755 SNPs).
-  $^{\dagger}$Also FDR-significant in that variable's GWAS. All 234 SNPs, with $r$ values,
-  are in SuppTable\_S17\_soilN\_geno\_env\_correlation.csv.}
-  \label{tab:S17}
-  \begin{tabular}{llrrrrrrrrrl}
-  \hline
-  SNP & Gene & N 0--5 & N 5--15 & Lat & $|$Lat$|$ & Lon & Elev & pH & CEC & Arid & Call \\
-  \hline
-  S9\_151742636 & \textit{Zm00001eb399680} (TatC) & 0.0006 & 0.0002 & 1.7 & 0.007 & 0.16 & 0.37 & 0.001$^{\dagger}$ & 3.9 & 0.0006$^{\dagger}$ & linked \\
-  S6\_161051050 & \textit{Zm00001eb289040} & 0.015 & 0.006 & 27.4 & 0.12 & 7.6 & 8.2 & 2.8 & 38.3 & 0.95 & linked \\
-  S5\_47128668  & none $\leq$25\,kb & 70.7 & 14.5 & 1.6 & 98.5 & 1.8 & 0.65 & 4.3 & 0.21 & 1.9 & linked \\
-  S5\_22338979  & \textit{Zm00001eb220040} (Asp kinase) & 0.93 & 0.05 & 51.7 & 2.6 & 65.9 & 98.5 & 54.9 & 81.1 & 22.2 & watch \\
-  S5\_22338938  & \textit{Zm00001eb220040} (Asp kinase) & 0.96 & 0.06 & 51.0 & 2.6 & 65.4 & 98.4 & 55.7 & 76.1 & 22.5 & watch \\
-  S1\_16128632  & \textit{Zm00001eb005710} ($\omega$-amidase) & 0.19 & 0.02 & 85.6 & 11.6 & 93.1 & 32.9 & 99.2 & 45.3 & 19.6 & clear \\
-  S3\_54622531  & \textit{Zm00001eb130210} (PIT1) & 1.6 & 0.49 & 12.7 & 34.3 & 12.3 & 20.9 & 7.6 & 42.4 & 8.7 & clear \\
-  S2\_117202525 & none $\leq$25\,kb & 3.2 & 2.1 & 37.6 & 64.8 & 29.9 & 26.2 & 30.0 & 90.7 & 20.9 & clear \\
-  S6\_37926580  & \textit{Zm00001eb265710} & 11.1 & 57.6 & 19.0 & 7.0 & 20.9 & 16.0 & 25.2 & 30.1 & 40.0 & not testable \\
-  S1\_5543355   & \textit{Zm00001eb001920} & 8.2 & 1.6 & 20.7 & 79.3 & 28.4 & 67.4 & 55.0 & 6.3 & 86.8 & not testable \\
-  S5\_53136163  & \textit{Zm00001eb226000} & 6.8 & 1.5 & 84.8 & 86.6 & 87.8 & 55.9 & 84.3 & 19.4 & 79.8 & not testable \\
-  S8\_153826994 & \textit{Zm00001eb359990} & 8.8 & 4.8 & 76.5 & 76.3 & 81.6 & 61.2 & 50.6 & 35.3 & 63.9 & not testable \\
-  S1\_87643408  & \textit{Zm00001eb022740} & 11.6 & 16.3 & 88.0 & 33.0 & 85.5 & 32.6 & 72.8 & 20.1 & 95.8 & not testable \\
-  S8\_138640842 & \textit{Zm00001eb356170} & 35.3 & 14.1 & 74.6 & 90.9 & 60.3 & 68.8 & 61.5 & 59.8 & 76.4 & not testable \\
-  S2\_191754648 & \textit{Zm00001eb100890} & 46.6 & 45.4 & 34.6 & 9.0 & 73.7 & 93.7 & 83.7 & 78.1 & 90.5 & not testable \\
-  \hline
-  \multicolumn{12}{l}{\textit{Expectation: SNPs in top 1\% for $\geq$1 geographic variable}}\\
-  \multicolumn{12}{l}{Whole genome 2.7\% (13,632/495,755); top 1\% for soil N by correlation 47.8\% (2,370/4,957);}\\
-  \multicolumn{12}{l}{soil-N GWAS SNPs 16.2\% (38/234; vs.\ genome $P = 2.1\times10^{-18}$, vs.\ soil-N-correlated $P = 3.2\times10^{-24}$, binomial).}\\
-  \hline
-  \end{tabular}
-\end{table}
 
 
 % =========================
@@ -982,18 +929,6 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
 \end{figure*}
 
 
-% =========================
-% SUPP FIGURE S5
-% =========================                                                  
-
-\begin{figure*}[htbp]
-\centering
-\includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_Goodman_Buckler_FAA_PBAA_metrics.png}
-\caption{
-Comparison of free amino acid (FAA) and protein-bound amino acid (PBAA) pools across the Goodman--Buckler Association Panel using genotype-level means from matched taxa. \textbf{A}, broad amino acid pool size for FAA and PBAA. \textbf{B}, estimated amino acid-derived nitrogen proxy for FAA and PBAA, calculated by weighting each amino acid by its number of nitrogen atoms. \textbf{C}, proline fraction of the total amino acid pool in FAA and PBAA. \textbf{D}, nitrogen-rich fraction of the total amino acid pool, defined as Asn + Gln + Arg + Lys + His for FAA and Asx + Glx + Arg + Lys + His for PBAA. Because sample weights were not available for the Goodman--Buckler dataset, values are shown on the source assay scale rather than normalized per mg. Brackets indicate paired Wilcoxon signed-rank tests across matched taxa; *** $P < 0.001$.
-}
-\label{fig:supp_gb_faa_pbaa_metrics}
-\end{figure*}
 
 % =========================
 % SUPP FIGURE S6
@@ -1125,7 +1060,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S1 Table}
 \makeatother
 \label{S1_Table}
-\textbf{Free amino acid phenotype values across the Goodman--Buckler Association Panel.} Genotype-level FAA trait values used for downstream amino acid analyses and GWAS. The table includes absolute FAA traits, total FAA, relative FAA traits, amino acid family composites, amino acid ratio traits, and nitrogen- and protein-related proxy traits for the 280 maize genotypes evaluated in the panel.
+\textbf{Free amino acid phenotypes across the Goodman--Buckler Association Panel.} Genotype-level values of the 78 amino acid phenotypes used for GWAS for 280 of the 282 lines (two years $\times$ two blocks, Columbia, Missouri): 20 absolute FAA concentrations, six biosynthetic-family composites, 20 ratios to the total free pool, 25 ratios to the family composite, four ratios between amino acids (N.D, N.E, N.Q, Q.E) and three whole-pool traits. Trait codes are defined in Supplementary Table~S2. Provided as \texttt{SuppTable\_S1\_FAA\_phenotypes.csv}.
 
 % --- Table S2 ---
 \paragraph*{S2 Table.}
@@ -1134,7 +1069,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S2 Table}
 \makeatother
 \label{S2_Table}
-\textbf{Abbreviations and descriptions for amino acid traits.} Lookup table defining FAA, PBAA, family-composite, and ratio-trait abbreviations used throughout the amino acid GWAS, FAA composition summaries, and supplementary figures and tables.
+\textbf{Amino acid trait definitions.} Code and description of each of the 78 amino acid phenotypes in Supplementary Table~S1. Provided as \texttt{SuppTable\_S2\_phenotype\_definitions.csv}.
 
 % --- Table S3 ---
 \paragraph*{S3 Table.}
@@ -1143,7 +1078,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S3 Table}
 \makeatother
 \label{S3_Table}
-\textbf{Annotated candidate genes from soil N and amino acid GWAS.} Gene-centered summary of significant GWAS candidate regions for soil nitrogen and amino acid traits, including associated phenotypes, number of supporting traits, peak significance values, gene annotations, and Gene Ontology terms for molecular function, biological process, and cellular component.
+\textbf{Abundance, variability and heritability of the 20 free amino acids.} For each FAA across 280 lines: median, mean, standard deviation, minimum, maximum, fold range, coefficient of variation, line-mean broad-sense heritability ($H^2$) and genomic heritability ($h^2$). Provided as \texttt{SuppTable\_S3\_FAA\_abundance\_CV.csv}.
 
 % --- Table S4 ---
 \paragraph*{S4 Table.}
@@ -1152,7 +1087,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S4 Table}
 \makeatother
 \label{S4_Table}
-\textbf{Amino acid profile statistics for Indian Chief and Jarvis.} Wilcoxon rank-sum test results comparing generation 0 and generation 14 within Indian Chief and Jarvis for individual free amino acid (FAA) and protein-bound amino acid (PBAA) traits. The table includes group means, raw p-values, and Benjamini--Hochberg adjusted p-values for each amino acid.
+\textbf{Heritability of free and protein-bound amino acid traits.} Line-mean and Cullis broad-sense heritability ($H^2$) and genomic heritability ($h^2$, with 95\% interval and permuted-phenotype null) for 40 FAA and 76 PBAA traits, with sample sizes. Provided as \texttt{SuppTable\_S4\_heritability.csv}.
 
 % --- Table S5 ---
 \paragraph*{S5 Table.}
@@ -1161,7 +1096,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S5 Table}
 \makeatother
 \label{S5_Table}
-\textbf{Summary statistics for selected FAA abundance and composition metrics in Indian Chief and Jarvis.} Wilcoxon rank-sum test results comparing generation 0 and generation 14 within each population for total FAA abundance, proline fraction, asparagine fraction, aspartate fraction, glutamine fraction, glutamate fraction, and the nitrogen-rich FAA pool. The table includes sample sizes, group means and medians, raw p-values, BH-adjusted p-values, and a plain-language summary of the direction of change.
+\textbf{Free vs.\ protein-bound amino acid pools.} Paired comparison of FAA and PBAA pools across matched lines for the total amino acid pool, the amino acid-derived N proxy, the proline fraction and the Asx + Glx + basic fraction (matched denominators): mean, median, standard deviation and coefficient of variation of each pool, fold difference and paired Wilcoxon $P$. Provided as \texttt{SuppTable\_S5\_FAA\_vs\_PBAA\_pools.csv}.
 
 % --- Table S6 ---
 \paragraph*{S6 Table.}
@@ -1170,7 +1105,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S6 Table}
 \makeatother
 \label{S6_Table}
-\textbf{Summary statistics for amino acid-derived nitrogen pools in Indian Chief and Jarvis.} FAA-derived N, estimated protein-bound amino acid-derived N, and estimated total amino acid-derived N were calculated by weighting amino acids by nitrogen content and normalizing by sample mass. The table reports Wilcoxon rank-sum comparisons between generation 0 and generation 14 within each population, including group means, medians, raw p-values, BH-adjusted p-values, and direction-of-change summaries.
+\textbf{Amino acid GWAS candidate genes.} All phenotype $\times$ SNP $\times$ gene combinations for SNPs significant at 5\% Benjamini--Hochberg FDR (per phenotype and model; MLM, BLINK, FarmCPU) within 25~kb of a B73 RefGen\_v5 gene: 1,446 SNPs, 71 phenotypes, 2,512 genes. Includes significant models, lowest $P$ and FDR, whether the SNP is significant in $\geq$2 models, gene coordinates and distance. Marker names carry the AGPv4 coordinate; positions are v5. Provided as \texttt{SuppTable\_S6\_amino\_gwas\_candidate\_genes.csv}.
 
 % --- Table S7 ---
 \paragraph*{S7 Table.}
@@ -1179,7 +1114,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S7 Table}
 \makeatother
 \label{S7_Table}
-\textbf{Indian Chief spline-window population-genomic summary with gene overlaps.} Genome-wide Indian Chief window summaries combining spline-based $F_{ST}$, Tajima's~$D$, nucleotide diversity, log$_2(\pi_{C14}/\pi_{C0})$, outlier flags, and overlapping genes. The table includes window coordinates, differentiation and diversity statistics, candidate-window flags, and the gene IDs, names, and biotypes overlapping each window.
+\textbf{Amino acid GWAS loci.} The 2,158 loci formed by merging FDR-significant SNPs within 25~kb across phenotypes, with coordinates, numbers of SNPs and phenotypes, best $P$, lead SNP, supporting models, genes within 25~kb, top gene and its PANTHER family and GO terms. Provided as \texttt{SuppTable\_S7\_amino\_gwas\_loci.csv}.
 
 % --- Table S8 ---
 \paragraph*{S8 Table.}
@@ -1188,7 +1123,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S8 Table}
 \makeatother
 \label{S8_Table}
-\textbf{Jarvis spline-window population-genomic summary with gene overlaps.} Genome-wide Jarvis window summaries combining spline-based $F_{ST}$, Tajima's~$D$, nucleotide diversity, log$_2(\pi_{C14}/\pi_{C0})$, outlier flags, and overlapping genes. The table includes window coordinates, differentiation and diversity statistics, candidate-window flags, and the gene IDs, names, and biotypes overlapping each window.
+\textbf{Soil-N GWAS candidate genes.} The 448 B73 RefGen\_v5 genes within 25~kb of the 216 soil-N SNPs (0--5~cm, 5\% FDR) that lie near a gene, one row per gene $\times$ SNP, with SNP statistics, overlap with other environmental GWAS, gene coordinates, distance, name, PANTHER family, protein class and GO terms. Provided as \texttt{SuppTable\_S8\_soilN\_candidate\_genes.csv}.
 
 % --- Table S9 ---
 \paragraph*{S9 Table.}
@@ -1197,7 +1132,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S9 Table}
 \makeatother
 \label{S9_Table}
-\textbf{Functional annotation of Indian Chief top 5\% $F_{ST}$ candidate genes.} Gene annotation table for Indian Chief genes located in the empirical top 5\% $F_{ST}$ window set, including gene IDs, protein or family descriptions, protein classes, and available Gene Ontology annotations for molecular function, biological process, and cellular component.
+\textbf{Environmental GWAS overlap test.} Observed vs.\ expected numbers of shared FDR-significant SNPs (MLM, BLINK and FarmCPU combined) for each site variable against the union of geographic variables (latitude, longitude, elevation; the variable itself excluded), and for soil N (0--5~cm) against each other variable. Expected $= n_1 n_2 / M$ with $M = 495{,}755$; one-sided hypergeometric $P$, which assumes independent traits and so overstates enrichment between correlated variables. Provided as \texttt{SuppTable\_S9\_soilN\_env\_overlap\_test.csv}.
 
 % --- Table S10 ---
 \paragraph*{S10 Table.}
@@ -1206,7 +1141,16 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S10 Table}
 \makeatother
 \label{S10_Table}
-\textbf{Functional annotation of Jarvis top 5\% $F_{ST}$ candidate genes.} Gene annotation table for Jarvis genes located in the empirical top 5\% $F_{ST}$ window set, including gene IDs, protein or family descriptions, protein classes, and available Gene Ontology annotations for molecular function, biological process, and cellular component.
+\textbf{Soil-N GWAS SNPs and their overlap with other environmental GWAS.} All 234 SNPs significant for soil N (0--5~cm) at 5\% FDR in MLM, BLINK or FarmCPU, with $P$ per model, MAF, number of models, whether each SNP is also FDR-significant in the GWAS of CEC, aridity, elevation, latitude, longitude, soil pH and soil N at 5--15~cm, and genes within 25~kb with the nearest gene's annotation. Provided as \texttt{SuppTable\_S10\_soilN\_SNPs\_env\_relations.csv}.
+
+% --- Table S11 ---
+\paragraph*{S11 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S11 Table}
+\makeatother
+\label{S11_Table}
+\textbf{Genotype--environment correlation test for soil-N SNPs.} For each of the 234 soil-N SNPs, the Pearson correlation between genotype and soil N (0--5 and 5--15~cm), latitude, longitude, elevation, soil pH, CEC and aridity across 3,107 accessions; the SNP's genome-wide rank for each variable (\% of 495,755 SNPs with a stronger correlation); the most strongly correlated non-N variable; and the call: linked to environment (top 1\% for any non-N variable), not linked, or inconclusive (weak soil-N correlation, outside the top 5\%). Provided as \texttt{SuppTable\_S11\_soilN\_geno\_env\_correlation.csv}.
 
 % --- Table S12 ---
 \paragraph*{S12 Table.}
@@ -1215,7 +1159,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S12 Table}
 \makeatother
 \label{S12_Table}
-\textbf{Genotype-level FAA and PBAA means across the Goodman--Buckler Association Panel.} Mean free amino acid (FAA) and protein-bound amino acid (PBAA) values for matched Goodman--Buckler taxa, together with derived metrics including total FAA, total PBAA, proline fractions, nitrogen-rich fractions, and amino-acid-derived nitrogen proxy values calculated on the source assay scale.
+\textbf{Expectation test for the genotype--environment correlation.} Share of SNPs in the top 1\% of the genome for at least one geographic variable (latitude, longitude, elevation) or at least one of six non-N variables (adding soil pH, CEC and aridity), for the whole genome, for SNPs in the top 1\% for correlation with soil N, for all soil-N GWAS SNPs and for those significant in $\geq$2 models, with binomial tests against the whole genome and against the soil-N-correlated SNPs. Provided as \texttt{SuppTable\_S12\_soilN\_geno\_env\_expectation.csv}.
 
 % --- Table S13 ---
 \paragraph*{S13 Table.}
@@ -1224,7 +1168,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S13 Table}
 \makeatother
 \label{S13_Table}
-\textbf{Summary statistics for FAA and PBAA metrics across the Goodman--Buckler Association Panel.} Mean, median, standard deviation, minimum, maximum, and sample size for genotype-level FAA, PBAA, and derived amino-acid nitrogen proxy metrics across matched Goodman--Buckler taxa.
+\textbf{Annotated candidate genes from soil N and amino acid GWAS.} Gene-centered summary of significant GWAS candidate regions for soil nitrogen and amino acid traits, including associated phenotypes, number of supporting traits, peak significance values, gene annotations, and Gene Ontology terms for molecular function, biological process, and cellular component.
 
 % --- Table S14 ---
 \paragraph*{S14 Table.}
@@ -1233,7 +1177,7 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S14 Table}
 \makeatother
 \label{S14_Table}
-\textbf{Paired comparisons of FAA and PBAA metrics across the Goodman--Buckler Association Panel.} Paired Wilcoxon signed-rank test results comparing FAA and PBAA values across matched Goodman--Buckler taxa for broad amino acid pool size, amino-acid-derived nitrogen proxy, proline fraction, and nitrogen-rich fraction.
+\textbf{Amino acid profile statistics for Indian Chief and Jarvis.} Wilcoxon rank-sum test results comparing generation 0 and generation 14 within Indian Chief and Jarvis for individual free amino acid (FAA) and protein-bound amino acid (PBAA) traits. The table includes group means, raw p-values, and Benjamini--Hochberg adjusted p-values for each amino acid.
 
 % --- Table S15 ---
 \paragraph*{S15 Table.}
@@ -1242,7 +1186,88 @@ Heatmap showing log2-transformed expression values of genes in QTL confidence in
 \def\@currentlabelname{S15 Table}
 \makeatother
 \label{S15_Table}
-\textbf{Candidate genes within the Pro/Asp QTL region with embryo RNA-seq expression.} RNA-seq expression values are shown for candidate genes in the chromosome~3 Pro/Asp QTL region across maize embryo developmental stages at 16, 18, 20, and 22 days after pollination (DAP). The table includes gene identifier, chromosome, genomic start position, gene annotation, and embryo-stage expression values. The full table is provided as \texttt{SuppTable\_15\_QTL\_genes\_RNAseq\_embryo}.
+\textbf{Summary statistics for selected FAA abundance and composition metrics in Indian Chief and Jarvis.} Wilcoxon rank-sum test results comparing generation 0 and generation 14 within each population for total FAA abundance, proline fraction, asparagine fraction, aspartate fraction, glutamine fraction, glutamate fraction, and the nitrogen-rich FAA pool. The table includes sample sizes, group means and medians, raw p-values, BH-adjusted p-values, and a plain-language summary of the direction of change.
+
+% --- Table S16 ---
+\paragraph*{S16 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S16 Table}
+\makeatother
+\label{S16_Table}
+\textbf{Summary statistics for amino acid-derived nitrogen pools in Indian Chief and Jarvis.} FAA-derived N, estimated protein-bound amino acid-derived N, and estimated total amino acid-derived N were calculated by weighting amino acids by nitrogen content and normalizing by sample mass. The table reports Wilcoxon rank-sum comparisons between generation 0 and generation 14 within each population, including group means, medians, raw p-values, BH-adjusted p-values, and direction-of-change summaries.
+
+% --- Table S17 ---
+\paragraph*{S17 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S17 Table}
+\makeatother
+\label{S17_Table}
+\textbf{Indian Chief spline-window population-genomic summary with gene overlaps.} Genome-wide Indian Chief window summaries combining spline-based $F_{ST}$, Tajima's~$D$, nucleotide diversity, log$_2(\pi_{C14}/\pi_{C0})$, outlier flags, and overlapping genes. The table includes window coordinates, differentiation and diversity statistics, candidate-window flags, and the gene IDs, names, and biotypes overlapping each window.
+
+% --- Table S18 ---
+\paragraph*{S18 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S18 Table}
+\makeatother
+\label{S18_Table}
+\textbf{Jarvis spline-window population-genomic summary with gene overlaps.} Genome-wide Jarvis window summaries combining spline-based $F_{ST}$, Tajima's~$D$, nucleotide diversity, log$_2(\pi_{C14}/\pi_{C0})$, outlier flags, and overlapping genes. The table includes window coordinates, differentiation and diversity statistics, candidate-window flags, and the gene IDs, names, and biotypes overlapping each window.
+
+% --- Table S19 ---
+\paragraph*{S19 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S19 Table}
+\makeatother
+\label{S19_Table}
+\textbf{Functional annotation of Indian Chief top 5\% $F_{ST}$ candidate genes.} Gene annotation table for Indian Chief genes located in the empirical top 5\% $F_{ST}$ window set, including gene IDs, protein or family descriptions, protein classes, and available Gene Ontology annotations for molecular function, biological process, and cellular component.
+
+% --- Table S20 ---
+\paragraph*{S20 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S20 Table}
+\makeatother
+\label{S20_Table}
+\textbf{Functional annotation of Jarvis top 5\% $F_{ST}$ candidate genes.} Gene annotation table for Jarvis genes located in the empirical top 5\% $F_{ST}$ window set, including gene IDs, protein or family descriptions, protein classes, and available Gene Ontology annotations for molecular function, biological process, and cellular component.
+
+% --- Table S22 ---
+\paragraph*{S22 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S22 Table}
+\makeatother
+\label{S22_Table}
+\textbf{Genotype-level FAA and PBAA means across the Goodman--Buckler Association Panel.} Mean free amino acid (FAA) and protein-bound amino acid (PBAA) values for matched Goodman--Buckler taxa, together with derived metrics including total FAA, total PBAA, proline fractions, nitrogen-rich fractions, and amino-acid-derived nitrogen proxy values calculated on the source assay scale.
+
+% --- Table S23 ---
+\paragraph*{S23 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S23 Table}
+\makeatother
+\label{S23_Table}
+\textbf{Summary statistics for FAA and PBAA metrics across the Goodman--Buckler Association Panel.} Mean, median, standard deviation, minimum, maximum, and sample size for genotype-level FAA, PBAA, and derived amino-acid nitrogen proxy metrics across matched Goodman--Buckler taxa.
+
+% --- Table S24 ---
+\paragraph*{S24 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S24 Table}
+\makeatother
+\label{S24_Table}
+\textbf{Paired comparisons of FAA and PBAA metrics across the Goodman--Buckler Association Panel.} Paired Wilcoxon signed-rank test results comparing FAA and PBAA values across matched Goodman--Buckler taxa for broad amino acid pool size, amino-acid-derived nitrogen proxy, proline fraction, and nitrogen-rich fraction.
+
+% --- Table S25 ---
+\paragraph*{S25 Table.}
+\phantomsection
+\makeatletter
+\def\@currentlabelname{S25 Table}
+\makeatother
+\label{S25_Table}
+\textbf{Candidate genes within the Pro/Asp QTL region with embryo RNA-seq expression.} RNA-seq expression values are shown for candidate genes in the chromosome~3 Pro/Asp QTL region across maize embryo developmental stages at 16, 18, 20, and 22 days after pollination (DAP). The table includes gene identifier, chromosome, genomic start position, gene annotation, and embryo-stage expression values. The full table is provided as \texttt{SuppTable\_25\_QTL\_genes\_RNAseq\_embryo}.
 
 
 \end{document}

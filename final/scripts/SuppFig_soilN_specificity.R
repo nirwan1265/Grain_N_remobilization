@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 ################################################################################
-## SUPPLEMENTARY FIGURE + SUPPLEMENTARY TABLE S18 -- environmental specificity
+## SUPPLEMENTARY FIGURE + SUPPLEMENTARY TABLE S9 -- environmental specificity
 ## test for the soil-N GWAS signal, built from the control GWAS themselves.
 ##
 ## Each trait (soil N 0-5 / 5-15 cm, aridity, pH, CEC, elevation, latitude,
@@ -20,7 +20,7 @@
 ## phenotype, not independent replication.
 ##
 ## Writes  final/supp_figs/SuppFig_soilN_specificity.{png,pdf}
-##         final/supp_tables/SuppTable_S18_soilN_env_overlap_test.csv
+##         final/supp_tables/SuppTable_S9_soilN_env_overlap_test.csv
 ################################################################################
 suppressPackageStartupMessages({library(data.table); library(ggplot2); library(patchwork)})
 gv   <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
@@ -111,7 +111,7 @@ for (ext in c("png", "pdf"))
   ggsave(file.path(FIG, paste0("SuppFig_soilN_specificity.", ext)), fig,
          width = 22, height = 8.5, dpi = 300, bg = "white")
 
-## ---- Supplementary Table S18 ------------------------------------------------
+## ---- Supplementary Table S9 -------------------------------------------------
 fmtP <- function(p) ifelse(p < 1e-300, "<1e-300", formatC(p, format = "e", digits = 2))
 s18a <- A[order(-as.integer(lab)), .(
   Test = "Trait vs geographic union", Trait = as.character(lab), Reference = "Geographic union (self excluded)",
@@ -124,5 +124,5 @@ s18b <- B[order(-ov), .(
   `Expected shared` = round(exp, 3), `Fold enrichment` = round(ov / exp, 1),
   `% of trait SNPs shared` = round(100 * ov / length(N), 1), `Hypergeometric P` = fmtP(P))]
 s18 <- rbind(s18a, s18b)
-fwrite(s18, file.path(TAB, "SuppTable_S18_soilN_env_overlap_test.csv"))
+fwrite(s18, file.path(TAB, "SuppTable_S9_soilN_env_overlap_test.csv"))
 print(s18)

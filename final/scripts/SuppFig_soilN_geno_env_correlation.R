@@ -1,13 +1,13 @@
 #!/usr/bin/env Rscript
 ################################################################################
-## SUPPLEMENTARY FIGURE + SUPPLEMENTARY TABLE S17 -- genotype-environment
+## SUPPLEMENTARY FIGURE + SUPPLEMENTARY TABLES S11-S12 -- genotype-environment
 ## correlation test for the soil-N GWAS SNPs (FDR 5%).
 ##
 ## Input  geno_env_cor_9vars.csv.gz  (final/scripts/soilN_geno_env_correlation.py):
 ##        Pearson r between allele dosage and each of 9 collection-site variables
 ##        for all 495,755 SNPs (3,107 accessions), and each SNP's genome-wide
 ##        percentile of |r| (0.1 = top 0.1 % of the genome for that variable).
-##        SuppTable_S15_soilN_SNPs_env_relations.csv : FDR soil-N SNPs, models,
+##        SuppTable_S10_soilN_SNPs_env_relations.csv : FDR soil-N SNPs, models,
 ##        lead genes, and which environmental GWAS each SNP is also significant in.
 ##
 ## A  the 15 SNPs significant in >= 2 models: tile = genome-wide percentile of
@@ -32,7 +32,7 @@ suppressPackageStartupMessages({library(data.table); library(ggplot2); library(p
 gv   <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
 REPO <- gv("GN_REPO", "/Users/nirwantandukar/Documents/Github/Grain_N_remobilization")
 F_COR <- gv("GN_COR", file.path(REPO, "final/results/soil_nitrogen_gwas/geno_env_cor_9vars.csv.gz"))
-F_S15 <- gv("GN_S15", file.path(REPO, "final/supp_tables/SuppTable_S15_soilN_SNPs_env_relations.csv"))
+F_S15 <- gv("GN_S15", file.path(REPO, "final/supp_tables/SuppTable_S10_soilN_SNPs_env_relations.csv"))
 FIG   <- gv("GN_FIGDIR", file.path(REPO, "final/supp_figs"))
 TAB   <- gv("GN_TABDIR", file.path(REPO, "final/supp_tables"))
 
@@ -149,7 +149,7 @@ for (ext in c("png", "pdf"))
          width = 28, height = 13, dpi = 300, bg = "white",
          device = if (ext == "pdf") cairo_pdf else "png")
 
-## ---- Supplementary Table S17 -------------------------------------------------
+## ---- Supplementary Tables S11 and S12 -------------------------------------------------
 setorder(x, -n_models, min_P)
 s17 <- x[, c(list(SNP = SNP, Chr = Chr, Pos = Pos, MAF = round(MAF, 4), n_models = n_models,
                   min_P = signif(min_P, 3), lead_gene = lead_gene, lead_name = lead_name),
@@ -159,6 +159,6 @@ s17 <- x[, c(list(SNP = SNP, Chr = Chr, Pos = Pos, MAF = round(MAF, 4), n_models
                   best_comparator = cmp_axis, env_GWAS_hits = env_hits,
                   also_N_5_15_GWAS = replicates_N_5_15,
                   call = fifelse(call == "inconclusive", "inconclusive (weak soil-N correlation)", call)))]
-fwrite(s17, file.path(TAB, "SuppTable_S17_soilN_geno_env_correlation.csv"))
-fwrite(B, file.path(TAB, "SuppTable_S17b_soilN_geno_env_expectation.csv"))
-cat("written figure + S17\n")
+fwrite(s17, file.path(TAB, "SuppTable_S11_soilN_geno_env_correlation.csv"))
+fwrite(B, file.path(TAB, "SuppTable_S12_soilN_geno_env_expectation.csv"))
+cat("written figure + S11, S12\n")
