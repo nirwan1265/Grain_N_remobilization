@@ -1,0 +1,17 @@
+population,metric,description,n_C0,n_C14,mean_C0,mean_C14,median_C0,median_C14,P,cliffs_delta,P_BH,direction,significant_BH
+Indian Chief,Total_FAA_per_mg,Total FAA per mg sample,5,8,1.403,2.458,1.375,2.388,0.00431,1,0.01724,higher in C14,TRUE
+Indian Chief,Pro_fraction,Proline / total FAA,5,8,0.3204,0.5194,0.3918,0.5444,0.01572,0.85,0.02515,higher in C14,TRUE
+Indian Chief,Asn_fraction,Asparagine / total FAA,5,8,0.1412,0.1164,0.1395,0.09889,0.4208,-0.3,0.4809,lower in C14,FALSE
+Indian Chief,Asp_fraction,Aspartate / total FAA,5,8,0.1154,0.07505,0.1137,0.07453,0.01572,-0.85,0.02515,lower in C14,TRUE
+Indian Chief,Gln_fraction,Glutamine / total FAA,5,8,0.0056,0.005983,0.00559,0.003479,0.5101,-0.25,0.5101,higher in C14,FALSE
+Indian Chief,Glu_fraction,Glutamate / total FAA,5,8,0.1404,0.06194,0.1269,0.0657,0.006767,-0.95,0.01804,lower in C14,TRUE
+Indian Chief,N_rich_FAA_per_mg,Asn + Gln + Arg + Lys + His per mg sample,5,8,0.2819,0.4426,0.2881,0.3873,0.1243,0.55,0.1657,higher in C14,FALSE
+Indian Chief,FAA_N_per_mg,FAA-derived N per mg sample,5,8,1.751,2.986,1.738,2.799,0.00431,1,0.01724,higher in C14,TRUE
+Jarvis,Total_FAA_per_mg,Total FAA per mg sample,3,8,2.473,1.852,2.559,1.81,0.3583,-0.4167,0.5733,lower in C14,FALSE
+Jarvis,Pro_fraction,Proline / total FAA,3,8,0.455,0.3221,0.464,0.2967,0.1846,-0.5833,0.4922,lower in C14,FALSE
+Jarvis,Asn_fraction,Asparagine / total FAA,3,8,0.1267,0.126,0.0943,0.1211,0.475,0.3333,0.6333,lower in C14,FALSE
+Jarvis,Asp_fraction,Aspartate / total FAA,3,8,0.07497,0.1368,0.07446,0.1332,0.0189,1,0.1512,higher in C14,FALSE
+Jarvis,Gln_fraction,Glutamine / total FAA,3,8,0.0258,0.007336,0.004123,0.006465,1,0,1,lower in C14,FALSE
+Jarvis,Glu_fraction,Glutamate / total FAA,3,8,0.08114,0.08744,0.07383,0.08122,0.9187,0.08333,1,higher in C14,FALSE
+Jarvis,N_rich_FAA_per_mg,Asn + Gln + Arg + Lys + His per mg sample,3,8,0.434,0.3373,0.467,0.3334,0.1846,-0.5833,0.4922,lower in C14,FALSE
+Jarvis,FAA_N_per_mg,FAA-derived N per mg sample,3,8,2.992,2.278,2.945,2.235,0.2616,-0.5,0.5231,lower in C14,FALSE

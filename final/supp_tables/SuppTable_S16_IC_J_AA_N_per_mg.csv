@@ -1,0 +1,7 @@
+population,metric,description,n_C0,n_C14,mean_C0,mean_C14,median_C0,median_C14,P,cliffs_delta,P_BH,direction,significant_BH
+Indian Chief,FAA_N_per_mg,FAA-derived N per mg sample,5,8,1.751,2.986,1.738,2.799,0.00431,1,0.01293,higher in C14,TRUE
+Indian Chief,PBAA_N_per_mg,Estimated PBAA-derived N per mg sample,5,8,331.7,364.2,320.1,370.7,0.4208,0.3,0.4208,higher in C14,FALSE
+Indian Chief,Total_AA_N_per_mg,Estimated total amino acid-derived N per mg sample,5,8,333.4,367.2,321.5,374.5,0.4208,0.3,0.4208,higher in C14,FALSE
+Jarvis,FAA_N_per_mg,FAA-derived N per mg sample,3,8,2.992,2.278,2.945,2.235,0.2616,-0.5,0.2616,lower in C14,FALSE
+Jarvis,PBAA_N_per_mg,Estimated PBAA-derived N per mg sample,3,8,396.8,344,438.6,340.7,0.1846,-0.5833,0.2616,lower in C14,FALSE
+Jarvis,Total_AA_N_per_mg,Estimated total amino acid-derived N per mg sample,3,8,399.7,346.2,441.5,342.5,0.1846,-0.5833,0.2616,lower in C14,FALSE
