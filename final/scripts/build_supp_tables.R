@@ -2,7 +2,7 @@
 ################################################################################
 ## BUILD THE SUPPLEMENTARY TABLES FOR final/, NUMBERED BY ORDER OF FIRST CITATION
 ##
-##   S1  free amino acid phenotype values, 280 taxa x 113 traits
+##   S1  free amino acid phenotype values, 280 taxa x the 78 GWAS traits (as in S2)
 ##   S2  phenotype abbreviations and definitions
 ##   S3  heritability per trait: broad-sense H2 and genomic h2
 ##   S4  free vs protein-bound amino acid pools, with paired tests
@@ -35,6 +35,15 @@ rd <- function(f) fread(f, encoding = "UTF-8", showProgress = FALSE)
 s1_src <- file.path(OUT, "SuppTable_1_FAA_phenotypes.csv")
 if (file.exists(s1_src)) {
   file.rename(s1_src, file.path(OUT, "SuppTable_S1_FAA_phenotypes.csv"))
+}
+## keep only the 78 phenotypes scanned by GWAS (the S2 list); the source file also
+## carried 35 pairwise amino acid ratios (e.g. D.W, H.M) that were never scanned
+s1_f <- file.path(OUT, "SuppTable_S1_FAA_phenotypes.csv")
+if (file.exists(s1_f)) {
+  s1  <- rd(s1_f)
+  def <- rd(file.path(STAGE, "abbre.csv"))[[1]]
+  s1  <- s1[, c(names(s1)[1], intersect(names(s1)[-1], def)), with = FALSE]
+  fwrite(s1, s1_f)
 }
 cat("S1 phenotype values      : ",
     if (file.exists(file.path(OUT, "SuppTable_S1_FAA_phenotypes.csv"))) "present" else "MISSING", "\n")
