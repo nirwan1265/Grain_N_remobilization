@@ -245,6 +245,8 @@ To quantify the free pool's contribution to grain amino acid nitrogen, we compar
 
 \caption{A locus on chromosome 9 is associated with nine amino acid phenotypes. Shown are Manhattan plots for eight phenotypes with an FDR-significant association at \textit{Zm00001eb393450} (chr9:130,359,239--130,360,506), \textit{N.E} ($P = 1.2 \times 10^{-7}$) is omitted. Arrows mark the lead SNP within 250 kb of the gene. Dashed red lines indicate the 5\% Benjamini--Hochberg FDR threshold (cutoffs $P = 8.6 \times 10^{-7}$ to $3.1 \times 10^{-8}$; $-\log_{10}$ 6.1--7.5). The model for each phenotype is in parentheses.}
 
+%===================== FIGURE 1 =====================
+
 \begin{figure*}[ht!]
     \centering
     \includegraphics[width=0.82\textwidth]{final/main_figs/Fig_amino_Zm00001eb393450_manhattan.png}
@@ -260,6 +262,7 @@ At a Benjamini--Hochberg false discovery rate of 5\%, applied per phenotype and 
 
 The aspartate family yielded the most candidate genes (1,080 genes from 590 SNPs across 22 phenotypes), followed by glutamate (637), serine (442), pyruvate (300), and aromatic (243). Aspartate leads partly because it has the most phenotypes: it accounts for 22 of the 78 phenotypes scanned, and per phenotype the gap to serine is small (49 against 44 genes). These counts therefore show where we had the power to detect signals, not which pathways are more polymorphic. Table~\ref{tab:amino_gwas_top_loci} lists, within each biosynthetic family and across all phenotypes, the loci significant for the most phenotypes. The most pleiotropic locus genome-wide (chr9, 130.35--130.36 Mb; five SNPs over 12.6 kb) was significant for nine phenotypes spanning four biosynthetic families and the whole free pool, and contains \textit{Zm00001eb393450} (lysine-rich arabinogalactan protein 17) and \textit{Zm00001eb393460} (zinc finger protein AZF2). Within the aspartate family, the two leading loci are dominated by asparagine phenotypes: the locus on chromosome 6 (113.8 Mb) is significant for seven phenotypes, all of them asparagine or aspartate traits (\textit{N}, \textit{N.D}, \textit{N.E}, \textit{N.IMNTDK}, \textit{N.Total}, \textit{D.IMNTDK}, \textit{M.IMNTDK}), and contains \textit{Zm00001eb277160}, a member of the NRT1/PTR (NPF) nitrate and peptide transporter family. The glutamate family is likewise dominated by a single amino acid in two forms: glutamine, whose leading loci are each significant for \textit{Q} and all three of its ratios, and arginine, whose locus on chromosome 5 (222.1 Mb; $P = 2.1 \times 10^{-17}$, the smallest $P$ in the family) is significant for the absolute trait and both of its ratios. Thus the strongest family-level signals sit on individual amino acids --- asparagine, glutamine and arginine --- rather than on the family composites, and only the asparagine locus carries a gene with an annotated role in nitrogen transport.
 
+%===================== TABLE 1 =====================
 
 \begin{table*}[t]
 \centering
@@ -314,7 +317,7 @@ Two of these map near nitrogen-metabolism genes. S5\_22338979 lies 4.4~kb from \
 
 Two further loci suggest regulatory or trafficking roles. S3\_54622531, significant in two models and at both depths, lies 17.9~kb from \textit{Zm00001eb130210}, a RING/FYVE/PHD zinc-finger ubiquitin ligase whose rice homolog \textit{TTL1}/\textit{OsRFPV-7} affects thermotolerance and grain size \citep{Lin2023TTL1}; it passed both specificity tests. S9\_129109559 falls within \textit{Zm00001eb393130} (vacuolar protein sorting-associated protein 52A), with \textit{Zm00001eb393120} (nitrilase-associated) in the same 25-kb window. Arabidopsis Vps52/POK localizes to the Golgi and mediates vesicle trafficking and polar growth \citep{Lobstein2004Vps52}, so this locus may link soil N to protein sorting and nutrient redistribution. However, it is significant in only one model, making it the weakest candidate here. However, it is significant in only one model and its genotype is moderately correlated with $|$latitude$|$ (top 1.9\%), making it the weakest candidate here.
 
-%===================== MAIN TABLE =====================
+%===================== TABLE 2 =====================
 \begin{table}[htbp]
   \centering
   \scriptsize
@@ -350,9 +353,8 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
   \end{tabular}
 \end{table}
 
-
 %===================== FIGURE 2 =====================
-\begin{figure}[htbp]
+\begin{figure*}[ht!]
   \centering
   \includegraphics[width=\textwidth]{final/main_figs/Fig2_soilN.png}
   \caption{\textbf{Soil nitrogen at the collection site of 3,107 maize landraces.}
@@ -370,8 +372,7 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
   ($-\log_{10}P = 4.66$, the most lenient of the three models' thresholds).
   Candidate genes named in the text are labelled.}
   \label{fig:soilN}
-\end{figure}
-
+\end{figure*}
 
 %===================== SUPP TABLE S18 =====================
 \begin{table}[htbp]
@@ -409,8 +410,6 @@ Two further loci suggest regulatory or trafficking roles. S3\_54622531, signific
   \hline
   \end{tabular}
 \end{table}
-
-
 
 \subsection{Free amino acid analysis in Indian Chief and Jarvis implicate protein turnover in population-specific N allocation}
 % \rra{This paragraph says Jarvis "exhibited greater post-anthesis loss of N from stover," but in the Methods (Grain/Stover Nitrogen) you say that the additional Jarvis grain N came from post-anthesis UPTAKE while stover-to-grain remobilization was "largely unchanged. You need to double check what Moll et al says in their paper. This changes the framing of the paper. If the grain-N were driven by post-anthesis uptake, the heavy emphasis on senesecence/autophagy/remobilization needs to be soften. Also, you probably want to cite https://www.nature.com/articles/s41598-019-45485-5}
@@ -688,7 +687,7 @@ Indian Chief showed a contrasting response. In IC$_{14}$, vegetative biomass inc
 
 
 \subsubsection{Soil nitrogen}
-The environmental phenotype, soil total N, was derived from ISRIC global soil datasets \citep{Batjes2006ISRICWISE5ArcMin}. Soil N values from the top 0–5~cm soil layer were assigned to the geographic coordinates of each maize landrace accession and used as the N-related environmental variable for GWAS. Since soil N is an environmental estimate rather than a direct grain or plant measurement, GWAS results were interpreted as historical associations with soil N availability.
+The environmental phenotype, soil total N, was derived from ISRIC global soil datasets \citep{Batjes2006ISRICWISE5ArcMin}. Values for the 0--5~cm and 5--15~cm layers were assigned to the collection coordinates of each landrace accession; 0--5~cm was used as the primary GWAS phenotype and 5--15~cm as a check. Because soil N is an environmental estimate rather than a plant measurement, GWAS results were interpreted as historical associations with soil N.
 
 
 \subsubsection{Amino Acid Profiling}
@@ -751,9 +750,9 @@ Candidate windows from the $F_{ST}$, nucleotide diversity, and Tajima's $D$ anal
 
 % \rra{this section requires much mor detail an information. See comments in the results about the nitrogen phenotype used. "Approximately 495,755 SNPs for maize landraces" this sentence is missing a verb. Add more information about the SNP source and filtering etc from Romero-Navarro etc. What is the significance threshold and what correction did you use Bonferroni, FDR?}
 
-Genome-wide association analysis for the soil nitrogen phenotype (SoilN) was performed in a maize landrace panel of 3,511 accessions using 495,755 SNPs aligned to the Zm-B73-REFERENCE-NAM-5.0 genome \citep{RomeroNavarro2017Landraces}. SoilN values were taken from the 0–5 cm layer of the ISRIC global soil database \citep{Batjes2006ISRICWISE5ArcMin}. Associations were tested with four univariate GWAS models (MLM, MLMM, BLINK, FarmCPU), including three principal components as covariates for population structure \citep{Slaten2020HAPPI}. Significant associations were defined as $P \le 1 \times 10^{-7}$ (i.e., $-\log_{10}(p) \ge 7$), rather than using FDR or Bonferroni correction. Candidate genes from the maize AGPv5 annotation were those within 25 kb upstream or downstream of each significant SNP. Functional interpretation used maize gene annotations, MaizeGDB, Phytozome, and Arabidopsis homology resources.
+Genome-wide association analysis for soil N was performed in the maize landrace panel \citep{RomeroNavarro2017Landraces} using the 3,107 accessions with both genotype and soil N data and 495,755 SNPs aligned to Zm-B73-REFERENCE-NAM-5.0. Associations were tested with MLM, BLINK and FarmCPU \citep{Slaten2020HAPPI}, with three genotype principal components as covariates (Supplementary Fig.~\ref{fig:supp_pca_scree}). For each model, Benjamini--Hochberg FDR was computed over the full scan and SNPs with FDR $\leq 0.05$ were declared significant. Candidate genes were B73 RefGen\_v5 genes within 25~kb of a significant SNP. Functional interpretation used maize gene annotations, MaizeGDB, Phytozome, and Arabidopsis homology resources.
 
-
+To test whether soil-N associations reflected geography or climate, we ran the same pipeline on latitude, longitude, elevation, soil pH, CEC and aridity (Ref). The overlap between the significant SNP sets of each pair of variables was compared with its chance expectation, $n_1 n_2 / M$ ($M = 495{,}755$), using a one-sided hypergeometric test. In a second, model-free test, we computed the Pearson correlation between allele dosage (0, 1, 2; missing genotypes set to the SNP mean) and each site variable across the 3,107 accessions for every SNP, and expressed each SNP's $|r|$ as a genome-wide rank. A soil-N SNP was called linked to the environment if it ranked in the top 1\% for any non-N variable, not linked if it ranked in the top 5\% for soil N and not in the top 1\% for any other variable, and inconclusive if it ranked outside the top 5\% for soil N. The share of soil-N SNPs in the top 1\% for at least one geographic or environmental variable was compared, by binomial test, with the whole genome and with SNPs in the top 1\% for correlation with soil N.
 
 \paragraph{Metabolite GWAS}
 
@@ -971,26 +970,6 @@ We thank members of the Rubén Rellán Álvarez and Jim Holland labs for their c
   \end{tabular}
 \end{table}
 
-% =========================
-% SUPP FIGURE S2
-% =========================                                                     
-\begin{figure*}[!htbp]
-    \centering
-    \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_QQ_venn.png}
-    \caption{Supplementary soil N GWAS diagnostics and model overlap. \textbf{A}, Quantile--quantile plot comparing expected and observed $-\log_{10}(p)$ values for the MLM, MLMM, BLINK, and FarmCPU models. \textbf{B}, Venn diagram showing overlap among models for loci exceeding the suggestive threshold used for comparison.}
-    \label{fig:supp_soiln_qq_venn}
-\end{figure*}
-
-
-% =========================
-% SUPP FIGURE S3
-% =========================                                                  
-\begin{figure*}[!htbp]
-    \centering
-    \includegraphics[width=0.88\textwidth]{Figs/Supplementary/Supp_AminoAcid_Selected_Manhattan_QQ.png}
-    \caption{Supplementary GWAS results for selected amino acid and nitrogen-related traits. For each trait, the Manhattan plot is shown on the left and the corresponding quantile--quantile plot on the right. Traits shown are D, E, N, P, Q, Total\_N, and Total\_PBAA. Colored points denote loci identified by the MLM, MLMM, BLINK, and FarmCPU models.}
-    \label{fig:supp_amino_gwas}
-\end{figure*}
 
 % =========================
 % SUPP FIGURE S4
