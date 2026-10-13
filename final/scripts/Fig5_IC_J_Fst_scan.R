@@ -23,9 +23,17 @@
 ## genome (10-kb bins). The shift keeps the size and clustering of the outlier
 ## windows, so linkage is preserved.
 ##
+## Genes: windows are intersected here with the B73 RefGen_v5 gene models (GFF3).
+## The gene lists stored in the older window tables (tables/supplementary/
+## SuppTable_7/8, GeneIDs column) are NOT used: they were attached by row
+## position after a re-sort (17_spline_Fst_Tajima_Pi.R, annotate_windows_with_genes
+## uses queryHits() as window_row_id), so 7% of Indian Chief and 62% of Jarvis
+## gene-window pairs pointed at the wrong window.
+##
 ## Inputs  (GN_WIN): SuppTable_7_IC_GenWin_windows_Fst_Tajima_pi_genes.csv,
-##                   SuppTable_8_J_GenWin_windows_Fst_Tajima_pi_genes.csv
-##         (GN_ANN): SuppTable_9_IC_GO_Fst_5pc.txt, SuppTable_10_J_GO_Fst_5pc.txt
+##                   SuppTable_8_J_GenWin_windows_Fst_Tajima_pi_genes.csv (windows, F_ST)
+##         (GN_GFF): Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3
+##         (GN_GOU): GO_universe_genomewide.txt (PANTHER names, families, GO; all genes)
 ## Outputs: final/main_figs/Fig5_IC_J_Fst_scan.{png,pdf}
 ##          final/supp_tables/SuppTable_S17-S20 (windows and candidate genes)
 ##          final/results/ic_j_fst/IC_J_Fst_shared_regions.csv, _overlap_test.csv
@@ -34,7 +42,8 @@ suppressPackageStartupMessages({library(data.table); library(ggplot2); library(g
 gv   <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
 REPO <- gv("GN_REPO", "/Users/nirwantandukar/Documents/Github/Grain_N_remobilization")
 WIN  <- gv("GN_WIN",  file.path(REPO, "tables/supplementary"))
-ANN  <- gv("GN_ANN",  WIN)
+GFF  <- gv("GN_GFF",  "/Users/nirwantandukar/Library/Mobile Documents/com~apple~CloudDocs/Research/Data/Maize/Maize.annotation/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3")
+GOU  <- gv("GN_GOU",  file.path(REPO, "final/results/GO/GO_universe_genomewide.txt"))
 OUT  <- gv("GN_MAINDIR", file.path(REPO, "final/main_figs"))
 TAB  <- gv("GN_TABDIR",  file.path(REPO, "final/supp_tables"))
 RES  <- gv("GN_RESDIR",  file.path(REPO, "final/results/ic_j_fst"))
@@ -63,10 +72,23 @@ legend_inside <- function(x, y) {
 rd <- function(f, pop) {
   d <- fread(file.path(WIN, f))
   d[, .(population = pop, chr, chr_num, window_id, start = window_start_bp, end = window_end_bp,
-        n_sites = snp_count, mean_fst, top5 = fst_outlier == "Yes", gene_count, GeneIDs)]
+        n_sites = snp_count, mean_fst, top5 = fst_outlier == "Yes")]
 }
 W <- rbind(rd("SuppTable_7_IC_GenWin_windows_Fst_Tajima_pi_genes.csv", "Indian Chief"),
            rd("SuppTable_8_J_GenWin_windows_Fst_Tajima_pi_genes.csv", "Jarvis"))
+
+## genes overlapping each window, from the GFF3 gene models
+G <- fread(cmd = sprintf("awk -F'\t' '$3==\"gene\"' '%s'", GFF), header = FALSE, sep = "\t",
+           select = c(1, 4, 5, 9), col.names = c("chr", "start", "end", "attr"))
+G[, GeneID := sub("^ID=([^;]+).*", "\\1", attr)][, attr := NULL]
+G <- G[grepl("^chr[0-9]+$", chr)]
+setkey(G, chr, start, end)
+ov <- foverlaps(W[, .(population, chr, window_id, start, end)], G,
+                by.x = c("chr", "start", "end"), type = "any", nomatch = NULL)
+ov <- ov[, .(gene_count = .N, GeneIDs = paste(GeneID, collapse = ";")), by = .(population, chr, window_id)]
+W <- merge(W, ov, by = c("population", "chr", "window_id"), all.x = TRUE, sort = FALSE)
+W[is.na(gene_count), `:=`(gene_count = 0L, GeneIDs = "")]
+cat("genes assigned to windows:", W[, sum(gene_count)], "\n")
 thr <- W[, .(thr = quantile(mean_fst, 0.95, na.rm = TRUE), n = .N, n_top = sum(top5)), by = population]
 stopifnot(all(W[, all(top5 == (mean_fst >= thr[population == .BY$population, thr])), by = population]$V1))
 print(thr)
@@ -164,8 +186,8 @@ for (ext in c("png", "pdf"))
 
 ## ---- supplementary tables S17-S20 ----------------------------------------------------
 shared_genes <- unique(unlist(strsplit(REG$GeneIDs, ";")))
-for (pp in list(list("Indian Chief", "S17_IC_Fst_windows", "S19_IC_Fst_top5_genes", "SuppTable_9_IC_GO_Fst_5pc.txt"),
-                list("Jarvis", "S18_J_Fst_windows", "S20_J_Fst_top5_genes", "SuppTable_10_J_GO_Fst_5pc.txt"))) {
+for (pp in list(list("Indian Chief", "S17_IC_Fst_windows", "S19_IC_Fst_top5_genes"),
+                list("Jarvis", "S18_J_Fst_windows", "S20_J_Fst_top5_genes"))) {
   w <- W[population == pp[[1]]][order(chr_num, start)]
   fwrite(w[, .(population, chr, window_id, start_bp = start, end_bp = end, n_sites,
                mean_fst = signif(mean_fst, 5), top5 = top5, gene_count, GeneIDs)],
@@ -173,7 +195,8 @@ for (pp in list(list("Indian Chief", "S17_IC_Fst_windows", "S19_IC_Fst_top5_gene
   g <- w[top5 == TRUE, .(GeneID = unlist(strsplit(GeneIDs, ";"))),
          by = .(chr, window_id, start_bp = start, end_bp = end, mean_fst)]
   g <- g[, .SD[which.max(mean_fst)], by = GeneID]            # a gene spanning two windows: keep the higher
-  a <- fread(file.path(ANN, pp[[4]]))
+  a <- fread(GOU, quote = "\"")
+  a[, GeneName := sub(";.*", "", GeneName)]
   g <- merge(g, a, by = "GeneID", all.x = TRUE, sort = FALSE)
   g[, shared_with_other_population := GeneID %in% shared_genes]
   setorder(g, -mean_fst, chr, start_bp, GeneID)

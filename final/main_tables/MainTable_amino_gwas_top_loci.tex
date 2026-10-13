@@ -1,36 +1,36 @@
 \begin{table*}[t]
 \centering
-\caption{Loci associated with the most amino acid phenotypes in the Goodman--Buckler FAA GWAS, at a Benjamini--Hochberg false discovery rate of 5\%. Phenotypes were assigned to a family by the amino acid they report on. Within each family and across all phenotypes, the three loci significant for the most phenotypes are listed; ties are broken by $P$. Note that marker identifiers carry the coordinate of the original (AGPv4) assembly, whereas gene annotation used B73 reference genome version 5 positions, so the number in a marker name is not its v5 coordinate; both are given in Supplementary Table S7.}
+\caption{Loci associated with the most amino acid phenotypes in the Goodman--Buckler FAA GWAS, across all phenotypes and within each amino acid biosynthetic family. Significant SNPs (5\% Benjamini--Hochberg FDR) within 25~kb of each other form one locus; for each block the three loci significant for the most phenotypes are shown (ties broken by the smallest $P$). Positions are B73 RefGen\_v5, lifted from the AGPv4 coordinates of the genotype data, and give the lead SNP. Genes within 25~kb of the locus are listed by distance from the lead SNP; the full list is in Supplementary Table~S7.}
 \label{tab:amino_gwas_top_loci}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{@{}l l r r l >{\raggedright\arraybackslash}X@{}}
 \hline
-Family & Lead SNP & Best $P$ & $n$ phen. & Phenotype(s) & Candidate genes within 25 kb (putative function) \\
+Family & Locus (v5) & Best $P$ & $n$ phen. & Phenotype(s) & Candidate genes within 25 kb (putative function) \\
 \hline
-All phenotypes & \texttt{9-128366189} & $4.5\times10^{-13}$ & 9 & \texttt{A, E.Total, EHPRQ (+6)} & Zm00001eb393450 (Lysine-rich arabinogalactan protein 17), Zm00001eb393460 (Zinc finger protein AZF2) \\
- & \texttt{6-136885446} & $2.1\times10^{-15}$ & 7 & \texttt{D, EHPRQ, F (+4)} & Zm00001eb283510 (Derlin-1.2), Zm00001eb283500 (Katanin p80 WD40 repeat-containing subunit B1 homolog), Zm00001eb283480 (uncharacterised), Zm00001eb283490 (uncharacterised) \\
- & \texttt{5-6851962} & $1.1\times10^{-13}$ & 7 & \texttt{D.IMNTDK, I.IMNTDK, M.IMNTDK (+4)} & Zm00001eb214500 (Protein ENHANCED DISEASE RESISTANCE 2 C-terminal domain-containing protein), Zm00001eb214510 (OsWRKY4 family protein), Zm00001eb214490 (Origin recognition complex5), Zm00001eb214480 (uncharacterised), Zm00001eb214470 (Ovule protein), Zm00001eb214460 (uncharacterised) \\
+All phenotypes & chr4:212.55 Mb & $1.5\times10^{-18}$ & 9 & \texttt{A, E, G (+6)} & none; nearest Zm00001eb201120 (125.7 kb) \\
+ & chr7:40.80 Mb & $1.5\times10^{-14}$ & 9 & \texttt{F, G, H (+6)} & Zm00001eb306240 (K Homology domain-containing protein) \\
+ & chr9:133.93 Mb & $4.5\times10^{-13}$ & 9 & \texttt{A, E.Total, EHPRQ (+6)} & Zm00001eb394360 (ER membrane protein complex subunit 4), Zm00001eb394370 (Protein kinase domain-containing protein), Zm00001eb394380 (Rhomboid-like protein 19), Zm00001eb394390 (Phosphoinositide phospholipase C) (+1 more) \\
 \hline
-Aspartate & \texttt{5-6851962} & $1.1\times10^{-13}$ & 7 & \texttt{D.IMNTDK, I.IMNTDK, M.IMNTDK (+4)} & Zm00001eb214500 (Protein ENHANCED DISEASE RESISTANCE 2 C-terminal domain-containing protein), Zm00001eb214510 (OsWRKY4 family protein), Zm00001eb214490 (Origin recognition complex5), Zm00001eb214480 (uncharacterised), Zm00001eb214470 (Ovule protein), Zm00001eb214460 (uncharacterised) \\
- & \texttt{6-109336639} & $8.0\times10^{-13}$ & 7 & \texttt{D.IMNTDK, M.IMNTDK, N (+4)} & Zm00001eb277110 (UDP-galactose\_UDP-glucose transporter 3), Zm00001eb277130 (uncharacterised), Zm00001eb277140 (UDP-galactose\_UDP-glucose transporter 3), Zm00001eb277150 (uncharacterised), Zm00001eb277160 (Protein NRT1\_ PTR FAMILY 4.6) \\
- & \texttt{2-9419791} & $9.3\times10^{-10}$ & 5 & \texttt{D.IMNTDK, N.D, N.E (+2)} & Zm00001eb070410 (Ubiquitin-like domain-containing protein), Zm00001eb070420 (uncharacterised), Zm00001eb070400 (ABC transporter C family member 2) \\
+Aspartate & chr5:7.23 Mb & $1.1\times10^{-13}$ & 7 & \texttt{D.IMNTDK, I.IMNTDK, M.IMNTDK (+4)} & Zm00001eb214570 (UDP-glycosyltransferase 83A1) \\
+ & chr6:120.80 Mb & $8.0\times10^{-13}$ & 7 & \texttt{D.IMNTDK, M.IMNTDK, N (+4)} & Zm00001eb278900 (uncharacterised) \\
+ & chr2:9.85 Mb & $9.3\times10^{-10}$ & 5 & \texttt{D.IMNTDK, N.D, N.E (+2)} & Zm00001eb070490 (NAC domain-containing protein 21\_22), Zm00001eb070500 (uncharacterised), Zm00001eb070510 (LRR receptor-like serine\_threonine-protein kinase FLS2) \\
 \hline
-Glutamate & \texttt{4-834837} & $7.6\times10^{-17}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb164350 (GRAS transcription factor (Fragment)) \\
- & \texttt{3-186609917} & $3.8\times10^{-12}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb149460 (Expansin) \\
- & \texttt{5-216273624} & $2.1\times10^{-17}$ & 3 & \texttt{R, R.EHPRQ, R.Total} & Zm00001eb257880 (uncharacterised), Zm00001eb257860 (Two-component response regulator), Zm00001eb257870 (uncharacterised), Zm00001eb257890 (non-specific serine\_threonine protein kinase), Zm00001eb257850 (poly(A)-specific ribonuclease) \\
+Glutamate & chr4:1.35 Mb & $7.6\times10^{-17}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb164490 (uncharacterised), Zm00001eb164500 (Scarecrow-like protein 9), Zm00001eb164480 (GRAS transcription factor), Zm00001eb164530 (uncharacterised) (+5 more) \\
+ & chr3:191.64 Mb & $3.8\times10^{-12}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb149970 (Vacuolar protein-sorting-associated protein 36), Zm00001eb149980 (ADP-ribosylation factor) \\
+ & chr10:61.05 Mb & $1.6\times10^{-8}$ & 4 & \texttt{Q, Q.E, Q.EHPRQ (+1)} & Zm00001eb413340 (uncharacterised) \\
 \hline
-Serine & \texttt{4-179692257} & $2.4\times10^{-11}$ & 3 & \texttt{S, S.Total, SGC} & Zm00001eb193350 (uncharacterised), Zm00001eb193360 (1-aminocyclopropane-1-carboxylate oxidase20), Zm00001eb193330 (Homeodomain leucine zipper family IV protein) \\
- & \texttt{4-3053638} & $2.1\times10^{-16}$ & 2 & \texttt{S, S.Total} & Zm00001eb165420 (AAA-type ATPase family protein), Zm00001eb165430 (Carboxypeptidase), Zm00001eb165440 (Anaphase-promoting complex subunit 4-like WD40 domain-containing protein), Zm00001eb165450 (Sodium\_calcium exchanger membrane region domain-containing protein) \\
- & \texttt{10-148840622} & $1.3\times10^{-12}$ & 2 & \texttt{G, SGC} & Zm00001eb433530 (Ubiquinone biosynthesis protein COQ4 homolog, mitochondrial), Zm00001eb433540 (Chlorophyll a-b binding protein, chloroplastic), Zm00001eb433520 (uncharacterised), Zm00001eb433550 (S-acyltransferase) \\
+Serine & chr1:23.54 Mb & $1.4\times10^{-14}$ & 3 & \texttt{G.SGC, S.SGC, S.Total} & none; nearest Zm00001eb007990 (80.7 kb) \\
+ & chr4:184.61 Mb & $2.4\times10^{-11}$ & 3 & \texttt{S, S.Total, SGC} & Zm00001eb193850 (F-box protein FBX14), Zm00001eb193840 (Pre-mRNA-splicing factor prp45), Zm00001eb193830 (Cyclin-D2-1) \\
+ & chr4:3.89 Mb & $2.1\times10^{-16}$ & 2 & \texttt{S, S.Total} & Zm00001eb165560 (Benzoxazinone synthesis4), Zm00001eb165570 (uncharacterised) \\
 \hline
-Aromatic & \texttt{1-279724987} & $3.6\times10^{-13}$ & 2 & \texttt{WFY, Y} & Zm00001eb057780 (uncharacterised), Zm00001eb057790 (UDP-glycosyltransferase 83A1), Zm00001eb057800 (Peptidyl-prolyl cis-trans isomerase), Zm00001eb057770 (UDP-glycosyltransferase 83A1), Zm00001eb057750 (Glycosyltransferase), Zm00001eb057760 (uncharacterised), Zm00001eb057740 (UDP-glycosyltransferase 83A1) \\
- & \texttt{1-229772599} & $3.4\times10^{-11}$ & 2 & \texttt{WFY, Y} & Zm00001eb044710 (DNA-directed RNA polymerase subunit beta) \\
- & \texttt{3-134034027} & $1.8\times10^{-10}$ & 2 & \texttt{W, Y} & Zm00001eb137680 (Golgin candidate 6), Zm00001eb137620 (Golgin candidate 6), Zm00001eb137670 (uncharacterised), Zm00001eb137660 (uncharacterised) \\
+Aromatic & chr7:5.26 Mb & $4.7\times10^{-17}$ & 2 & \texttt{WFY, Y} & Zm00001eb299950 (WPP domain-associated protein), Zm00001eb299960 (Ferredoxin--NADP reductase, chloroplastic), Zm00001eb299970 (187-kDa microtubule-associated protein AIR9), Zm00001eb299940 (N-acetyl-D-glucosamine kinase) \\
+ & chr3:74.92 Mb & $1.7\times10^{-13}$ & 2 & \texttt{WFY, Y} & none; nearest Zm00001eb132060 (57.1 kb) \\
+ & chr1:286.48 Mb & $3.6\times10^{-13}$ & 2 & \texttt{WFY, Y} & none; nearest Zm00001eb058300 (31.8 kb) \\
 \hline
-Pyruvate & \texttt{2-231615843} & $1.2\times10^{-15}$ & 3 & \texttt{IVL, L, V} & Zm00001eb116160 (S-receptor kinase1) \\
- & \texttt{10-129288186} & $2.8\times10^{-13}$ & 3 & \texttt{IVL, LAV, V} & Zm00001eb425750 (La protein 1) \\
- & \texttt{9-128364318} & $5.9\times10^{-13}$ & 3 & \texttt{A, IVL, LAV} & Zm00001eb393450 (Lysine-rich arabinogalactan protein 17) \\
+Pyruvate & chr4:174.57 Mb & $6.0\times10^{-15}$ & 4 & \texttt{A, IVL, LAV (+1)} & Zm00001eb190800 (Peptidase A1 domain-containing protein), Zm00001eb190790 (Putative integral membrane protein conserved region (DUF2404)), Zm00001eb190770 (Plant\_F8L15-130 protein), Zm00001eb190780 (uncharacterised) \\
+ & chr3:135.65 Mb & $2.9\times10^{-9}$ & 4 & \texttt{A, IVL, L (+1)} & Zm00001eb137870 (VIN3-like protein 1), Zm00001eb137860 (Rac GTPase activator) \\
+ & chr2:51.64 Mb & $2.3\times10^{-16}$ & 3 & \texttt{IVL, L, V} & Zm00001eb082590 (ZF-HD homeobox protein (Fragment)) \\
 \hline
 \end{tabularx}
 \end{table*}
