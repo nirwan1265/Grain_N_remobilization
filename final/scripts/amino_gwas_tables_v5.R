@@ -58,6 +58,8 @@ H <- merge(H, u, by = c("Chr", "Pos_v4"))
 W <- H[, .(n_models_sig = uniqueN(Model), models_sig = paste(sort(unique(Model)), collapse = "+"),
            min_P = min(P), min_FDR = min(FDR)), by = .(Phenotype, SNP, Chr, Pos_v4, Pos_v5, lift)]
 W[, replicated := n_models_sig >= 2]
+## every FDR-significant phenotype x SNP (with or without a gene nearby)
+fwrite(W[order(Phenotype, Chr, Pos_v5)], file.path(RES, "amino_gwas_v5_fdr_snps.csv"))
 say("FDR-significant: %d SNP x phenotype rows, %d SNPs, %d phenotypes (lift: %s)",
     nrow(W), uniqueN(W$SNP), uniqueN(W$Phenotype), paste(names(table(u$lift)), table(u$lift), collapse = ", "))
 

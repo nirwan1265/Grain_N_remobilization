@@ -22,7 +22,7 @@
 ## Input : final/results/manhattan_full/<trait>__<MODEL>.csv.gz  (Chr,Pos,P; no header;
 ##         the model's rows of the full per-trait scan, AGPv4 positions)
 ##         final/results/goodman_buckler_amino_acid_gwas/by_model_fdr/by_model (FDR cutoffs)
-## Output: final/main_figs/Fig_amino_chr9_locus_manhattan.png
+## Output: final/supp_figs/SuppFig_amino_chr9_locus_manhattan.png  (Supplementary figure)
 ################################################################################
 
 suppressPackageStartupMessages({
@@ -32,7 +32,7 @@ suppressPackageStartupMessages({
 ROOT     <- if (length(commandArgs(TRUE))) commandArgs(TRUE)[1] else "."
 gv       <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
 IN_DIR   <- gv("GN_SCANS", file.path(ROOT, "final", "results", "manhattan_full"))
-OUT_FILE <- gv("GN_OUT", file.path(ROOT, "final", "main_figs", "Fig_amino_chr9_locus_manhattan.png"))
+OUT_FILE <- gv("GN_OUT", file.path(ROOT, "final", "supp_figs", "SuppFig_amino_chr9_locus_manhattan.png"))
 CHAIN    <- gv("GN_CHAIN", "/Users/nirwantandukar/Documents/Research/data/Sarah_amino_acid/chain/B73_RefGen_v4_to_Zm-B73-REFERENCE-NAM-5.0.chain.txt")
 source(gv("GN_LIFT", file.path(ROOT, "final", "scripts", "liftover_v4_v5.R")))
 BLOCKS   <- read_chain_blocks(CHAIN)
