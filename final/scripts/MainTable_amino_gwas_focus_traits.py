@@ -15,7 +15,7 @@ For each FAA:
             FDR-significant phenotype x SNP, written by amino_gwas_tables_v5.R)
   genes  -> trait-matched candidates (amino_gwas_pathway_matched_genes.py),
             listed when hit by a phenotype that reports on this amino acid;
-            the P, phenotype and SNP-gene distance are for that phenotype.
+            shown as gene (putative function); phenotype, P and distance are in S6.
 Output : final/main_tables/MainTable_amino_gwas_focus_traits.tex
 """
 import csv, os
@@ -63,9 +63,8 @@ for aa in ROWS:
     cells = []
     for g, lab in GENES[aa]:
         hits = [r for r in S6 if r["GeneID"] == g and own(r["Phenotype"], aa)]
-        b = min(hits, key=lambda r: float(r["min_P"]))
-        two = "$^{\\dagger}$" if b["replicated"].upper() == "TRUE" else ""
-        cells.append(f"\\textit{{{g}}} ({lab}; {tt(b['Phenotype'])}, {sci(float(b['min_P']))}{two}, {dist(b)})")
+        assert hits, (aa, g)                       # gene must be a candidate for this amino acid
+        cells.append(f"\\textit{{{g}}} ({lab})")   # gene (putative function) only; P and distance are in the text / S6
     lines.append(" & ".join([
         f"{s['Amino_acid']} ({aa})", f"{float(s['median']):.3f}", f"{float(s['CV_pct']):.0f}",
         f"{float(s['H2_line_mean']):.2f}", f"{float(s['h2_genomic']):.2f}",
@@ -73,13 +72,13 @@ for aa in ROWS:
 
 tex = r"""\begin{table*}[t]
 \centering
-\caption{Association mapping of the focal free amino acids (FAAs) in the Goodman--Buckler panel: the two most abundant (asparagine, proline), the most heritable (lysine, asparagine, aspartate, proline), the amide glutamine and the most variable (methionine). Median, coefficient of variation (CV), line-mean broad-sense heritability ($H^2$) and genomic heritability ($h^2_g$) are from Supplementary Table~S3. Loci: loci (Supplementary Table~S7) significant at 5\% Benjamini--Hochberg FDR for at least one phenotype reporting on the amino acid (its absolute abundance and its ratios); in parentheses, loci for the absolute trait alone. Best $P$: smallest $P$ among those phenotypes. Trait-matched candidate genes: B73 RefGen\_v5 genes within 25~kb of a significant SNP for one of those phenotypes whose annotation places them in the metabolism of the amino acid or its biosynthetic family, in amino acid or nitrogen transport, or in primary nitrogen assimilation (Methods); for each, the phenotype with the smallest $P$, that $P$, and the distance from the SNP to the gene are given. $^{\dagger}$Significant in both BLINK and FarmCPU.}
+\caption{Association mapping of the focal free amino acids (FAAs) in the Goodman--Buckler panel: the two most abundant (asparagine, proline), the most heritable (lysine, asparagine, aspartate, proline), the amide glutamine and the most variable (methionine). Median, coefficient of variation (CV), line-mean broad-sense heritability ($H^2$) and genomic heritability ($h^2_g$) are from Supplementary Table~S3. Loci: loci (Supplementary Table~S7) significant at 5\% Benjamini--Hochberg FDR for at least one phenotype reporting on the amino acid (its absolute abundance and its ratios); in parentheses, loci for the absolute trait alone. Best $P$: smallest $P$ among those phenotypes. Trait-matched candidate genes: B73 RefGen\_v5 genes within 25~kb of a significant SNP for one of those phenotypes whose annotation places them in the metabolism of the amino acid or its biosynthetic family, in amino acid or nitrogen transport, or in primary nitrogen assimilation (Methods), with their putative function; the associated phenotypes, $P$ values and SNP--gene distances are in Supplementary Table~S6.}
 \label{tab:amino_gwas_focus}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\textwidth}{@{}l r r r r r r >{\raggedright\arraybackslash}X@{}}
 \hline
-FAA & Median & CV (\%) & $H^2$ & $h^2_g$ & Loci & Best $P$ & Trait-matched candidate genes (annotation; phenotype, $P$, distance) \\
+FAA & Median & CV (\%) & $H^2$ & $h^2_g$ & Loci & Best $P$ & Trait-matched candidate genes (putative function) \\
 \hline
 """ + "\n".join(lines) + r"""
 \hline
