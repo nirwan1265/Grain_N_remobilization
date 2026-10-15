@@ -223,7 +223,6 @@ Plant N metabolism incorporates N uptake, assimilation, transport, and recycling
 
 Grain N accumulation also depends on N remobilization from vegetative tissues during reproduction. Leaf senescence is a regulated process in which chloroplast proteins, nucleic acids, and other N-rich macromolecules are degraded and exported to developing sinks \citep{Have2017NRemobilization,Sakuraba2022NStarvationSenescence}. Protein breakdown proceeds via chloroplast degradation, vacuolar and autophagic pathways, and the ubiquitin--26S proteasome system \citep{Liu2008ProteinDegradationNRemobilization,Have2017NRemobilization}. The resulting amino acids and ammonium are converted into mobile N forms, transported through source--sink pathways, and stored in grains. Cytosolic glutamine synthetase is central to this recycling because it reassimilates ammonium into glutamine, a major mobile organic N form \citep{Bernard2009CytosolicGS}. Proline adds a stress-linked amino acid axis. In maize, water stress can modify proline accumulation or export from senescing leaves in a genotype-specific way, while glutamine and asparagine remain the main N compounds in leaf exudates \citep{Carceller1999ProlineRemobilization}. Therefore, changes in grain FAA composition should be interpreted as remodeling across multiple N-related amino acid pools, including Asn/Gln transport forms, Asp/Glu C--N metabolic hubs, and Pro linked metabolism, rather than as direct evidence of increased total N remobilization alone.
 
-
 Although N uptake, amino acid metabolism, and senescence-associated remobilization are well studied, they are usually examined separately. It remains unclear whether the same N-metabolism functions recur across long-term environmental adaptation, natural variation in grain amino acid composition, and short-term selection for contrasting grain–stover N partitioning. Maize is well suited for such integrative analysis. The Goodman–Buckler Association Panel captures broad allelic diversity for mapping complex traits \citep{FlintGarcia2005Goodman}, georeferenced landrace panels enable tests of genetic associations with environmental gradients such as soil N \citep{RomeroNavarro2017Landraces}, and the Indian Chief and Jarvis populations add a selection layer, as 14 cycles of reciprocal recurrent selection for grain yield produced contrasting N-remobilization patterns in grains and stover \citep{Moll1994}.
 
 We integrate grain amino acid profiling, grain amino acid GWAS, soil-N environmental GWAS, population-genomic scans of Indian Chief and Jarvis, and an exploratory B64 × CML14 biparental mapping population developed for grain asparagine variation. We analyze free and protein-bound amino acid pools, focusing on asparagine, aspartate, glutamate, glutamine, and proline because of their roles in N transport, C–N recycling, amino acid storage, and stress-linked N metabolism. Across these layers, we test whether genetic, and selection signals converge on shared processes underlying grain N remodeling. Our results are consistent with a model in which maize grain N variation involves related processes including Asp-family metabolism, Glu/Gln-mediated C–N recycling, amino acid transport, protein turnover, and intracellular trafficking during kernel development.
@@ -260,6 +259,8 @@ Furthermore, we investigated individual FAAs (Table~\ref{tab:amino_gwas_focus}).
 Pro, the second most abundant FAA, was nearly as heritable as Asn ($H^2 = 0.80$) but had a lower genomic heritability ($h^2_g = 0.40$), suggesting that the markers capture less of its variation among lines. It also had fewer loci (59). However, its ratio traits had no significant associations. One proline SNP lies within a class I glutamine amidotransferase gene (\textit{Zm00001eb217220}; $P = 2.2 \times 10^{-9}$).
 % and falls in a top-5\% $F_{ST}$ window in Indian Chief (Supplementary Table S19).
 Glutamine, the second most variable FAA (CV 130\%) with high genomic heritability (0.85), showed the strongest association among the amino acids in Table~\ref{tab:amino_gwas_focus} ($P = 4.9 \times 10^{-22}$, \textit{Q.E}). SNPs associated with glutamine lay within a WAT1-related (UmamiT) gene (\textit{Zm00001eb379220}; \textit{Q}, $P = 1.2 \times 10^{-11}$) and within or near a cluster of three amino acid transporter genes on chromosome 6 (\textit{Zm00001eb261470}--\textit{Zm00001eb261490}; \textit{Q.E}). Methionine, the most variable FAA (CV 180\%), had 104 loci but no trait-matched candidate gene. Its high CV likely reflects a strongly skewed distribution across lines, where the highest line had about 200 times as much methionine as the lowest (Supplementary Table S3). Thus, the most robust gene-level associations were specific to each trait. Genes involved in Asn/Asp-family metabolism and amino acid transport linked to their respective amino acids, whereas loci common to multiple phenotypes suggested roles in protein turnover rather than in single biosynthetic reactions.
+
+To test whether the free Asp and Pro variation seen in the panel also segregates in a biparental cross, we mapped both traits in a B64 $\times$ CML14 F$_{2:3}$ population developed to map kernel free asparagine, in which Asn is controlled mainly by a single QTL at \textit{ASN3} on chromosome~1 \citep{Fitzsimmons2026KernelKitchen}. Because B64 and CML14 were chosen for Asn and are not extreme for Asp or Pro in the Goodman--Buckler panel, this analysis was exploratory. Interval mapping with Haley--Knott regression on BLUPs from two replicates and a 611-marker map identified a single QTL for each trait at the same position on chromosome~3 (peak at 35.99~Mb), with LOD 5.96 for Asp (threshold 3.61) and 4.55 for Pro (threshold 3.55, 1,000 permutations), explaining 10\% and 7\% of phenotypic variance, respectively (Fig.~\ref{fig:fig6_qtl_pro_asp}). This shared QTL was distinct from the Asn QTL, indicating that free Asp and Pro share genetic control that is separable from Asn in this cross. The 1.5-LOD support interval (14.36--143.32~Mb) contained 1,388 genes (Supp table).
 
 %===================== TABLE 1 =====================
 
@@ -903,44 +904,6 @@ QTL for Free Proline. Identified from biparental F2:F3 mapping population on chr
 
 
 
-% =========================
-% SUPP FIGURE S12
-% =========================
-\begin{figure*}[!htbp]
-\centering
-\includegraphics[width=\textwidth]{Figs/Supplementary/Nitrogen_map.png}
-\caption{
-Genetic map of F2:F3 mapping population
-}
-\label{fig:suppfig_genetic_map}
-\end{figure*}
-
-
-% =========================
-% SUPP FIGURE S13
-% =========================
-\begin{figure*}[!htbp]
-\centering
-\includegraphics[width=\textwidth]{Figs/Supplementary/QTL_gene_heatmap.png}
-\caption{
-Heatmap showing log2-transformed expression values of genes in QTL confidence interval.
-}
-\label{fig:QTL_gene_heatmap}
-\end{figure*}
-
-
-% =========================
-% SUPP FIGURE S14
-% =========================
-
-
-\begin{figure*}[ht!]
-    \centering
-    \includegraphics[width=\textwidth]{Figs/Supplementary/SuppFig_string_theme_networks.png}
-    \caption{\textbf{High-confidence STRING network of candidate genes associated with maize grain nitrogen metabolism.}
-    Network from STRING retaining only very high-confidence associations (combined score ≥ 0.9). Colored nodes represent candidate genes and gray nodes represent first-neighbor proteins added by STRING. Node size indicates the number of connections in the network. The network reveals a prominent aspartate/glutamate-centered module linked to nitrogen remobilization and grain nitrogen metabolism.}
-    \label{fig:supp_string_theme_network}
-\end{figure*}
 
 
 \clearpage
