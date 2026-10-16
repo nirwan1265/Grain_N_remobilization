@@ -45,7 +45,7 @@ run <- function(pop, f) {
   list(stats = rbind(one(TRUE), one(pos_all$asp)),
        hits = {ids <- pos_all[asp == TRUE][inside(g), locus]; h <- L[locus %in% ids]; h[, population := pop]; h})
 }
-r <- list(run("Indian Chief", "SuppTable_S17_IC_Fst_windows.csv"), run("Jarvis", "SuppTable_S18_J_Fst_windows.csv"))
+r <- list(run("Indian Chief", "SuppTable_S18_IC_Fst_windows.csv"), run("Jarvis", "SuppTable_S19_J_Fst_windows.csv"))
 ST <- rbindlist(lapply(r, `[[`, "stats")); print(ST)
 H <- rbindlist(lapply(r, `[[`, "hits"))
 print(H[, .(population, Chr, lead_Pos, phenotypes = substr(phenotypes, 1, 60), best_P = signif(best_P, 3),

@@ -49,9 +49,9 @@ cat("annotated genes:", N, " Asp-related:", K, "\n")
 ids <- function(f, col = "GeneID") unique(fread(file.path(TAB, f))[[col]])
 SETS <- list(
   "Amino acid GWAS (S6)"        = ids("SuppTable_S6_amino_gwas_candidate_genes.csv"),
-  "Soil-N GWAS (S8)"            = ids("SuppTable_S8_soilN_candidate_genes.csv"),
-  "Indian Chief top-5% F_ST (S19)" = ids("SuppTable_S19_IC_Fst_top5_genes.csv"),
-  "Jarvis top-5% F_ST (S20)"    = ids("SuppTable_S20_J_Fst_top5_genes.csv"))
+  "Soil-N GWAS (S9)"            = ids("SuppTable_S9_soilN_candidate_genes.csv"),
+  "Indian Chief top-5% F_ST (S20)" = ids("SuppTable_S20_IC_Fst_top5_genes.csv"),
+  "Jarvis top-5% F_ST (S21)"    = ids("SuppTable_S21_J_Fst_top5_genes.csv"))
 RESULT <- rbindlist(lapply(names(SETS), function(k) {
   s <- intersect(SETS[[k]], U$GeneID); hit <- ASP[GeneID %in% s]
   data.table(gene_set = k, n_genes = length(s), asp_related = nrow(hit),

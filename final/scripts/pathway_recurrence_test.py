@@ -5,8 +5,8 @@ Gene sets (B73 RefGen_v5 gene IDs):
   GB    Goodman-Buckler amino acid GWAS genes (S6; FDR 5%; 'Bonf' version keeps
         genes whose best SNP has P < 0.05 / 4,177,796)
   soilN landrace soil-N GWAS genes (S8; FDR 5%; 'Bonf' keeps min_P < 0.05 / 495,755)
-  IC    Indian Chief top-5% F_ST window genes (S19)
-  J     Jarvis top-5% F_ST window genes (S20)
+  IC    Indian Chief top-5% F_ST window genes (S20)
+  J     Jarvis top-5% F_ST window genes (S21)
 
 For every CornCyc pathway (523 pathways) and every set we compute
   hit      = number of pathway genes in the set
@@ -41,11 +41,11 @@ def col(path, key="GeneID", filt=None):
 B_GB, B_SN = 0.05 / 4177796, 0.05 / 495755
 sets = {
   "FDR":  {"GB": col(f"{R}/SuppTable_S6_amino_gwas_candidate_genes.csv"),
-           "soilN": col(f"{R}/SuppTable_S8_soilN_candidate_genes.csv")},
+           "soilN": col(f"{R}/SuppTable_S9_soilN_candidate_genes.csv")},
   "Bonf": {"GB": col(f"{R}/SuppTable_S6_amino_gwas_candidate_genes.csv", filt=lambda r: float(r["min_P"]) < B_GB),
-           "soilN": col(f"{R}/SuppTable_S8_soilN_candidate_genes.csv", filt=lambda r: float(r["min_P"]) < B_SN)},
+           "soilN": col(f"{R}/SuppTable_S9_soilN_candidate_genes.csv", filt=lambda r: float(r["min_P"]) < B_SN)},
 }
-IC = col(f"{R}/SuppTable_S19_IC_Fst_top5_genes.csv"); J = col(f"{R}/SuppTable_S20_J_Fst_top5_genes.csv")
+IC = col(f"{R}/SuppTable_S20_IC_Fst_top5_genes.csv"); J = col(f"{R}/SuppTable_S21_J_Fst_top5_genes.csv")
 for k in sets: sets[k].update({"IC": IC, "J": J})
 
 pw_genes, pw_name = defaultdict(set), {}

@@ -37,12 +37,12 @@ run <- function(pop, f) {
   hits <- P[inside(g)][, i := findInterval(g, top$s)][, `:=`(window = sprintf("%s:%.2f-%.2f Mb", top$chr[i], top$start_bp[i]/1e6, top$end_bp[i]/1e6), window_fst = round(top$mean_fst[i], 3))]
   list(rbind(one(rep(TRUE, nrow(P)), "all"), one(P$asp, "Asp-family")), hits[, population := pop])
 }
-r <- list(run("Indian Chief", file.path(TAB, "SuppTable_S17_IC_Fst_windows.csv")),
-          run("Jarvis",       file.path(TAB, "SuppTable_S18_J_Fst_windows.csv")))
+r <- list(run("Indian Chief", file.path(TAB, "SuppTable_S18_IC_Fst_windows.csv")),
+          run("Jarvis",       file.path(TAB, "SuppTable_S19_J_Fst_windows.csv")))
 ## either population: a locus counts if it is inside an IC or a J top-5% window
 both <- function() {
   rd <- function(f) { W <- fread(f)[, chr_num := as.integer(sub("chr", "", chr))]; W }
-  WI <- rd(file.path(TAB, "SuppTable_S17_IC_Fst_windows.csv")); WJ <- rd(file.path(TAB, "SuppTable_S18_J_Fst_windows.csv"))
+  WI <- rd(file.path(TAB, "SuppTable_S18_IC_Fst_windows.csv")); WJ <- rd(file.path(TAB, "SuppTable_S19_J_Fst_windows.csv"))
   len <- rbind(WI, WJ)[, .(len = max(end_bp)), by = chr_num][order(chr_num)][, off := cumsum(c(0, head(len, -1)))]
   G <- sum(len$len)
   tops <- lapply(list(WI, WJ), function(W) merge(W[top5 == TRUE], len[, .(chr_num, off)], by = "chr_num")[, .(s = start_bp + off, e = end_bp + off)][order(s)])

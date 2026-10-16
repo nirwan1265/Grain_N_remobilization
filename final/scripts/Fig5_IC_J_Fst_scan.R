@@ -186,8 +186,8 @@ for (ext in c("png", "pdf"))
 
 ## ---- supplementary tables S17-S20 ----------------------------------------------------
 shared_genes <- unique(unlist(strsplit(REG$GeneIDs, ";")))
-for (pp in list(list("Indian Chief", "S17_IC_Fst_windows", "S19_IC_Fst_top5_genes"),
-                list("Jarvis", "S18_J_Fst_windows", "S20_J_Fst_top5_genes"))) {
+for (pp in list(list("Indian Chief", "S18_IC_Fst_windows", "S20_IC_Fst_top5_genes"),
+                list("Jarvis", "S19_J_Fst_windows", "S21_J_Fst_top5_genes"))) {
   w <- W[population == pp[[1]]][order(chr_num, start)]
   fwrite(w[, .(population, chr, window_id, start_bp = start, end_bp = end, n_sites,
                mean_fst = signif(mean_fst, 5), top5 = top5, gene_count, GeneIDs)],

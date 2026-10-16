@@ -13,16 +13,16 @@
 ## Smallest attainable P (complete separation): 5 vs 8 -> 0.0043; 3 vs 8 -> 0.019.
 ##
 ## Multiple testing (Benjamini-Hochberg, within population):
-##   FAA metrics (Fig. 3, Table S13): 8 pre-specified metrics, all per mg of
+##   FAA metrics (Fig. 3, Table S14): 8 pre-specified metrics, all per mg of
 ##     sample -- total FAA per mg; Pro, Asn, Asp, Gln, Glu fractions of total
 ##     FAA; N-rich FAA (Asn+Gln+Arg+Lys+His) per mg; FAA-derived N per mg.
 ##     (The earlier 9-metric set counted the FAA-N pool twice, per sample and
 ##     per mg; with everything per mg they are one metric.)
-##   Per-amino-acid relative composition (Table S14): BH over the 20 FAAs or
+##   Per-amino-acid relative composition (Table S15): BH over the 20 FAAs or
 ##     the 16 PBAAs.
-##   PBAA metrics (Table S15): 6 metrics (total PBAA per mg; Pro, Asx, Glx
+##   PBAA metrics (Table S16): 6 metrics (total PBAA per mg; Pro, Asx, Glx
 ##     fractions; Asx+Glx+Arg+Lys+His per mg; estimated PBAA-derived N per mg).
-##   Amino acid-derived N per mg (Supp. Fig., Table S16): 3 metrics (FAA, PBAA,
+##   Amino acid-derived N per mg (Supp. Fig., Table S17): 3 metrics (FAA, PBAA,
 ##     total).
 ## N atoms: Arg 4, His 3, Asn/Gln/Lys/Trp 2, others 1; PBAA Asx/Glx 1.5
 ## (unresolved Asp/Asn and Glu/Gln after acid hydrolysis).
@@ -31,7 +31,7 @@
 ## Outputs: final/main_figs/Fig3_IC_J_FAA.{png,pdf}
 ##          final/supp_figs/SuppFig_IC_J_PBAA_composition.{png,pdf}
 ##          final/supp_figs/SuppFig_IC_J_AA_N_pools.{png,pdf}
-##          final/supp_tables/SuppTable_S13..S16_IC_J_*.csv
+##          final/supp_tables/SuppTable_S14..S17_IC_J_*.csv
 ################################################################################
 suppressPackageStartupMessages({library(data.table); library(ggplot2); library(patchwork)})
 gv   <- function(k, d) { v <- Sys.getenv(k, ""); if (nzchar(v)) v else d }
@@ -151,10 +151,10 @@ for (x in list(S13, S14, S15, S16)) {
   num <- names(x)[sapply(x, is.numeric) & !names(x) %in% c("n_C0", "n_C14")]
   x[, (num) := lapply(.SD, signif, 4), .SDcols = num]
 }
-fwrite(S13, file.path(TAB, "SuppTable_S13_IC_J_FAA_metrics.csv"))
-fwrite(S14, file.path(TAB, "SuppTable_S14_IC_J_amino_acid_composition.csv"))
-fwrite(S15, file.path(TAB, "SuppTable_S15_IC_J_PBAA_metrics.csv"))
-fwrite(S16, file.path(TAB, "SuppTable_S16_IC_J_AA_N_per_mg.csv"))
+fwrite(S13, file.path(TAB, "SuppTable_S14_IC_J_FAA_metrics.csv"))
+fwrite(S14, file.path(TAB, "SuppTable_S15_IC_J_amino_acid_composition.csv"))
+fwrite(S15, file.path(TAB, "SuppTable_S16_IC_J_PBAA_metrics.csv"))
+fwrite(S16, file.path(TAB, "SuppTable_S17_IC_J_AA_N_per_mg.csv"))
 cat("\nS13 FAA metrics:\n"); print(S13[, .(population, metric, n_C0, n_C14, mean_C0, mean_C14, P, P_BH)])
 cat("\nS14 nominal (P < 0.05):\n"); print(S14[P < 0.05, .(pool, population, amino_acid, P, P_BH)])
 cat("\nS15 PBAA metrics:\n"); print(S15[, .(population, metric, mean_C0, mean_C14, P, P_BH)])

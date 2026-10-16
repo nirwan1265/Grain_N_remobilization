@@ -72,13 +72,13 @@ def snp_iv(rows):
     for c, p in rows: d[f"chr{int(c)}"].add(int(p))
     return {c: np.array(sorted((max(1, p - FL), p + FL) for p in d[c])).reshape(-1, 2) for c in CH}
 gb = list(csv.DictReader(open("final/results/goodman_buckler_amino_acid_gwas/amino_gwas_v5_fdr_snps.csv")))
-sn = list(csv.DictReader(open(f"{T}/SuppTable_S10_soilN_SNPs_env_relations.csv")))
+sn = list(csv.DictReader(open(f"{T}/SuppTable_S11_soilN_SNPs_env_relations.csv")))
 def win(f):
     d = defaultdict(list)
     for r in csv.DictReader(open(f)):
         if r["top5"].upper() == "TRUE": d[r["chr"]].append((int(r["start_bp"]), int(r["end_bp"])))
     return {c: np.array(sorted(d[c])).reshape(-1, 2) for c in CH}
-IC, J = win(f"{T}/SuppTable_S17_IC_Fst_windows.csv"), win(f"{T}/SuppTable_S18_J_Fst_windows.csv")
+IC, J = win(f"{T}/SuppTable_S18_IC_Fst_windows.csv"), win(f"{T}/SuppTable_S19_J_Fst_windows.csv")
 SETS = {
  "Bonf": {"GB": snp_iv([(r["Chr"], r["Pos_v5"]) for r in gb if float(r["min_P"]) < 0.05 / 4177796]),
           "soilN": snp_iv([(r["Chr"], r["Pos"]) for r in sn if float(r["min_P"]) < 0.05 / 495755]), "IC": IC, "J": J},
