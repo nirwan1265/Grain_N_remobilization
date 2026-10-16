@@ -53,29 +53,25 @@ QQ_DIR <- normalizePath(file.path(APP_HOME, "Figs", "qq"), mustWork = TRUE)
 BEST_HITS_PATH <- resolve_required_path(
   label = "best-hit GWAS table",
   candidates = c(
-    file.path(APP_HOME, "data", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv"),
-    file.path(APP_HOME, "..", "..", "tables", "supplementary", "SuppTable_amino_gwas_gene_best_by_phenotype_25kb.csv")
+    file.path(APP_HOME, "data", "supplementary", "amino_gwas_hits_v5.csv")
   )
 )
 ANNOTATION_PATH <- resolve_required_path(
   label = "GWAS annotation table",
   candidates = c(
-    file.path(APP_HOME, "data", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv"),
-    file.path(APP_HOME, "..", "..", "tables", "supplementary", "SuppTable1_GWAS_annotation_soilN_amino_with_GO.csv")
+    file.path(APP_HOME, "data", "supplementary", "gene_annotation_v5.csv")
   )
 )
 FAA_PATH <- resolve_required_path(
   label = "FAA phenotype table",
   candidates = c(
-    file.path(APP_HOME, "data", "supplementary", "SuppTable_FAA.csv"),
-    file.path(REPO_ROOT, "data", "SuppTable_FAA_BLUPs.csv")
+    file.path(APP_HOME, "data", "supplementary", "FAA_phenotypes.csv")
   )
 )
 ABBREVIATION_PATH <- resolve_required_path(
   label = "amino-acid abbreviation table",
   candidates = c(
-    file.path(APP_HOME, "data", "supplementary", "aminoacid_abbre.csv"),
-    file.path(REPO_ROOT, "tables", "supplementary", "aminoacid_abbre.csv")
+    file.path(APP_HOME, "data", "supplementary", "trait_definitions.csv")
   )
 )
 
@@ -404,7 +400,7 @@ PLOT_TRAITS <- sort(Reduce(
     list_plot_traits(QQ_DIR, "_qq")
   )
 ))
-INDIVIDUAL_TRAITS <- sort(intersect(ABBREV_TRAITS, PLOT_TRAITS))
+INDIVIDUAL_TRAITS <- ABBREV_TRAITS
 COMBINED_TRAITS <- sort(intersect(ABBREV_TRAITS, unique(best_hits_raw$Phenotype)))
 
 INDIVIDUAL_TRAIT_CHOICES <- stats::setNames(
@@ -534,7 +530,7 @@ ui <- fluidPage(
       div(class = "app-title", "Amino-Acid GWAS Explorer"),
       div(
         class = "app-subtitle",
-        "Use the individual tab for one GWAS result at a time, or switch to the combined tab to count recurring gene hits across all results."
+        "Use the individual tab for one GWAS result at a time, or switch to the combined tab to count recurring gene hits across all results. Gene hits are SNPs significant at 5% Benjamini-Hochberg FDR (per phenotype and model; MLM, BLINK, FarmCPU) within 25 kb of a B73 RefGen_v5 gene, with SNP positions lifted from AGPv4 to RefGen_v5."
       )
     )
   ),
@@ -556,9 +552,9 @@ ui <- fluidPage(
             ),
             selectInput(
               inputId = "individual_cutoff",
-              label = HTML("Select <code>-log10(p)</code> threshold"),
-              choices = c("5" = 5, "6" = 6, "7" = 7),
-              selected = 7
+              label = "Significance threshold",
+              choices = c("5% FDR (all significant SNPs)" = 0, "-log10(p) >= 7" = 7, "Bonferroni (p < 1.2e-8)" = 7.922),
+              selected = 0
             ),
             div(
               class = "control-note",
@@ -620,9 +616,9 @@ ui <- fluidPage(
             ),
             selectInput(
               inputId = "combined_cutoff",
-              label = HTML("Select <code>-log10(p)</code> threshold"),
-              choices = c("5" = 5, "6" = 6, "7" = 7),
-              selected = 7
+              label = "Significance threshold",
+              choices = c("5% FDR (all significant SNPs)" = 0, "-log10(p) >= 7" = 7, "Bonferroni (p < 1.2e-8)" = 7.922),
+              selected = 0
             ),
             div(
               class = "control-note",
@@ -734,7 +730,7 @@ server <- function(input, output, session) {
         paste0(
           "No FAA distribution is available for ",
           display_trait_name(input$individual_trait),
-          " in SuppTable_FAA.csv."
+          "."
         )
       )
     )
