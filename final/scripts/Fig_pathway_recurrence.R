@@ -3,19 +3,21 @@
 ## FIGURE -- CornCyc pathways recurring across the four candidate sets
 ##
 ## Every pathway (distinct gene sets) with pathway-specific permutation P < 0.05, from
-## pathway_recurrence_permutation.py (Bonferroni GWAS lists; 20,000 genome-wide
-## circular shifts of each set's intervals, chromosome by chromosome).
+## pathway_recurrence_threshold_sensitivity.py with the test sets (Bonferroni GWAS lists and
+## top-3% F_ST windows; 200,000 genome-wide circular shifts of each set's intervals,
+## chromosome by chromosome).
 ## Left: which candidate sets contain a gene of the pathway (black = present, white = absent).
-## Right: -log10 pathway-specific permutation P (uncorrected; dashed line P = 0.05).
+## Right: -log10 pathway-specific permutation P (dashed line P = 0.05); pathways that remain
+## significant after min-P correction across all 468 pathways also show the corrected P.
 ## One figure, no panel letters.
 ## Pathways with identical gene sets (phosphatidylglycerol biosynthesis I and II) are
 ## shown once.
-## Input : final/results/pathway_recurrence/pathway_permutation_all_Bonf.csv
+## Input : final/results/pathway_recurrence/pathway_permutation_all_Bonf_top3.csv
 ## Output: final/main_figs/Fig_pathway_recurrence.{png,pdf}
 ################################################################################
 suppressPackageStartupMessages({ library(data.table); library(ggplot2); library(patchwork) })
 ROOT <- if (length(commandArgs(TRUE))) commandArgs(TRUE)[1] else "."
-IN   <- file.path(ROOT, "final", "results", "pathway_recurrence", "pathway_permutation_all_Bonf.csv")
+IN   <- file.path(ROOT, "final", "results", "pathway_recurrence", "pathway_permutation_all_Bonf_top3.csv")
 OUT  <- file.path(ROOT, "final", "main_figs")
 dir.create(OUT, showWarnings = FALSE, recursive = TRUE)
 
@@ -58,14 +60,16 @@ pA <- ggplot(m, aes(set, label)) +
 
 ## B: -log10 P
 top[, lp := -log10(P_specific)]
+fmt <- function(x) formatC(signif(x, 2), digits = 2, format = "fg", flag = "#")
+top[, lab := paste0("P = ", fmt(P_specific))]
+top[P_FWER < 0.05, lab := paste0(lab, "\ncorrected P = ", fmt(P_FWER))]
 pB <- ggplot(top, aes(lp, label)) +
   geom_segment(aes(x = 0, xend = lp, yend = label), linewidth = 1.4, colour = "grey45") +
   geom_point(size = 7, colour = "#7F2704") +
   geom_vline(xintercept = -log10(0.05), linetype = "dashed", colour = "grey40", linewidth = 0.7) +
   annotate("text", x = -log10(0.05), y = 0.45, label = "P = 0.05", hjust = -0.1, vjust = 0, size = 4.6, colour = "grey30") +
-  geom_text(aes(label = paste0("P = ", formatC(signif(P_specific, 2), digits = 2, format = "fg", flag = "#"))),
-            hjust = -0.18, size = 5.2) +
-  scale_x_continuous(expand = expansion(mult = c(0, 0.5)), limits = c(0, NA)) +
+  geom_text(aes(label = lab), hjust = -0.12, size = 5.2, lineheight = 0.9) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0)), limits = c(0, max(top$lp) * 2.3), breaks = 0:4) + coord_cartesian(clip = "off") +
   labs(x = expression(bold(-log[10](italic(P)))), y = NULL) +
   plot_theme + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
