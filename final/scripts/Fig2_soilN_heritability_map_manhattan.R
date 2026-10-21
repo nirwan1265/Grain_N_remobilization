@@ -20,6 +20,7 @@
 ## collect_env_gwas.R, so the significant set matches the Results text.
 ##
 ## Run:  Rscript Fig2_soilN_heritability_map_manhattan.R
+## Soil N units: cg/kg (SoilGrids 2.0 total nitrogen)
 ################################################################################
 
 suppressPackageStartupMessages({
@@ -150,7 +151,8 @@ pDep <- ggplot(dep, aes(N_0_5, N_5_15)) +
   annotate("text", x = lim[1], y = lim[2] - 0.08 * diff(lim), hjust = 0, vjust = 1, size = 5.5,
            label = sprintf("n = %s", format(nrow(dep), big.mark = ","))) +
   coord_equal(xlim = lim, ylim = lim) +
-  labs(x = "Soil N, 0-5 cm", y = "Soil N, 5-15 cm") +
+  labs(x = expression(bold("Soil N, 0-5 cm (cg kg"^{-1}*")")),
+       y = expression(bold("Soil N, 5-15 cm (cg kg"^{-1}*")"))) +
   base_thm
 
 ################################################################################
@@ -168,7 +170,7 @@ pC_map <- ggplot() +
                fill = "grey95", colour = "grey70", linewidth = 0.18) +
   geom_point(data = geo, aes(long, lat, colour = soil_n), size = 1.3, alpha = 0.8) +
   coord_fixed(1.3, xlim = c(-118, -32), ylim = c(-48, 38)) +
-  scale_colour_viridis_c(option = "D", name = "Soil N") +
+  scale_colour_viridis_c(option = "D", name = expression(atop(bold("Soil N"), bold("(cg kg"^{-1}*")")))) +
   labs(x = "Longitude", y = "Latitude") +
   base_thm +
   legend_inside(0.97, 0.97, c(1, 1)) +
@@ -179,7 +181,7 @@ pC_map <- ggplot() +
 pC_hist <- ggplot(geo, aes(soil_n, fill = after_stat(x))) +
   geom_histogram(bins = 25, colour = "black", linewidth = 0.25) +
   scale_fill_viridis_c(option = "D", guide = "none") +
-  labs(x = "Soil N", y = "Count") +
+  labs(x = expression(bold("Soil N (cg kg"^{-1}*")")), y = "Count") +
   theme_classic(base_size = 13) +
   theme(axis.text = element_text(colour = "black", size = 13),
         axis.title = element_text(size = 14, face = "bold"),
@@ -247,13 +249,13 @@ sig <- best[n_models >= 1]
 bg[, grp := fifelse(Chr %% 2 == 0, "even", "odd")]
 
 ## loci named in the Results
+## only the two candidates discussed in the text (aspartate kinase isozyme and
+## omega-amidase) are ringed and labelled
 LABELS <- c(S5_22338979  = "Zm00001eb220040",
-            S1_16128632  = "Zm00001eb005710",
-            S8_138640842 = "Zm00001eb356170",
-            S9_151742636 = "Zm00001eb399680")   # strongest; shared with pH, aridity
+            S1_16128632  = "Zm00001eb005710")
 lab <- sig[SNP %in% names(LABELS)]
 lab[, gene := LABELS[SNP]]
-lab[, hj := c(S1_16128632 = 0, S5_22338979 = 0, S8_138640842 = 0.5, S9_151742636 = 1)[SNP]]
+lab[, hj := c(S1_16128632 = 0, S5_22338979 = 0)[SNP]]
 
 ymax <- max(best$logp) * 1.08
 pD <- ggplot() +
@@ -264,7 +266,7 @@ pD <- ggplot() +
   annotate("text", x = min(best$x), y = fdr_line, label = "FDR 5%",
            hjust = 0, vjust = 1.6, size = 5.5, fontface = "bold", colour = "red3") +
   geom_point(data = sig, aes(x, logp, colour = Model), size = 3.6, alpha = 0.9) +
-  geom_point(data = sig[n_models >= 2], aes(x, logp),
+  geom_point(data = lab, aes(x, logp),
              shape = 21, size = 6.2, stroke = 1.0, colour = "black", fill = NA,
              show.legend = FALSE) +
   scale_colour_manual(values = c(odd = "grey68", even = "grey45", MODEL_COL),
