@@ -1,5 +1,6 @@
 import pandas as pd, numpy as np, json
-raw=pd.read_csv("data/QTL/Nitrogen_QTL_map.csv"  # r/qtl csvr cross file (B64 x CML14; Asp and Pro BLUPs) -- place it here,header=None,dtype=str)
+# R/qtl csvr cross file (B64 x CML14, Asp and Pro BLUPs)
+raw=pd.read_csv("data/QTL/Nitrogen_QTL_map.csv",header=None,dtype=str)
 hdr=raw.iloc[0].tolist()
 mk=pd.DataFrame({"m":hdr[3:],"chr":raw.iloc[1,3:].astype(int).values,"cM":pd.to_numeric(raw.iloc[2,3:]).values,"col":range(3,len(hdr))})
 mk["pos"]=mk.m.str.extract(r"_(\d+)$")[0].astype(int)
