@@ -2,7 +2,7 @@
 ## FIGURE -- free Asp and Pro: spread in the Goodman-Buckler panel and QTL in B64 x CML14
 ## A, C: genotype means (black) and plot values (grey) of free Asp / Pro across the 280 GB lines,
 ##       ranked by mean; B64 and CML14 (parents of the mapping population) marked.
-## B, D: genome-wide Haley-Knott LOD scans for Asp / Pro BLUPs in the F2:3 population; shaded band = overlap of the Asp and Pro 1.5-LOD support intervals on chr3;
+## B, D: genome-wide Haley-Knott LOD scans for Asp / Pro BLUPs in the F2:3 population; triangle = chr3 peak; inset = chr3 with the overlap of the Asp and Pro 1.5-LOD support intervals shaded;
 ##       dashed line = permutation threshold reported in the text (3.70 Asp, 3.63 Pro).
 ## Input : data/FAA_Goodman_Buckler.csv; final/results/qtl/lod.csv (QTL_HK_scan.py)
 ## Output: final/supp_figs/SuppFig_QTL_Asp_Pro_panel.{png,pdf}
@@ -47,7 +47,6 @@ shade <- c(max(ia[1], ip[1]), min(ia[2], ip[2]))
 message(sprintf("Asp interval %.1f-%.1f, Pro %.1f-%.1f, shared %.1f-%.1f (plot x)", ia[1], ia[2], ip[1], ip[2], shade[1], shade[2]))
 scan <- function(tr, thr, tag) {
   ggplot(g, aes(x, get(tr), group = chr)) +
-    annotate("rect", xmin = shade[1], xmax = shade[2], ymin = -Inf, ymax = Inf, fill = "grey70") +
     geom_line(colour = "black", linewidth = 0.6) +
     geom_hline(yintercept = thr, linetype = "dashed", colour = "black", linewidth = 0.6) +
     geom_rug(data = mk, aes(x = x), inherit.aes = FALSE, sides = "b", length = unit(0.015, "npc"), colour = "grey40") +
@@ -55,6 +54,28 @@ scan <- function(tr, thr, tag) {
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.05))) +
     labs(x = "Chromosome", y = "LOD", tag = tag) + plot_theme
 }
-fig <- (spread("D", "Free Asp", "A") | scan("Aspartate", 3.70, "B")) /
-       (spread("P", "Free Pro", "C") | scan("Proline", 3.63, "D")) + plot_layout(widths = c(1, 2))
+## chr3 zoom inset: LOD on chr3 with the shared 1.5-LOD support interval shaded
+c3x0 <- mid[chr == 3, lo]
+inset <- function(tr, thr) {
+  d3 <- g[chr == 3]
+  ggplot(d3, aes(x - c3x0, get(tr))) +
+    annotate("rect", xmin = shade[1] - c3x0, xmax = shade[2] - c3x0, ymin = -Inf, ymax = Inf, fill = "grey80") +
+    geom_line(colour = "black", linewidth = 0.6) +
+    geom_hline(yintercept = thr, linetype = "dashed", colour = "black", linewidth = 0.5) +
+    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.05))) +
+    scale_x_continuous(expand = c(0, 0)) +
+    labs(x = "Chromosome 3 (cM)", y = NULL) +
+    theme_minimal(base_size = 12) +
+    theme(panel.grid = element_blank(), axis.line = element_line(colour = "black"),
+          axis.text = element_text(size = 11, colour = "black"), axis.title.x = element_text(size = 12, face = "bold"),
+          panel.background = element_rect(fill = "white", colour = "grey60"), plot.background = element_rect(fill = "white", colour = NA))
+}
+scan_in <- function(tr, thr, tag) {
+  pk <- g[chr == 3][which.max(get(tr))]
+  scan(tr, thr, tag) +
+    annotate("point", x = pk$x, y = pk[[tr]] * 1.05, shape = 25, size = 4, fill = "black") +
+    inset_element(inset(tr, thr), left = 0.62, bottom = 0.5, right = 0.99, top = 0.99)
+}
+fig <- (spread("D", "Free Asp", "A") | scan_in("Aspartate", 3.70, "B")) /
+       (spread("P", "Free Pro", "C") | scan_in("Proline", 3.63, "D")) + plot_layout(widths = c(1, 2))
 for (e in c("png", "pdf")) ggsave(file.path(OUT, paste0("SuppFig_QTL_Asp_Pro_panel.", e)), fig, width = 20, height = 10, dpi = 300, bg = "white")
