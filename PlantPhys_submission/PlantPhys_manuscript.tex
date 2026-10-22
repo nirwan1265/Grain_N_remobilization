@@ -4,6 +4,9 @@
 % Compile from final/plant_physiology/:  pdflatex, bibtex, pdflatex, pdflatex
 \documentclass[namedate,unnumsec,webpdf,contemporary,large]{oup-authoring-template}
 \usepackage{tabularx}
+\usepackage{microtype}
+% let TeX stretch spaces instead of pushing long gene IDs into the margin
+\setlength{\emergencystretch}{3em}
 \usepackage{booktabs}
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.5\hsize}X}
