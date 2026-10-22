@@ -1,18 +1,259 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Woodhouse et~al.(2021)Woodhouse, Sen, Schott, Portwood, Freeling,
-  Walley, Andorf, and Schnable]{qteller}
+\bibitem[Alonso-Nieves et~al.(2022)Alonso-Nieves, Salazar-Vidal,
+  Torres-Rodr{\'i}guez, P{\'e}rez-V{\'a}zquez, Massange-S{\'a}nchez, Gillmor,
+  and Sawers]{AlonsoNieves2022LN}
+A.~L. Alonso-Nieves, M.~N. Salazar-Vidal, J.~V. Torres-Rodr{\'i}guez, L.~M.
+  P{\'e}rez-V{\'a}zquez, J.~A. Massange-S{\'a}nchez, C.~S. Gillmor, and
+  R.~J.~H. Sawers.
+\newblock The \textit{pho1;2a'-m1.1} allele of \textit{Phosphate1} conditions
+  misregulation of the phosphorus starvation response in maize (\textit{Zea
+  mays} ssp. \textit{mays} {L.}).
+\newblock \emph{Plant Direct}, 6\penalty0 (7):\penalty0 e416, 2022.
+\newblock \doi{10.1002/pld3.416}.
+
+\bibitem[Beissinger et~al.(2015)Beissinger, Rosa, Kaeppler, Gianola, and
+  de~Leon]{Beissinger2015GenWin}
+T.~M. Beissinger, G.~J.~M. Rosa, S.~M. Kaeppler, D.~Gianola, and N.~de~Leon.
+\newblock Defining window-boundaries for genomic analyses using smoothing
+  spline techniques.
+\newblock \emph{Genetics Selection Evolution}, 47:\penalty0 30, 2015.
+\newblock \doi{10.1186/s12711-015-0105-9}.
+
+\bibitem[Bhatia et~al.(2013)Bhatia, Patterson, Sankararaman, and
+  Price]{Bhatia2013Fst}
+G.~Bhatia, N.~Patterson, S.~Sankararaman, and A.~L. Price.
+\newblock Estimating and interpreting {$F_{ST}$}: the impact of rare variants.
+\newblock \emph{Genome Research}, 23\penalty0 (9):\penalty0 1514--1521, 2013.
+\newblock \doi{10.1101/gr.154831.113}.
+
+\bibitem[Broman et~al.(2003)Broman, Wu, Śaunak Sen, and Churchill]{Broman2003}
+K.~W. Broman, H.~Wu, Śaunak Sen, and G.~A. Churchill.
+\newblock R/qtl: Qtl mapping in experimental crosses.
+\newblock \emph{Bioinformatics}, 19:\penalty0 889--890, 5 2003.
+\newblock ISSN 1367-4811.
+\newblock \doi{10.1093/bioinformatics/btg112}.
+
+\bibitem[Bukowski et~al.(2018)Bukowski, Guo, Lu, Zou, He, Rong, Wang, Xu, Yang,
+  Xie, Fan, Gao, Xu, Zhang, Li, Jiao, Doebley, Ross-Ibarra, Lorant, Buffalo,
+  Romay, Buckler, Ware, Lai, Sun, and Xu]{Bukowski2018HapMap3}
+R.~Bukowski, X.~Guo, Y.~Lu, C.~Zou, B.~He, Z.~Rong, B.~Wang, D.~Xu, B.~Yang,
+  C.~Xie, L.~Fan, S.~Gao, X.~Xu, G.~Zhang, Y.~Li, Y.~Jiao, J.~F. Doebley,
+  J.~Ross-Ibarra, A.~Lorant, V.~Buffalo, M.~C. Romay, E.~S. Buckler, D.~Ware,
+  J.~Lai, Q.~Sun, and Y.~Xu.
+\newblock Construction of the third-generation extit{Zea mays} haplotype map.
+\newblock \emph{GigaScience}, 7\penalty0 (4):\penalty0 gix134, 2018.
+\newblock \doi{10.1093/gigascience/gix134}.
+
+\bibitem[Fitzsimmons et~al.(2026)Fitzsimmons, Shrestha, Yobi, Angelovici, and
+  Flint-Garcia]{Fitzsimmons2026KernelKitchen}
+S.~L. Fitzsimmons, V.~Shrestha, A.~Yobi, R.~Angelovici, and S.~Flint-Garcia.
+\newblock From kernel to kitchen: Asparagine synthetase 3 is involved in free
+  asparagine accumulation in maize kernels.
+\newblock \emph{bioRxiv}, pages 2026--06, 2026.
+
+\bibitem[Flint-Garcia et~al.(2005)Flint-Garcia, Thuillet, Yu, Pressoir, Romero,
+  Mitchell, Doebley, Kresovich, Goodman, and Buckler]{FlintGarcia2005Goodman}
+S.~A. Flint-Garcia, A.-C. Thuillet, J.~Yu, G.~Pressoir, S.~M. Romero, S.~E.
+  Mitchell, J.~Doebley, S.~Kresovich, M.~M. Goodman, and E.~S. Buckler.
+\newblock Maize association population: a high-resolution platform for
+  quantitative trait locus dissection.
+\newblock \emph{The Plant Journal}, 44\penalty0 (6):\penalty0 1054--1064, 2005.
+\newblock \doi{10.1111/j.1365-313X.2005.02591.x}.
+
+\bibitem[{Gene Ontology Consortium} et~al.(2026){Gene Ontology Consortium},
+  Aleksander, et~al.]{GO2026}
+{Gene Ontology Consortium}, S.~A. Aleksander, et~al.
+\newblock The {Gene Ontology} knowledgebase in 2026.
+\newblock \emph{Nucleic Acids Research}, 54\penalty0 (D1):\penalty0
+  D1779--D1792, 2026.
+\newblock \doi{10.1093/nar/gkaf1292}.
+
+\bibitem[Gu et~al.(2007)Gu, Jones, and Last]{Gu2007LCMS}
+L.~Gu, A.~D. Jones, and R.~L. Last.
+\newblock {LC-MS/MS} assay for protein amino acids and metabolically related
+  compounds for large-scale screening of metabolic phenotypes.
+\newblock \emph{Analytical Chemistry}, 79\penalty0 (21):\penalty0 8067--8075,
+  2007.
+\newblock \doi{10.1021/ac070938b}.
+
+\bibitem[Guo et~al.(2022)Guo, Arshad, Yang, Qin, Mu, and Mi]{Guo2022LN}
+S.~Guo, A.~Arshad, L.~Yang, Y.~Qin, X.~Mu, and G.~Mi.
+\newblock Comparative transcriptome analysis reveals common and developmental
+  stage-specific genes that respond to low nitrogen in maize leaves.
+\newblock \emph{Plants}, 11\penalty0 (12):\penalty0 1550, 2022.
+\newblock \doi{10.3390/plants11121550}.
+
+\bibitem[Hawkins et~al.(2021)Hawkins, Ginzburg, Zhao, Dwyer, Xue, Xu, Rice,
+  Cole, Paley, Karp, and Rhee]{Hawkins2021PMN}
+C.~Hawkins, D.~Ginzburg, K.~Zhao, W.~Dwyer, B.~Xue, A.~Xu, S.~Rice, B.~Cole,
+  S.~Paley, P.~Karp, and S.~Y. Rhee.
+\newblock Plant metabolic network 15: A resource of genome-wide metabolism
+  databases for 126 plants and algae.
+\newblock \emph{Journal of Integrative Plant Biology}, 63\penalty0
+  (11):\penalty0 1888--1905, 2021.
+\newblock \doi{10.1111/jipb.13163}.
+
+\bibitem[Korneliussen et~al.(2014)Korneliussen, Albrechtsen, and
+  Nielsen]{Korneliussen2014ANGSD}
+T.~S. Korneliussen, A.~Albrechtsen, and R.~Nielsen.
+\newblock {ANGSD}: analysis of next generation sequencing data.
+\newblock \emph{BMC Bioinformatics}, 15\penalty0 (1):\penalty0 356, 2014.
+
+\bibitem[Ma et~al.(2021)Ma, Zhang, Luo, Chen, He, Zhang, Li, Liu, Wu, Gao, Gao,
+  Zhang, and Gao]{Ma2021LN}
+P.~Ma, X.~Zhang, B.~Luo, Z.~Chen, X.~He, H.~Zhang, B.~Li, D.~Liu, L.~Wu,
+  S.~Gao, D.~Gao, S.~Zhang, and S.~Gao.
+\newblock Transcriptomic and genome-wide association study reveal long
+  noncoding {RNAs} responding to nitrogen deficiency in maize.
+\newblock \emph{BMC Plant Biology}, 21:\penalty0 93, 2021.
+\newblock \doi{10.1186/s12870-021-02847-4}.
+
+\bibitem[Meisner and Albrechtsen(2018)]{Meisner2018PCAngsd}
+J.~Meisner and A.~Albrechtsen.
+\newblock Inferring population structure and admixture proportions in low-depth
+  {NGS} data.
+\newblock \emph{Genetics}, 210\penalty0 (2):\penalty0 719--731, 2018.
+\newblock \doi{10.1534/genetics.118.301336}.
+
+\bibitem[Moll and Stuber(1971)]{MollStuber1971}
+R.~H. Moll and C.~W. Stuber.
+\newblock Comparisons of response to alternative selection procedures initiated
+  with two populations of maize ({\textit{zea mays}} {L.}).
+\newblock \emph{Crop Science}, 11\penalty0 (5):\penalty0 706--711, 1971.
+
+\bibitem[Moll et~al.(1994)Moll, Jackson, and Mikkelsen]{Moll1994}
+R.~H. Moll, W.~A. Jackson, and R.~L. Mikkelsen.
+\newblock Recurrent selection for maize grain yield: Dry matter and nitrogen
+  accumulation and partitioning changes.
+\newblock \emph{Crop Science}, 34\penalty0 (4):\penalty0 874--881, 1994.
+\newblock \doi{10.2135/cropsci1994.0011183X003400040009x}.
+
+\bibitem[Mu et~al.(2017)Mu, Chen, Chen, Yuan, and Mi]{Mu2017LN}
+X.~Mu, Q.~Chen, F.~Chen, L.~Yuan, and G.~Mi.
+\newblock A {RNA-Seq} analysis of the response of photosynthetic system to low
+  nitrogen supply in maize leaf.
+\newblock \emph{International Journal of Molecular Sciences}, 18\penalty0
+  (12):\penalty0 2624, 2017.
+\newblock \doi{10.3390/ijms18122624}.
+
+\bibitem[Poggio et~al.(2021)Poggio, de~Sousa, Batjes, Heuvelink, Kempen,
+  Ribeiro, and Rossiter]{Poggio2021SoilGrids}
+L.~Poggio, L.~M. de~Sousa, N.~H. Batjes, G.~Heuvelink, B.~Kempen, E.~Ribeiro,
+  and D.~Rossiter.
+\newblock {SoilGrids} 2.0: producing soil information for the globe with
+  quantified spatial uncertainty.
+\newblock \emph{SOIL}, 7\penalty0 (1):\penalty0 217--240, 2021.
+\newblock \doi{10.5194/soil-7-217-2021}.
+
+\bibitem[Rasmussen et~al.(2022)Rasmussen, Garcia-Erill, Korneliussen, Wiuf, and
+  Albrechtsen]{Rasmussen2022winsfs}
+M.~S. Rasmussen, G.~Garcia-Erill, T.~S. Korneliussen, C.~Wiuf, and
+  A.~Albrechtsen.
+\newblock Estimation of site frequency spectra from low-coverage sequencing
+  data using stochastic {EM} reduces overfitting, runtime, and memory usage.
+\newblock \emph{Genetics}, 222\penalty0 (4):\penalty0 iyac148, 2022.
+\newblock \doi{10.1093/genetics/iyac148}.
+
+\bibitem[Romero~Navarro et~al.(2017)Romero~Navarro, Willcox, Burgue{\~n}o,
+  Romay, Swarts, Trachsel, Preciado, Terron, Delgado, Vidal, Ortega, Banda,
+  Montiel, Ortiz-Monasterio, Vicente, Espinoza, Atlin, Wenzl, Hearne, and
+  Buckler]{RomeroNavarro2017Landraces}
+J.~A. Romero~Navarro, M.~Willcox, J.~Burgue{\~n}o, C.~Romay, K.~Swarts,
+  S.~Trachsel, E.~Preciado, A.~Terron, H.~V. Delgado, V.~Vidal, A.~Ortega,
+  A.~E. Banda, N.~O.~G. Montiel, I.~Ortiz-Monasterio, F.~S. Vicente,
+  A.~Espinoza, G.~Atlin, P.~Wenzl, S.~Hearne, and E.~S. Buckler.
+\newblock A study of allelic diversity underlying flowering-time adaptation in
+  maize landraces.
+\newblock \emph{Nature Genetics}, 49\penalty0 (3):\penalty0 476--480, 2017.
+\newblock \doi{10.1038/ng.3784}.
+
+\bibitem[Shrestha et~al.(2022)]{Shrestha2022}
+V.~Shrestha et~al.
+\newblock Multiomics approach reveals a role of translational machinery in
+  shaping maize kernel amino acid composition.
+\newblock \emph{Plant Physiology}, 188\penalty0 (1):\penalty0 111--133, 2022.
+
+\bibitem[Skotte et~al.(2013)Skotte, Korneliussen, and
+  Albrechtsen]{Skotte2013NGSadmix}
+L.~Skotte, T.~S. Korneliussen, and A.~Albrechtsen.
+\newblock Estimating individual admixture proportions from next generation
+  sequencing data.
+\newblock \emph{Genetics}, 195\penalty0 (3):\penalty0 693--702, 2013.
+\newblock \doi{10.1534/genetics.113.154138}.
+
+\bibitem[Slaten et~al.(2020)Slaten, Chan, Shrestha, Lipka, and
+  Angelovici]{Slaten2020HAPPI}
+M.~L. Slaten, Y.~O. Chan, V.~Shrestha, A.~E. Lipka, and R.~Angelovici.
+\newblock {HAPPI GWAS}: holistic analysis with pre- and post-integration
+  {GWAS}.
+\newblock \emph{Bioinformatics}, 36\penalty0 (17):\penalty0 4655--4657, 2020.
+
+\bibitem[Thomas et~al.(2022)Thomas, Ebert, Muruganujan, Mushayahama, Albou, and
+  Mi]{Thomas2022PANTHER}
+P.~D. Thomas, D.~Ebert, A.~Muruganujan, T.~Mushayahama, L.-P. Albou, and H.~Mi.
+\newblock {PANTHER}: Making genome-scale phylogenetics accessible to all.
+\newblock \emph{Protein Science}, 31\penalty0 (1):\penalty0 8--22, 2022.
+\newblock \doi{10.1002/pro.4218}.
+
+\bibitem[Torres-Rodr{\'i}guez et~al.(2021)Torres-Rodr{\'i}guez, Salazar-Vidal,
+  Ch{\'a}vez~Montes, Massange-S{\'a}nchez, Gillmor, and
+  Sawers]{TorresRodriguez2021LN}
+J.~V. Torres-Rodr{\'i}guez, M.~N. Salazar-Vidal, R.~A. Ch{\'a}vez~Montes, J.~A.
+  Massange-S{\'a}nchez, C.~S. Gillmor, and R.~J.~H. Sawers.
+\newblock Low nitrogen availability inhibits the phosphorus starvation response
+  in maize ({\textit{zea mays}} ssp. \textit{mays} {L}.).
+\newblock \emph{BMC Plant Biology}, 21\penalty0 (1):\penalty0 259, 2021.
+\newblock \doi{10.1186/s12870-021-02997-5}.
+
+\bibitem[Wang et~al.(2025)Wang, Wang, Xia, Wang, Wang, Xu, Jia, Lu, Tan, Luo,
+  and He]{Wang2025NRT25}
+Q.~Wang, M.~Wang, A.-A. Xia, J.-Y. Wang, Z.~Wang, T.~Xu, D.-T. Jia, M.~Lu,
+  W.-M. Tan, J.-H. Luo, and Y.~He.
+\newblock Natural variation in \textit{ZmNRT2.5} modulates husk leaf width and
+  promotes seed protein content in maize.
+\newblock \emph{Plant Biotechnology Journal}, 23\penalty0 (4):\penalty0
+  1039--1052, 2025.
+\newblock \doi{10.1111/pbi.14559}.
+
+\bibitem[Woodhouse et~al.(2021{\natexlab{a}})Woodhouse, Cannon, Portwood,
+  Harper, Gardiner, Schaeffer, and Andorf]{MaizeGDB}
+M.~R. Woodhouse, E.~K. Cannon, J.~L. Portwood, L.~C. Harper, J.~M. Gardiner,
+  M.~L. Schaeffer, and C.~M. Andorf.
+\newblock A pan-genomic approach to genome databases using maize as a model
+  system.
+\newblock \emph{BMC Plant Biology}, 21:\penalty0 385, 12 2021{\natexlab{a}}.
+\newblock ISSN 1471-2229.
+\newblock \doi{10.1186/s12870-021-03173-5}.
+
+\bibitem[Woodhouse et~al.(2021{\natexlab{b}})Woodhouse, Sen, Schott, Portwood,
+  Freeling, Walley, Andorf, and Schnable]{qteller}
 M.~R. Woodhouse, S.~Sen, D.~Schott, J.~L. Portwood, M.~Freeling, J.~W. Walley,
   C.~M. Andorf, and J.~C. Schnable.
 \newblock qteller: a tool for comparative multi-genomic gene expression
   analysis.
-\newblock \emph{Bioinformatics}, 38:\penalty0 236--242, 12 2021.
+\newblock \emph{Bioinformatics}, 38:\penalty0 236--242, 12 2021{\natexlab{b}}.
 \newblock ISSN 1367-4803.
 \newblock \doi{10.1093/bioinformatics/btab604}.
+
+\bibitem[Yobi and Angelovici(2018)]{Yobi2018PBAA}
+A.~Yobi and R.~Angelovici.
+\newblock A high-throughput absolute-level quantification of protein-bound
+  amino acids in seeds.
+\newblock \emph{Current Protocols in Plant Biology}, 3\penalty0 (4):\penalty0
+  e20084, 2018.
+\newblock \doi{10.1002/cppb.20084}.
+
+\bibitem[Zomer et~al.(2022)Zomer, Xu, and Trabucco]{Zomer2022Aridity}
+R.~J. Zomer, J.~Xu, and A.~Trabucco.
+\newblock Version 3 of the global aridity index and potential
+  evapotranspiration database.
+\newblock \emph{Scientific Data}, 9\penalty0 (1):\penalty0 409, 2022.
+\newblock \doi{10.1038/s41597-022-01493-1}.
 
 \end{thebibliography}

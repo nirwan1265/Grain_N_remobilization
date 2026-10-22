@@ -1,4 +1,4 @@
-\begin{thebibliography}{78}
+\begin{thebibliography}{76}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -606,26 +606,6 @@ Y.~Wei, S.~Xiong, Z.~Zhang, X.~Meng, L.~Wang, X.~Zhang, M.~Yu, H.~Yu, X.~Wang,
   isozymes in wheat grain ({Triticum aestivum} l.).
 \newblock \emph{Frontiers in Plant Science}, 12:\penalty0 580405, 2021.
 \newblock \doi{10.3389/fpls.2021.580405}.
-
-\bibitem[Woodhouse et~al.(2021{\natexlab{a}})Woodhouse, Cannon, Portwood,
-  Harper, Gardiner, Schaeffer, and Andorf]{MaizeGDB}
-M.~R. Woodhouse, E.~K. Cannon, J.~L. Portwood, L.~C. Harper, J.~M. Gardiner,
-  M.~L. Schaeffer, and C.~M. Andorf.
-\newblock A pan-genomic approach to genome databases using maize as a model
-  system.
-\newblock \emph{BMC Plant Biology}, 21:\penalty0 385, 12 2021{\natexlab{a}}.
-\newblock ISSN 1471-2229.
-\newblock \doi{10.1186/s12870-021-03173-5}.
-
-\bibitem[Woodhouse et~al.(2021{\natexlab{b}})Woodhouse, Sen, Schott, Portwood,
-  Freeling, Walley, Andorf, and Schnable]{qteller}
-M.~R. Woodhouse, S.~Sen, D.~Schott, J.~L. Portwood, M.~Freeling, J.~W. Walley,
-  C.~M. Andorf, and J.~C. Schnable.
-\newblock qteller: a tool for comparative multi-genomic gene expression
-  analysis.
-\newblock \emph{Bioinformatics}, 38:\penalty0 236--242, 12 2021{\natexlab{b}}.
-\newblock ISSN 1367-4803.
-\newblock \doi{10.1093/bioinformatics/btab604}.
 
 \bibitem[Xiong et~al.(2005)Xiong, Contento, and Bassham]{Xiong2005ATG18a}
 Y.~Xiong, A.~L. Contento, and D.~C. Bassham.
