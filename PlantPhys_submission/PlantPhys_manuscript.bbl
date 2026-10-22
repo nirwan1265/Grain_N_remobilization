@@ -1,0 +1,666 @@
+\begin{thebibliography}{78}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alonso-Nieves et~al.(2022)Alonso-Nieves, Salazar-Vidal,
+  Torres-Rodr{\'i}guez, P{\'e}rez-V{\'a}zquez, Massange-S{\'a}nchez, Gillmor,
+  and Sawers]{AlonsoNieves2022LN}
+A.~L. Alonso-Nieves, M.~N. Salazar-Vidal, J.~V. Torres-Rodr{\'i}guez, L.~M.
+  P{\'e}rez-V{\'a}zquez, J.~A. Massange-S{\'a}nchez, C.~S. Gillmor, and
+  R.~J.~H. Sawers.
+\newblock The \textit{pho1;2a'-m1.1} allele of \textit{Phosphate1} conditions
+  misregulation of the phosphorus starvation response in maize (\textit{Zea
+  mays} ssp. \textit{mays} {L.}).
+\newblock \emph{Plant Direct}, 6\penalty0 (7):\penalty0 e416, 2022.
+\newblock \doi{10.1002/pld3.416}.
+
+\bibitem[Azevedo et~al.(2006)Azevedo, Lancien, and Lea]{Azevedo2006AspPathway}
+R.~A. Azevedo, M.~Lancien, and P.~J. Lea.
+\newblock The aspartic acid metabolic pathway, an exciting and essential
+  pathway in plants.
+\newblock \emph{Amino Acids}, 30\penalty0 (2):\penalty0 143--162, 2006.
+
+\bibitem[Beissinger et~al.(2015)Beissinger, Rosa, Kaeppler, Gianola, and
+  de~Leon]{Beissinger2015GenWin}
+T.~M. Beissinger, G.~J.~M. Rosa, S.~M. Kaeppler, D.~Gianola, and N.~de~Leon.
+\newblock Defining window-boundaries for genomic analyses using smoothing
+  spline techniques.
+\newblock \emph{Genetics Selection Evolution}, 47:\penalty0 30, 2015.
+\newblock \doi{10.1186/s12711-015-0105-9}.
+
+\bibitem[Bernard and Habash(2009)]{Bernard2009CytosolicGS}
+S.~M. Bernard and D.~Z. Habash.
+\newblock The importance of cytosolic glutamine synthetase in nitrogen
+  assimilation and recycling.
+\newblock \emph{New Phytologist}, 182\penalty0 (3):\penalty0 608--620, 2009.
+\newblock \doi{10.1111/j.1469-8137.2009.02823.x}.
+
+\bibitem[Bhatia et~al.(2013)Bhatia, Patterson, Sankararaman, and
+  Price]{Bhatia2013Fst}
+G.~Bhatia, N.~Patterson, S.~Sankararaman, and A.~L. Price.
+\newblock Estimating and interpreting {$F_{ST}$}: the impact of rare variants.
+\newblock \emph{Genome Research}, 23\penalty0 (9):\penalty0 1514--1521, 2013.
+\newblock \doi{10.1101/gr.154831.113}.
+
+\bibitem[Brandizzi(2018)]{Brandizzi2018ERGolgi}
+F.~Brandizzi.
+\newblock Transport from the endoplasmic reticulum to the {Golgi} in plants:
+  Where are we now?
+\newblock \emph{Seminars in Cell \& Developmental Biology}, 80:\penalty0
+  94--105, 2018.
+\newblock \doi{10.1016/j.semcdb.2017.06.024}.
+
+\bibitem[Broman et~al.(2003)Broman, Wu, Śaunak Sen, and Churchill]{Broman2003}
+K.~W. Broman, H.~Wu, Śaunak Sen, and G.~A. Churchill.
+\newblock R/qtl: Qtl mapping in experimental crosses.
+\newblock \emph{Bioinformatics}, 19:\penalty0 889--890, 5 2003.
+\newblock ISSN 1367-4811.
+\newblock \doi{10.1093/bioinformatics/btg112}.
+
+\bibitem[Bukowski et~al.(2018)Bukowski, Guo, Lu, Zou, He, Rong, Wang, Xu, Yang,
+  Xie, Fan, Gao, Xu, Zhang, Li, Jiao, Doebley, Ross-Ibarra, Lorant, Buffalo,
+  Romay, Buckler, Ware, Lai, Sun, and Xu]{Bukowski2018HapMap3}
+R.~Bukowski, X.~Guo, Y.~Lu, C.~Zou, B.~He, Z.~Rong, B.~Wang, D.~Xu, B.~Yang,
+  C.~Xie, L.~Fan, S.~Gao, X.~Xu, G.~Zhang, Y.~Li, Y.~Jiao, J.~F. Doebley,
+  J.~Ross-Ibarra, A.~Lorant, V.~Buffalo, M.~C. Romay, E.~S. Buckler, D.~Ware,
+  J.~Lai, Q.~Sun, and Y.~Xu.
+\newblock Construction of the third-generation extit{Zea mays} haplotype map.
+\newblock \emph{GigaScience}, 7\penalty0 (4):\penalty0 gix134, 2018.
+\newblock \doi{10.1093/gigascience/gix134}.
+
+\bibitem[Carceller et~al.(1999)Carceller, Prystupa, and
+  Lemcoff]{Carceller1999ProlineRemobilization}
+M.~Carceller, P.~Prystupa, and J.~H. Lemcoff.
+\newblock Remobilization of proline and other nitrogen compounds from senescing
+  leaves of maize under water stress.
+\newblock \emph{Journal of Agronomy and Crop Science}, 183:\penalty0 61--66,
+  1999.
+\newblock \doi{10.1046/j.1439-037x.1999.00324.x}.
+
+\bibitem[Comstock et~al.(1949)Comstock, Robinson, and Harvey]{Comstock1949RRS}
+R.~E. Comstock, H.~F. Robinson, and P.~H. Harvey.
+\newblock A breeding procedure designed to make maximum use of both general and
+  specific combining ability.
+\newblock \emph{Agronomy Journal}, 41\penalty0 (8):\penalty0 360--367, 1949.
+
+\bibitem[Dellero(2020)]{Dellero2020AminoNUE}
+Y.~Dellero.
+\newblock Manipulating amino acid metabolism to improve crop nitrogen use
+  efficiency for a sustainable agriculture.
+\newblock \emph{Frontiers in Plant Science}, 11:\penalty0 602548, 2020.
+\newblock \doi{10.3389/fpls.2020.602548}.
+
+\bibitem[Duo et~al.(2026)Duo, Chhabra, Zunjare, Sharma, Mishra, Muthusamy, and
+  Hossain]{Duo2026Ask2}
+H.~Duo, R.~Chhabra, R.~U. Zunjare, G.~Sharma, S.~J. Mishra, V.~Muthusamy, and
+  F.~Hossain.
+\newblock Unveiling the link between expression of aspartate kinase2 (ask2)
+  gene and accumulation of methionine in developing maize kernels.
+\newblock \emph{Biochemical Genetics}, 2026.
+\newblock \doi{10.1007/s10528-026-11346-w}.
+
+\bibitem[Fan et~al.(2023)Fan, Wu, Yang, Lv, Zhou, and Tian]{Fan2023LHT}
+T.~Fan, C.~Wu, W.~Yang, T.~Lv, Y.~Zhou, and C.~Tian.
+\newblock The {LHT} gene family in rice: Molecular characterization, transport
+  functions and expression analysis.
+\newblock \emph{Plants}, 12\penalty0 (4):\penalty0 817, 2023.
+\newblock \doi{10.3390/plants12040817}.
+
+\bibitem[Feller et~al.(2008)Feller, Anders, and Mae]{Feller2008Rubiscolytics}
+U.~Feller, I.~Anders, and T.~Mae.
+\newblock Rubiscolytics: fate of {Rubisco} after its enzymatic function in a
+  cell is terminated.
+\newblock \emph{Journal of Experimental Botany}, 59\penalty0 (7):\penalty0
+  1615--1624, 2008.
+\newblock \doi{10.1093/jxb/erm242}.
+
+\bibitem[Fitzsimmons et~al.(2026)Fitzsimmons, Shrestha, Yobi, Angelovici, and
+  Flint-Garcia]{Fitzsimmons2026KernelKitchen}
+S.~L. Fitzsimmons, V.~Shrestha, A.~Yobi, R.~Angelovici, and S.~Flint-Garcia.
+\newblock From kernel to kitchen: Asparagine synthetase 3 is involved in free
+  asparagine accumulation in maize kernels.
+\newblock \emph{bioRxiv}, pages 2026--06, 2026.
+
+\bibitem[Flint-Garcia et~al.(2005)Flint-Garcia, Thuillet, Yu, Pressoir, Romero,
+  Mitchell, Doebley, Kresovich, Goodman, and Buckler]{FlintGarcia2005Goodman}
+S.~A. Flint-Garcia, A.-C. Thuillet, J.~Yu, G.~Pressoir, S.~M. Romero, S.~E.
+  Mitchell, J.~Doebley, S.~Kresovich, M.~M. Goodman, and E.~S. Buckler.
+\newblock Maize association population: a high-resolution platform for
+  quantitative trait locus dissection.
+\newblock \emph{The Plant Journal}, 44\penalty0 (6):\penalty0 1054--1064, 2005.
+\newblock \doi{10.1111/j.1365-313X.2005.02591.x}.
+
+\bibitem[Fujiki et~al.(2017)Fujiki, Teshima, Kashiwao, Kawano-Kawada, Ohsumi,
+  Kakinuma, and Sekito]{Fujiki2017AtAVT3}
+Y.~Fujiki, H.~Teshima, S.~Kashiwao, M.~Kawano-Kawada, Y.~Ohsumi, Y.~Kakinuma,
+  and T.~Sekito.
+\newblock Functional identification of {AtAVT3}, a family of vacuolar amino
+  acid transporters, in {Arabidopsis}.
+\newblock \emph{FEBS Letters}, 591\penalty0 (1):\penalty0 5--15, 2017.
+\newblock \doi{10.1002/1873-3468.12507}.
+
+\bibitem[Fujita et~al.(2022)Fujita, Beier, Tabuchi-Kobayashi, Hayatsu,
+  Nakamura, Umetsu-Ohashi, Sasaki, Ishiyama, Murozuka, Kojima, Sakakibara,
+  Sawa, Miyao, Hayakawa, Yamaya, and Kojima]{Fujita2022RiceGS13}
+T.~Fujita, M.~P. Beier, M.~Tabuchi-Kobayashi, Y.~Hayatsu, H.~Nakamura,
+  T.~Umetsu-Ohashi, K.~Sasaki, K.~Ishiyama, E.~Murozuka, M.~Kojima,
+  H.~Sakakibara, Y.~Sawa, A.~Miyao, T.~Hayakawa, T.~Yamaya, and S.~Kojima.
+\newblock Cytosolic glutamine synthetase {GS1;3} is involved in rice grain
+  ripening and germination.
+\newblock \emph{Frontiers in Plant Science}, 13:\penalty0 835835, 2022.
+\newblock \doi{10.3389/fpls.2022.835835}.
+
+\bibitem[{Gene Ontology Consortium} et~al.(2026){Gene Ontology Consortium},
+  Aleksander, et~al.]{GO2026}
+{Gene Ontology Consortium}, S.~A. Aleksander, et~al.
+\newblock The {Gene Ontology} knowledgebase in 2026.
+\newblock \emph{Nucleic Acids Research}, 54\penalty0 (D1):\penalty0
+  D1779--D1792, 2026.
+\newblock \doi{10.1093/nar/gkaf1292}.
+
+\bibitem[Gerke et~al.(2015)Gerke, Edwards, Guill, Ross-Ibarra, and
+  McMullen]{Gerke2015DriftRRS}
+J.~P. Gerke, J.~W. Edwards, K.~E. Guill, J.~Ross-Ibarra, and M.~D. McMullen.
+\newblock The genomic impacts of drift and selection for hybrid performance in
+  maize.
+\newblock \emph{Genetics}, 201\penalty0 (3):\penalty0 1201--1211, 2015.
+\newblock \doi{10.1534/genetics.115.182410}.
+
+\bibitem[Gu et~al.(2007)Gu, Jones, and Last]{Gu2007LCMS}
+L.~Gu, A.~D. Jones, and R.~L. Last.
+\newblock {LC-MS/MS} assay for protein amino acids and metabolically related
+  compounds for large-scale screening of metabolic phenotypes.
+\newblock \emph{Analytical Chemistry}, 79\penalty0 (21):\penalty0 8067--8075,
+  2007.
+\newblock \doi{10.1021/ac070938b}.
+
+\bibitem[Guna et~al.(2018)Guna, Volkmar, Christianson, and Hegde]{Guna2018EMC}
+A.~Guna, N.~Volkmar, J.~C. Christianson, and R.~S. Hegde.
+\newblock The {ER} membrane protein complex is a transmembrane domain
+  insertase.
+\newblock \emph{Science}, 359\penalty0 (6374):\penalty0 470--473, 2018.
+\newblock \doi{10.1126/science.aao3099}.
+
+\bibitem[Guo et~al.(2022)Guo, Arshad, Yang, Qin, Mu, and Mi]{Guo2022LN}
+S.~Guo, A.~Arshad, L.~Yang, Y.~Qin, X.~Mu, and G.~Mi.
+\newblock Comparative transcriptome analysis reveals common and developmental
+  stage-specific genes that respond to low nitrogen in maize leaves.
+\newblock \emph{Plants}, 11\penalty0 (12):\penalty0 1550, 2022.
+\newblock \doi{10.3390/plants11121550}.
+
+\bibitem[Han et~al.(2021)Han, Zhang, Suglo, Sun, Wang, and
+  Su]{Han2021Aspartate}
+M.~Han, C.~Zhang, P.~Suglo, S.~Sun, M.~Wang, and T.~Su.
+\newblock L-aspartate: An essential metabolite for plant growth and stress
+  acclimation.
+\newblock \emph{Molecules}, 26\penalty0 (7):\penalty0 1887, 2021.
+\newblock \doi{10.3390/molecules26071887}.
+
+\bibitem[Hav{\'e} et~al.(2017)Hav{\'e}, Marmagne, Chardon, and
+  Masclaux-Daubresse]{Have2017NRemobilization}
+M.~Hav{\'e}, A.~Marmagne, F.~Chardon, and C.~Masclaux-Daubresse.
+\newblock Nitrogen remobilization during leaf senescence: lessons from
+  {Arabidopsis} to crops.
+\newblock \emph{Journal of Experimental Botany}, 68\penalty0 (10):\penalty0
+  2513--2529, 2017.
+\newblock \doi{10.1093/jxb/erw365}.
+
+\bibitem[Hawkins et~al.(2021)Hawkins, Ginzburg, Zhao, Dwyer, Xue, Xu, Rice,
+  Cole, Paley, Karp, and Rhee]{Hawkins2021PMN}
+C.~Hawkins, D.~Ginzburg, K.~Zhao, W.~Dwyer, B.~Xue, A.~Xu, S.~Rice, B.~Cole,
+  S.~Paley, P.~Karp, and S.~Y. Rhee.
+\newblock Plant metabolic network 15: A resource of genome-wide metabolism
+  databases for 126 plants and algae.
+\newblock \emph{Journal of Integrative Plant Biology}, 63\penalty0
+  (11):\penalty0 1888--1905, 2021.
+\newblock \doi{10.1111/jipb.13163}.
+
+\bibitem[Hodges(2002)]{Hodges2002TwoOxoglutarate}
+M.~Hodges.
+\newblock Enzyme redundancy and the importance of 2-oxoglutarate in plant
+  ammonium assimilation.
+\newblock \emph{Journal of Experimental Botany}, 53\penalty0 (370):\penalty0
+  905--916, 2002.
+\newblock \doi{10.1093/jexbot/53.370.905}.
+
+\bibitem[Huang et~al.(2026)Huang, Zhu, Cui, Shi, Wu, Li, Chen, Zhou, Gu, Bao,
+  Luo, Wu, Li, Liu, Dai, Liu, Chen, Gao, You, Li, Zhang, Wang, Wang, and
+  Wu]{Huang2026THP3}
+Y.~Huang, Y.~Zhu, Y.~Cui, G.~Shi, X.~Wu, W.~Li, Z.~Chen, Y.~Zhou, Y.~Gu,
+  Z.~Bao, S.~Luo, X.~Wu, R.~Li, J.~Liu, X.~Dai, J.~Liu, D.~Chen, L.~Gao,
+  C.~You, Y.~Li, Y.~Zhang, W.~Wang, H.~Wang, and Y.~Wu.
+\newblock Teosinte alleles enhance nitrogen assimilation and seed protein in
+  maize.
+\newblock \emph{Nature}, 2026.
+\newblock \doi{10.1038/s41586-026-10575-8}.
+
+\bibitem[Huergo and Dixon(2015)]{Huergo2015TwoOG}
+L.~F. Huergo and R.~Dixon.
+\newblock The emergence of 2-oxoglutarate as a master regulator metabolite.
+\newblock \emph{Microbiology and Molecular Biology Reviews}, 79\penalty0
+  (4):\penalty0 419--435, 2015.
+\newblock \doi{10.1128/MMBR.00038-15}.
+
+\bibitem[James et~al.(2018)James, Poret, Masclaux-Daubresse, Marmagne, Coquet,
+  Jouenne, Chan, Trouverie, and Etienne]{James2018SAG12}
+M.~James, M.~Poret, C.~Masclaux-Daubresse, A.~Marmagne, L.~Coquet, T.~Jouenne,
+  P.~Chan, J.~Trouverie, and P.~Etienne.
+\newblock {SAG12}, a major cysteine protease involved in nitrogen allocation
+  during senescence for seed production in {Arabidopsis thaliana}.
+\newblock \emph{Plant and Cell Physiology}, 59\penalty0 (10):\penalty0
+  2052--2063, 2018.
+\newblock \doi{10.1093/pcp/pcy125}.
+
+\bibitem[Jander and Joshi(2009)]{Jander2009AspArabidopsis}
+G.~Jander and V.~Joshi.
+\newblock Aspartate-derived amino acid biosynthesis in \textit{Arabidopsis
+  thaliana}.
+\newblock \emph{The Arabidopsis Book}, 7:\penalty0 e0121, 2009.
+
+\bibitem[Kato et~al.(2004)Kato, Murakami, Yamamoto, Chatani, Kondo, Nakano,
+  Yokota, and Sato]{Kato2004CND41}
+Y.~Kato, S.~Murakami, Y.~Yamamoto, H.~Chatani, Y.~Kondo, T.~Nakano, A.~Yokota,
+  and F.~Sato.
+\newblock The {DNA}-binding protease, {CND41}, and the degradation of
+  ribulose-1,5-bisphosphate carboxylase/oxygenase in senescent leaves of
+  tobacco.
+\newblock \emph{Planta}, 220:\penalty0 97--104, 2004.
+\newblock \doi{10.1007/s00425-004-1328-0}.
+
+\bibitem[Korneliussen et~al.(2014)Korneliussen, Albrechtsen, and
+  Nielsen]{Korneliussen2014ANGSD}
+T.~S. Korneliussen, A.~Albrechtsen, and R.~Nielsen.
+\newblock {ANGSD}: analysis of next generation sequencing data.
+\newblock \emph{BMC Bioinformatics}, 15\penalty0 (1):\penalty0 356, 2014.
+
+\bibitem[Lavell et~al.(2021)Lavell, Smith, Xu, Froehlich, De~La~Mora, and
+  Benning]{Lavell2021RBL10}
+A.~Lavell, M.~Smith, Y.~Xu, J.~E. Froehlich, C.~De~La~Mora, and C.~Benning.
+\newblock Proteins associated with the \textit{Arabidopsis thaliana} plastid
+  rhomboid-like protein {RBL10}.
+\newblock \emph{The Plant Journal}, 108\penalty0 (5):\penalty0 1332--1345,
+  2021.
+\newblock \doi{10.1111/tpj.15514}.
+
+\bibitem[Lea et~al.(2007)Lea, Sodek, Parry, Shewry, and
+  Halford]{Lea2007Asparagine}
+P.~J. Lea, L.~Sodek, M.~A.~J. Parry, P.~R. Shewry, and N.~G. Halford.
+\newblock Asparagine in plants.
+\newblock \emph{Annals of Applied Biology}, 150\penalty0 (1):\penalty0 1--26,
+  2007.
+\newblock \doi{10.1111/j.1744-7348.2006.00104.x}.
+
+\bibitem[Lehmann et~al.(2011)Lehmann, Gumy, Blatter, Boeffel, Fricke, and
+  Rentsch]{Lehmann2011ProT}
+S.~Lehmann, C.~Gumy, E.~Blatter, S.~Boeffel, W.~Fricke, and D.~Rentsch.
+\newblock In planta function of compatible solute transporters of the {AtProT}
+  family.
+\newblock \emph{Journal of Experimental Botany}, 62\penalty0 (2):\penalty0
+  787--796, 2011.
+\newblock \doi{10.1093/jxb/erq320}.
+
+\bibitem[L{\'e}ran et~al.(2014)]{Leran2014NPF}
+S.~L{\'e}ran et~al.
+\newblock A unified nomenclature of {NITRATE TRANSPORTER 1/PEPTIDE TRANSPORTER}
+  family members in plants.
+\newblock \emph{Trends in Plant Science}, 19\penalty0 (1):\penalty0 5--9, 2014.
+\newblock \doi{10.1016/j.tplants.2013.08.008}.
+
+\bibitem[Liu et~al.(2008)Liu, Wu, Yang, Liu, and
+  Shen]{Liu2008ProteinDegradationNRemobilization}
+J.~Liu, Y.~H. Wu, J.~J. Yang, Y.~D. Liu, and F.~F. Shen.
+\newblock Protein degradation and nitrogen remobilization during leaf
+  senescence.
+\newblock \emph{Journal of Plant Biology}, 51\penalty0 (1):\penalty0 11--19,
+  2008.
+\newblock \doi{10.1007/BF03030735}.
+
+\bibitem[Lou et~al.(2021)Lou, Chen, Zhou, Li, Xiong, Wan, Zheng, Alam, Liu,
+  Zhou, Yang, Tian, Bai, Rao, Tan, Gao, Li, Gao, Zhang, Li, Liu, and
+  He]{Lou2021FLO19}
+G.~Lou, P.~Chen, H.~Zhou, P.~Li, J.~Xiong, S.~Wan, Y.~Zheng, M.~Alam, R.~Liu,
+  Y.~Zhou, H.~Yang, Y.~Tian, J.~Bai, W.~Rao, X.~Tan, H.~Gao, Y.~Li, G.~Gao,
+  Q.~Zhang, X.~Li, C.~Liu, and Y.~He.
+\newblock {FLOURY ENDOSPERM19} encoding a class {I} glutamine amidotransferase
+  affects grain quality in rice.
+\newblock \emph{Molecular Breeding}, 41:\penalty0 36, 2021.
+\newblock \doi{10.1007/s11032-021-01226-z}.
+
+\bibitem[Ma et~al.(2021)Ma, Zhang, Luo, Chen, He, Zhang, Li, Liu, Wu, Gao, Gao,
+  Zhang, and Gao]{Ma2021LN}
+P.~Ma, X.~Zhang, B.~Luo, Z.~Chen, X.~He, H.~Zhang, B.~Li, D.~Liu, L.~Wu,
+  S.~Gao, D.~Gao, S.~Zhang, and S.~Gao.
+\newblock Transcriptomic and genome-wide association study reveal long
+  noncoding {RNAs} responding to nitrogen deficiency in maize.
+\newblock \emph{BMC Plant Biology}, 21:\penalty0 93, 2021.
+\newblock \doi{10.1186/s12870-021-02847-4}.
+
+\bibitem[Masclaux-Daubresse et~al.(2010{\natexlab{a}})Masclaux-Daubresse,
+  Daniel-Vedele, Dechorgnat, Chardon, Gaufichon, and
+  Suzuki]{MasclauxDaubresse2010NUE}
+C.~Masclaux-Daubresse, F.~Daniel-Vedele, J.~Dechorgnat, F.~Chardon,
+  L.~Gaufichon, and A.~Suzuki.
+\newblock Nitrogen uptake, assimilation and remobilization in plants:
+  challenges for sustainable and productive agriculture.
+\newblock \emph{Annals of Botany}, 105\penalty0 (7):\penalty0 1141--1157,
+  2010{\natexlab{a}}.
+\newblock \doi{10.1093/aob/mcq028}.
+
+\bibitem[Masclaux-Daubresse et~al.(2010{\natexlab{b}})Masclaux-Daubresse,
+  Daniel-Vedele, Dechorgnat, Chardon, Gaufichon, and
+  Suzuki]{masclaux2010nitrogen}
+C.~Masclaux-Daubresse, F.~Daniel-Vedele, J.~Dechorgnat, F.~Chardon,
+  L.~Gaufichon, and A.~Suzuki.
+\newblock Nitrogen uptake, assimilation and remobilization in plants:
+  challenges for sustainable and productive agriculture.
+\newblock \emph{Journal of Experimental Botany}, 61\penalty0 (9):\penalty0
+  2285--2303, 2010{\natexlab{b}}.
+
+\bibitem[McAllister et~al.(2016)McAllister, Wolansky, and
+  Good]{McAllister2016AAT}
+C.~H. McAllister, M.~Wolansky, and A.~G. Good.
+\newblock The impact on nitrogen-efficient phenotypes when aspartate
+  aminotransferase is expressed tissue-specifically in \textit{Brassica napus}.
+\newblock \emph{New Negatives in Plant Science}, 3--4:\penalty0 1--9, 2016.
+\newblock \doi{10.1016/j.neps.2016.03.001}.
+
+\bibitem[Meisner and Albrechtsen(2018)]{Meisner2018PCAngsd}
+J.~Meisner and A.~Albrechtsen.
+\newblock Inferring population structure and admixture proportions in low-depth
+  {NGS} data.
+\newblock \emph{Genetics}, 210\penalty0 (2):\penalty0 719--731, 2018.
+\newblock \doi{10.1534/genetics.118.301336}.
+
+\bibitem[Miyashita and Good(2008)]{Miyashita2008GDH}
+Y.~Miyashita and A.~G. Good.
+\newblock {NAD(H)}-dependent glutamate dehydrogenase is essential for the
+  survival of {Arabidopsis thaliana} during dark-induced carbon starvation.
+\newblock \emph{Journal of Experimental Botany}, 59\penalty0 (3):\penalty0
+  667--680, 2008.
+\newblock \doi{10.1093/jxb/erm340}.
+
+\bibitem[Moll and Stuber(1971)]{MollStuber1971}
+R.~H. Moll and C.~W. Stuber.
+\newblock Comparisons of response to alternative selection procedures initiated
+  with two populations of maize ({\textit{zea mays}} {L.}).
+\newblock \emph{Crop Science}, 11\penalty0 (5):\penalty0 706--711, 1971.
+
+\bibitem[Moll et~al.(1994)Moll, Jackson, and Mikkelsen]{Moll1994}
+R.~H. Moll, W.~A. Jackson, and R.~L. Mikkelsen.
+\newblock Recurrent selection for maize grain yield: Dry matter and nitrogen
+  accumulation and partitioning changes.
+\newblock \emph{Crop Science}, 34\penalty0 (4):\penalty0 874--881, 1994.
+\newblock \doi{10.2135/cropsci1994.0011183X003400040009x}.
+
+\bibitem[Mu et~al.(2017)Mu, Chen, Chen, Yuan, and Mi]{Mu2017LN}
+X.~Mu, Q.~Chen, F.~Chen, L.~Yuan, and G.~Mi.
+\newblock A {RNA-Seq} analysis of the response of photosynthetic system to low
+  nitrogen supply in maize leaf.
+\newblock \emph{International Journal of Molecular Sciences}, 18\penalty0
+  (12):\penalty0 2624, 2017.
+\newblock \doi{10.3390/ijms18122624}.
+
+\bibitem[Mueller et~al.(2019)Mueller, Messina, and Vyn]{Mueller2019NUE}
+S.~M. Mueller, C.~D. Messina, and T.~J. Vyn.
+\newblock Simultaneous gains in grain yield and nitrogen efficiency over 70
+  years of maize genetic improvement.
+\newblock \emph{Scientific Reports}, 9:\penalty0 9095, 2019.
+\newblock \doi{10.1038/s41598-019-45485-5}.
+
+\bibitem[M{\"u}ller et~al.(2015)M{\"u}ller, Fastner, Karmann, Mansch, Hoffmann,
+  Schwab, Suter-Grotemeyer, Rentsch, Truernit, Ladwig, Bleckmann, Dresselhaus,
+  and Hammes]{Muller2015UmamiT}
+B.~M{\"u}ller, A.~Fastner, J.~Karmann, V.~Mansch, T.~Hoffmann, W.~Schwab,
+  M.~Suter-Grotemeyer, D.~Rentsch, E.~Truernit, F.~Ladwig, A.~Bleckmann,
+  T.~Dresselhaus, and U.~Z. Hammes.
+\newblock Amino acid export in developing \textit{Arabidopsis} seeds depends on
+  {UmamiT} facilitators.
+\newblock \emph{Current Biology}, 25\penalty0 (23):\penalty0 3126--3131, 2015.
+\newblock \doi{10.1016/j.cub.2015.10.038}.
+
+\bibitem[Neuh{\"a}user et~al.(2009)Neuh{\"a}user, Dynowski, and
+  Ludewig]{Neuhaeuser2009AtAMT2}
+B.~Neuh{\"a}user, M.~Dynowski, and U.~Ludewig.
+\newblock Channel-like {NH3} flux by ammonium transporter {AtAMT2}.
+\newblock \emph{FEBS Letters}, 583\penalty0 (17):\penalty0 2833--2838, 2009.
+\newblock \doi{10.1016/j.febslet.2009.07.039}.
+
+\bibitem[Ohkubo et~al.(2017)Ohkubo, Tanaka, Tabata, Ogawa-Ohnishi, and
+  Matsubayashi]{Ohkubo2017CEPD}
+Y.~Ohkubo, M.~Tanaka, R.~Tabata, M.~Ogawa-Ohnishi, and Y.~Matsubayashi.
+\newblock Shoot-to-root mobile polypeptides involved in systemic regulation of
+  nitrogen acquisition.
+\newblock \emph{Nature Plants}, 3\penalty0 (4):\penalty0 17029, 2017.
+\newblock \doi{10.1038/nplants.2017.29}.
+
+\bibitem[Ojeda-Rivera et~al.(2025)Ojeda-Rivera, Barnes, Ainsworth, Angelovici,
+  Basso, Brindisi, Brooks, Busch, Buttelmann, Castellano, Chen, Costich,
+  De~Leon, Emmett, Ertl, Fitzsimmons, Flint-Garcia, Gore, Guan, Hale, Herr,
+  Hirsch, Holding, Holland, Hsu, Hua, Hufford, Kaeppler, Leary, Liu, Mahama,
+  McCubbin, Messina, Michael, Miller, Murray, Okumoto, Oren, Park, Pi{\~n}eros,
+  Pugh, Raboy, Rell{\'a}n-{\'A}lvarez, Romay, Rooney, Roston, Sawers, Schnable,
+  Schulz, Scott, Springer, Washburn, Zambrano, Zhai, Zou, and
+  Buckler]{OjedaRivera2025NitrogenEfficientMaize}
+J.~O. Ojeda-Rivera, A.~C. Barnes, E.~A. Ainsworth, R.~Angelovici, B.~Basso,
+  L.~J. Brindisi, M.~D. Brooks, W.~Busch, G.~L. Buttelmann, M.~J. Castellano,
+  J.~Chen, D.~E. Costich, N.~De~Leon, B.~D. Emmett, D.~Ertl, S.~L. Fitzsimmons,
+  S.~A. Flint-Garcia, M.~A. Gore, K.~Guan, C.~O. Hale, S.~Herr, C.~N. Hirsch,
+  D.~H. Holding, J.~B. Holland, S.~K. Hsu, J.~Hua, M.~B. Hufford, S.~M.
+  Kaeppler, E.~N. Leary, Z.~Y. Liu, A.~A. Mahama, T.~J. McCubbin, C.~D.
+  Messina, T.~P. Michael, S.~J. Miller, S.~C. Murray, S.~Okumoto, E.~Oren,
+  A.~N. Park, M.~A. Pi{\~n}eros, N.~A. Pugh, V.~Raboy,
+  R.~Rell{\'a}n-{\'A}lvarez, M.~C. Romay, T.~Rooney, R.~L. Roston, R.~J.~H.
+  Sawers, J.~C. Schnable, A.~J. Schulz, M.~P. Scott, N.~M. Springer, J.~D.
+  Washburn, M.~A. Zambrano, J.~Zhai, J.~Zou, and E.~S. Buckler.
+\newblock Designing a nitrogen-efficient cold-tolerant maize for modern
+  agricultural systems.
+\newblock \emph{The Plant Cell}, 37\penalty0 (7):\penalty0 koaf139, 2025.
+\newblock \doi{10.1093/plcell/koaf139}.
+
+\bibitem[Otegui et~al.(2005)Otegui, Noh, Mart{\'i}nez, Vila~Petroff, Staehelin,
+  Amasino, and Guiamet]{Otegui2005SAV}
+M.~S. Otegui, Y.-S. Noh, D.~E. Mart{\'i}nez, M.~G. Vila~Petroff, L.~A.
+  Staehelin, R.~M. Amasino, and J.~J. Guiamet.
+\newblock Senescence-associated vacuoles with intense proteolytic activity
+  develop in leaves of {Arabidopsis} and soybean.
+\newblock \emph{The Plant Journal}, 41\penalty0 (6):\penalty0 831--844, 2005.
+\newblock \doi{10.1111/j.1365-313X.2005.02346.x}.
+
+\bibitem[Patterson et~al.(2016)Patterson, Walters, Cooper, Olvera, Rosas,
+  Rasmusson, and Escobar]{Patterson2016GRX}
+K.~Patterson, L.~A. Walters, A.~M. Cooper, J.~G. Olvera, M.~A. Rosas, A.~G.
+  Rasmusson, and M.~A. Escobar.
+\newblock Nitrate-regulated glutaredoxins control \textit{Arabidopsis} primary
+  root growth.
+\newblock \emph{Plant Physiology}, 170\penalty0 (2):\penalty0 989--999, 2016.
+\newblock \doi{10.1104/pp.15.01776}.
+
+\bibitem[Poggio et~al.(2021)Poggio, de~Sousa, Batjes, Heuvelink, Kempen,
+  Ribeiro, and Rossiter]{Poggio2021SoilGrids}
+L.~Poggio, L.~M. de~Sousa, N.~H. Batjes, G.~Heuvelink, B.~Kempen, E.~Ribeiro,
+  and D.~Rossiter.
+\newblock {SoilGrids} 2.0: producing soil information for the globe with
+  quantified spatial uncertainty.
+\newblock \emph{SOIL}, 7\penalty0 (1):\penalty0 217--240, 2021.
+\newblock \doi{10.5194/soil-7-217-2021}.
+
+\bibitem[Potter and Feller(2026)]{potter2026chloroplast}
+S.~Potter and U.~Feller.
+\newblock Chloroplast protein degradation pathways during leaf senescence.
+\newblock \emph{Plants}, 15\penalty0 (17):\penalty0 2576, 2026.
+
+\bibitem[Rasmussen et~al.(2022)Rasmussen, Garcia-Erill, Korneliussen, Wiuf, and
+  Albrechtsen]{Rasmussen2022winsfs}
+M.~S. Rasmussen, G.~Garcia-Erill, T.~S. Korneliussen, C.~Wiuf, and
+  A.~Albrechtsen.
+\newblock Estimation of site frequency spectra from low-coverage sequencing
+  data using stochastic {EM} reduces overfitting, runtime, and memory usage.
+\newblock \emph{Genetics}, 222\penalty0 (4):\penalty0 iyac148, 2022.
+\newblock \doi{10.1093/genetics/iyac148}.
+
+\bibitem[Romero~Navarro et~al.(2017)Romero~Navarro, Willcox, Burgue{\~n}o,
+  Romay, Swarts, Trachsel, Preciado, Terron, Delgado, Vidal, Ortega, Banda,
+  Montiel, Ortiz-Monasterio, Vicente, Espinoza, Atlin, Wenzl, Hearne, and
+  Buckler]{RomeroNavarro2017Landraces}
+J.~A. Romero~Navarro, M.~Willcox, J.~Burgue{\~n}o, C.~Romay, K.~Swarts,
+  S.~Trachsel, E.~Preciado, A.~Terron, H.~V. Delgado, V.~Vidal, A.~Ortega,
+  A.~E. Banda, N.~O.~G. Montiel, I.~Ortiz-Monasterio, F.~S. Vicente,
+  A.~Espinoza, G.~Atlin, P.~Wenzl, S.~Hearne, and E.~S. Buckler.
+\newblock A study of allelic diversity underlying flowering-time adaptation in
+  maize landraces.
+\newblock \emph{Nature Genetics}, 49\penalty0 (3):\penalty0 476--480, 2017.
+\newblock \doi{10.1038/ng.3784}.
+
+\bibitem[Santiago and Tegeder(2020)]{santiago2020amino}
+J.~Santiago and M.~Tegeder.
+\newblock Amino acid transporters in plant cells: A brief review.
+\newblock \emph{Plant and Cell Physiology}, 61\penalty0 (7):\penalty0
+  1217--1228, 2020.
+
+\bibitem[Shrestha et~al.(2022)]{Shrestha2022}
+V.~Shrestha et~al.
+\newblock Multiomics approach reveals a role of translational machinery in
+  shaping maize kernel amino acid composition.
+\newblock \emph{Plant Physiology}, 188\penalty0 (1):\penalty0 111--133, 2022.
+
+\bibitem[Skotte et~al.(2013)Skotte, Korneliussen, and
+  Albrechtsen]{Skotte2013NGSadmix}
+L.~Skotte, T.~S. Korneliussen, and A.~Albrechtsen.
+\newblock Estimating individual admixture proportions from next generation
+  sequencing data.
+\newblock \emph{Genetics}, 195\penalty0 (3):\penalty0 693--702, 2013.
+\newblock \doi{10.1534/genetics.113.154138}.
+
+\bibitem[Slaten et~al.(2020)Slaten, Chan, Shrestha, Lipka, and
+  Angelovici]{Slaten2020HAPPI}
+M.~L. Slaten, Y.~O. Chan, V.~Shrestha, A.~E. Lipka, and R.~Angelovici.
+\newblock {HAPPI GWAS}: holistic analysis with pre- and post-integration
+  {GWAS}.
+\newblock \emph{Bioinformatics}, 36\penalty0 (17):\penalty0 4655--4657, 2020.
+
+\bibitem[Soares et~al.(2019)Soares, Ribeiro~Carlton, and
+  Sim{\~o}es]{Soares2019AtypicalAP}
+A.~Soares, S.~M. Ribeiro~Carlton, and I.~Sim{\~o}es.
+\newblock Atypical and nucellin-like aspartic proteases: emerging players in
+  plant developmental processes and stress responses.
+\newblock \emph{Journal of Experimental Botany}, 70\penalty0 (7):\penalty0
+  2059--2076, 2019.
+\newblock \doi{10.1093/jxb/erz034}.
+
+\bibitem[Teixeira et~al.(2026)Teixeira, Santos, and
+  Carvalho]{teixeira2026amino}
+I.~Teixeira, M.~Santos, and M.~H. Carvalho.
+\newblock Amino acids as multifunctional molecules in plants.
+\newblock \emph{Plants}, 15\penalty0 (10):\penalty0 1583, 2026.
+
+\bibitem[Thomas et~al.(2022)Thomas, Ebert, Muruganujan, Mushayahama, Albou, and
+  Mi]{Thomas2022PANTHER}
+P.~D. Thomas, D.~Ebert, A.~Muruganujan, T.~Mushayahama, L.-P. Albou, and H.~Mi.
+\newblock {PANTHER}: Making genome-scale phylogenetics accessible to all.
+\newblock \emph{Protein Science}, 31\penalty0 (1):\penalty0 8--22, 2022.
+\newblock \doi{10.1002/pro.4218}.
+
+\bibitem[Torres-Rodr{\'i}guez et~al.(2021)Torres-Rodr{\'i}guez, Salazar-Vidal,
+  Ch{\'a}vez~Montes, Massange-S{\'a}nchez, Gillmor, and
+  Sawers]{TorresRodriguez2021LN}
+J.~V. Torres-Rodr{\'i}guez, M.~N. Salazar-Vidal, R.~A. Ch{\'a}vez~Montes, J.~A.
+  Massange-S{\'a}nchez, C.~S. Gillmor, and R.~J.~H. Sawers.
+\newblock Low nitrogen availability inhibits the phosphorus starvation response
+  in maize ({\textit{zea mays}} ssp. \textit{mays} {L}.).
+\newblock \emph{BMC Plant Biology}, 21\penalty0 (1):\penalty0 259, 2021.
+\newblock \doi{10.1186/s12870-021-02997-5}.
+
+\bibitem[Viola(2001)]{Viola2001AspartatePathway}
+R.~E. Viola.
+\newblock The central enzymes of the aspartate family of amino acid
+  biosynthesis.
+\newblock \emph{Accounts of Chemical Research}, 34\penalty0 (5):\penalty0
+  339--349, 2001.
+\newblock \doi{10.1021/ar000057q}.
+
+\bibitem[Wang et~al.(2025)Wang, Wang, Xia, Wang, Wang, Xu, Jia, Lu, Tan, Luo,
+  and He]{Wang2025NRT25}
+Q.~Wang, M.~Wang, A.-A. Xia, J.-Y. Wang, Z.~Wang, T.~Xu, D.-T. Jia, M.~Lu,
+  W.-M. Tan, J.-H. Luo, and Y.~He.
+\newblock Natural variation in \textit{ZmNRT2.5} modulates husk leaf width and
+  promotes seed protein content in maize.
+\newblock \emph{Plant Biotechnology Journal}, 23\penalty0 (4):\penalty0
+  1039--1052, 2025.
+\newblock \doi{10.1111/pbi.14559}.
+
+\bibitem[Wang et~al.(2018)Wang, Xu, Wang, and Galili]{Wang2018AspSeeds}
+W.~Wang, M.~Xu, G.~Wang, and G.~Galili.
+\newblock New insights into the metabolism of aspartate-family amino acids in
+  plant seeds.
+\newblock \emph{Plant Reproduction}, 31:\penalty0 203--211, 2018.
+\newblock \doi{10.1007/s00497-018-0322-9}.
+
+\bibitem[Wei et~al.(2021)Wei, Xiong, Zhang, Meng, Wang, Zhang, Yu, Yu, Wang,
+  and Ma]{Wei2021WheatGS}
+Y.~Wei, S.~Xiong, Z.~Zhang, X.~Meng, L.~Wang, X.~Zhang, M.~Yu, H.~Yu, X.~Wang,
+  and X.~Ma.
+\newblock Localization, gene expression, and functions of glutamine synthetase
+  isozymes in wheat grain ({Triticum aestivum} l.).
+\newblock \emph{Frontiers in Plant Science}, 12:\penalty0 580405, 2021.
+\newblock \doi{10.3389/fpls.2021.580405}.
+
+\bibitem[Woodhouse et~al.(2021{\natexlab{a}})Woodhouse, Cannon, Portwood,
+  Harper, Gardiner, Schaeffer, and Andorf]{MaizeGDB}
+M.~R. Woodhouse, E.~K. Cannon, J.~L. Portwood, L.~C. Harper, J.~M. Gardiner,
+  M.~L. Schaeffer, and C.~M. Andorf.
+\newblock A pan-genomic approach to genome databases using maize as a model
+  system.
+\newblock \emph{BMC Plant Biology}, 21:\penalty0 385, 12 2021{\natexlab{a}}.
+\newblock ISSN 1471-2229.
+\newblock \doi{10.1186/s12870-021-03173-5}.
+
+\bibitem[Woodhouse et~al.(2021{\natexlab{b}})Woodhouse, Sen, Schott, Portwood,
+  Freeling, Walley, Andorf, and Schnable]{qteller}
+M.~R. Woodhouse, S.~Sen, D.~Schott, J.~L. Portwood, M.~Freeling, J.~W. Walley,
+  C.~M. Andorf, and J.~C. Schnable.
+\newblock qteller: a tool for comparative multi-genomic gene expression
+  analysis.
+\newblock \emph{Bioinformatics}, 38:\penalty0 236--242, 12 2021{\natexlab{b}}.
+\newblock ISSN 1367-4803.
+\newblock \doi{10.1093/bioinformatics/btab604}.
+
+\bibitem[Xiong et~al.(2005)Xiong, Contento, and Bassham]{Xiong2005ATG18a}
+Y.~Xiong, A.~L. Contento, and D.~C. Bassham.
+\newblock {AtATG18a} is required for the formation of autophagosomes during
+  nutrient stress and senescence in {Arabidopsis thaliana}.
+\newblock \emph{The Plant Journal}, 42\penalty0 (4):\penalty0 535--546, 2005.
+\newblock \doi{10.1111/j.1365-313X.2005.02397.x}.
+
+\bibitem[Yobi and Angelovici(2018)]{Yobi2018PBAA}
+A.~Yobi and R.~Angelovici.
+\newblock A high-throughput absolute-level quantification of protein-bound
+  amino acids in seeds.
+\newblock \emph{Current Protocols in Plant Biology}, 3\penalty0 (4):\penalty0
+  e20084, 2018.
+\newblock \doi{10.1002/cppb.20084}.
+
+\bibitem[Zhang and Marsolais(2014)]{Zhang2014OmegaAmidase}
+Q.~Zhang and F.~Marsolais.
+\newblock Identification and characterization of omega-amidase as an enzyme
+  metabolically linked to asparagine transamination in {Arabidopsis}.
+\newblock \emph{Phytochemistry}, 99:\penalty0 36--43, 2014.
+
+\bibitem[Zhou et~al.(2009)Zhou, Cai, Xiao, Li, Zhang, and Lian]{Zhou2009AspAT}
+Y.~Zhou, H.~Cai, J.~Xiao, X.~Li, Q.~Zhang, and X.~Lian.
+\newblock Over-expression of aspartate aminotransferase genes in rice resulted
+  in altered nitrogen metabolism and increased amino acid content in seeds.
+\newblock \emph{Theoretical and Applied Genetics}, 118:\penalty0 1381--1390,
+  2009.
+\newblock \doi{10.1007/s00122-009-0988-3}.
+
+\bibitem[Zomer et~al.(2022)Zomer, Xu, and Trabucco]{Zomer2022Aridity}
+R.~J. Zomer, J.~Xu, and A.~Trabucco.
+\newblock Version 3 of the global aridity index and potential
+  evapotranspiration database.
+\newblock \emph{Scientific Data}, 9\penalty0 (1):\penalty0 409, 2022.
+\newblock \doi{10.1038/s41597-022-01493-1}.
+
+\end{thebibliography}

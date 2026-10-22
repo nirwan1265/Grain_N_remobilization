@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Woodhouse et~al.(2021)Woodhouse, Sen, Schott, Portwood, Freeling,
+  Walley, Andorf, and Schnable]{qteller}
+M.~R. Woodhouse, S.~Sen, D.~Schott, J.~L. Portwood, M.~Freeling, J.~W. Walley,
+  C.~M. Andorf, and J.~C. Schnable.
+\newblock qteller: a tool for comparative multi-genomic gene expression
+  analysis.
+\newblock \emph{Bioinformatics}, 38:\penalty0 236--242, 12 2021.
+\newblock ISSN 1367-4803.
+\newblock \doi{10.1093/bioinformatics/btab604}.
+
+\end{thebibliography}

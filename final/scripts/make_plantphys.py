@@ -185,11 +185,9 @@ ms = r"""%% Plant Physiology submission version of main.tex (built by make_plant
 %% Edit main.tex as the source of truth, or edit this file directly if you prefer;
 %% the two are not kept in sync automatically.
 %% Compile from final/plant_physiology/:  pdflatex, bibtex, pdflatex, pdflatex
-\documentclass[namedate,unnumsec,webpdf,traditional,large]{oup-authoring-template}
-\onecolumn
+\documentclass[namedate,unnumsec,webpdf,contemporary,large]{oup-authoring-template}
 \usepackage{tabularx}
 \usepackage{booktabs}
-\usepackage[switch]{lineno}
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.5\hsize}X}
 \newcommand{\societylogo}{}
@@ -228,7 +226,6 @@ ms = r"""%% Plant Physiology submission version of main.tex (built by make_plant
 \keywords{%(keywords)s}
 
 \maketitle
-\linenumbers
 
 %(body)s
 \section{Accession numbers}
