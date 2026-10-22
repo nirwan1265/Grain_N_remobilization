@@ -19,8 +19,6 @@
 \appnotes{Research Article}
 \firstpage{1}
 
-% Title: Plant Physiology allows at most 110 characters (this one is 109).
-% Title in main.tex: The aspartate-to-homoserine pathway recurs in maize grain amino acid variation, soil nitrogen associations, and yield-selected populations with contrasting nitrogen allocation
 \title[Aspartate pathway and maize grain nitrogen]{The aspartate-to-homoserine pathway recurs across maize grain amino acids, soil nitrogen, and yield selection}
 
 \author[1,$\dagger$]{Nirwan Tandukar}
@@ -37,7 +35,6 @@
 
 \corresp[$\dagger$]{These authors contributed equally to this work. $^{\ast}$Corresponding authors. Sherry Flint-Garcia (\href{mailto:sherry.flint-garcia@usda.gov}{sherry.flint-garcia@usda.gov}), Ruthie Angelovici (\href{mailto:angelovicir@missouri.edu}{angelovicir@missouri.edu}), and Rub\'en Rell\'an-\'Alvarez (\href{mailto:rrellan@ncsu.edu}{rrellan@ncsu.edu})}
 
-% Plant Physiology: abstract at most 250 words, no citations or abbreviations (this one is 249 words).
 \abstract{Grain nitrogen in maize depends on nitrogen uptake, assimilation, and allocation, but it is unclear whether the same metabolic functions underlie natural variation in grain amino acid composition, genetic variation associated with soil nitrogen, and response to selection. We tested this in three populations, each with a distinct nitrogen-related phenotype. In the Goodman--Buckler Association Panel, grain free amino acids were dominated by asparagine and proline and were highly heritable, and genome-wide association mapping of 71 traits implicated genes for amino acid metabolism and transport. The loci shared across the most traits lay near a peptidase A1 gene and endoplasmic reticulum membrane protein genes. In 3,107 georeferenced landraces from across the Americas, association mapping of soil nitrogen at collection sites identified variants near an aspartate kinase isozyme and an omega-amidase that passed tests for confounding with geography and climate. Indian Chief and Jarvis responded to 14 cycles of reciprocal recurrent selection for yield with different changes in nitrogen allocation. The two populations diverged genetically, and Indian Chief accumulated more free amino acids, mostly proline, while protein-bound amino acids were unchanged. Their candidate regions included protein-turnover genes in Indian Chief and amino acid importers in Jarvis, consistent with these population-specific phenotypes. Each of the four analyses highlighted a different enzyme of the aspartate-to-homoserine pathway, the only pathway that remained significant after correction across all pathways. Together, these results point to aspartate-family metabolism as a shared source of candidate genes for how nitrogen is partitioned among grain amino acid pools in maize.}
 
 \keywords{maize, grain nitrogen, free amino acids, aspartate-family amino acids, genome-wide association, reciprocal recurrent selection}
@@ -324,8 +321,9 @@ Pathway membership was taken from CornCyc (Plant Metabolic Network release 2023,
 N responses of candidate genes were taken from a reanalysis of published maize RNA-seq studies of root, leaf, shoot, and whole-seedling tissue (Supplemental Table~S22), including six leaf N-deficiency studies \citep{Mu2017LN, Guo2022LN, Ma2021LN, TorresRodriguez2021LN, AlonsoNieves2022LN, Wang2025NRT25}. Each study was analyzed with DESeq2, and studies were pooled by random-effects meta-analysis.
 % TODO: cite salmon, nf-core/rnaseq, DESeq2, and DerSimonian & Laird 1986 (also in Supplemental Methods)
 
-\section{Accession numbers}
+section{Accession numbers}
 Sequence data from this article can be found in the NCBI Sequence Read Archive under BioProject PRJNAXXXXXX. Gene identifiers refer to the B73 RefGen\_v5 annotation (Zm00001eb).
+
 % TODO: fill in the BioProject accession
 
 \section{Supplemental data}
@@ -409,8 +407,7 @@ The following materials are available in the online version of this article.
 We thank members of the Rub\'en Rell\'an-\'Alvarez and Jim Holland labs for their contribution to fieldwork and sampling, Drs. Daniel Kick and Ha Ngoc Duong for their guidance in conducting the GWAS, and members of the Flint-Garcia lab for pollination and harvest of the QTL mapping population. Mention of trade names or commercial products in this publication is solely for the purpose of providing specific information and does not imply recommendation or endorsement by the U.S. Department of Agriculture. USDA is an equal opportunity provider and employer.
 
 \section{Author contributions}
-% TODO: Plant Physiology requires one sentence per author (designed research, performed research, contributed tools, analyzed data, wrote the paper).
-TODO.
+N.T. and S.F. contributed equally to this work. N.T. performed the soil nitrogen environmental GWAS and the Indian Chief and Jarvis analyses. S.F. performed the amino acid GWAS in the Goodman--Buckler panel and the QTL mapping in the B64~$\times$~CML14 population. Both contributed to writing the paper. V.S. assisted S.F. with amino acid measurements in the Goodman--Buckler panel. R.R.-A. supervised N.T., and S.F.-G. and R.A. supervised S.F. and V.S. S.F.-G., R.A., and R.R.-A. revised the paper. All authors read and approved the final manuscript.
 
 \section{Funding}
 Part of this work and N.T. were supported by the U.S. Department of Energy, Office of Science, Biological and Environmental Research program, Early Career Award DE-SC0021889. This work was also supported in part by the Science and Technologies for Phosphorus Sustainability (STEPS) Center, a National Science Foundation Science and Technology Center (CBET-2019435). S.F. was supported by the Marcus S. Zuber Assistantship and the Oak Ridge Institute for Science and Education CERCA Project. S.F.-G. was supported by USDA-ARS.
@@ -419,7 +416,7 @@ Part of this work and N.T. were supported by the U.S. Department of Energy, Offi
 None declared.
 
 \section{Data availability}
-Raw sequencing reads for the Indian Chief and Jarvis populations are available from the NCBI Sequence Read Archive under BioProject PRJNAXXXXXX, and the filtered SNP set used for population structure analyses is available at Zenodo (doi:10.5281/zenodo.XXXXXXX). Amino acid phenotypes and all Supplemental Data are provided with this article. All code used in this study is available at \url{https://github.com/nirwan1265/Grain_N_remobilization} (archived at doi:10.5281/zenodo.XXXXXXX). The amino acid GWAS results for the Goodman--Buckler panel can be browsed through a Shiny web application at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}
+Sequencing reads generated in this study are available under the accession listed in Accession numbers, and the filtered SNP set used for population structure analyses is available at Zenodo (doi:10.5281/zenodo.XXXXXXX). Free amino acid phenotypes and all other results are provided in the Supplemental Data. Previously published data analyzed here are available from the original sources cited in Materials and methods. All code used in this study is available at \url{https://github.com/nirwan1265/Grain_N_remobilization}. The amino acid GWAS results for the Goodman--Buckler panel can be browsed through a Shiny web application at \url{https://j83gk2-nirwan-tandukar.shinyapps.io/amino_gwas_app/}.
 
 % TODO: add the NCBI SRA BioProject accession for the Indian Chief and Jarvis skim-sequencing reads
 
