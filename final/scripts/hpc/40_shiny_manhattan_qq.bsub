@@ -1,0 +1,60 @@
+#!/bin/bash
+#BSUB -n 1
+#BSUB -W 720
+#BSUB -q sara
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=48GB]"
+#BSUB -J shiny_plots
+#BSUB -o /share/maize/ntanduk/GrainN/GWAS_env/logs/shiny_plots.%J.out
+#BSUB -e /share/maize/ntanduk/GrainN/GWAS_env/logs/shiny_plots.%J.err
+################################################################################
+## Manhattan + QQ plots for the Shiny app, all traits in one job (no array, as
+## with 30b: arrays fail on this cluster). Same absolute-path rules as 30b.
+##
+## EDIT THESE IF ANYTHING MOVES.
+################################################################################
+WORKDIR="/share/maize/ntanduk/GrainN/GWAS_env"
+RSCRIPT_BIN="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/R_plot/bin/Rscript"
+IN_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/split_by_trait"
+OUT_DIR="/rsstu/users/r/rrellan/sara/nirwan_backup/ntanduk/Sarah_N_grain/shiny_figs"
+CHAIN="${WORKDIR}/B73_RefGen_v4_to_Zm-B73-REFERENCE-NAM-5.0.chain.txt"
+RSCRIPT_FILE="${WORKDIR}/40_shiny_manhattan_qq.R"
+TRAIT_LIST="${WORKDIR}/traits.txt"
+
+################################################################################
+## SETUP (once, on the login node):
+##   copy 40_shiny_manhattan_qq.R and this file into ${WORKDIR}
+##   copy the chain file from your Mac into ${WORKDIR}:
+##     scp ~/Documents/Research/data/Sarah_amino_acid/chain/B73_RefGen_v4_to_Zm-B73-REFERENCE-NAM-5.0.chain.txt \
+##         ntanduk@login01:/share/maize/ntanduk/GrainN/GWAS_env/
+##   ls ${IN_DIR}/*.csv | xargs -n1 basename | sed 's/\.csv$//' | sort > ${TRAIT_LIST}
+##   wc -l ${TRAIT_LIST}             # 78
+##   ${RSCRIPT_BIN} -e 'library(ggplot2); library(data.table)'   # both must load
+##
+## TEST ONE TRAIT FIRST (login node is fine for a quick look, or bsub -Is):
+##   ${RSCRIPT_BIN} ${RSCRIPT_FILE} T ${IN_DIR} ${OUT_DIR} ${CHAIN}
+##
+## SUBMIT:  bsub < 40_shiny_manhattan_qq.bsub
+## WATCH :  tail -f ${WORKDIR}/logs/shiny_plots.*.out
+################################################################################
+
+cd "$WORKDIR" || { echo "FATAL: cannot cd to $WORKDIR" >&2; exit 1; }
+mkdir -p "${WORKDIR}/logs" "$OUT_DIR"
+for f in "$RSCRIPT_BIN" "$RSCRIPT_FILE" "$TRAIT_LIST" "$CHAIN"; do
+  [[ -e "$f" ]] || { echo "FATAL: $f not found -- see SETUP" >&2; exit 1; }
+done
+echo "=== host $(hostname) | started $(date) ==="
+
+N=$(grep -c . "$TRAIT_LIST"); i=0; FAILED=()
+while IFS= read -r TRAIT; do
+  [[ -z "$TRAIT" ]] && continue
+  i=$((i+1)); echo "---------- [$i/$N] $TRAIT ----------"
+  if [[ -s "${OUT_DIR}/manhattan/${TRAIT}_manhattan.png" && -s "${OUT_DIR}/qq/${TRAIT}_qq.png" ]]; then
+    echo "  already done, skipping"; continue
+  fi
+  "$RSCRIPT_BIN" "$RSCRIPT_FILE" "$TRAIT" "$IN_DIR" "$OUT_DIR" "$CHAIN" || { echo "!!! FAILED: $TRAIT" >&2; FAILED+=("$TRAIT"); }
+done < "$TRAIT_LIST"
+
+echo "=== finished $(date) ==="
+echo "manhattan: $(ls "$OUT_DIR"/manhattan/*.png 2>/dev/null | wc -l) of $N | qq: $(ls "$OUT_DIR"/qq/*.png 2>/dev/null | wc -l) of $N"
+if [[ ${#FAILED[@]} -gt 0 ]]; then echo "FAILED (${#FAILED[@]}): ${FAILED[*]}" >&2; exit 1; fi
