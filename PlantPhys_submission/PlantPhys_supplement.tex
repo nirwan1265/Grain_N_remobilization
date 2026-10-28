@@ -25,7 +25,7 @@ The Goodman--Buckler maize association panel \citep{FlintGarcia2005Goodman} was 
 
 \paragraph*{B64 $\times$ CML14 mapping population}
 The B64 $\times$ CML14 mapping population was developed by crossing B64 and CML14, the Goodman--Buckler lines with the lowest and highest grain free Asn, respectively. Field design, harvest, and sample preparation for the F$_{2:3}$ families are described in \citet{Fitzsimmons2026KernelKitchen}.
-% TODO (check with Sarah): drying is 41 C and 20% relative humidity here but 40 C and <20% for the Goodman-Buckler panel
+% TODO (check with Sarah): drying is 40 C and 20% relative humidity here but 40 C and <20% for the Goodman-Buckler panel
 
 \paragraph*{Maize landraces}
 We used 3,107 georeferenced maize landrace accessions from the CIMMYT International Germplasm Bank \citep{RomeroNavarro2017Landraces}, collected in 28 countries and territories across Mesoamerica (2,296), South America (667), and the Caribbean (144) for which environmental variable such as soil N values were available at the collection sites.
@@ -106,8 +106,7 @@ To assess whether soil-N associations reflected geography or climate, we repeate
 For the two focal soil-N SNPs (S1\_16128632, S5\_22338979), we compared soil N among genotypes with Kruskal--Wallis tests ($\varepsilon^2$), followed by Dunn tests with Holm correction, and compared minor-allele carriers vs non-carriers within Mexico and within Central America using Wilcoxon rank-sum tests. These tests do not account for population structure.
 
 \subsection*{QTL mapping}
-The genetic map of 610 markers was constructed with R/qtl \citep{Broman2003} as described in \citet{Fitzsimmons2026KernelKitchen}. Best linear unbiased predictions (BLUPs) of free Asp and free Pro were calculated for the 250 F$_{2:3}$ families. QTL scans used Haley--Knott regression, significance thresholds were set at $\alpha = 0.05$ from 1,000 permutations, and support intervals were defined as 1.5-LOD drops from the QTL peak.
-% TODO (check with Sarah): the earlier text said that Asp BLUPs were used to construct the genetic map
+The genetic map of 610 markers was constructed with R/qtl \citep{Broman2003} as described in \citet{Fitzsimmons2026KernelKitchen}. Best linear unbiased predictions (BLUPs) of free Asp and free Pro were calculated for the 213 F$_{2:3}$ families. QTL scans used Haley--Knott regression, significance thresholds were set at $\alpha = 0.05$ from 1,000 permutations, and support intervals were defined as 1.5-LOD drops from the QTL peak.
 
 Genes within the shared 1.5-LOD support interval (chr3:14.37--143.31~Mb) were taken from the reference genome version 5 gene annotation in MaizeGDB \citep{MaizeGDB}, with 192 non-coding genes absent from that annotation added from Ensembl Plants release 62. Genes were annotated with gene name, PANTHER family, protein class, and Gene Ontology terms, and with kernel expression from qTeller \citep{qteller}, which provides RNA-seq transcript abundance across maize kernel tissues and developmental stages (Supplemental Table S8).
 
@@ -188,7 +187,7 @@ Expression responses of candidate genes to N supply were taken from MaizExpressN
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{figures/SuppFig_QTL_Asp_Pro_panel.png}
-\caption*{\textbf{Supplemental Figure S5.} \textbf{Free Asp and Pro map to the same QTL on chromosome 3 in the B64 $\times$ CML14 population.} \textbf{(A, C)} Free Asp (A) and Pro (C) in the Goodman--Buckler panel (nmol~$\mu$g$^{-1}$), with lines ranked by their mean. Open circles mark B64 and CML14. \textbf{(B, D)} Genome-wide LOD scores for free Asp (B) and Pro (D) in the B64 $\times$ CML14 F$_{2:3}$ population. Dashed lines show the genome-wide threshold ($\alpha = 0.05$, 1,000 permutations). The triangle marks the chromosome 3 peak, and the inset shows chromosome 3 with the overlap of the Asp and Pro 1.5-LOD support intervals shaded.}
+\caption*{\textbf{Supplemental Figure S5.} \textbf{Free Asp and Pro map to the same QTL on chromosome 3 in the B64 $\times$ CML14 population.} \textbf{(A, C)} Free Asp (A) and Pro (C) in the Goodman--Buckler panel (nmol~mg$^{-1}$), with lines ranked by their mean. Open circles mark B64 and CML14. \textbf{(B, D)} Genome-wide LOD scores for free Asp (B) and Pro (D) in the B64 $\times$ CML14 F$_{2:3}$ population. Dashed lines show the genome-wide threshold ($\alpha = 0.05$, 1,000 permutations). The triangle marks the chromosome 3 peak, and the inset shows chromosome 3 with the overlap of the Asp and Pro 1.5-LOD support intervals shaded.}
 \end{figure}
 \clearpage
 

@@ -13,10 +13,11 @@
 ## A  the 15 SNPs significant in >= 2 models: tile = genome-wide percentile of
 ##    |r| with each variable; circle = SNP also FDR-significant in that
 ##    variable's GWAS (not drawn for soil N 0-5 cm, where every SNP is). Right: call.
-## B  expectation test: share of SNPs in the top 1 % of the genome on >= 1
-##    geographic axis (latitude, longitude, elevation) or >= 1 environmental axis
-##    (+ pH, CEC, aridity), for the genome, for SNPs in the top 1 % for soil N by
-##    correlation alone, and for the GWAS soil-N SNPs.
+## B  expectation test, simplified (2026-10-27): share of SNPs whose genotype is
+##    in the top 1 % of the genome for latitude, longitude or elevation, for
+##    (1) all SNPs, (2) the top 1 % of SNPs by genotype-soil N correlation alone
+##    (no GWAS model), and (3) the soil-N GWAS SNPs (FDR). The 6-axis version and
+##    the >= 2-model group are kept in Supplemental Table S13 only.
 ##
 ## Call (per SNP; comparators = 6 non-N variables)
 ##   linked to environment : top 1 % of the genome on >= 1 comparator
@@ -76,6 +77,10 @@ short <- function(z) { z <- sub(" domain-containing protein", "", z); z <- sub("
 h[, rowlab := sprintf("%s  %s", SNP, ifelse(lead_gene == "" | is.na(lead_gene), "no gene <=25 kb",
                                              paste0(lead_gene, " (", short(lead_name), ")")))]
 h[lead_name == "" & lead_gene != "", rowlab := sprintf("%s  %s", SNP, lead_gene)]
+## use the names given in Table 2 of the paper for the genes discussed there
+NAME_FIX <- c(Zm00001eb220040 = "aspartate kinase isozyme", Zm00001eb130210 = "TTL1-like",
+              Zm00001eb005710 = "omega-amidase")
+h[lead_gene %in% names(NAME_FIX), rowlab := sprintf("%s  %s (%s)", SNP, lead_gene, NAME_FIX[lead_gene])]
 setorder(h, cmp_min); h[, rowlab := factor(rowlab, levels = rev(rowlab))]
 
 hm <- melt(h, id.vars = c("SNP", "rowlab", "env_hits", "replicates_N_5_15"),
@@ -128,25 +133,27 @@ for (ax in unique(B$axis)) {
     P_vs_Ncorrelated = bt(ax, "Top 1% |r| with soil N", "less"))] }
 print(B)
 
-pB <- ggplot(B, aes(group, pct, fill = group)) +
-  geom_col(width = 0.72) +
-  geom_text(aes(label = sprintf("%.1f%%\n(%s/%s)", pct, prettyNum(k, big.mark = ",", preserve.width = "none"),
-                                              prettyNum(n, big.mark = ",", preserve.width = "none"))),
-            vjust = -0.15, size = 4.3, fontface = "bold", lineheight = 0.9) +
-  facet_wrap(~axis, ncol = 1) +
-  scale_fill_manual(values = c("grey70", "#6A51A3", "#B35806", "#7F2704"), guide = "none") +
-  scale_x_discrete(labels = c("Whole\ngenome", "Top 1% |r|\nwith soil N",
-                              "Soil-N GWAS\n(FDR)", "Soil-N GWAS\n\u22652 models")) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.30))) +
-  labs(x = NULL, y = "SNPs in top 1% on \u22651 axis (%)") +
+PB <- B[axis == "Geographic (3 axes)" & group != "Soil-N GWAS, >=2 models"]
+PB[, group := droplevels(group)]
+pB <- ggplot(PB, aes(group, pct, fill = group)) +
+  geom_col(width = 0.68) +
+  geom_text(aes(label = sprintf("%.1f%%", pct)), vjust = -1.9, size = 7, fontface = "bold") +
+  geom_text(aes(label = sprintf("%s / %s", prettyNum(k, big.mark = ","), prettyNum(n, big.mark = ","))),
+            vjust = -0.6, size = 4.6, colour = "grey30") +
+  scale_fill_manual(values = c("grey70", "#6A51A3", "#B35806"), guide = "none") +
+  scale_x_discrete(labels = c("All SNPs", "SNPs picked by\nsoil N correlation\nalone (no GWAS)",
+                              "Soil N\nGWAS SNPs")) +
+  scale_y_continuous(limits = c(0, 46), expand = expansion(mult = c(0, 0))) +
+  labs(x = NULL, y = "SNPs whose genotype follows latitude,\nlongitude or elevation (%)") +
   plot_theme +
-  theme(strip.text = element_text(size = 15, face = "bold"), axis.text.x = element_text(size = 12, face = "bold"))
+  theme(axis.text.x = element_text(size = 14, face = "bold", lineheight = 0.95),
+        axis.title.y = element_text(size = 16, face = "bold"))
 
-fig <- (pA | pB) + plot_layout(widths = c(2.1, 1)) + plot_annotation(tag_levels = "A") &
+fig <- (pA | pB) + plot_layout(widths = c(2.4, 1)) + plot_annotation(tag_levels = "A") &
   theme(plot.tag = element_text(size = 28, face = "bold"))
 for (ext in c("png", "pdf"))
   ggsave(file.path(FIG, paste0("SuppFig_soilN_geno_env_correlation.", ext)), fig,
-         width = 28, height = 13, dpi = 300, bg = "white",
+         width = 28, height = 12, dpi = 300, bg = "white",
          device = if (ext == "pdf") cairo_pdf else "png")
 
 ## ---- Supplementary Tables S12 and S12 -------------------------------------------------
