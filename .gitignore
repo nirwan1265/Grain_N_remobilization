@@ -12,3 +12,6 @@ final/results/
 tmp_gwas_debug*/
 final/**/_to_delete*/
 final/**/_to_delete*/
+
+# old Genetics-format manuscript (main.tex) kept locally, not tracked
+genetics_format/
