@@ -20,7 +20,7 @@
 ##    the >= 2-model group are kept in Supplemental Table S13 only.
 ##
 ## Call (per SNP; comparators = 6 non-N variables)
-##   linked to environment : top 1 % of the genome on >= 1 comparator
+##   linked to geography/climate : top 1 % of the genome on >= 1 comparator
 ##   inconclusive          : the SNP's own genotype-soil N correlation is weak
 ##                           (outside the top 5 % of the genome), so there is no
 ##                           soil-N correlation to compare the other variables
@@ -65,7 +65,7 @@ g[, cmp_axis := CMP[apply(as.matrix(.SD), 1, which.min)], .SDcols = paste0("pct_
 s <- fread(F_S15)
 x <- merge(s[, .(SNP, Chr, Pos, MAF, n_models, min_P, env_hits, replicates_N_5_15,
                  lead_gene, lead_rel, lead_dist, lead_name)], g, by = "SNP")
-x[, call := fifelse(cmp_min < 1, "linked to environment",
+x[, call := fifelse(cmp_min < 1, "linked to geography/climate",
             fifelse(pct_N_0_5 >= 5, "inconclusive", "not linked"))]
 cat(sprintf("%d FDR soil-N SNPs matched to correlations (of %d)\n", nrow(x), nrow(s)))
 print(x[n_models >= 2, .N, by = call])
@@ -92,7 +92,7 @@ hm[, hit := mapply(function(v, e, r) {
   v %in% trimws(strsplit(e, ",")[[1]]) }, var, ifelse(is.na(env_hits), "", env_hits), replicates_N_5_15)]
 hm[, var := factor(var, levels = VARS)]
 
-callcol <- c(`linked to environment` = "#B2182B", `inconclusive` = "grey45",
+callcol <- c(`linked to geography/climate` = "#B2182B", `inconclusive` = "grey45",
              `not linked` = "#1B7837")
 pA <- ggplot(hm, aes(var, rowlab)) +
   geom_tile(aes(fill = bin), colour = "white", linewidth = 1.2) +
