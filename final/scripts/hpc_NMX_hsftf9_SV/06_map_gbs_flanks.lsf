@@ -1,0 +1,21 @@
+#!/bin/bash
+#BSUB -n 4
+#BSUB -W 3:00
+#BSUB -R "rusage[mem=32GB] span[hosts=1]"
+#BSUB -o logs/gbsmap.%J.%I.out
+#BSUB -e logs/gbsmap.%J.%I.err
+################################################################################
+## Step 6 (job array, one genome per task, ~15 min): align the 1,198 GBS SNP flanks
+## (2,001 bp of B73 v5 centred on each SNP, chr9:150.7-153.0 Mb) to each assembly.
+## Inputs in OUT: gbs_flanks_2kb.fa, genomes_gbs.txt (one .fa.gz path per line)
+## Submit from OUT:
+##   cd /share/maize/ntanduk/NMX_hsftf9_SV
+##   N=$(wc -l < genomes_gbs.txt)
+##   bsub -J "gbsmap[1-$N]%10" < /share/maize/ntanduk/hpc_NMX_hsftf9_SV/06_map_gbs_flanks.lsf
+################################################################################
+set -euo pipefail
+OUT=${OUT:-/share/maize/ntanduk/NMX_hsftf9_SV}; cd $OUT; mkdir -p logs paf_gbs
+eval "$(conda shell.bash hook)"; conda activate seqanal
+G=$(sed -n "${LSB_JOBINDEX}p" genomes_gbs.txt); NAME=$(basename $G .fa.gz)
+minimap2 -t 4 -x asm20 -N 5 -p 0.5 --secondary=yes -c $G gbs_flanks_2kb.fa > paf_gbs/${NAME}.paf
+echo "$NAME $(wc -l < paf_gbs/${NAME}.paf) alignments"

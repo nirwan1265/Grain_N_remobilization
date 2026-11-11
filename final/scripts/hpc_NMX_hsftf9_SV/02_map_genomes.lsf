@@ -1,0 +1,19 @@
+#!/bin/bash
+#BSUB -n 4
+#BSUB -W 2:00
+#BSUB -R "rusage[mem=24GB] span[hosts=1]"
+#BSUB -o logs/map.%J.%I.out
+#BSUB -e logs/map.%J.%I.err
+################################################################################
+## Step 2 (job array, one genome per task): align the B73 queries to each genome
+## with minimap2 and keep all hits (PAF). Submit from the OUT directory:
+##   cd /share/maize/ntanduk/NMX_hsftf9_SV && mkdir -p logs paf
+##   bsub -J "nam[1-N]" < /path/to/02_map_genomes.lsf     (N = lines in genomes.txt)
+################################################################################
+set -euo pipefail
+OUT=${OUT:-/share/maize/ntanduk/NMX_hsftf9_SV}; cd $OUT
+eval "$(conda shell.bash hook)"; conda activate seqanal
+mkdir -p paf logs
+G=$(sed -n "${LSB_JOBINDEX}p" genomes.txt); NAME=$(basename $G .fa.gz)
+minimap2 -t 4 -x asm20 -N 50 -p 0.3 --secondary=yes -c $G queries.fa > paf/${NAME}.paf
+echo "$NAME $(wc -l < paf/${NAME}.paf) alignments"

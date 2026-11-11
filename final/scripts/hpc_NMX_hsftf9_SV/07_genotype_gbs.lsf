@@ -1,0 +1,16 @@
+#!/bin/bash
+#BSUB -n 1
+#BSUB -W 2:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o logs/gbsgeno.%J.%I.out
+#BSUB -e logs/gbsgeno.%J.%I.err
+################################################################################
+## Step 7 (job array, one genome per task, ~5 min). Submit from OUT after step 6:
+##   bsub -J "gbsgeno[1-$N]%10" < /share/maize/ntanduk/hpc_NMX_hsftf9_SV/07_genotype_gbs.lsf
+################################################################################
+set -euo pipefail
+OUT=${OUT:-/share/maize/ntanduk/NMX_hsftf9_SV}; SCR=${SCR:-/share/maize/ntanduk/hpc_NMX_hsftf9_SV}
+cd $OUT; mkdir -p logs gbs_alleles
+eval "$(conda shell.bash hook)"; conda activate seqanal
+G=$(sed -n "${LSB_JOBINDEX}p" genomes_gbs.txt)
+python3 $SCR/07_genotype_gbs.py $G $OUT
